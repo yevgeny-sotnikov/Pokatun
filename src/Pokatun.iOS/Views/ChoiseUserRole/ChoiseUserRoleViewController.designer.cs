@@ -9,10 +9,10 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Pokatun.iOS.Views.Main
+namespace Pokatun.iOS.Views.ChoiseUserRole
 {
-    [Register("MainViewController")]
-    partial class MainViewController
+    [Register("ChoiseUserRoleViewController")]
+    partial class ChoiseUserRoleViewController
     {
         void ReleaseDesignerOutlets()
         {

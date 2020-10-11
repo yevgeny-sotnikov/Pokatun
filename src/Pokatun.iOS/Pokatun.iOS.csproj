@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -131,10 +131,10 @@
     <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <InterfaceDefinition Include="Views\Main\MainViewController.xib" />
-    <Compile Include="Views\Main\MainViewController.cs" />
-    <Compile Include="Views\Main\MainViewController.designer.cs">
-      <DependentUpon>MainViewController.cs</DependentUpon>
+    <InterfaceDefinition Include="Views\ChoiseUserRole\ChoiseUserRoleViewController.xib" />
+    <Compile Include="Views\ChoiseUserRole\ChoiseUserRoleViewController.cs" />
+    <Compile Include="Views\ChoiseUserRole\ChoiseUserRoleViewController.designer.cs">
+      <DependentUpon>ChoiseUserRoleViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -202,7 +202,7 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Main\" />
+    <Folder Include="Views\ChoiseUserRole\" />
     <Folder Include="Resources\Media.xcassets\logo_1.imageset\" />
   </ItemGroup>
   <ItemGroup>
