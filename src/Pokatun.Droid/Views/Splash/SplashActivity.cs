@@ -22,5 +22,8 @@ namespace Pokatun.Droid.Views.Splash
         RoundIcon = "@mipmap/ic_launcher_round")]
     public class SplashActivity : MvxSplashScreenActivity
     {
+        public SplashActivity() : base(Resource.Layout.activity_splash_screen)
+        {
+        }
     }
 }
