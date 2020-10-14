@@ -11,6 +11,8 @@
         <item name="colorControlActivated">@color/accentColor</item>
         <item name="colorControlHighlight">@color/accentColor</item>
         <item name="windowActionModeOverlay">false</item>
+        <item name="android:fontFamily">@font/helveticaneuecyr</item>
+        <item name="fontFamily">@font/helveticaneuecyr</item>
     </style>
 
     <!-- Default App theme applied if no resource style overrides for specific API level -->
@@ -20,6 +22,8 @@
     <!-- App Splash Screen Theme -->
     <style name="AppTheme.Splash.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:fontFamily">@font/helveticaneuecyr</item>
+        <item name="fontFamily">@font/helveticaneuecyr</item>
     </style>
 
     <!-- Default Splash Screen theme applied if no resource style overrides for specific API level -->

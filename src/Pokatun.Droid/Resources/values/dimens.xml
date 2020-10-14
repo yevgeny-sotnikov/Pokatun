@@ -10,7 +10,7 @@
     <dimen name="margin_large">32dp</dimen>
     <dimen name="margin_huge">64dp</dimen>
 
-    <dimen name="font_large">20dp</dimen>
-    <dimen name="font_subgigantic">27dp</dimen>
-    <dimen name="font_gigantic">30dp</dimen>
+    <dimen name="font_large">16dp</dimen>
+    <dimen name="font_subgigantic">22dp</dimen>
+    <dimen name="font_gigantic">25dp</dimen>
 </resources>
