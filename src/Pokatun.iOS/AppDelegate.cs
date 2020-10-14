@@ -18,13 +18,16 @@ namespace Pokatun.iOS
 
             if (result)
             {
-                //UILabel.Appearance.Font = Fonts.HelveticaNeueCyrLightLarge;
+                UILabel.Appearance.Font = Fonts.HelveticaNeueCyrLightLarge;
 
                 UIButton.Appearance.SetBackgroundImage(Image(ColorPalette.ButtonDefault), UIControlState.Normal);
                 UIButton.Appearance.SetBackgroundImage(Image(ColorPalette.ButtonDisabled), UIControlState.Disabled);
                 
                 UIButton.Appearance.SetTitleColor(ColorPalette.ButtonTextDefault, UIControlState.Normal);
                 UIButton.Appearance.SetTitleColor(ColorPalette.ButtonTextDisabled, UIControlState.Disabled);
+                UIButton.Appearance.SetTitleColor(ColorPalette.ButtonTextHighlgted, UIControlState.Highlighted);
+
+                UIButton.Appearance.BackgroundColor = ColorPalette.PrimaryLight;
             }
 
             return result;

@@ -7,16 +7,16 @@ namespace Pokatun.iOS.Styles
     {
         #region FontNames
 
-        private const string HelveticaNeueCyrLight = "";
+        private const string HelveticaNeueCyrLight = "helveticaneuecyr-light";
 
         #endregion
 
         #region FontSizes
 
-        private static readonly nfloat SmallSize = 12;
-        private static readonly nfloat MediumSize = 14;
-        private static readonly nfloat LargeSize = 20;
-        private static readonly nfloat GiganticSize = 30;
+        private static readonly nfloat SmallSize = 12; //TODO: setup later
+        private static readonly nfloat MediumSize = 14; //TODO: setup later
+        private static readonly nfloat LargeSize = 15;
+        private static readonly nfloat GiganticSize = 23;
 
         #endregion
 

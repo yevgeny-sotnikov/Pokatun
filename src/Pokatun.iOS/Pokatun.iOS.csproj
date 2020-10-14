@@ -214,6 +214,11 @@
   <ItemGroup>
     <BundleResource Include="Resources\bg_1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

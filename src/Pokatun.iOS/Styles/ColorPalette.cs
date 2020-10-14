@@ -21,6 +21,7 @@ namespace Pokatun.iOS.Styles
 
         public static readonly UIColor ButtonTextDefault = FromHexString("#5d5d5d");
         public static readonly UIColor ButtonTextDisabled = UIColor.White;
+        public static readonly UIColor ButtonTextHighlgted = UIColor.White;
 
         private static UIColor FromHexString(string hexValue)
         {
