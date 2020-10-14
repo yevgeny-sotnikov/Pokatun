@@ -8,6 +8,8 @@ namespace Pokatun.iOS.Views.ChoiseUserRole
     [MvxRootPresentation(WrapInNavigationController = true)]
     public partial class ChoiseUserRoleViewController : BaseViewController<ChoiseUserRoleViewModel>
     {
+        protected override bool NavigationBarHidden => true;
+
         public ChoiseUserRoleViewController() : base(nameof(ChoiseUserRoleViewController), null)
         {
         }

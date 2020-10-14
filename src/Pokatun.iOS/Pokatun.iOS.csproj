@@ -136,6 +136,10 @@
     <Compile Include="Views\ChoiseUserRole\ChoiseUserRoleViewController.designer.cs">
       <DependentUpon>ChoiseUserRoleViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Styles\Fonts.cs" />
+    <ImageAsset Include="Resources\Media.xcassets\logo_2.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\logo_2.imageset\logo_2%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\logo_2.imageset\logo_2%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -204,6 +208,8 @@
   <ItemGroup>
     <Folder Include="Views\ChoiseUserRole\" />
     <Folder Include="Resources\Media.xcassets\logo_1.imageset\" />
+    <Folder Include="Resources\Media.xcassets\logo_2.imageset\" />
+    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\bg_1.png" />
