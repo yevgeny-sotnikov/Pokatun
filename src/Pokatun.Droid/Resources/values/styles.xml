@@ -25,4 +25,27 @@
     <!-- Default Splash Screen theme applied if no resource style overrides for specific API level -->
     <style name="AppTheme.Splash" parent="AppTheme.Splash.Base">
     </style>
+
+    <style name="LabelBase">
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="InfoLabel" parent="LabelBase">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/font_large</item>
+    </style>
+
+    <style name="TitleLabel" parent="InfoLabel">
+        <item name="android:textSize">@dimen/font_subgigantic</item>
+    </style>
+
+    <style name="ButtonBase">
+        <item name="android:textColor">@color/button_text_color</item>
+    </style>
+
+    <style name="BigButton" parent="ButtonBase">
+        <item name="android:layout_height">75dp</item>
+        <item name="android:textSize">@dimen/font_gigantic</item>
+        <item name="android:background">@drawable/big_button_background</item>
+    </style>
 </resources>

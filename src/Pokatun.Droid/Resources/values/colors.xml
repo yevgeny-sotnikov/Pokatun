@@ -8,6 +8,10 @@
     <color name="accentDarkColor">#242c31</color>
     <color name="accentLightColor">#788187</color>
 
-    <color name="primaryTextColor">#000000</color>
+    <color name="primaryTextColor">#56595e</color>
     <color name="secondaryTextColor">#ffffff</color>
+
+    <color name="enabledButtonColor">#edcf2b</color>
+    <color name="disabledButtonColor">#e5e8ef</color>
+    <color name="pressedButtonColor">@color/primaryLightColor</color>
 </resources>

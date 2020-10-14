@@ -1,11 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:paddingLeft="48dp"
+	android:paddingRight="48dp"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<Space
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="61"
+		/>
+	<ImageView
+		android:src="@drawable/logo_2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		/>
+	<Space
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="79"
+		/>
 	<TextView
-		android:text="Выберите как вы хотите 
-использовать приложение"
+		style="@style/TitleLabel"
+		android:text="ROLE TEXT"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:minWidth="25px"
-		android:minHeight="25px"
-		android:id="@+id/textView1" />
+		android:id="@+id/chooseRoleLabel"
+		/>
+	<Space
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="91"
+		/>
+	<Button
+		style="@style/BigButton"
+		android:text="TOURIST"
+		android:layout_width="match_parent"
+		android:id="@+id/touristButton"
+		android:enabled="false"
+		/>
+	<TextView
+		style="@style/InfoLabel"
+		android:text="TOURIST DESC"
+		android:layout_marginTop="17dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/touristDescriptionLabel"
+		/>
+	<Space
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="74"
+		/>
+	<Button
+		style="@style/BigButton"
+		android:text="HOTEL"
+		android:layout_width="match_parent"
+		android:id="@+id/hotelButton"
+		/>
+	<TextView
+		style="@style/InfoLabel"
+		android:text="HOTEL DESC"
+		android:layout_marginTop="17dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/hotelDescriptionLabel"
+		/>
+	<Space
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="129"
+		/>
 </LinearLayout>
