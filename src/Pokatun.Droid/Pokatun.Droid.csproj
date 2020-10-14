@@ -89,27 +89,11 @@
     <AndroidResource Include="Resources\layout\fragment_main.axml" />
     <AndroidResource Include="Resources\layout\layout_toolbar.axml" />
     <AndroidResource Include="Resources\layout\activity_main_container.axml" />
-    <AndroidResource Include="Resources\drawable-xhdpi\logo_1.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxhdpi\logo_1.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-hdpi\logo_1.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-mdpi\logo_1.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\logo_1.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_splash_screen.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\bg_1.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
