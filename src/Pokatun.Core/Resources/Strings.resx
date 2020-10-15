@@ -31,7 +31,10 @@
     <data name="HelloCaps" xml:space="preserve">
         <value>ЗДРАВСТВУЙТЕ!</value>
     </data>
-    <data name="PreEntranceDescriptionText" xml:space="preserve">
+    <data name="PreEntranceTouristDescriptionText" xml:space="preserve">
+        <value>Войдите или зарегистрируйтесь, чтобы управлять своим аккаунтом (выбранными маршрутами, данными о платежах и другой информацией).</value>
+    </data>
+    <data name="PreEntranceHotelDescriptionText" xml:space="preserve">
         <value>Войдите или зарегистрируйтесь, чтобы управлять своим аккаунтом (просматривать и добавлять информацию о своих номерах, ослеживать вашу статистику, данные о платежах и другую информацию).</value>
     </data>
     <data name="Registration" xml:space="preserve">

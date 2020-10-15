@@ -83,9 +83,15 @@ namespace Pokatun.Core.Resources {
             }
         }
         
-        public static string PreEntranceDescriptionText {
+        public static string PreEntranceTouristDescriptionText {
             get {
-                return ResourceManager.GetString("PreEntranceDescriptionText", resourceCulture);
+                return ResourceManager.GetString("PreEntranceTouristDescriptionText", resourceCulture);
+            }
+        }
+        
+        public static string PreEntranceHotelDescriptionText {
+            get {
+                return ResourceManager.GetString("PreEntranceHotelDescriptionText", resourceCulture);
             }
         }
         

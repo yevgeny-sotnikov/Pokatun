@@ -24,7 +24,7 @@ namespace Pokatun.Core.ViewModels.ChoiseUserRole
 
         private Task OnRoleChoosedCommandAsync(UserRole arg)
         {
-            return _navigationService.Navigate<PreEntranceViewModel>();
+            return _navigationService.Navigate<PreEntranceViewModel, UserRole>(arg);
         }
     }
 }

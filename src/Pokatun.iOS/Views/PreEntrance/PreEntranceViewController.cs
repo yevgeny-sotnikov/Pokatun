@@ -1,5 +1,6 @@
-using System;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using MvvmCross.Platforms.Ios.Views;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.PreEntrance;
 using Pokatun.iOS.Styles;
@@ -26,11 +27,18 @@ namespace Pokatun.iOS.Views.PreEntrance
 
 
             _helloLabel.Text = Strings.HelloCaps;
-            _preEntranceDescriptionLabel.Text = Strings.PreEntranceDescriptionText;
             _registrationButton.SetTitle(Strings.Registration, UIControlState.Normal);
             _iStillDoesntHaveAccLabel.Text = Strings.IStillDoesntHaveAccText;
             _loginButton.SetTitle(Strings.Entrance, UIControlState.Normal);
             _iHaveAccLabel.Text = Strings.IHaveAccText;
+
+            _loginButton.Enabled = false;
+
+            MvxFluentBindingDescriptionSet<IMvxIosView<PreEntranceViewModel>, PreEntranceViewModel> set = CreateBindingSet();
+
+            set.Bind(_preEntranceDescriptionLabel).To(vm => vm.PreEntranceDescriptionText);
+
+            set.Apply();
         }
     }
 }

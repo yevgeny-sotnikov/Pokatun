@@ -1,21 +1,12 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using MvvmCross.Platforms.Android.Views;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.PreEntrance;
-using Pokatun.Droid;
 
 namespace Pokatun.Droid.Views.PreEntrance
 {
@@ -43,11 +34,17 @@ namespace Pokatun.Droid.Views.PreEntrance
             _iHaveAccLabel = view.FindViewById<TextView>(Resource.Id.iHaveAccLabel);
 
             _helloLabel.Text = Strings.HelloCaps;
-            _preEntranceDescriptionLabel.Text = Strings.PreEntranceDescriptionText;
             _registrationButton.Text = Strings.Registration;
             _iStillDoesntHaveAccLabel.Text = Strings.IStillDoesntHaveAccText;
             _loginButton.Text = Strings.Entrance;
             _iHaveAccLabel.Text = Strings.IHaveAccText;
+
+            MvxFluentBindingDescriptionSet<IMvxFragmentView<PreEntranceViewModel>, PreEntranceViewModel> set = CreateBindingSet();
+
+            set.Bind(_preEntranceDescriptionLabel).To(vm => vm.PreEntranceDescriptionText);
+
+            set.Apply();
+
 
             return view;
         }
