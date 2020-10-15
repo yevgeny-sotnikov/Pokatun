@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Pokatun.Core.ViewModels.Main
 {
-    public class MainContainerViewModel : BaseViewModel
+    public sealed class MainContainerViewModel : BaseViewModel
     {
     }
 }

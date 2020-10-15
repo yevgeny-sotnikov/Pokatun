@@ -28,4 +28,23 @@
     <data name="Hotel" xml:space="preserve">
         <value>ОТЕЛЬ</value>
     </data>
+    <data name="HelloCaps" xml:space="preserve">
+        <value>ЗДРАВСТВУЙТЕ!</value>
+    </data>
+    <data name="PreEntranceDescriptionText" xml:space="preserve">
+        <value>Войдите или зарегистрируйтесь, чтобы управлять своим аккаунтом (просматривать и добавлять информацию о своих номерах, ослеживать вашу статистику, данные о платежах и другую информацию).</value>
+    </data>
+    <data name="Registration" xml:space="preserve">
+        <value>Регистрация</value>
+    </data>
+    <data name="Entrance" xml:space="preserve">
+        <value>Вход</value>
+    </data>
+    <data name="IStillDoesntHaveAccText" xml:space="preserve">
+        <value>У меня еще нет здесь аккаунта</value>
+    </data>
+    <data name="IHaveAccText" xml:space="preserve">
+        <value>У меня уже есть аккаунт</value>
+    </data>
+
 </root>

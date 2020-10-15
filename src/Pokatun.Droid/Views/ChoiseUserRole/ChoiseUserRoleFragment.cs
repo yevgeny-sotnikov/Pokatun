@@ -1,15 +1,18 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using MvvmCross.Platforms.Android.Views;
+using Pokatun.Core.Models.Enums;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
 using Pokatun.Core.ViewModels.Main;
 
 namespace Pokatun.Droid.Views.ChoiseUserRole
 {
-    [MvxFragmentPresentation(typeof(MainContainerViewModel), Resource.Id.content_frame)]
-    public class ChoiseUserRoleFragment : BaseFragment<ChoiseUserRoleViewModel>
+    [MvxFragmentPresentation(typeof(MainContainerViewModel), Resource.Id.content_frame, AddToBackStack = true)]
+    public sealed class ChoiseUserRoleFragment : BaseFragment<ChoiseUserRoleViewModel>
     {
         private TextView _chooseRoleLabel;
         private Button _touristButton;
@@ -34,6 +37,14 @@ namespace Pokatun.Droid.Views.ChoiseUserRole
             _touristDescriptionLabel.Text = Strings.TouristRoleDescriptionText;
             _hotelButton.Text = Strings.Hotel;
             _hotelDescriptionLabel.Text = Strings.HotelRoleDescriptionText;
+
+            IMvxFragmentView<ChoiseUserRoleViewModel> v = this;
+            MvxFluentBindingDescriptionSet<IMvxFragmentView<ChoiseUserRoleViewModel>, ChoiseUserRoleViewModel> set = CreateBindingSet();
+
+            set.Bind(_touristButton).For(nameof(_touristButton.Click)).To(vm => vm.RoleChoosedCommand).CommandParameter(UserRole.Tourist);
+            set.Bind(_hotelButton).For(nameof(_hotelButton.Click)).To(vm => vm.RoleChoosedCommand).CommandParameter(UserRole.HotelAdministrator);
+
+            set.Apply();
 
             return view;
         }

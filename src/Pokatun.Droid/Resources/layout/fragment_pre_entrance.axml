@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+	<Space
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="79"
+		/>
+	<TextView
+		style="@style/TitleLabel"
+		android:text="HELLO"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/helloLabel"
+		/>
+	<TextView
+		style="@style/InfoLabel"
+		android:layout_marginTop="25dp"
+		android:layout_marginLeft="36dp"
+		android:layout_marginRight="36dp"
+		android:text="ROLE TEXT"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/preEntranceDescriptionLabel"
+		/>
+	<Space
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="63"
+		/>
+	<Button
+		style="@style/BigButton"
+		android:layout_marginLeft="49dp"
+		android:layout_marginRight="49dp"
+		android:text="REGISTRATION"
+		android:layout_width="match_parent"
+		android:id="@+id/registrationButton"
+		/>
+	<TextView
+		style="@style/InfoLabel"
+		android:layout_marginTop="17dp"
+		android:layout_marginBottom="39dp"
+		android:layout_marginLeft="49dp"
+		android:layout_marginRight="49dp"
+		android:text="NO ACCOUNT TEXT"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/iStillDoesntHaveAccLabel"
+		/>
+	<Button
+		style="@style/BigButton"
+		android:layout_marginLeft="49dp"
+		android:layout_marginRight="49dp"
+		android:text="ENTRANCE"
+		android:layout_width="match_parent"
+		android:id="@+id/loginButton"
+				android:enabled="false"
+		/>
+	<TextView
+		style="@style/InfoLabel"
+		android:text="I HAVE ACC TEXT"
+		android:layout_marginTop="17dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/iHaveAccLabel"
+		/>
+	<Space
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="180"
+		/>
+</LinearLayout>

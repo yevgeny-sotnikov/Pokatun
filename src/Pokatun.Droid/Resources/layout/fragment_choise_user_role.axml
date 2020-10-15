@@ -39,7 +39,6 @@
 		android:text="TOURIST"
 		android:layout_width="match_parent"
 		android:id="@+id/touristButton"
-		android:enabled="false"
 		/>
 	<TextView
 		style="@style/InfoLabel"
