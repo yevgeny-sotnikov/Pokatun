@@ -16,6 +16,7 @@ namespace Pokatun.iOS.Styles
         private static readonly nfloat SmallSize = 12; //TODO: setup later
         private static readonly nfloat MediumSize = 14; //TODO: setup later
         private static readonly nfloat LargeSize = 15;
+        private static readonly nfloat SubGiganticSize = 20;
         private static readonly nfloat GiganticSize = 23;
 
         #endregion
@@ -25,6 +26,7 @@ namespace Pokatun.iOS.Styles
         public static readonly UIFont HelveticaNeueCyrLightLightSmall = UIFont.FromName(HelveticaNeueCyrLight, SmallSize);
         public static readonly UIFont HelveticaNeueCyrLightMedium = UIFont.FromName(HelveticaNeueCyrLight, MediumSize);
         public static readonly UIFont HelveticaNeueCyrLightLarge = UIFont.FromName(HelveticaNeueCyrLight, LargeSize);
+        public static readonly UIFont HelveticaNeueCyrLightSubGigantic = UIFont.FromName(HelveticaNeueCyrLight, SubGiganticSize);
         public static readonly UIFont HelveticaNeueCyrLightGigantic = UIFont.FromName(HelveticaNeueCyrLight, GiganticSize);
 
         #endregion

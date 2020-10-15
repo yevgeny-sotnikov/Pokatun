@@ -20,7 +20,7 @@ namespace Pokatun.iOS.Views.ChoiseUserRole
         {
             base.ViewDidLoad();
 
-            _chooseRoleLabel.Font = Fonts.HelveticaNeueCyrLightGigantic;
+            _chooseRoleLabel.Font = Fonts.HelveticaNeueCyrLightSubGigantic;
             _touristButton.Font = Fonts.HelveticaNeueCyrLightGigantic;
             _hotelButton.Font = Fonts.HelveticaNeueCyrLightGigantic;
 
@@ -29,6 +29,8 @@ namespace Pokatun.iOS.Views.ChoiseUserRole
             _touristDescriptionLabel.Text = Strings.TouristRoleDescriptionText;
             _touristButton.SetTitle(Strings.Tourist, UIControlState.Normal);
             _hotelButton.SetTitle(Strings.Hotel, UIControlState.Normal);
+
+            _touristButton.Enabled = false;
         }
     }
 }
