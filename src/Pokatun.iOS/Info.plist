@@ -36,5 +36,9 @@
 	<string>Resources/Media.xcassets/LaunchImages.launchimage</string>
 	<key>CFBundleDisplayName</key>
 	<string>Pokatun</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/helveticaneuecyr-light.ttf</string>
+	</array>
 </dict>
 </plist>

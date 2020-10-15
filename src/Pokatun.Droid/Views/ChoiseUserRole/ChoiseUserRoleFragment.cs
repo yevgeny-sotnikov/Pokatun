@@ -1,0 +1,41 @@
+using Android.OS;
+using Android.Views;
+using Android.Widget;
+using MvvmCross.Platforms.Android.Presenters.Attributes;
+using Pokatun.Core.Resources;
+using Pokatun.Core.ViewModels.ChoiseUserRole;
+using Pokatun.Core.ViewModels.Main;
+
+namespace Pokatun.Droid.Views.ChoiseUserRole
+{
+    [MvxFragmentPresentation(typeof(MainContainerViewModel), Resource.Id.content_frame)]
+    public class ChoiseUserRoleFragment : BaseFragment<ChoiseUserRoleViewModel>
+    {
+        private TextView _chooseRoleLabel;
+        private Button _touristButton;
+        private TextView _touristDescriptionLabel;
+        private Button _hotelButton;
+        private TextView _hotelDescriptionLabel;
+
+        protected override int FragmentLayoutId => Resource.Layout.fragment_choise_user_role;
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            View view = base.OnCreateView(inflater, container, savedInstanceState);
+
+            _chooseRoleLabel = view.FindViewById<TextView>(Resource.Id.chooseRoleLabel);
+            _touristButton = view.FindViewById<Button>(Resource.Id.touristButton);
+            _touristDescriptionLabel = view.FindViewById<TextView>(Resource.Id.touristDescriptionLabel);
+            _hotelButton = view.FindViewById<Button>(Resource.Id.hotelButton);
+            _hotelDescriptionLabel = view.FindViewById<TextView>(Resource.Id.hotelDescriptionLabel);
+
+            _chooseRoleLabel.Text = Strings.ChooseRoleText;
+            _touristButton.Text = Strings.Tourist;
+            _touristDescriptionLabel.Text = Strings.TouristRoleDescriptionText;
+            _hotelButton.Text = Strings.Hotel;
+            _hotelDescriptionLabel.Text = Strings.HotelRoleDescriptionText;
+
+            return view;
+        }
+    }
+}
