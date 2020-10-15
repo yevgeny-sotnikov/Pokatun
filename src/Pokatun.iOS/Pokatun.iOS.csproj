@@ -70,9 +70,6 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\launch_image.png" />
-    <BundleResource Include="Resources\launch_image%402x.png" />
-    <BundleResource Include="Resources\launch_image%403x.png" />
     <Compile Include="Linker\LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -206,6 +203,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Main\" />
+    <Folder Include="Resources\Media.xcassets\logo_1.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bg_1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

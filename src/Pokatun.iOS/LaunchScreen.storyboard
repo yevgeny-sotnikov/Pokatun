@@ -1,10 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,22 +15,53 @@
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="198">
-                                <rect key="frame" x="175" y="160" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="633"/>
-                                    <constraint firstAttribute="width" constant="200" id="634"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="G5W-Lz-CEw">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="116" translatesAutoresizingMaskIntoConstraints="NO" id="MBk-T9-Hiq">
+                                <rect key="frame" x="30" y="44" width="354" height="818"/>
+                                <subviews>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rV-xp-htY">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="0.0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" id="Pen-81-9Cy"/>
+                                        </constraints>
+                                    </view>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOp-ys-Aps">
+                                        <rect key="frame" x="0.0" y="264" width="354" height="0.0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" id="SxA-MW-h5p"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отдых в скидочных номерах" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvj-Y2-snZ">
+                                        <rect key="frame" x="0.0" y="527.66666666666663" width="354" height="26.333333333333371"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPX-VW-5Oo">
+                                        <rect key="frame" x="0.0" y="818" width="354" height="0.0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" id="bYm-9i-keS"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.14117647058823529" green="0.71764705882352942" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="198" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="635"/>
-                            <constraint firstAttribute="centerY" secondItem="198" secondAttribute="centerY" constant="15" id="636"/>
+                            <constraint firstItem="MBk-T9-Hiq" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="10" id="FPr-Y0-408"/>
+                            <constraint firstItem="G5W-Lz-CEw" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="FS3-eT-ybz"/>
+                            <constraint firstItem="MBk-T9-Hiq" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="Jpe-dY-pJc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MBk-T9-Hiq" secondAttribute="trailing" constant="10" id="RE1-uc-RKF"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="MBk-T9-Hiq" secondAttribute="bottom" id="X6V-hA-eg3"/>
+                            <constraint firstItem="G5W-Lz-CEw" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ewZ-Zn-vod"/>
+                            <constraint firstAttribute="bottom" secondItem="G5W-Lz-CEw" secondAttribute="bottom" id="f6z-fV-W6v"/>
+                            <constraint firstAttribute="trailing" secondItem="G5W-Lz-CEw" secondAttribute="trailing" id="n8z-DK-Imj"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -41,6 +71,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch_image.png" width="280" height="280"/>
+        <image name="bg_1.png" width="1620" height="2880"/>
     </resources>
 </document>
