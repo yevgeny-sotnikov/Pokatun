@@ -140,6 +140,11 @@
     <ImageAsset Include="Resources\Media.xcassets\logo_2.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\logo_2.imageset\logo_2%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\logo_2.imageset\logo_2%403x.png" />
+    <InterfaceDefinition Include="Views\PreEntrance\PreEntranceViewController.xib" />
+    <Compile Include="Views\PreEntrance\PreEntranceViewController.cs" />
+    <Compile Include="Views\PreEntrance\PreEntranceViewController.designer.cs">
+      <DependentUpon>PreEntranceViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -210,6 +215,7 @@
     <Folder Include="Resources\Media.xcassets\logo_1.imageset\" />
     <Folder Include="Resources\Media.xcassets\logo_2.imageset\" />
     <Folder Include="Resources\Fonts\" />
+    <Folder Include="Views\PreEntrance\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\bg_1.png" />

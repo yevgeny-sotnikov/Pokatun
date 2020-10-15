@@ -38,11 +38,10 @@ namespace Pokatun.Droid.Views.ChoiseUserRole
             _hotelButton.Text = Strings.Hotel;
             _hotelDescriptionLabel.Text = Strings.HotelRoleDescriptionText;
 
-            IMvxFragmentView<ChoiseUserRoleViewModel> v = this;
             MvxFluentBindingDescriptionSet<IMvxFragmentView<ChoiseUserRoleViewModel>, ChoiseUserRoleViewModel> set = CreateBindingSet();
 
-            set.Bind(_touristButton).For(nameof(_touristButton.Click)).To(vm => vm.RoleChoosedCommand).CommandParameter(UserRole.Tourist);
-            set.Bind(_hotelButton).For(nameof(_hotelButton.Click)).To(vm => vm.RoleChoosedCommand).CommandParameter(UserRole.HotelAdministrator);
+            set.Bind(_touristButton).To(vm => vm.RoleChoosedCommand).CommandParameter(UserRole.Tourist);
+            set.Bind(_hotelButton).To(vm => vm.RoleChoosedCommand).CommandParameter(UserRole.HotelAdministrator);
 
             set.Apply();
 
