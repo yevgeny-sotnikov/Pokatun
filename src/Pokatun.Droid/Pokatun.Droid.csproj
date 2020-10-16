@@ -69,6 +69,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ChoiseUserRole\ChoiseUserRoleFragment.cs" />
+    <Compile Include="Views\PreEntrance\PreEntranceFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -93,10 +94,6 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\bg_1.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\fragment_choise_user_role.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -148,6 +145,14 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_choise_user_role.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_pre_entrance.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -187,6 +192,7 @@
     <Folder Include="Views\ChoiseUserRole\" />
     <Folder Include="Resources\color\" />
     <Folder Include="Resources\font\" />
+    <Folder Include="Views\PreEntrance\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

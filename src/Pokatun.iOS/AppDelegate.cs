@@ -28,6 +28,9 @@ namespace Pokatun.iOS
                 UIButton.Appearance.SetTitleColor(ColorPalette.ButtonTextHighlgted, UIControlState.Highlighted);
 
                 UIButton.Appearance.BackgroundColor = ColorPalette.PrimaryLight;
+
+                UIButton.AppearanceWhenContainedIn(typeof(UINavigationBar)).SetBackgroundImage(null, UIControlState.Normal);
+                UIButton.AppearanceWhenContainedIn(typeof(UINavigationBar)).BackgroundColor = null;
             }
 
             return result;
