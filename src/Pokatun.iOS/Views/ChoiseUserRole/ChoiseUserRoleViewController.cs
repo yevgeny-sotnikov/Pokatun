@@ -14,8 +14,6 @@ namespace Pokatun.iOS.Views.ChoiseUserRole
     [MvxRootPresentation(WrapInNavigationController = true)]
     public sealed partial class ChoiseUserRoleViewController : BaseViewController<ChoiseUserRoleViewModel>
     {
-        protected override bool NavigationBarHidden => true;
-
         public ChoiseUserRoleViewController() : base(nameof(ChoiseUserRoleViewController), null)
         {
         }
@@ -40,8 +38,6 @@ namespace Pokatun.iOS.Views.ChoiseUserRole
 
             set.Bind(_touristButton).To(vm => vm.RoleChoosedCommand).CommandParameter(UserRole.Tourist);
             set.Bind(_hotelButton).To(vm => vm.RoleChoosedCommand).CommandParameter(UserRole.HotelAdministrator);
-
-            NavigationItem.TitleView = TitleView.Create();
 
             set.Apply();
         }

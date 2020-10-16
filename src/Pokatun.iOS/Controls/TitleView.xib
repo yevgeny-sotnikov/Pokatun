@@ -7,28 +7,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TitleView">
-            <connections>
-                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TitleView"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="2" customClass="TitleView">
+        <view opaque="NO" contentMode="scaleToFill" id="2" customClass="TitleView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_2" translatesAutoresizingMaskIntoConstraints="NO" id="qqY-vK-NBI">
-                    <rect key="frame" x="113.5" y="11" width="148" height="22"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_2" translatesAutoresizingMaskIntoConstraints="NO" id="J4B-wc-AxB">
+                    <rect key="frame" x="113.5" y="8" width="148" height="28"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="qqY-vK-NBI" secondAttribute="bottom" constant="11" id="VRx-Ok-NSU"/>
-                <constraint firstItem="qqY-vK-NBI" firstAttribute="top" secondItem="2" secondAttribute="top" constant="11" id="pX3-jo-3pH"/>
-                <constraint firstItem="qqY-vK-NBI" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="tGf-aK-Q9e"/>
+                <constraint firstItem="J4B-wc-AxB" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="0xo-Yc-Zf3"/>
+                <constraint firstItem="J4B-wc-AxB" firstAttribute="top" secondItem="2" secondAttribute="top" constant="8" id="hrk-3Y-19w"/>
+                <constraint firstAttribute="bottom" secondItem="J4B-wc-AxB" secondAttribute="bottom" constant="8" id="vLA-0s-RXi"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="96" y="2"/>
+            <point key="canvasLocation" x="92" y="53.973013493253376"/>
         </view>
     </objects>
     <resources>
