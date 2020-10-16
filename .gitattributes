@@ -1,0 +1,33 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Known text files
+*.java text
+*.xml text
+*.axml text
+*.md text
+*.sh text
+*.css text
+*.txt text
+*.xib text
+*.cs text
+*.resx text
+*.storyboard text
+*.plist text
+*.json text
+*.csproj text
+*.sln text
+*.cfg text
+
+# Known binary files
+*.jar binary
+*.ttf binary
+*.png binary
+*.jpg binary
+
+
+
+
+
+
+
