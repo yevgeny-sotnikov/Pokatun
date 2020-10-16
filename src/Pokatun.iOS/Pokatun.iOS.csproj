@@ -145,6 +145,11 @@
     <Compile Include="Views\PreEntrance\PreEntranceViewController.designer.cs">
       <DependentUpon>PreEntranceViewController.cs</DependentUpon>
     </Compile>
+    <InterfaceDefinition Include="Controls\TitleView.xib" />
+    <Compile Include="Controls\TitleView.cs" />
+    <Compile Include="Controls\TitleView.designer.cs">
+      <DependentUpon>TitleView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -216,6 +221,7 @@
     <Folder Include="Resources\Media.xcassets\logo_2.imageset\" />
     <Folder Include="Resources\Fonts\" />
     <Folder Include="Views\PreEntrance\" />
+    <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\bg_1.png" />

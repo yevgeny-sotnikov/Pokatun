@@ -5,6 +5,7 @@ using MvvmCross.Platforms.Ios.Views;
 using Pokatun.Core.Models.Enums;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
+using Pokatun.iOS.Controls;
 using Pokatun.iOS.Styles;
 using UIKit;
 
@@ -39,6 +40,8 @@ namespace Pokatun.iOS.Views.ChoiseUserRole
 
             set.Bind(_touristButton).To(vm => vm.RoleChoosedCommand).CommandParameter(UserRole.Tourist);
             set.Bind(_hotelButton).To(vm => vm.RoleChoosedCommand).CommandParameter(UserRole.HotelAdministrator);
+
+            NavigationItem.TitleView = TitleView.Create();
 
             set.Apply();
         }
