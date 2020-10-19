@@ -150,6 +150,11 @@
     <ImageAsset Include="Resources\Media.xcassets\logo_3.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\logo_3.imageset\logo_3%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\logo_3.imageset\logo_3%403x.png" />
+    <InterfaceDefinition Include="Views\Registration\HotelRegistrationFirstStepViewController.xib" />
+    <Compile Include="Views\Registration\HotelRegistrationFirstStepViewController.cs" />
+    <Compile Include="Views\Registration\HotelRegistrationFirstStepViewController.designer.cs">
+      <DependentUpon>HotelRegistrationFirstStepViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -223,6 +228,7 @@
     <Folder Include="Views\PreEntrance\" />
     <Folder Include="Controls\" />
     <Folder Include="Resources\Media.xcassets\logo_3.imageset\" />
+    <Folder Include="Views\Registration\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

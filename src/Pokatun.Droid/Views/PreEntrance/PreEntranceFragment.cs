@@ -50,6 +50,7 @@ namespace Pokatun.Droid.Views.PreEntrance
             MvxFluentBindingDescriptionSet<IMvxFragmentView<PreEntranceViewModel>, PreEntranceViewModel> set = CreateBindingSet();
 
             set.Bind(_preEntranceDescriptionLabel).To(vm => vm.PreEntranceDescriptionText);
+            set.Bind(_registrationButton).To(vm => vm.RegistrationCommand);
 
             set.Apply();
 

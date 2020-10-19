@@ -10,6 +10,7 @@
   <ItemGroup>
     <Folder Include="ViewModels\ChoiseUserRole\" />
     <Folder Include="Resources\" />
+    <Folder Include="ViewModels\Registration\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">
