@@ -10,7 +10,15 @@ using Pokatun.Core.ViewModels.PreEntrance;
 
 namespace Pokatun.Droid.Views.PreEntrance
 {
-    [MvxFragmentPresentation(typeof(MainContainerViewModel), Resource.Id.content_frame, AddToBackStack = true)]
+    [MvxFragmentPresentation(
+        typeof(MainContainerViewModel),
+        Resource.Id.content_frame,
+        AddToBackStack = true,
+        EnterAnimation = Android.Resource.Animation.SlideInLeft,
+        PopEnterAnimation = Android.Resource.Animation.SlideInLeft,
+        ExitAnimation = Android.Resource.Animation.SlideOutRight,
+        PopExitAnimation = Android.Resource.Animation.SlideOutRight
+    )]
     public sealed class PreEntranceFragment : BaseFragment<PreEntranceViewModel>
     {
         private TextView _helloLabel;

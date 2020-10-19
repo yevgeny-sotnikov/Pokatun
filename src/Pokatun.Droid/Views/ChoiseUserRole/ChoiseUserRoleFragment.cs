@@ -11,7 +11,15 @@ using Pokatun.Core.ViewModels.Main;
 
 namespace Pokatun.Droid.Views.ChoiseUserRole
 {
-    [MvxFragmentPresentation(typeof(MainContainerViewModel), Resource.Id.content_frame, AddToBackStack = true)]
+    [MvxFragmentPresentation(
+        typeof(MainContainerViewModel),
+        Resource.Id.content_frame,
+        AddToBackStack = false,
+        EnterAnimation = Android.Resource.Animation.FadeIn,
+        PopEnterAnimation = Android.Resource.Animation.FadeIn,
+        ExitAnimation = Android.Resource.Animation.SlideOutRight,
+        PopExitAnimation = Android.Resource.Animation.SlideOutRight
+    )]
     public sealed class ChoiseUserRoleFragment : BaseFragment<ChoiseUserRoleViewModel>
     {
         private TextView _chooseRoleLabel;

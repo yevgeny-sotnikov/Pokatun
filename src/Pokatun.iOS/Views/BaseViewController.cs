@@ -33,6 +33,7 @@ namespace Pokatun.iOS.Views
 
             NavigationController.SetNeedsStatusBarAppearanceUpdate();
 
+            NavigationItem.BackButtonTitle = string.Empty;
             NavigationItem.TitleView = TitleView.Create();
 
             CreateView();

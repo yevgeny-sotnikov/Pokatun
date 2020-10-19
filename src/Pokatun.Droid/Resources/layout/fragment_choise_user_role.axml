@@ -9,18 +9,7 @@
 	<Space
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_weight="61"
-		/>
-	<ImageView
-		android:src="@drawable/logo_2"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		/>
-	<Space
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="79"
+		android:layout_weight="140"
 		/>
 	<TextView
 		style="@style/TitleLabel"

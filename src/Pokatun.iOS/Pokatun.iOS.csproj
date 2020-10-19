@@ -137,9 +137,6 @@
       <DependentUpon>ChoiseUserRoleViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Styles\Fonts.cs" />
-    <ImageAsset Include="Resources\Media.xcassets\logo_2.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Media.xcassets\logo_2.imageset\logo_2%402x.png" />
-    <ImageAsset Include="Resources\Media.xcassets\logo_2.imageset\logo_2%403x.png" />
     <InterfaceDefinition Include="Views\PreEntrance\PreEntranceViewController.xib" />
     <Compile Include="Views\PreEntrance\PreEntranceViewController.cs" />
     <Compile Include="Views\PreEntrance\PreEntranceViewController.designer.cs">
@@ -150,6 +147,9 @@
     <Compile Include="Controls\TitleView.designer.cs">
       <DependentUpon>TitleView.cs</DependentUpon>
     </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\logo_3.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\logo_3.imageset\logo_3%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\logo_3.imageset\logo_3%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -222,14 +222,13 @@
     <Folder Include="Resources\Fonts\" />
     <Folder Include="Views\PreEntrance\" />
     <Folder Include="Controls\" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\bg_1.png" />
+    <Folder Include="Resources\Media.xcassets\logo_3.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
+    <BundleResource Include="Resources\bg_1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
