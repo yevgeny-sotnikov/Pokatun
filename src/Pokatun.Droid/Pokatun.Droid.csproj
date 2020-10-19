@@ -96,10 +96,6 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\bg_1.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
     <AndroidResource Include="Resources\color\button_text_color.xml">
       <SubType></SubType>
       <Generator></Generator>
@@ -157,6 +153,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xxxhdpi\logo_3.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\bg_1.jpg">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

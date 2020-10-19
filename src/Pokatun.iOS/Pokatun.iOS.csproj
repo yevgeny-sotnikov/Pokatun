@@ -225,12 +225,10 @@
     <Folder Include="Resources\Media.xcassets\logo_3.imageset\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\bg_1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
+    <BundleResource Include="Resources\bg_1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

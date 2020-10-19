@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="G5W-Lz-CEw">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="G5W-Lz-CEw">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="116" translatesAutoresizingMaskIntoConstraints="NO" id="MBk-T9-Hiq">
@@ -71,6 +71,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg_1.png" width="1620" height="2880"/>
+        <image name="bg_1.jpg" width="2160" height="3840"/>
     </resources>
 </document>
