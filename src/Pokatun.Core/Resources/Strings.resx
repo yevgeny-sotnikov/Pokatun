@@ -49,5 +49,20 @@
     <data name="IHaveAccText" xml:space="preserve">
         <value>У меня уже есть аккаунт</value>
     </data>
+    <data name="Name" xml:space="preserve">
+        <value>Название</value>
+    </data>
+    <data name="Phone" xml:space="preserve">
+        <value>Телефон</value>
+    </data>
+    <data name="Password" xml:space="preserve">
+        <value>Пароль</value>
+    </data>
+    <data name="ConfirmPassword" xml:space="preserve">
+        <value>Подтвердить пароль</value>
+    </data>
+    <data name="Further" xml:space="preserve">
+        <value>Далее</value>
+    </data>
 
 </root>

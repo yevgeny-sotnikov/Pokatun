@@ -118,5 +118,35 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("IHaveAccText", resourceCulture);
             }
         }
+        
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        public static string ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        public static string Further {
+            get {
+                return ResourceManager.GetString("Further", resourceCulture);
+            }
+        }
     }
 }

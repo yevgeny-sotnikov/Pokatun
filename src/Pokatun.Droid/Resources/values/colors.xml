@@ -14,4 +14,6 @@
     <color name="enabledButtonColor">#edcf2b</color>
     <color name="disabledButtonColor">#e5e8ef</color>
     <color name="pressedButtonColor">@color/primaryLightColor</color>
+
+    <color name="borderColor">#7b7c7f</color>
 </resources>
