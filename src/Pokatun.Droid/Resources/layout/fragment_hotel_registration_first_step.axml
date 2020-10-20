@@ -2,24 +2,25 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
+	android:paddingBottom="0dp"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 	<ScrollView
 		android:requiresFadingEdge="vertical"
         android:layout_width="match_parent"
+		android:layout_marginTop="0dp"
         android:layout_height="0dp"
 		android:layout_weight="1">
 		<LinearLayout
-			android:layout_marginTop="26dp"
-			android:layout_marginLeft="37dp"
-			android:layout_marginRight="37dp"
+			android:layout_marginTop="43dp"
+			android:layout_marginLeft="48dp"
+			android:layout_marginRight="48dp"
 			android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 			<EditText
 				style="@style/BorderedEditText"
 				android:layout_width="match_parent"
-				android:layout_marginTop="16dp"
 				android:id="@+id/hotelNameEditText"
 				/>
 			<EditText
@@ -56,10 +57,10 @@
 	<Button
 		style="@style/BigButton"
 		android:text="NEXT"
-		android:layout_marginLeft="37dp"
-		android:layout_marginRight="37dp"
-		android:layout_marginTop="16dp"
-		android:layout_marginBottom="32dp"
+		android:layout_marginLeft="48dp"
+		android:layout_marginRight="48dp"
+		android:layout_marginTop="43dp"
+		android:layout_marginBottom="43dp"
 		android:layout_width="match_parent"
 		android:id="@+id/furtherButton"
 		/>
