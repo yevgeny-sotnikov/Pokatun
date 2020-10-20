@@ -4,4 +4,8 @@
         android:fontStyle="normal"
         android:fontWeight="400"
         android:font="@font/helveticaneuecyr_light" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="700"
+        android:font="@font/helveticaneuecyr_bold" />
 </font-family>
