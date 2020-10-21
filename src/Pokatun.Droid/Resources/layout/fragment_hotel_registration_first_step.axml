@@ -32,7 +32,6 @@
 				/>
 			<EditText
 				style="@style/BorderedEditText"
-				android:hint="Email"
 				android:inputType="textEmailAddress"
 				android:layout_width="match_parent"
 				android:layout_marginTop="16dp"

@@ -42,6 +42,7 @@ namespace Pokatun.Droid.Views.Registration
             _hotelNameEditText.Hint = Strings.Hotel;
             _phoneNumberEditText.Hint = Strings.Phone;
             _passwordEditText.Hint = Strings.Password;
+            _emailEditText.Hint = Strings.Email;
             _confirmPasswordEditText.Hint = Strings.ConfirmPassword;
             _furtherButton.Text = Strings.Further;
 

@@ -44,20 +44,12 @@
                             <rect key="frame" x="0.0" y="251.5" width="318" height="178"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjQ-Ob-15g">
-                                    <rect key="frame" x="0.0" y="0.0" width="318" height="75"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="75" id="bJj-m7-t9E"/>
-                                    </constraints>
+                                    <rect key="frame" x="0.0" y="0.0" width="318" height="140.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="TOURIST_TEXT"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="37"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOURIST DESC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvY-JL-Hbc">
-                                    <rect key="frame" x="0.0" y="92" width="318" height="86"/>
+                                    <rect key="frame" x="0.0" y="157.5" width="318" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -77,20 +69,12 @@
                             <rect key="frame" x="0.0" y="544.5" width="318" height="158"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xj-45-4gL">
-                                    <rect key="frame" x="0.0" y="0.0" width="318" height="75"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="75" id="OQ9-Sf-XZn"/>
-                                    </constraints>
+                                    <rect key="frame" x="0.0" y="0.0" width="318" height="120.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="HOTEL_TEXT"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="37"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOTEL DESC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkn-ef-ccn">
-                                    <rect key="frame" x="0.0" y="92" width="318" height="66"/>
+                                    <rect key="frame" x="0.0" y="137.5" width="318" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>

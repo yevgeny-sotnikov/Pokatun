@@ -148,5 +148,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("Further", resourceCulture);
             }
         }
+        
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
     }
 }

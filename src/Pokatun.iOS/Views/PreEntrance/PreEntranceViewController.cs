@@ -22,9 +22,9 @@ namespace Pokatun.iOS.Views.PreEntrance
             // Perform any additional setup after loading the view, typically from a nib.
 
             _helloLabel.Font = Fonts.HelveticaNeueCyrLightSubGigantic;
-            _registrationButton.Font = Fonts.HelveticaNeueCyrLightGigantic;
-            _loginButton.Font = Fonts.HelveticaNeueCyrLightGigantic;
 
+            _registrationButton.ApplyBigButtonStyle();
+            _loginButton.ApplyBigButtonStyle();
 
             _helloLabel.Text = Strings.HelloCaps;
             _registrationButton.SetTitle(Strings.Registration, UIControlState.Normal);

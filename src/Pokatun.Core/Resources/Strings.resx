@@ -64,5 +64,8 @@
     <data name="Further" xml:space="preserve">
         <value>Далее</value>
     </data>
+    <data name="Email" xml:space="preserve">
+        <value>Email</value>
+    </data>
 
 </root>

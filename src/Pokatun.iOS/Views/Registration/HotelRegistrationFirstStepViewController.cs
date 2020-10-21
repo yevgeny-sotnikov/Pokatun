@@ -1,6 +1,7 @@
-using System;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Registration;
+using Pokatun.iOS.Styles;
 using UIKit;
 
 namespace Pokatun.iOS.Views.Registration
@@ -16,7 +17,34 @@ namespace Pokatun.iOS.Views.Registration
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
             // Perform any additional setup after loading the view, typically from a nib.
+
+            _furtherButton.ApplyBigButtonStyle();
+
+            _hotelNameEditText.ApplyBorderedEditTextStyle();
+            _phoneNumberEditText.ApplyBorderedEditTextStyle();
+            _emailEditText.ApplyBorderedEditTextStyle();
+            _passwordEditText.ApplyBorderedEditTextStyle();
+            _confirmPasswordEditText.ApplyBorderedEditTextStyle();
+
+            _hotelNameEditText.Placeholder = Strings.Name;
+            _phoneNumberEditText.Placeholder = Strings.Phone;
+            _emailEditText.Placeholder = Strings.Email;
+            _passwordEditText.Placeholder = Strings.Password;
+            _confirmPasswordEditText.Placeholder = Strings.ConfirmPassword;
+            _furtherButton.SetTitle(Strings.Further, UIControlState.Normal);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _hotelNameEditText.ResetStyles();
+            _phoneNumberEditText.ResetStyles();
+            _emailEditText.ResetStyles();
+            _passwordEditText.ResetStyles();
+            _confirmPasswordEditText.ResetStyles();
+
+            base.Dispose(disposing);
         }
     }
 }

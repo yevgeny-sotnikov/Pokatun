@@ -5,6 +5,8 @@ namespace Pokatun.iOS.Styles
 {
     public static class ColorPalette
     {
+        public static readonly UIColor Background = UIColor.White;
+
         public static readonly UIColor Primary = FromHexString("#51629a");
         public static readonly UIColor PrimaryDark = FromHexString("#51629a");
         public static readonly UIColor PrimaryLight = FromHexString("#6f7bb8");
@@ -13,7 +15,7 @@ namespace Pokatun.iOS.Styles
         public static readonly UIColor AccentDark = FromHexString("#242c31");
         public static readonly UIColor AccentLight = FromHexString("#788187");
 
-        public static readonly UIColor PrimaryText = FromHexString("#000000");
+        public static readonly UIColor PrimaryText = FromHexString("#56595e");
         public static readonly UIColor SecondaryText = FromHexString("#ffffff");
 
         public static readonly UIColor ButtonDefault = FromHexString("#edcf2b");
@@ -22,6 +24,8 @@ namespace Pokatun.iOS.Styles
         public static readonly UIColor ButtonTextDefault = FromHexString("#5d5d5d");
         public static readonly UIColor ButtonTextDisabled = UIColor.White;
         public static readonly UIColor ButtonTextHighlgted = UIColor.White;
+
+        public static readonly UIColor BorderColor = FromHexString("#7b7c7f");
 
         private static UIColor FromHexString(string hexValue)
         {

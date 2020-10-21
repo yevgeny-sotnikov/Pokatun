@@ -1,5 +1,6 @@
 ﻿using CoreGraphics;
 using Foundation;
+using Hackiftekhar.IQKeyboardManager.Xamarin;
 using MvvmCross.Platforms.Ios.Core;
 using Pokatun.Core;
 using Pokatun.iOS.Styles;
@@ -11,23 +12,16 @@ namespace Pokatun.iOS
     [Register(nameof(AppDelegate))]
     public class AppDelegate : MvxApplicationDelegate<Setup, App>
     {
-
         public override bool FinishedLaunching(UIApplication application, NSDictionary options)
         {
+            IQKeyboardManager.SharedManager().Enable = true;
+
             bool result = base.FinishedLaunching(application, options);
 
             if (result)
             {
                 UILabel.Appearance.Font = Fonts.HelveticaNeueCyrLightLarge;
 
-                UIButton.Appearance.SetBackgroundImage(Image(ColorPalette.ButtonDefault), UIControlState.Normal);
-                UIButton.Appearance.SetBackgroundImage(Image(ColorPalette.ButtonDisabled), UIControlState.Disabled);
-                
-                UIButton.Appearance.SetTitleColor(ColorPalette.ButtonTextDefault, UIControlState.Normal);
-                UIButton.Appearance.SetTitleColor(ColorPalette.ButtonTextDisabled, UIControlState.Disabled);
-                UIButton.Appearance.SetTitleColor(ColorPalette.ButtonTextHighlgted, UIControlState.Highlighted);
-
-                UIButton.Appearance.BackgroundColor = ColorPalette.PrimaryLight;
 
                 UIButton.AppearanceWhenContainedIn(typeof(UINavigationBar)).SetBackgroundImage(null, UIControlState.Normal);
                 UIButton.AppearanceWhenContainedIn(typeof(UINavigationBar)).BackgroundColor = null;
