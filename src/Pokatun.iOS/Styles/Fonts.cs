@@ -8,6 +8,7 @@ namespace Pokatun.iOS.Styles
         #region FontNames
 
         private const string HelveticaNeueCyrLight = "helveticaneuecyr-light";
+        private const string HelveticaNeueCyrBold = "helveticaneuecyr-bold";
 
         #endregion
 
@@ -28,6 +29,12 @@ namespace Pokatun.iOS.Styles
         public static readonly UIFont HelveticaNeueCyrLightLarge = UIFont.FromName(HelveticaNeueCyrLight, LargeSize);
         public static readonly UIFont HelveticaNeueCyrLightSubGigantic = UIFont.FromName(HelveticaNeueCyrLight, SubGiganticSize);
         public static readonly UIFont HelveticaNeueCyrLightGigantic = UIFont.FromName(HelveticaNeueCyrLight, GiganticSize);
+
+        public static readonly UIFont HelveticaNeueCyrBoldSmall = UIFont.FromName(HelveticaNeueCyrBold, SmallSize);
+        public static readonly UIFont HelveticaNeueCyrBoldMedium = UIFont.FromName(HelveticaNeueCyrBold, MediumSize);
+        public static readonly UIFont HelveticaNeueCyrBoldLarge = UIFont.FromName(HelveticaNeueCyrBold, LargeSize);
+        public static readonly UIFont HelveticaNeueCyrBoldSubGigantic = UIFont.FromName(HelveticaNeueCyrBold, SubGiganticSize);
+        public static readonly UIFont HelveticaNeueCyrBoldGigantic = UIFont.FromName(HelveticaNeueCyrBold, GiganticSize);
 
         #endregion
     }

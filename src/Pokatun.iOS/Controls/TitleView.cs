@@ -16,6 +16,24 @@ namespace Pokatun.iOS.Controls
             return view;
         }
 
+        public bool IsLogoHidden
+        {
+            get { return _logo.Hidden; }
+            set { _logo.Hidden = value; }
+        }
+
+        public bool IsTitleHidden
+        {
+            get { return _titleLabel.Hidden; }
+            set { _titleLabel.Hidden = value; }
+        }
+
+        public string Title
+        {
+            get { return _titleLabel.Text; }
+            set { _titleLabel.Text = value; }
+        }
+
         public TitleView(IntPtr handle) : base(handle)
         {
         }

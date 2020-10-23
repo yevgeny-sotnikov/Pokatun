@@ -1,19 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using MvvmCross.ViewModels;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Views.Fragments;
 using Pokatun.Droid.Views.Main;
 using Pokatun.Core.ViewModels;
+using Android.App;
 
 namespace Pokatun.Droid.Views
 {
@@ -30,21 +22,13 @@ namespace Pokatun.Droid.Views
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
-            View view = this.BindingInflate(FragmentLayoutId, container, false);
-
-            SetupToolbar();
-
-            return view;
+            return this.BindingInflate(FragmentLayoutId, container, false);
         }
 
         public override void OnStart()
         {
             base.OnStart();
-            SetupToolbar();
-        }
 
-        private void SetupToolbar()
-        {
             string title = ViewModel.Title;
             bool titleNotExists = string.IsNullOrWhiteSpace(title);
 

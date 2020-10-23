@@ -39,6 +39,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Fonts/helveticaneuecyr-light.ttf</string>
+		<string>Fonts/helveticaneuecyr-bold.ttf</string>
 	</array>
 </dict>
 </plist>

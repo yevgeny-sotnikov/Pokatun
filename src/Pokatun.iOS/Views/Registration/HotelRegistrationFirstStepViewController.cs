@@ -36,7 +36,7 @@ namespace Pokatun.iOS.Views.Registration
             _furtherButton.SetTitle(Strings.Further, UIControlState.Normal);
         }
 
-        protected override void Dispose(bool disposing)
+        public override void ViewDidDisappear(bool animated)
         {
             _hotelNameEditText.ResetStyles();
             _phoneNumberEditText.ResetStyles();
@@ -44,7 +44,7 @@ namespace Pokatun.iOS.Views.Registration
             _passwordEditText.ResetStyles();
             _confirmPasswordEditText.ResetStyles();
 
-            base.Dispose(disposing);
+            base.ViewDidDisappear(animated);
         }
     }
 }

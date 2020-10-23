@@ -2,6 +2,7 @@
 using Foundation;
 using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.ViewModels;
+using Pokatun.Core.ViewModels;
 using Pokatun.iOS.Controls;
 using Pokatun.iOS.Styles;
 using UIKit;
@@ -9,8 +10,10 @@ using UIKit;
 namespace Pokatun.iOS.Views
 {
     public abstract class BaseViewController<TViewModel> : MvxViewController<TViewModel>
-        where TViewModel : class, IMvxViewModel
+        where TViewModel : BaseViewModel
     {
+        private static readonly TitleView TitleView = TitleView.Create();
+
         protected BaseViewController(IntPtr handle)
         {
         }
@@ -34,7 +37,15 @@ namespace Pokatun.iOS.Views
             NavigationController.SetNeedsStatusBarAppearanceUpdate();
 
             NavigationItem.BackButtonTitle = string.Empty;
-            NavigationItem.TitleView = TitleView.Create();
+            
+            NavigationItem.TitleView = TitleView;
+
+            string title = ViewModel.Title;
+            bool titleNotExists = string.IsNullOrWhiteSpace(title);
+
+            TitleView.IsLogoHidden = !titleNotExists;
+            TitleView.IsTitleHidden = titleNotExists;
+            TitleView.Title = title;
 
             CreateView();
 
@@ -42,7 +53,6 @@ namespace Pokatun.iOS.Views
 
             BindView();
         }
-
 
         protected virtual void CreateView()
         {
