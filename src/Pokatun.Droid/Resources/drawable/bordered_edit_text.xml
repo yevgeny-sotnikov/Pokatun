@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
   <item
+    android:state_activated="true"
+    android:drawable="@drawable/bordered_edit_text_activated" />
+  <item
     android:state_focused="true"
     android:drawable="@drawable/bordered_edit_text_focused" />
   <item

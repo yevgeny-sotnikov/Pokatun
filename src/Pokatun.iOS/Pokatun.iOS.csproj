@@ -176,6 +176,9 @@
     <PackageReference Include="Hackiftekhar.IQKeyboardManager.Xamarin">
       <Version>6.5.6</Version>
     </PackageReference>
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.1.0.462</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Contents.json">

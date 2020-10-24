@@ -67,5 +67,22 @@
     <data name="Email" xml:space="preserve">
         <value>Email</value>
     </data>
-
+    <data name="HotelNameRequiredMessage" xml:space="preserve">
+        <value>Необходимо указать название отеля</value>
+    </data>
+    <data name="InvalidPhoneNumberMessage" xml:space="preserve">
+        <value>Номер телефона должен содержать не менее 12 символов и начинаться с '+'</value>
+    </data>
+    <data name="InvalidPhoneNumberMessage" xml:space="preserve">
+        <value>Номер телефона должен содержать не менее 12 символов и начинаться с '+'</value>
+    </data>
+    <data name="InvalidEmailMessage" xml:space="preserve">
+        <value>Указан некорректный адрес электронной почты</value>
+    </data>
+    <data name="InvalidPasswordMessage" xml:space="preserve">
+        <value>Несоответствие формата пароля (необходимы большие и малые буквы, цифры и спецсимволы)</value>
+    </data>
+    <data name="PasswordMismatchMessage" xml:space="preserve">
+        <value>Пароли должны совпадать</value>
+    </data>
 </root>

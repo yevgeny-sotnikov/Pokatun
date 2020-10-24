@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0025:Use expression body for properties")]
+[assembly: SuppressMessage("Style", "IDE0027:Use expression body for accessors", Justification = "<Pending>")]

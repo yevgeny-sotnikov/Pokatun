@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
@@ -27,6 +28,8 @@ namespace Pokatun.Droid.Views.Main
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            UserDialogs.Init(this);
 
             Toolbar = FindViewById<ToolbarX>(Resource.Id.toolbar);
             ToolbarLogo = FindViewById<ImageView>(Resource.Id.toolbarLogo);

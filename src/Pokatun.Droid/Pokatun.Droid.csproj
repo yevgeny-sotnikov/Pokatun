@@ -85,6 +85,9 @@
     <PackageReference Include="Xamarin.AndroidX.AppCompat">
       <Version>1.2.0.4</Version>
     </PackageReference>
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.1.0.462</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProguardConfiguration Include="proguard.cfg" />
@@ -178,6 +181,18 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\font\helveticaneuecyr_bold.ttf">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\bordered_edit_text_activated.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\color\edit_text_color.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\color\hint_text_color.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

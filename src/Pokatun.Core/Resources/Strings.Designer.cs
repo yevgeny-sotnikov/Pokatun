@@ -154,5 +154,35 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("Email", resourceCulture);
             }
         }
+        
+        public static string HotelNameRequiredMessage {
+            get {
+                return ResourceManager.GetString("HotelNameRequiredMessage", resourceCulture);
+            }
+        }
+        
+        public static string InvalidPhoneNumberMessage {
+            get {
+                return ResourceManager.GetString("InvalidPhoneNumberMessage", resourceCulture);
+            }
+        }
+        
+        public static string InvalidEmailMessage {
+            get {
+                return ResourceManager.GetString("InvalidEmailMessage", resourceCulture);
+            }
+        }
+        
+        public static string InvalidPasswordMessage {
+            get {
+                return ResourceManager.GetString("InvalidPasswordMessage", resourceCulture);
+            }
+        }
+        
+        public static string PasswordMismatchMessage {
+            get {
+                return ResourceManager.GetString("PasswordMismatchMessage", resourceCulture);
+            }
+        }
     }
 }

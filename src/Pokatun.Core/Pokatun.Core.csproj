@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="7.0.1" />
+    <PackageReference Include="MvvmValidation" Version="3.1.1" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.462" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\ChoiseUserRole\" />
