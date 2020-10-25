@@ -2,7 +2,6 @@
 <com.google.android.material.appbar.AppBarLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/appbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
@@ -12,18 +11,20 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary">
         <ImageView
+            android:id="@+id/toolbarLogo"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:src="@drawable/toolbar_logo"
             />
-            <TextView
-            android:id="@+id/textview_toolbar_title"
+        <TextView
+            android:id="@+id/toolbarTitleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/secondaryTextColor"
             android:layout_gravity="center"
-            android:visibility="gone"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
+            android:textStyle="bold"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            />
     </androidx.appcompat.widget.Toolbar>
 </com.google.android.material.appbar.AppBarLayout>

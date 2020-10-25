@@ -16,13 +16,38 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_3" translatesAutoresizingMaskIntoConstraints="NO" id="J4B-wc-AxB">
                     <rect key="frame" x="113.5" y="8" width="148" height="28"/>
                 </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3Di-wE-RDe">
+                    <rect key="frame" x="0.0" y="12" width="375" height="20.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9O-13-Md7">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" subtitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9E-EY-L4S" userLabel="subtitle">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
             </subviews>
             <constraints>
                 <constraint firstItem="J4B-wc-AxB" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="0xo-Yc-Zf3"/>
+                <constraint firstItem="3Di-wE-RDe" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="27B-gT-mb9"/>
+                <constraint firstAttribute="trailing" secondItem="3Di-wE-RDe" secondAttribute="trailing" id="PXE-2p-mqt"/>
                 <constraint firstItem="J4B-wc-AxB" firstAttribute="top" secondItem="2" secondAttribute="top" constant="8" id="hrk-3Y-19w"/>
+                <constraint firstItem="3Di-wE-RDe" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="u6D-56-xZw"/>
                 <constraint firstAttribute="bottom" secondItem="J4B-wc-AxB" secondAttribute="bottom" constant="8" id="vLA-0s-RXi"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="_logo" destination="J4B-wc-AxB" id="WpN-3k-sOt"/>
+                <outlet property="_subtitleLabel" destination="O9E-EY-L4S" id="AIX-4r-ynH"/>
+                <outlet property="_titleLabel" destination="o9O-13-Md7" id="1Z5-bq-MP7"/>
+            </connections>
             <point key="canvasLocation" x="92" y="53.973013493253376"/>
         </view>
     </objects>

@@ -1,7 +1,8 @@
-﻿using MvvmCross.IoC;
+﻿using Acr.UserDialogs;
+using MvvmCross;
+using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
-using Pokatun.Core.ViewModels.Main;
 
 namespace Pokatun.Core
 {
@@ -13,6 +14,8 @@ namespace Pokatun.Core
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
+
+            Mvx.IoCProvider.RegisterSingleton(() => UserDialogs.Instance);
 
             RegisterAppStart<ChoiseUserRoleViewModel>();
         }

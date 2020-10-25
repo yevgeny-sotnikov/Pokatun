@@ -34,6 +34,7 @@ namespace Pokatun.iOS.Linker
         public void Include(UITextField textField)
         {
             textField.Text = $"{ textField.Text }";
+            textField.Layer.BorderColor = UIColor.Red.CGColor;
             textField.EditingChanged += (sender, args) => { textField.Text = ""; };
             textField.EditingDidEnd += (sender, args) => { textField.Text = ""; };
         }

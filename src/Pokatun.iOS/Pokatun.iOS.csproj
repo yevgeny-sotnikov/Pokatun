@@ -150,6 +150,14 @@
     <ImageAsset Include="Resources\Media.xcassets\logo_3.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\logo_3.imageset\logo_3%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\logo_3.imageset\logo_3%403x.png" />
+    <InterfaceDefinition Include="Views\Registration\HotelRegistrationFirstStepViewController.xib" />
+    <Compile Include="Views\Registration\HotelRegistrationFirstStepViewController.cs" />
+    <Compile Include="Views\Registration\HotelRegistrationFirstStepViewController.designer.cs">
+      <DependentUpon>HotelRegistrationFirstStepViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\ViewStyles.cs" />
+    <Compile Include="Converters\BorderEditTextValidationConverter.cs" />
+    <Compile Include="Converters\EditTextValidationConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -166,6 +174,12 @@
   <ItemGroup>
     <PackageReference Include="MvvmCross">
       <Version>7.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Hackiftekhar.IQKeyboardManager.Xamarin">
+      <Version>6.5.6</Version>
+    </PackageReference>
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.1.0.462</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -223,12 +237,17 @@
     <Folder Include="Views\PreEntrance\" />
     <Folder Include="Controls\" />
     <Folder Include="Resources\Media.xcassets\logo_3.imageset\" />
+    <Folder Include="Views\Registration\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
     <BundleResource Include="Resources\bg_1.jpg" />
+    <BundleResource Include="Resources\Fonts\helveticaneuecyr-bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

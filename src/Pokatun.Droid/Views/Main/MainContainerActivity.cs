@@ -1,14 +1,12 @@
-﻿
-using System;
+﻿using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
-using AndroidX.AppCompat.Widget;
-using MvvmCross.Binding.BindingContext;
+using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
 using Pokatun.Core.ViewModels.Main;
+using ToolbarX = AndroidX.AppCompat.Widget.Toolbar;
 
 namespace Pokatun.Droid.Views.Main
 {
@@ -19,7 +17,11 @@ namespace Pokatun.Droid.Views.Main
         WindowSoftInputMode = SoftInput.AdjustResize | SoftInput.StateHidden)]
     public class MainContainerActivity : BaseActivity<MainContainerViewModel>
     {
-        private Toolbar _toolbar;
+        public ToolbarX Toolbar { get; private set; }
+
+        public ImageView ToolbarLogo { get; private set; }
+
+        public TextView ToolbarTitleLabel { get; private set; }
 
         protected override int ActivityLayoutId => Resource.Layout.activity_main_container;
 
@@ -27,8 +29,12 @@ namespace Pokatun.Droid.Views.Main
         {
             base.OnCreate(bundle);
 
-            _toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(_toolbar);
+            UserDialogs.Init(this);
+
+            Toolbar = FindViewById<ToolbarX>(Resource.Id.toolbar);
+            ToolbarLogo = FindViewById<ImageView>(Resource.Id.toolbarLogo);
+            ToolbarTitleLabel = FindViewById<TextView>(Resource.Id.toolbarTitleLabel);
+            SetSupportActionBar(Toolbar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetDisplayShowHomeEnabled(true);
             SupportActionBar.SetDisplayShowTitleEnabled(false);

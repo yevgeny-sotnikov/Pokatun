@@ -118,5 +118,71 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("IHaveAccText", resourceCulture);
             }
         }
+        
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        public static string ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        public static string Further {
+            get {
+                return ResourceManager.GetString("Further", resourceCulture);
+            }
+        }
+        
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        public static string HotelNameRequiredMessage {
+            get {
+                return ResourceManager.GetString("HotelNameRequiredMessage", resourceCulture);
+            }
+        }
+        
+        public static string InvalidPhoneNumberMessage {
+            get {
+                return ResourceManager.GetString("InvalidPhoneNumberMessage", resourceCulture);
+            }
+        }
+        
+        public static string InvalidEmailMessage {
+            get {
+                return ResourceManager.GetString("InvalidEmailMessage", resourceCulture);
+            }
+        }
+        
+        public static string InvalidPasswordMessage {
+            get {
+                return ResourceManager.GetString("InvalidPasswordMessage", resourceCulture);
+            }
+        }
+        
+        public static string PasswordMismatchMessage {
+            get {
+                return ResourceManager.GetString("PasswordMismatchMessage", resourceCulture);
+            }
+        }
     }
 }

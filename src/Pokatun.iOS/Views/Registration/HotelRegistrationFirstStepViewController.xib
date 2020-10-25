@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelRegistrationFirstStepViewController">
+            <connections>
+                <outlet property="_confirmPasswordEditText" destination="YH5-Yv-ksa" id="ofE-o2-hO0"/>
+                <outlet property="_emailEditText" destination="cEd-tJ-UfH" id="1cQ-oU-xkL"/>
+                <outlet property="_furtherButton" destination="YmG-zI-As2" id="Ofq-H5-mT9"/>
+                <outlet property="_hotelNameEditText" destination="Atj-Rr-Vdg" id="t6q-wb-twj"/>
+                <outlet property="_passwordEditText" destination="jP3-sa-Qq1" id="i7N-0C-uKp"/>
+                <outlet property="_phoneNumberEditText" destination="O9k-1A-LBQ" id="2Xh-Va-2Np"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jEi-Yp-5dJ">
+                    <rect key="frame" x="0.0" y="44" width="414" height="702"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="dmL-ug-HfH">
+                            <rect key="frame" x="48" y="43" width="318" height="254"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Atj-Rr-Vdg">
+                                    <rect key="frame" x="0.0" y="0.0" width="318" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" textContentType="name"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="19"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9k-1A-LBQ">
+                                    <rect key="frame" x="0.0" y="55" width="318" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="19"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cEd-tJ-UfH">
+                                    <rect key="frame" x="0.0" y="110" width="318" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="19"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jP3-sa-Qq1">
+                                    <rect key="frame" x="0.0" y="165" width="318" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="19"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YH5-Yv-ksa">
+                                    <rect key="frame" x="0.0" y="220" width="318" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" textContentType="new-password"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="19"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="dmL-ug-HfH" secondAttribute="bottom" constant="43" id="08a-SL-T0E"/>
+                        <constraint firstItem="dmL-ug-HfH" firstAttribute="top" secondItem="jEi-Yp-5dJ" secondAttribute="top" constant="43" id="JCu-L9-dzL"/>
+                        <constraint firstAttribute="trailing" secondItem="dmL-ug-HfH" secondAttribute="trailing" constant="48" id="Jel-Uz-lOb"/>
+                        <constraint firstItem="dmL-ug-HfH" firstAttribute="leading" secondItem="jEi-Yp-5dJ" secondAttribute="leading" constant="48" id="U6r-tl-5tM"/>
+                        <constraint firstItem="dmL-ug-HfH" firstAttribute="width" secondItem="jEi-Yp-5dJ" secondAttribute="width" constant="-96" id="Z1D-Bj-bSI"/>
+                    </constraints>
+                </scrollView>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YmG-zI-As2">
+                    <rect key="frame" x="48" y="789" width="318" height="30"/>
+                    <state key="normal" title="Button"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="FeZ-vQ-UsJ"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="YmG-zI-As2" firstAttribute="top" secondItem="jEi-Yp-5dJ" secondAttribute="bottom" constant="43" id="AzJ-rg-5XK"/>
+                <constraint firstItem="YmG-zI-As2" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="48" id="BEx-Rz-cVM"/>
+                <constraint firstItem="jEi-Yp-5dJ" firstAttribute="trailing" secondItem="FeZ-vQ-UsJ" secondAttribute="trailing" id="CWG-p8-EeI"/>
+                <constraint firstItem="FeZ-vQ-UsJ" firstAttribute="bottom" secondItem="YmG-zI-As2" secondAttribute="bottom" constant="43" id="DN9-zO-3e7"/>
+                <constraint firstItem="jEi-Yp-5dJ" firstAttribute="leading" secondItem="FeZ-vQ-UsJ" secondAttribute="leading" id="kdN-Cu-hBp"/>
+                <constraint firstItem="jEi-Yp-5dJ" firstAttribute="top" secondItem="FeZ-vQ-UsJ" secondAttribute="top" id="r7g-YO-OdG"/>
+                <constraint firstAttribute="trailing" secondItem="YmG-zI-As2" secondAttribute="trailing" constant="48" id="xcv-HK-Kjj"/>
+            </constraints>
+            <point key="canvasLocation" x="96" y="3"/>
+        </view>
+    </objects>
+</document>

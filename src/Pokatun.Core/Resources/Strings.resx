@@ -49,5 +49,40 @@
     <data name="IHaveAccText" xml:space="preserve">
         <value>У меня уже есть аккаунт</value>
     </data>
-
+    <data name="Name" xml:space="preserve">
+        <value>Название</value>
+    </data>
+    <data name="Phone" xml:space="preserve">
+        <value>Телефон</value>
+    </data>
+    <data name="Password" xml:space="preserve">
+        <value>Пароль</value>
+    </data>
+    <data name="ConfirmPassword" xml:space="preserve">
+        <value>Подтвердить пароль</value>
+    </data>
+    <data name="Further" xml:space="preserve">
+        <value>Далее</value>
+    </data>
+    <data name="Email" xml:space="preserve">
+        <value>Email</value>
+    </data>
+    <data name="HotelNameRequiredMessage" xml:space="preserve">
+        <value>Необходимо указать название отеля</value>
+    </data>
+    <data name="InvalidPhoneNumberMessage" xml:space="preserve">
+        <value>Номер телефона должен содержать не менее 12 символов и начинаться с '+'</value>
+    </data>
+    <data name="InvalidPhoneNumberMessage" xml:space="preserve">
+        <value>Номер телефона должен содержать не менее 12 символов и начинаться с '+'</value>
+    </data>
+    <data name="InvalidEmailMessage" xml:space="preserve">
+        <value>Указан некорректный адрес электронной почты</value>
+    </data>
+    <data name="InvalidPasswordMessage" xml:space="preserve">
+        <value>Несоответствие формата пароля (необходимы большие и малые буквы, цифры и спецсимволы)</value>
+    </data>
+    <data name="PasswordMismatchMessage" xml:space="preserve">
+        <value>Пароли должны совпадать</value>
+    </data>
 </root>
