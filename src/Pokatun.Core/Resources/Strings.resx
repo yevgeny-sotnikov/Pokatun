@@ -67,6 +67,21 @@
     <data name="Email" xml:space="preserve">
         <value>Email</value>
     </data>
+    <data name="USREOU" xml:space="preserve">
+        <value>ЕДРПОУ</value>
+    </data>
+    <data name="BankName" xml:space="preserve">
+        <value>Название вашего банка</value>
+    </data>
+    <data name="CardNumberOrIBAN" xml:space="preserve">
+        <value>Номер карты/IBAN</value>
+    </data>
+    <data name="FullCompanyName" xml:space="preserve">
+        <value>Полное название организации</value>
+    </data>
+    <data name="CreateAccount" xml:space="preserve">
+        <value>Создать аккаунт</value>
+    </data>
     <data name="HotelNameRequiredMessage" xml:space="preserve">
         <value>Необходимо указать название отеля</value>
     </data>

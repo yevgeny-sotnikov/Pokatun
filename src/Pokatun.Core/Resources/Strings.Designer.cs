@@ -155,6 +155,36 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string USREOU {
+            get {
+                return ResourceManager.GetString("USREOU", resourceCulture);
+            }
+        }
+        
+        public static string BankName {
+            get {
+                return ResourceManager.GetString("BankName", resourceCulture);
+            }
+        }
+        
+        public static string CardNumberOrIBAN {
+            get {
+                return ResourceManager.GetString("CardNumberOrIBAN", resourceCulture);
+            }
+        }
+        
+        public static string FullCompanyName {
+            get {
+                return ResourceManager.GetString("FullCompanyName", resourceCulture);
+            }
+        }
+        
+        public static string CreateAccount {
+            get {
+                return ResourceManager.GetString("CreateAccount", resourceCulture);
+            }
+        }
+        
         public static string HotelNameRequiredMessage {
             get {
                 return ResourceManager.GetString("HotelNameRequiredMessage", resourceCulture);
