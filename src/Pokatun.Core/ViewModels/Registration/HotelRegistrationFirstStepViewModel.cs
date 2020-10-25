@@ -1,7 +1,10 @@
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmValidation;
+using Pokatun.Core.Models;
 using Pokatun.Core.Resources;
 
 namespace Pokatun.Core.ViewModels.Registration
@@ -9,7 +12,7 @@ namespace Pokatun.Core.ViewModels.Registration
     public sealed class HotelRegistrationFirstStepViewModel : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
-
+        private readonly IMvxNavigationService _navigationService;
         private bool _viewInEditMode = true;
         private ValidationHelper _validator;
 
@@ -97,18 +100,20 @@ namespace Pokatun.Core.ViewModels.Registration
 
         public bool IsHotelNameInvalid => CheckInvalid(nameof(HotelName));
 
-        private MvxCommand _furtherCommand;
+        private MvxAsyncCommand _furtherCommand;
         public IMvxCommand FurtherCommand
         {
             get
             {
-                return _furtherCommand ?? (_furtherCommand = new MvxCommand(DoFurtherCommand));
+                return _furtherCommand ?? (_furtherCommand = new MvxAsyncCommand(DoFurtherCommandAsync));
             }
         }
 
-        public HotelRegistrationFirstStepViewModel(IUserDialogs userDialogs)
+        public HotelRegistrationFirstStepViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService)
         {
             _userDialogs = userDialogs;
+            _navigationService = navigationService;
+
             _validator = new ValidationHelper();
 
             _validator.AddRule(nameof(HotelName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelName), Strings.HotelNameRequiredMessage));
@@ -124,7 +129,7 @@ namespace Pokatun.Core.ViewModels.Registration
             return !_validator.Validate(name).IsValid;
         }
 
-        private void DoFurtherCommand()
+        private async Task DoFurtherCommandAsync()
         {
             _viewInEditMode = false;
 
@@ -138,6 +143,15 @@ namespace Pokatun.Core.ViewModels.Registration
 
             if (validationResult.IsValid)
             {
+                HotelRegistrationFirstData data = new HotelRegistrationFirstData
+                {
+                    HotelName = HotelName,
+                    PhoneNumber = PhoneNumber,
+                    Email = Email,
+                    Password = Password
+                };
+
+                await _navigationService.Navigate<HotelRegistrationSecondStepViewModel, HotelRegistrationFirstData>(data);
                 return;
             }
 

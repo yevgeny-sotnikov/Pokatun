@@ -158,6 +158,11 @@
     <Compile Include="Styles\ViewStyles.cs" />
     <Compile Include="Converters\BorderEditTextValidationConverter.cs" />
     <Compile Include="Converters\EditTextValidationConverter.cs" />
+    <InterfaceDefinition Include="Views\Registration\HotelRegistrationSecondStepViewController.xib" />
+    <Compile Include="Views\Registration\HotelRegistrationSecondStepViewController.cs" />
+    <Compile Include="Views\Registration\HotelRegistrationSecondStepViewController.designer.cs">
+      <DependentUpon>HotelRegistrationSecondStepViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -71,6 +71,7 @@
     <Compile Include="Views\ChoiseUserRole\ChoiseUserRoleFragment.cs" />
     <Compile Include="Views\PreEntrance\PreEntranceFragment.cs" />
     <Compile Include="Views\Registration\HotelRegistrationFirstStepFragment.cs" />
+    <Compile Include="Views\Registration\HotelRegistrationSecondStepFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -193,6 +194,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\color\hint_text_color.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_hotel_registration_second_step.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using CoreAnimation;
 using Foundation;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
@@ -13,8 +11,7 @@ using UIKit;
 namespace Pokatun.iOS.Views.Registration
 {
     [MvxChildPresentation]
-    public sealed partial class HotelRegistrationFirstStepViewController
-        : BaseViewController<HotelRegistrationFirstStepViewModel>
+    public sealed partial class HotelRegistrationFirstStepViewController : BaseViewController<HotelRegistrationFirstStepViewModel>
     {
         private Dictionary<UITextField, int> _maxLenght;
 
