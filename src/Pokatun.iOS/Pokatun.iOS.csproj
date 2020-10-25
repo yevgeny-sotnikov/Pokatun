@@ -156,6 +156,8 @@
       <DependentUpon>HotelRegistrationFirstStepViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Styles\ViewStyles.cs" />
+    <Compile Include="Converters\BorderEditTextValidationConverter.cs" />
+    <Compile Include="Converters\EditTextValidationConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -236,6 +238,7 @@
     <Folder Include="Controls\" />
     <Folder Include="Resources\Media.xcassets\logo_3.imageset\" />
     <Folder Include="Views\Registration\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

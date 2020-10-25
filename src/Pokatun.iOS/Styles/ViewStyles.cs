@@ -69,6 +69,7 @@ namespace Pokatun.iOS.Styles
         {
             UITextField textField = (UITextField)sender;
 
+            textField.TextColor = ColorPalette.PrimaryText;
             textField.Layer.BorderWidth = 2;
             textField.Layer.BorderColor = ColorPalette.PrimaryLight.CGColor;
         }

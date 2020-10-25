@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CoreAnimation;
 using Foundation;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Registration;
+using Pokatun.iOS.Converters;
 using Pokatun.iOS.Styles;
 using UIKit;
 
@@ -68,6 +70,66 @@ namespace Pokatun.iOS.Views.Registration
             set.Bind(_passwordEditText).To(vm => vm.Password).OneWayToSource();
             set.Bind(_confirmPasswordEditText).To(vm => vm.PasswordConfirm).OneWayToSource();
             set.Bind(_furtherButton).To(vm => vm.FurtherCommand);
+
+            set.Bind(_hotelNameEditText.Layer)
+                .For(l => l.BorderColor)
+                .To(vm => vm.IsHotelNameInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_phoneNumberEditText.Layer)
+                .For(v => v.BorderColor)
+                .To(vm => vm.IsPhoneNumberInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_emailEditText.Layer)
+                .For(l => l.BorderColor)
+                .To(vm => vm.IsEmailInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_passwordEditText.Layer)
+                .For(l => l.BorderColor)
+                .To(vm => vm.IsPasswordInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_confirmPasswordEditText.Layer)
+                .For(l => l.BorderColor)
+                .To(vm => vm.IsPasswordConfirmInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_hotelNameEditText)
+                .For(v => v.TextColor)
+                .To(vm => vm.IsHotelNameInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_phoneNumberEditText)
+                .For(v => v.TextColor)
+                .To(vm => vm.IsPhoneNumberInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_emailEditText)
+                .For(l => l.TextColor)
+                .To(vm => vm.IsEmailInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_passwordEditText)
+                .For(l => l.TextColor)
+                .To(vm => vm.IsPasswordInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_confirmPasswordEditText)
+                .For(l => l.TextColor)
+                .To(vm => vm.IsPasswordConfirmInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
 
             set.Apply();
         }
