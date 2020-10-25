@@ -22,14 +22,14 @@
             android:layout_height="wrap_content">
 			<EditText
 				style="@style/BorderedEditText"
-				android:maxLength="64"
+				android:maxLength="128"
 				android:singleLine="true"
 				android:layout_width="match_parent"
 				android:id="@+id/fullCompanyNameTextField"
 				/>
 			<EditText
 				style="@style/BorderedEditText"
-				android:maxLength="16"
+				android:maxLength="34"
 				android:inputType="phone"
 				android:layout_width="match_parent"
 				android:layout_marginTop="16dp"
@@ -45,7 +45,7 @@
 				/>
 			<EditText
 				style="@style/BorderedEditText"
-				android:maxLength="32"
+				android:maxLength="12"
 				android:layout_marginBottom="50dp"
 				android:inputType="textPassword"
 				android:layout_width="match_parent"

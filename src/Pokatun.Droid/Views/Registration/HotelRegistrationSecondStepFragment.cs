@@ -41,7 +41,7 @@ namespace Pokatun.Droid.Views.Registration
             _bankCardOrIbanTextField.Hint = Strings.CardNumberOrIBAN;
             _bankNameTextField.Hint = Strings.BankName;
             _usreouTextField.Hint = Strings.USREOU;
-            _createAccountButton.Text = Strings.Further;
+            _createAccountButton.Text = Strings.CreateAccount;
 
             #pragma warning disable IDE0008 // Use explicit type
 

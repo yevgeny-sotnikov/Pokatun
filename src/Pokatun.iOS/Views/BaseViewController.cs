@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Foundation;
 using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.ViewModels;
@@ -12,6 +13,8 @@ namespace Pokatun.iOS.Views
     public abstract class BaseViewController<TViewModel> : MvxViewController<TViewModel>
         where TViewModel : BaseViewModel
     {
+        protected virtual IDictionary<UITextField, int> MaxLenght => null;
+
         private static readonly TitleView TitleView = TitleView.Create();
 
         protected BaseViewController(IntPtr handle)
@@ -64,6 +67,13 @@ namespace Pokatun.iOS.Views
 
         protected virtual void BindView()
         {
+        }
+
+        protected bool OnShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
+        {
+            nint newLength = textField.Text.Length + replacementString.Length - range.Length;
+
+            return newLength <= MaxLenght[textField];
         }
     }
 }

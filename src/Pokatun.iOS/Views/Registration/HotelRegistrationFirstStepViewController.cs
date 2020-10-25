@@ -13,7 +13,8 @@ namespace Pokatun.iOS.Views.Registration
     [MvxChildPresentation]
     public sealed partial class HotelRegistrationFirstStepViewController : BaseViewController<HotelRegistrationFirstStepViewModel>
     {
-        private Dictionary<UITextField, int> _maxLenght;
+        private IDictionary<UITextField, int> _maxLenght;
+        protected override IDictionary<UITextField, int> MaxLenght => _maxLenght;
 
         public HotelRegistrationFirstStepViewController() : base(nameof(HotelRegistrationFirstStepViewController), null)
         {
@@ -28,7 +29,7 @@ namespace Pokatun.iOS.Views.Registration
             _maxLenght = new Dictionary<UITextField, int>
             {
                 { _hotelNameEditText, 64 },
-                { _phoneNumberEditText, 13 },
+                { _phoneNumberEditText, 16 },
                 { _emailEditText, 64 },
                 { _passwordEditText, 32 },
                 { _confirmPasswordEditText, 32 }
@@ -129,13 +130,6 @@ namespace Pokatun.iOS.Views.Registration
                 .OneWay();
 
             set.Apply();
-        }
-
-        private bool OnShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
-        {
-            nint newLength = textField.Text.Length + replacementString.Length - range.Length;
-
-            return newLength <= _maxLenght[textField];
         }
 
         public override void ViewDidDisappear(bool animated)
