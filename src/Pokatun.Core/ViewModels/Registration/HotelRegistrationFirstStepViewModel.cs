@@ -156,7 +156,6 @@ namespace Pokatun.Core.ViewModels.Registration
             }
 
             _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
-
         }
     }
 }

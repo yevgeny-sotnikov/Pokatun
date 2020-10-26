@@ -30,7 +30,7 @@
 			<EditText
 				style="@style/BorderedEditText"
 				android:maxLength="34"
-				android:inputType="phone"
+				android:inputType="textPostalAddress"
 				android:layout_width="match_parent"
 				android:layout_marginTop="16dp"
 				android:id="@+id/bankCardOrIbanTextField"
@@ -38,16 +38,15 @@
 			<EditText
 				style="@style/BorderedEditText"
 				android:maxLength="64"
-				android:inputType="textEmailAddress"
 				android:layout_width="match_parent"
 				android:layout_marginTop="16dp"
 				android:id="@+id/bankNameTextField"
 				/>
 			<EditText
 				style="@style/BorderedEditText"
-				android:maxLength="12"
+				android:maxLength="8"
 				android:layout_marginBottom="50dp"
-				android:inputType="textPassword"
+				android:inputType="number"
 				android:layout_width="match_parent"
 				android:layout_marginTop="16dp"
 				android:id="@+id/usreouTextField"

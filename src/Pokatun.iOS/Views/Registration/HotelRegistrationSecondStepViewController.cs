@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Registration;
+using Pokatun.iOS.Converters;
 using Pokatun.iOS.Styles;
 using UIKit;
 
@@ -29,7 +30,7 @@ namespace Pokatun.iOS.Views.Registration
                 { _fullCompanyNameTextField, 128 },
                 { _bankCardOrIbanTextField, 34 },
                 { _bankNameTextField, 64 },
-                { _usreouTextField, 12 }
+                { _usreouTextField, 8 }
             };
 
             _createAccountButton.ApplyBigButtonStyle();
@@ -56,72 +57,59 @@ namespace Pokatun.iOS.Views.Registration
 
             #pragma warning restore IDE0008 // Use explicit type
 
-            //set.Bind(_hotelNameEditText).To(vm => vm.HotelName).OneWayToSource();
-            //set.Bind(_phoneNumberEditText).To(vm => vm.PhoneNumber).OneWayToSource();
-            //set.Bind(_emailEditText).To(vm => vm.Email).OneWayToSource();
-            //set.Bind(_passwordEditText).To(vm => vm.Password).OneWayToSource();
-            //set.Bind(_confirmPasswordEditText).To(vm => vm.PasswordConfirm).OneWayToSource();
-            //set.Bind(_furtherButton).To(vm => vm.FurtherCommand);
+            set.Bind(_fullCompanyNameTextField).To(vm => vm.FullCompanyName).OneWayToSource();
+            set.Bind(_bankCardOrIbanTextField).To(vm => vm.BankCardOrIban).OneWayToSource();
+            set.Bind(_bankNameTextField).To(vm => vm.BankName).OneWayToSource();
+            set.Bind(_usreouTextField).To(vm => vm.USREOU).OneWayToSource();
+            set.Bind(_createAccountButton).To(vm => vm.СreateAccountCommand);
 
-            //set.Bind(_hotelNameEditText.Layer)
-            //    .For(l => l.BorderColor)
-            //    .To(vm => vm.IsHotelNameInvalid)
-            //    .WithConversion<BorderEditTextValidationConverter>()
-            //    .OneWay();
+            set.Bind(_fullCompanyNameTextField.Layer)
+                .For(l => l.BorderColor)
+                .To(vm => vm.IsFullCompanyNameInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
 
-            //set.Bind(_phoneNumberEditText.Layer)
-            //    .For(v => v.BorderColor)
-            //    .To(vm => vm.IsPhoneNumberInvalid)
-            //    .WithConversion<BorderEditTextValidationConverter>()
-            //    .OneWay();
+            set.Bind(_bankCardOrIbanTextField.Layer)
+                .For(v => v.BorderColor)
+                .To(vm => vm.IsBankCardOrIbanInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
 
-            //set.Bind(_emailEditText.Layer)
-            //    .For(l => l.BorderColor)
-            //    .To(vm => vm.IsEmailInvalid)
-            //    .WithConversion<BorderEditTextValidationConverter>()
-            //    .OneWay();
+            set.Bind(_bankNameTextField.Layer)
+                .For(l => l.BorderColor)
+                .To(vm => vm.IsBankNameInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
 
-            //set.Bind(_passwordEditText.Layer)
-            //    .For(l => l.BorderColor)
-            //    .To(vm => vm.IsPasswordInvalid)
-            //    .WithConversion<BorderEditTextValidationConverter>()
-            //    .OneWay();
+            set.Bind(_usreouTextField.Layer)
+                .For(l => l.BorderColor)
+                .To(vm => vm.IsUsreouInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
 
-            //set.Bind(_confirmPasswordEditText.Layer)
-            //    .For(l => l.BorderColor)
-            //    .To(vm => vm.IsPasswordConfirmInvalid)
-            //    .WithConversion<BorderEditTextValidationConverter>()
-            //    .OneWay();
+            set.Bind(_fullCompanyNameTextField)
+                .For(v => v.TextColor)
+                .To(vm => vm.IsFullCompanyNameInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
 
-            //set.Bind(_hotelNameEditText)
-            //    .For(v => v.TextColor)
-            //    .To(vm => vm.IsHotelNameInvalid)
-            //    .WithConversion<EditTextValidationConverter>()
-            //    .OneWay();
+            set.Bind(_bankCardOrIbanTextField)
+                .For(v => v.TextColor)
+                .To(vm => vm.IsBankCardOrIbanInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
 
-            //set.Bind(_phoneNumberEditText)
-            //    .For(v => v.TextColor)
-            //    .To(vm => vm.IsPhoneNumberInvalid)
-            //    .WithConversion<EditTextValidationConverter>()
-            //    .OneWay();
+            set.Bind(_bankNameTextField)
+                .For(l => l.TextColor)
+                .To(vm => vm.IsBankNameInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
 
-            //set.Bind(_emailEditText)
-            //    .For(l => l.TextColor)
-            //    .To(vm => vm.IsEmailInvalid)
-            //    .WithConversion<EditTextValidationConverter>()
-            //    .OneWay();
-
-            //set.Bind(_passwordEditText)
-            //    .For(l => l.TextColor)
-            //    .To(vm => vm.IsPasswordInvalid)
-            //    .WithConversion<EditTextValidationConverter>()
-            //    .OneWay();
-
-            //set.Bind(_confirmPasswordEditText)
-            //    .For(l => l.TextColor)
-            //    .To(vm => vm.IsPasswordConfirmInvalid)
-            //    .WithConversion<EditTextValidationConverter>()
-            //    .OneWay();
+            set.Bind(_usreouTextField)
+                .For(l => l.TextColor)
+                .To(vm => vm.IsUsreouInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
 
             set.Apply();
         }

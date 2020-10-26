@@ -70,6 +70,9 @@
     <data name="USREOU" xml:space="preserve">
         <value>ЕДРПОУ</value>
     </data>
+    <data name="InvalidUSREOU" xml:space="preserve">
+        <value>Некорректный ЕДРПОУ. ЕДРПОУ должен содеражать 8 цифр</value>
+    </data>
     <data name="BankName" xml:space="preserve">
         <value>Название вашего банка</value>
     </data>
@@ -85,11 +88,17 @@
     <data name="HotelNameRequiredMessage" xml:space="preserve">
         <value>Необходимо указать название отеля</value>
     </data>
-    <data name="InvalidPhoneNumberMessage" xml:space="preserve">
-        <value>Номер телефона должен содержать не менее 12 символов и начинаться с '+'</value>
+    <data name="CompanyNameRequiredMessage" xml:space="preserve">
+        <value>Необходимо указать полное название организации</value>
+    </data>
+    <data name="BankNameRequiredMessage" xml:space="preserve">
+        <value>Необходимо указать название банка</value>
     </data>
     <data name="InvalidPhoneNumberMessage" xml:space="preserve">
         <value>Номер телефона должен содержать не менее 12 символов и начинаться с '+'</value>
+    </data>
+    <data name="ValidBankCardOrIbanNotDefined" xml:space="preserve">
+        <value>Не указан валидный номер банковской карты/IBAN</value>
     </data>
     <data name="InvalidEmailMessage" xml:space="preserve">
         <value>Указан некорректный адрес электронной почты</value>

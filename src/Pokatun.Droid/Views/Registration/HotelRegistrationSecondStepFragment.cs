@@ -47,20 +47,18 @@ namespace Pokatun.Droid.Views.Registration
 
             var set = CreateBindingSet();
 
-            #pragma warning restore IDE0008 // Use explicit type
+#pragma warning restore IDE0008 // Use explicit type
 
-            //set.Bind(_hotelNameEditText).To(vm => vm.HotelName).OneWayToSource();
-            //set.Bind(_phoneNumberEditText).To(vm => vm.PhoneNumber).OneWayToSource();
-            //set.Bind(_emailEditText).To(vm => vm.Email).OneWayToSource();
-            //set.Bind(_passwordEditText).To(vm => vm.Password).OneWayToSource();
-            //set.Bind(_confirmPasswordEditText).To(vm => vm.PasswordConfirm).OneWayToSource();
-            //set.Bind(_furtherButton).To(vm => vm.FurtherCommand);
+            set.Bind(_fullCompanyNameTextField).To(vm => vm.FullCompanyName).OneWayToSource();
+            set.Bind(_bankCardOrIbanTextField).To(vm => vm.BankCardOrIban).OneWayToSource();
+            set.Bind(_bankNameTextField).To(vm => vm.BankName).OneWayToSource();
+            set.Bind(_usreouTextField).To(vm => vm.USREOU).OneWayToSource();
+            set.Bind(_createAccountButton).To(vm => vm.СreateAccountCommand);
 
-            //set.Bind(_hotelNameEditText).For(v => v.Activated).To(vm => vm.IsHotelNameInvalid).OneWay();
-            //set.Bind(_phoneNumberEditText).For(v => v.Activated).To(vm => vm.IsPhoneNumberInvalid).OneWay();
-            //set.Bind(_emailEditText).For(v => v.Activated).To(vm => vm.IsEmailInvalid).OneWay();
-            //set.Bind(_passwordEditText).For(v => v.Activated).To(vm => vm.IsPasswordInvalid).OneWay();
-            //set.Bind(_confirmPasswordEditText).For(v => v.Activated).To(vm => vm.IsPasswordConfirmInvalid).OneWay();
+            set.Bind(_fullCompanyNameTextField).For(v => v.Activated).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
+            set.Bind(_bankCardOrIbanTextField).For(v => v.Activated).To(vm => vm.IsBankCardOrIbanInvalid).OneWay();
+            set.Bind(_bankNameTextField).For(v => v.Activated).To(vm => vm.IsBankNameInvalid).OneWay();
+            set.Bind(_usreouTextField).For(v => v.Activated).To(vm => vm.IsUsreouInvalid).OneWay();
 
             set.Apply();
 
