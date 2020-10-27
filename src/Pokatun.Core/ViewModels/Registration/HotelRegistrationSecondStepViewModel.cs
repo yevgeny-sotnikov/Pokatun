@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
@@ -7,6 +9,8 @@ using MvvmCross.Navigation;
 using MvvmValidation;
 using Pokatun.Core.Models;
 using Pokatun.Core.Resources;
+using Pokatun.Data;
+using RestSharp;
 
 namespace Pokatun.Core.ViewModels.Registration
 {
@@ -14,7 +18,8 @@ namespace Pokatun.Core.ViewModels.Registration
     {
         private readonly IUserDialogs _userDialogs;
         private readonly IMvxNavigationService _navigationService;
-        private ValidationHelper _validator;
+        private readonly IRestClient _restClient;
+        private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
 
@@ -105,10 +110,11 @@ namespace Pokatun.Core.ViewModels.Registration
             _firstData = parameter;
         }
 
-        public HotelRegistrationSecondStepViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService)
+        public HotelRegistrationSecondStepViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService, IRestClient restClient)
         {
             _userDialogs = userDialogs;
             _navigationService = navigationService;
+            _restClient = restClient;
 
             _validator = new ValidationHelper();
 
@@ -128,25 +134,50 @@ namespace Pokatun.Core.ViewModels.Registration
             _validator.AddRule(nameof(USREOU), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(USREOU.Trim(), Constants.UsreouPattern), Strings.InvalidUSREOU));
         }
 
-        private Task DoСreateAccountCommandAsync()
+        private async Task DoСreateAccountCommandAsync()
         {
             _viewInEditMode = false;
 
             ValidationResult validationResult = _validator.ValidateAll();
 
-            RaisePropertyChanged(nameof(IsUsreouInvalid));
-            RaisePropertyChanged(nameof(IsBankCardOrIbanInvalid));
-            RaisePropertyChanged(nameof(IsFullCompanyNameInvalid));
-            RaisePropertyChanged(nameof(IsBankNameInvalid));
+            await Task.WhenAll(RaisePropertyChanged(
+                nameof(IsUsreouInvalid)),
+                RaisePropertyChanged(nameof(IsBankCardOrIbanInvalid)),
+                RaisePropertyChanged(nameof(IsFullCompanyNameInvalid)),
+                RaisePropertyChanged(nameof(IsBankNameInvalid))
+            );
 
             if (validationResult.IsValid)
             {
-                return Task.CompletedTask;
+                Hotel hotel = new Hotel
+                {
+                    HotelName = _firstData.HotelName,
+                    PhoneNumber = _firstData.PhoneNumber,
+                    Email = _firstData.Email,
+                    Password = _firstData.Password,
+                    FullCompanyName = FullCompanyName,
+                    BankName = BankName,
+                    USREOU = uint.Parse(USREOU)
+                };
+
+                if (Regex.IsMatch(BankCardOrIban, Constants.IbanPattern))
+                {
+                    hotel.IBAN = BankCardOrIban;
+                }
+                else
+                {
+                    hotel.BankCard = ulong.Parse(BankCardOrIban);
+                }
+
+                var request = new RestRequest("hotels/register", Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddJsonBody(hotel, "application/json");
+                IRestResponse response = await _restClient.ExecuteAsync(request);
+                return;
             }
 
             _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
 
-            return Task.CompletedTask;
         }
 
         private bool CheckInvalid(string name)

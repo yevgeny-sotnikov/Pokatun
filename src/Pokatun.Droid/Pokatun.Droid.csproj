@@ -89,6 +89,9 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.1.0.462</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.5.3.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProguardConfiguration Include="proguard.cfg" />
