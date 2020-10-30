@@ -6,6 +6,7 @@ using MvvmCross.Navigation;
 using MvvmValidation;
 using Pokatun.Core.Models;
 using Pokatun.Core.Resources;
+using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Registration
 {
@@ -13,12 +14,13 @@ namespace Pokatun.Core.ViewModels.Registration
     {
         private readonly IUserDialogs _userDialogs;
         private readonly IMvxNavigationService _navigationService;
+        private readonly ValidationHelper _validator;
+
         private bool _viewInEditMode = true;
-        private ValidationHelper _validator;
 
         public override string Title => Strings.Registration;
 
-        private string _hotelName = string.Empty;
+        private string _hotelName = "FFSDFD";
         public string HotelName
         {
             get { return _hotelName; }
@@ -33,7 +35,7 @@ namespace Pokatun.Core.ViewModels.Registration
         }
 
 
-        private string _phoneNumber = string.Empty;
+        private string _phoneNumber = "+380660303007";
         public string PhoneNumber
         {
             get { return _phoneNumber; }
@@ -47,7 +49,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _email = string.Empty;
+        private string _email = "d@dd.com";
         public string Email
         {
             get { return _email; }
@@ -61,7 +63,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _password = string.Empty;
+        private string _password = "Zxcvbn123!";
         public string Password
         {
             get { return _password; }
@@ -75,7 +77,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _passwordConfirm = string.Empty;
+        private string _passwordConfirm = "Zxcvbn123!";
         public string PasswordConfirm
         {
             get { return _passwordConfirm; }
@@ -117,10 +119,10 @@ namespace Pokatun.Core.ViewModels.Registration
             _validator = new ValidationHelper();
 
             _validator.AddRule(nameof(HotelName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelName), Strings.HotelNameRequiredMessage));
-            _validator.AddRule(nameof(PhoneNumber), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(PhoneNumber.Trim(), Constants.PhonePattern), Strings.InvalidPhoneNumberMessage));
-            _validator.AddRule(nameof(Email), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Email.Trim(), Constants.EmailPattern), Strings.InvalidEmailMessage));
-            _validator.AddRule(nameof(Password), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Password.Trim(), Constants.PasswordPattern), Strings.InvalidPasswordMessage));
-            _validator.AddRule(nameof(PasswordConfirm), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(PasswordConfirm.Trim(), Constants.PasswordPattern), Strings.InvalidPasswordMessage));
+            _validator.AddRule(nameof(PhoneNumber), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(PhoneNumber.Trim(), DataPatterns.Phone), Strings.InvalidPhoneNumberMessage));
+            _validator.AddRule(nameof(Email), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Email.Trim(), DataPatterns.Email), Strings.InvalidEmailMessage));
+            _validator.AddRule(nameof(Password), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Password.Trim(), DataPatterns.Password), Strings.InvalidPasswordMessage));
+            _validator.AddRule(nameof(PasswordConfirm), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(PasswordConfirm.Trim(), DataPatterns.Password), Strings.InvalidPasswordMessage));
             _validator.AddRule(nameof(Password), nameof(PasswordConfirm), () => RuleResult.Assert(_viewInEditMode || Password == PasswordConfirm, Strings.PasswordMismatchMessage));
         }
 

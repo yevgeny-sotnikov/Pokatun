@@ -15,6 +15,7 @@
     <Folder Include="ViewModels\ChoiseUserRole\" />
     <Folder Include="Resources\" />
     <Folder Include="ViewModels\Registration\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">

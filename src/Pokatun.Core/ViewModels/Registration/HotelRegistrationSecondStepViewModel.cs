@@ -9,6 +9,7 @@ using MvvmCross.Navigation;
 using MvvmValidation;
 using Pokatun.Core.Models;
 using Pokatun.Core.Resources;
+using Pokatun.Core.Services;
 using Pokatun.Data;
 using RestSharp;
 
@@ -18,8 +19,8 @@ namespace Pokatun.Core.ViewModels.Registration
     {
         private readonly IUserDialogs _userDialogs;
         private readonly IMvxNavigationService _navigationService;
-        private readonly IRestClient _restClient;
         private readonly ValidationHelper _validator;
+        private readonly IHotelsService _hotelsService;
 
         private bool _viewInEditMode = true;
 
@@ -27,7 +28,7 @@ namespace Pokatun.Core.ViewModels.Registration
 
         public override string Title => Strings.Registration;
 
-        private string _fullCompanyName = string.Empty;
+        private string _fullCompanyName = "df";
         public string FullCompanyName
         {
             get { return _fullCompanyName; }
@@ -42,7 +43,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _bankCardOrIban = string.Empty;
+        private string _bankCardOrIban = "1111222233334444";
         public string BankCardOrIban
         {
             get { return _bankCardOrIban; }
@@ -57,7 +58,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _bankName = string.Empty;
+        private string _bankName = "df";
         public string BankName
         {
             get { return _bankName; }
@@ -72,7 +73,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _usreou = string.Empty;
+        private string _usreou = "12345678";
         public string USREOU
         {
             get { return _usreou; }
@@ -110,11 +111,11 @@ namespace Pokatun.Core.ViewModels.Registration
             _firstData = parameter;
         }
 
-        public HotelRegistrationSecondStepViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService, IRestClient restClient)
+        public HotelRegistrationSecondStepViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService, IHotelsService hotelsService)
         {
             _userDialogs = userDialogs;
             _navigationService = navigationService;
-            _restClient = restClient;
+            _hotelsService = hotelsService;
 
             _validator = new ValidationHelper();
 
@@ -124,14 +125,14 @@ namespace Pokatun.Core.ViewModels.Registration
                 nameof(BankCardOrIban),
                 () => RuleResult.Assert(
                     _viewInEditMode
-                    || Regex.IsMatch(BankCardOrIban.Trim(), Constants.BankCardPattern)
-                    || Regex.IsMatch(BankCardOrIban.Trim(), Constants.IbanPattern
+                    || Regex.IsMatch(BankCardOrIban.Trim(), DataPatterns.BankCard)
+                    || Regex.IsMatch(BankCardOrIban.Trim(), DataPatterns.IBAN
                 ),
                 Strings.ValidBankCardOrIbanNotDefined)
             );
 
             _validator.AddRule(nameof(BankName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(BankName), Strings.BankNameRequiredMessage));
-            _validator.AddRule(nameof(USREOU), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(USREOU.Trim(), Constants.UsreouPattern), Strings.InvalidUSREOU));
+            _validator.AddRule(nameof(USREOU), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(USREOU.Trim(), DataPatterns.USREOU), Strings.InvalidUSREOU));
         }
 
         private async Task DoСreateAccountCommandAsync()
@@ -157,22 +158,20 @@ namespace Pokatun.Core.ViewModels.Registration
                     Password = _firstData.Password,
                     FullCompanyName = FullCompanyName,
                     BankName = BankName,
-                    USREOU = uint.Parse(USREOU)
+                    USREOU = int.Parse(USREOU)
                 };
 
-                if (Regex.IsMatch(BankCardOrIban, Constants.IbanPattern))
+                if (Regex.IsMatch(BankCardOrIban, DataPatterns.IBAN))
                 {
                     hotel.IBAN = BankCardOrIban;
                 }
                 else
                 {
-                    hotel.BankCard = ulong.Parse(BankCardOrIban);
+                    hotel.BankCard = long.Parse(BankCardOrIban);
                 }
 
-                var request = new RestRequest("hotels/register", Method.POST);
-                request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(hotel, "application/json");
-                IRestResponse response = await _restClient.ExecuteAsync(request);
+                var token = await _hotelsService.RegisterAsync(hotel);
+
                 return;
             }
 

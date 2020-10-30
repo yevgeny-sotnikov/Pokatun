@@ -3,15 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Pokatun.API.Models;
 using Pokatun.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Pokatun.API.Controllers
 {
+    [ApiController]
     [Route("[controller]")]
     public class HotelsController : ControllerBase
     {
+        private readonly PokatunContext _dbContext;
+
+        public HotelsController(PokatunContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         //// GET api/values/5
         //[HttpGet("{id}")]
         //public string Get(int id)
@@ -21,10 +30,18 @@ namespace Pokatun.API.Controllers
 
         // POST api/values
         [HttpPost("register")]
-        public IActionResult Post([FromBody] Hotel value)
+        public async Task<ActionResult<string>> PostAsync([FromBody] Hotel value)
         {
+            string email = value.Email.ToLower();
+            if (_dbContext.Hotels.Any(hotel => hotel.Email == email))
+            {
+                return BadRequest();
+            }
 
-            return Ok();
+            _dbContext.Hotels.Add(value);
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok("ddsff");
         }
 
         //// PUT api/values/5

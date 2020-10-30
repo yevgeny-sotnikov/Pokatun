@@ -11,5 +11,12 @@ namespace Pokatun.API.Models
         public PokatunContext(DbContextOptions<PokatunContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Hotel>().HasIndex(h => h.Email).IsUnique();
+        }
     }
 }
