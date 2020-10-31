@@ -238,5 +238,17 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("PasswordMismatchMessage", resourceCulture);
             }
         }
+        
+        public static string AcctountAllreadyExistsError {
+            get {
+                return ResourceManager.GetString("AcctountAllreadyExistsError", resourceCulture);
+            }
+        }
+        
+        public static string UnexpectedError {
+            get {
+                return ResourceManager.GetString("UnexpectedError", resourceCulture);
+            }
+        }
     }
 }

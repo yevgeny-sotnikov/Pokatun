@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -30,18 +28,20 @@ namespace Pokatun.API.Controllers
 
         // POST api/values
         [HttpPost("register")]
-        public async Task<ActionResult<string>> PostAsync([FromBody] Hotel value)
+        public async Task<ActionResult<ServerResponce<string>>> PostAsync([FromBody] Hotel value)
         {
+            //value.Email = null;
             string email = value.Email.ToLower();
+
             if (_dbContext.Hotels.Any(hotel => hotel.Email == email))
             {
-                return BadRequest();
+                return BadRequest(ServerResponce.ForError(ErrorCodes.AccountAllreadyExistsError));
             }
 
             _dbContext.Hotels.Add(value);
             await _dbContext.SaveChangesAsync();
             
-            return Ok("ddsff");
+            return Ok(new ServerResponce<string> { Success = true, Data = "ddsff" });
         }
 
         //// PUT api/values/5

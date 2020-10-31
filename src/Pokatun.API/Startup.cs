@@ -1,13 +1,16 @@
+using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Pokatun.API.Models;
+using Pokatun.Data;
 
 namespace Pokatun.API
 {
@@ -43,6 +46,13 @@ namespace Pokatun.API
             });
 
             services.AddControllers();
+
+            services.Configure<ApiBehaviorOptions>(a => a.InvalidModelStateResponseFactory = (context) =>
+            {
+                ServerResponce errorResonce = ServerResponce.ForErrors(context.ModelState.Keys.Select(k => k + "ValidationError"));
+
+                return new BadRequestObjectResult(errorResonce);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

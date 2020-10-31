@@ -14,18 +14,21 @@ namespace Pokatun.Core.Services
             _restClient = restClient;
         }
 
-        public async Task<string> RegisterAsync(Hotel hotel)
+        public async Task<ServerResponce<string>> RegisterAsync(Hotel hotel)
         {
             if (hotel == null)
             {
                 throw new ArgumentNullException(nameof(hotel));
             }
 
+            //System.Security.Cryptography.HMACSHA512()
+
             RestRequest request = new RestRequest("hotels/register", Method.POST);
 
             request.AddHeader("Content-Type", "application/json");
             request.AddJsonBody(hotel, "application/json");
-            IRestResponse<string> response = await _restClient.ExecuteAsync<string>(request);
+
+            IRestResponse<ServerResponce<string>> response = await _restClient.ExecuteAsync<ServerResponce<string>>(request);
             return response.Data;
         }
     }

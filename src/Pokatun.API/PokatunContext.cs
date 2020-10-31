@@ -16,6 +16,8 @@ namespace Pokatun.API.Models
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<Hotel>().ToTable(nameof(Hotels));
+
             builder.Entity<Hotel>().HasIndex(h => h.Email).IsUnique();
         }
     }

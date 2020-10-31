@@ -170,9 +170,20 @@ namespace Pokatun.Core.ViewModels.Registration
                     hotel.BankCard = long.Parse(BankCardOrIban);
                 }
 
-                var token = await _hotelsService.RegisterAsync(hotel);
+                ServerResponce<string> responce = await _hotelsService.RegisterAsync(hotel);
 
-                return;
+                if (responce.Success)
+                {
+                    return;
+                }
+
+                if (responce.ErrorCodes.Contains(ErrorCodes.AccountAllreadyExistsError))
+                {
+                    _userDialogs.Toast(Strings.AcctountAllreadyExistsError);
+                    return;
+                }
+
+                _userDialogs.Toast(Strings.UnexpectedError);
             }
 
             _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
