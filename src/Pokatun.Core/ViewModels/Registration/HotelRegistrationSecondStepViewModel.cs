@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -148,46 +149,55 @@ namespace Pokatun.Core.ViewModels.Registration
                 RaisePropertyChanged(nameof(IsBankNameInvalid))
             );
 
-            if (validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
-                Hotel hotel = new Hotel
-                {
-                    HotelName = _firstData.HotelName,
-                    PhoneNumber = _firstData.PhoneNumber,
-                    Email = _firstData.Email,
-                    Password = _firstData.Password,
-                    FullCompanyName = FullCompanyName,
-                    BankName = BankName,
-                    USREOU = int.Parse(USREOU)
-                };
-
-                if (Regex.IsMatch(BankCardOrIban, DataPatterns.IBAN))
-                {
-                    hotel.IBAN = BankCardOrIban;
-                }
-                else
-                {
-                    hotel.BankCard = long.Parse(BankCardOrIban);
-                }
-
-                ServerResponce<string> responce = await _hotelsService.RegisterAsync(hotel);
-
-                if (responce.Success)
-                {
-                    return;
-                }
-
-                if (responce.ErrorCodes.Contains(ErrorCodes.AccountAllreadyExistsError))
-                {
-                    _userDialogs.Toast(Strings.AcctountAllreadyExistsError);
-                    return;
-                }
-
-                _userDialogs.Toast(Strings.UnexpectedError);
+                return;
             }
 
-            _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
+            Hotel hotel = new Hotel
+            {
+                HotelName = _firstData.HotelName,
+                PhoneNumber = _firstData.PhoneNumber,
+                Email = _firstData.Email,
+                Password = _firstData.Password,
+                FullCompanyName = FullCompanyName,
+                BankName = BankName,
+                USREOU = int.Parse(USREOU)
+            };
 
+            if (Regex.IsMatch(BankCardOrIban, DataPatterns.IBAN))
+            {
+                hotel.IBAN = BankCardOrIban;
+            }
+            else
+            {
+                hotel.BankCard = long.Parse(BankCardOrIban);
+            }
+
+            ServerResponce<string> responce = await _hotelsService.RegisterAsync(hotel);
+
+            if (responce.Success)
+            {
+                return;
+            }
+
+            ISet<string> knownErrorKodes = new HashSet<string>
+            {
+                ErrorCodes.AccountAllreadyExistsError,
+                ErrorCodes.IbanAllreadyRegisteredError,
+                ErrorCodes.UsreouAllreadyRegisteredError
+            };
+
+            knownErrorKodes.IntersectWith(responce.ErrorCodes);
+
+            if (knownErrorKodes.Count > 0)
+            {
+                _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorKodes.First()));
+                return;
+            }
+
+
+            _userDialogs.Toast(Strings.UnexpectedError);
         }
 
         private bool CheckInvalid(string name)

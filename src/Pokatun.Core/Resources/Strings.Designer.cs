@@ -239,9 +239,21 @@ namespace Pokatun.Core.Resources {
             }
         }
         
-        public static string AcctountAllreadyExistsError {
+        public static string AccountAllreadyExistsError {
             get {
-                return ResourceManager.GetString("AcctountAllreadyExistsError", resourceCulture);
+                return ResourceManager.GetString("AccountAllreadyExistsError", resourceCulture);
+            }
+        }
+        
+        public static string IbanAllreadyRegisteredError {
+            get {
+                return ResourceManager.GetString("IbanAllreadyRegisteredError", resourceCulture);
+            }
+        }
+        
+        public static string UsreouAllreadyRegisteredError {
+            get {
+                return ResourceManager.GetString("UsreouAllreadyRegisteredError", resourceCulture);
             }
         }
         

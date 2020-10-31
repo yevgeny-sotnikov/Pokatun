@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Pokatun.Data;
 using RestSharp;
@@ -29,6 +30,11 @@ namespace Pokatun.Core.Services
             request.AddJsonBody(hotel, "application/json");
 
             IRestResponse<ServerResponce<string>> response = await _restClient.ExecuteAsync<ServerResponce<string>>(request);
+
+            if (response.Data == null && response.Content.Contains("Exception"))
+            {
+                return new ServerResponce<string> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
+            }
             return response.Data;
         }
     }

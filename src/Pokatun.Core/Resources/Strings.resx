@@ -109,8 +109,14 @@
     <data name="PasswordMismatchMessage" xml:space="preserve">
         <value>Пароли должны совпадать</value>
     </data>
-    <data name="AcctountAllreadyExistsError" xml:space="preserve">
+    <data name="AccountAllreadyExistsError" xml:space="preserve">
         <value>Аккаунт с указанным почтовым адресом уже существует</value>
+    </data>
+    <data name="IbanAllreadyRegisteredError" xml:space="preserve">
+        <value>Такой IBAN уже был зарегистрирован в системе</value>
+    </data>
+    <data name="UsreouAllreadyRegisteredError" xml:space="preserve">
+        <value>Такой ЕДРПОУ уже был зарегистрирован в системе</value>
     </data>
     <data name="UnexpectedError" xml:space="preserve">
         <value>Произошла непредвиденная ошбика. Повторите ошибу позже</value>

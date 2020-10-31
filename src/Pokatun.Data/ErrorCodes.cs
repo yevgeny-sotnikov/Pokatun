@@ -9,6 +9,9 @@ namespace Pokatun.Data
         public const string HotelNameValidationError = "HotelNameValidationError";
         public const string PhoneNumberValidationError = "PhoneNumberValidationError";
         public const string FullCompanyNameValidationError = "FullCompanyNameValidationError";
-        public const string AccountAllreadyExistsError = "UserAllreadyExistsError";
+        public const string AccountAllreadyExistsError = "AccountAllreadyExistsError";
+        public const string UnknownError = "UnknownError";
+        public const string IbanAllreadyRegisteredError = "IbanAllreadyRegisteredError";
+        public const string UsreouAllreadyRegisteredError = "UsreouAllreadyRegisteredError";
     }
 }

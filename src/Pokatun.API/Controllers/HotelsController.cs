@@ -30,18 +30,27 @@ namespace Pokatun.API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<ServerResponce<string>>> PostAsync([FromBody] Hotel value)
         {
-            //value.Email = null;
-            string email = value.Email.ToLower();
+            value.Email = value.Email.ToLower();
 
-            if (_dbContext.Hotels.Any(hotel => hotel.Email == email))
+            if (_dbContext.Hotels.Any(hotel => hotel.Email == value.Email))
             {
                 return BadRequest(ServerResponce.ForError(ErrorCodes.AccountAllreadyExistsError));
+            }
+
+            if (value.IBAN != null && _dbContext.Hotels.Any(hotel => hotel.IBAN == value.IBAN))
+            {
+                return BadRequest(ServerResponce.ForError(ErrorCodes.IbanAllreadyRegisteredError));
+            }
+
+            if (_dbContext.Hotels.Any(hotel => hotel.USREOU == value.USREOU))
+            {
+                return BadRequest(ServerResponce.ForError(ErrorCodes.UsreouAllreadyRegisteredError));
             }
 
             _dbContext.Hotels.Add(value);
             await _dbContext.SaveChangesAsync();
             
-            return Ok(new ServerResponce<string> { Success = true, Data = "ddsff" });
+            return Ok(new ServerResponce<string> { Data = "ddsff" });
         }
 
         //// PUT api/values/5
