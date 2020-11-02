@@ -9,7 +9,7 @@ namespace Pokatun.Data
 
         public const string Phone = @"^(\+)\d{12,}$";
 
-        public const string Password = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^*#'!@$%^&(){}\[\]:;<>,\.?\/~_`+=|\\])[A-Za-z\d^*#'!@$%^&(){}\[\]:;<>,\.?\/~_`+=|\\]{8,}$";
+        public const string Password = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-^*#'!@$%^&(){}\[\]:;<>,\.?\/~_`+=|\\])[-A-Za-z\d^*#'!@$%^&(){}\[\]:;<>,\.?\/~_`+=|\\]{8,}$";
 
         public const string BankCard = @"^\d{16}$";
 

@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pokatun.Data
 {
-    [Table(nameof(Hotel))]
-    public sealed class Hotel
+    public sealed class HotelDto
     {
         [Key]
         public long Id { get; set; }

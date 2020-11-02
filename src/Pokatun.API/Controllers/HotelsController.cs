@@ -1,62 +1,69 @@
+using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Pokatun.API.Entities;
+using Pokatun.API.Helpers;
 using Pokatun.API.Models;
+using Pokatun.API.Services;
 using Pokatun.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Pokatun.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class HotelsController : ControllerBase
     {
-        private readonly PokatunContext _dbContext;
+        private readonly IHotelsService _hotelsService;
+        private readonly AppSettings _appSettings;
 
-        public HotelsController(PokatunContext dbContext)
+        public HotelsController(IHotelsService hotelsService, IOptions<AppSettings> appSettings)
         {
-            _dbContext = dbContext;
+            _hotelsService = hotelsService;
+            _appSettings = appSettings.Value;
         }
 
-        //// GET api/values/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpGet("{number}")]
+        public IActionResult Get(int number)
+        {
+            return Ok(number * 2);
+        }
 
-        // POST api/values
+        [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<ActionResult<ServerResponce<string>>> PostAsync([FromBody] Hotel value)
+        public ActionResult<ServerResponce<string>> Register([FromBody] HotelDto value)
         {
-            value.Email = value.Email.ToLower();
-
-            if (_dbContext.Hotels.Any(hotel => hotel.Email == value.Email))
+            try
             {
-                return BadRequest(ServerResponce.ForError(ErrorCodes.AccountAllreadyExistsError));
-            }
+                long id = _hotelsService.RegisterAsync(value);
 
-            if (value.IBAN != null && _dbContext.Hotels.Any(hotel => hotel.IBAN == value.IBAN))
+                JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[] { new Claim(ClaimTypes.Name, id.ToString()) }),
+                    Expires = DateTime.UtcNow.AddDays(7),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+                SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+                string tokenString = tokenHandler.WriteToken(token);
+
+                return Ok(new ServerResponce<string> { Data = tokenString });
+            }
+            catch (ApiException ex)
             {
-                return BadRequest(ServerResponce.ForError(ErrorCodes.IbanAllreadyRegisteredError));
+                return BadRequest(ServerResponce.ForError(ex.ErrorCode));
             }
-
-            if (_dbContext.Hotels.Any(hotel => hotel.USREOU == value.USREOU))
-            {
-                return BadRequest(ServerResponce.ForError(ErrorCodes.UsreouAllreadyRegisteredError));
-            }
-
-            _dbContext.Hotels.Add(value);
-            await _dbContext.SaveChangesAsync();
-            
-            return Ok(new ServerResponce<string> { Data = "ddsff" });
         }
-
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
     }
 }

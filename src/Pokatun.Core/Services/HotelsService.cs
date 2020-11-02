@@ -15,7 +15,7 @@ namespace Pokatun.Core.Services
             _restClient = restClient;
         }
 
-        public async Task<ServerResponce<string>> RegisterAsync(Hotel hotel)
+        public async Task<ServerResponce<string>> RegisterAsync(HotelDto hotel)
         {
             if (hotel == null)
             {

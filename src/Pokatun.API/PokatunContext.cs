@@ -1,6 +1,5 @@
-using System;
 using Microsoft.EntityFrameworkCore;
-using Pokatun.Data;
+using Pokatun.API.Entities;
 
 namespace Pokatun.API.Models
 {
