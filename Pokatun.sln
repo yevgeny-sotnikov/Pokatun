@@ -194,5 +194,22 @@ Global
 		$7.scope = application/vnd.apple-interface-builder
 		$0.StandardHeader = $8
 		$0.VersionControlPolicy = $9
+		$0.TextStylePolicy = $10
+		$10.inheritsSet = null
+		$10.scope = application/vnd.apple-xcode-storyboard
+		$0.XmlFormattingPolicy = $11
+		$11.inheritsSet = null
+		$11.scope = application/vnd.apple-xcode-storyboard
+		$0.TextStylePolicy = $12
+		$12.inheritsSet = null
+		$12.scope = text/x-json
+		$0.JSONFormattingPolicy = $13
+		$13.AutoStructureCompletion = True
+		$13.BracePositions = SemiExpanded
+		$13.FormatOnPaste = True
+		$13.scope = text/x-json
+		$0.TextStylePolicy = $14
+		$14.inheritsSet = null
+		$14.scope = text/x-web
 	EndGlobalSection
 EndGlobal

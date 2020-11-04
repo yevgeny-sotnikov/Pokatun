@@ -19,7 +19,6 @@ using Pokatun.Data;
 
 namespace Pokatun.API.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class HotelsController : ControllerBase

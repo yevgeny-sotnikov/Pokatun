@@ -13,6 +13,7 @@ using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
 using Pokatun.Data;
 using RestSharp;
+using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.ViewModels.Registration
 {
@@ -22,7 +23,7 @@ namespace Pokatun.Core.ViewModels.Registration
         private readonly IMvxNavigationService _navigationService;
         private readonly ValidationHelper _validator;
         private readonly IHotelsService _hotelsService;
-
+        private readonly ISecureStorage _secureStorage;
         private bool _viewInEditMode = true;
 
         private HotelRegistrationFirstData _firstData;
@@ -112,11 +113,12 @@ namespace Pokatun.Core.ViewModels.Registration
             _firstData = parameter;
         }
 
-        public HotelRegistrationSecondStepViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService, IHotelsService hotelsService)
+        public HotelRegistrationSecondStepViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService, IHotelsService hotelsService, ISecureStorage secureStorage)
         {
             _userDialogs = userDialogs;
             _navigationService = navigationService;
             _hotelsService = hotelsService;
+            _secureStorage = secureStorage;
 
             _validator = new ValidationHelper();
 
@@ -174,11 +176,18 @@ namespace Pokatun.Core.ViewModels.Registration
                 hotel.BankCard = long.Parse(BankCardOrIban);
             }
 
-            ServerResponce<string> responce = await _hotelsService.RegisterAsync(hotel);
+            ServerResponce<string> responce = null;
 
-            if (responce.Success)
+            using (_userDialogs.Loading())
             {
-                return;
+                responce = await _hotelsService.RegisterAsync(hotel);
+
+                if (responce.Success)
+                {
+                    await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data);
+
+                    return;
+                }
             }
 
             ISet<string> knownErrorKodes = new HashSet<string>
@@ -195,7 +204,6 @@ namespace Pokatun.Core.ViewModels.Registration
                 _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorKodes.First()));
                 return;
             }
-
 
             _userDialogs.Toast(Strings.UnexpectedError);
         }

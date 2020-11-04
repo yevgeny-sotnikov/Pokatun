@@ -27,6 +27,7 @@ namespace Pokatun.Core
                 .RegisterAsLazySingleton();
 
             Mvx.IoCProvider.RegisterSingleton(() => UserDialogs.Instance);
+            Mvx.IoCProvider.RegisterSingleton<ISecureStorage>(() => new SecureStorageImplementation());
             Mvx.IoCProvider.RegisterSingleton<IDeviceInfo>(() => new DeviceInfoImplementation());
             
             Mvx.IoCProvider.RegisterSingleton<IRestClient>(
