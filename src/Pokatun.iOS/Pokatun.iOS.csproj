@@ -165,9 +165,11 @@
     <Compile Include="Views\Registration\HotelRegistrationSecondStepViewController.designer.cs">
       <DependentUpon>HotelRegistrationSecondStepViewController.cs</DependentUpon>
     </Compile>
-    <None Include="Info %28copy%29.plist">
-      <SubType>Designer</SubType>
-    </None>
+    <InterfaceDefinition Include="Views\Menu\HotelMenuViewController.xib" />
+    <Compile Include="Views\Menu\HotelMenuViewController.cs" />
+    <Compile Include="Views\Menu\HotelMenuViewController.designer.cs">
+      <DependentUpon>HotelMenuViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -183,7 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
-      <Version>7.0.1</Version>
+      <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Hackiftekhar.IQKeyboardManager.Xamarin">
       <Version>6.5.6</Version>
@@ -252,6 +254,7 @@
     <Folder Include="Resources\Media.xcassets\logo_3.imageset\" />
     <Folder Include="Views\Registration\" />
     <Folder Include="Converters\" />
+    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

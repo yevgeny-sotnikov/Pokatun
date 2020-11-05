@@ -38,7 +38,7 @@ namespace Pokatun.Core
                 )
             ));
 
-            RegisterAppStart<ChoiseUserRoleViewModel>();
+            RegisterCustomAppStart<AppStart>();
         }
     }
 }

@@ -1,23 +1,20 @@
+using System;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using MvvmCross.Platforms.Android.Views;
+using MvvmCross.Presenters;
+using MvvmCross.Presenters.Attributes;
+using MvvmCross.ViewModels;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Registration;
+using Pokatun.Droid.Views.PreEntrance;
 
 namespace Pokatun.Droid.Views.Registration
 {
-    [MvxFragmentPresentation(
-        typeof(MainContainerViewModel),
-        Resource.Id.content_frame,
-        AddToBackStack = true,
-        EnterAnimation = Android.Resource.Animation.SlideInLeft,
-        PopEnterAnimation = Android.Resource.Animation.SlideInLeft,
-        ExitAnimation = Android.Resource.Animation.SlideOutRight,
-        PopExitAnimation = Android.Resource.Animation.SlideOutRight
-    )]
-    public sealed class HotelRegistrationSecondStepFragment : BaseFragment<HotelRegistrationSecondStepViewModel>
+    public sealed class HotelRegistrationSecondStepFragment : BaseFragment<HotelRegistrationSecondStepViewModel>, IMvxOverridePresentationAttribute
     {
         private EditText _fullCompanyNameTextField;
         private EditText _bankCardOrIbanTextField;
@@ -54,7 +51,7 @@ namespace Pokatun.Droid.Views.Registration
             set.Bind(_bankNameTextField).To(vm => vm.BankName).OneWayToSource();
             set.Bind(_usreouTextField).To(vm => vm.USREOU).OneWayToSource();
             set.Bind(_createAccountButton).To(vm => vm.СreateAccountCommand);
-
+            _createAccountButton.Click += dd;
             set.Bind(_fullCompanyNameTextField).For(v => v.Activated).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
             set.Bind(_bankCardOrIbanTextField).For(v => v.Activated).To(vm => vm.IsBankCardOrIbanInvalid).OneWay();
             set.Bind(_bankNameTextField).For(v => v.Activated).To(vm => vm.IsBankNameInvalid).OneWay();
@@ -63,6 +60,30 @@ namespace Pokatun.Droid.Views.Registration
             set.Apply();
 
             return view;
+        }
+
+        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        {
+            return new MvxFragmentPresentationAttribute
+            {
+                ActivityHostViewModelType = typeof(MainContainerViewModel),
+                FragmentContentId = Resource.Id.content_frame,
+                AddToBackStack = true,
+                EnterAnimation = Android.Resource.Animation.FadeIn,
+                PopEnterAnimation = Android.Resource.Animation.FadeIn,
+                ExitAnimation = Android.Resource.Animation.SlideOutRight,
+                PopExitAnimation = Android.Resource.Animation.SlideOutRight,
+                PopBackStackImmediateName = typeof(PreEntranceFragment).FragmentJavaName(),
+                PopBackStackImmediateFlag = MvxPopBackStack.Inclusive
+            };
+        }
+
+        private void dd(object sender, EventArgs e)
+        {
+            //var fm = Activity.SupportFragmentManager;
+            //var f = fm.GetBackStackEntryAt(0);
+            //string n = typeof(PreEntranceFragment).FragmentJavaName();
+            //fm.PopBackStack(f.Name, (int)MvxPopBackStack.Inclusive.ToNativePopBackStackFlags());
         }
     }
 }

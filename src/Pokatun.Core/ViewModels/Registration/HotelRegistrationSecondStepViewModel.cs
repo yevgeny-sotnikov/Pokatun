@@ -11,6 +11,7 @@ using MvvmValidation;
 using Pokatun.Core.Models;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
+using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Data;
 using RestSharp;
 using Xamarin.Essentials.Interfaces;
@@ -185,6 +186,8 @@ namespace Pokatun.Core.ViewModels.Registration
                 if (responce.Success)
                 {
                     await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data);
+                    await _navigationService.Close(this);
+                    await _navigationService.Navigate<HotelMenuViewModel>();
 
                     return;
                 }
