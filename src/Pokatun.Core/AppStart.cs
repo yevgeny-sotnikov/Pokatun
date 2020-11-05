@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Globalization;
+using System.Threading.Tasks;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
@@ -18,9 +20,20 @@ namespace Pokatun.Core
 
         protected override async Task NavigateToFirstViewModel(object hint = null)
         {
-            await (string.IsNullOrWhiteSpace(await _secureStorage.GetAsync(Constants.Keys.Token))
-                ? NavigationService.Navigate<ChoiseUserRoleViewModel>()
-                : NavigationService.Navigate<HotelMenuViewModel>());
+            if (string.IsNullOrWhiteSpace(await _secureStorage.GetAsync(Constants.Keys.Token)))
+            {
+                await NavigationService.Navigate<ChoiseUserRoleViewModel>();
+                return;
+            }
+
+            if (DateTime.Parse(await _secureStorage.GetAsync(Constants.Keys.TokenExpirationTime), CultureInfo.InvariantCulture) < DateTime.UtcNow)
+            {
+                await NavigationService.Navigate<ChoiseUserRoleViewModel>();
+            }
+            else
+            {
+                await NavigationService.Navigate<HotelMenuViewModel>();
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Pokatun.Core.Services
             _restClient = restClient;
         }
 
-        public async Task<ServerResponce<string>> RegisterAsync(HotelDto hotel)
+        public async Task<ServerResponce<TokenInfoDto>> RegisterAsync(HotelDto hotel)
         {
             if (hotel == null)
             {
@@ -29,11 +29,11 @@ namespace Pokatun.Core.Services
             request.AddHeader("Content-Type", "application/json");
             request.AddJsonBody(hotel, "application/json");
 
-            IRestResponse<ServerResponce<string>> response = await _restClient.ExecuteAsync<ServerResponce<string>>(request);
+            IRestResponse<ServerResponce<TokenInfoDto>> response = await _restClient.ExecuteAsync<ServerResponce<TokenInfoDto>>(request);
 
             if (response.Data == null && response.Content.Contains("Exception"))
             {
-                return new ServerResponce<string> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
+                return new ServerResponce<TokenInfoDto> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
             }
             return response.Data;
         }

@@ -12,6 +12,7 @@ namespace Pokatun.Core
         public static class Keys
         {
             public const string Token = "Token";
+            public const string TokenExpirationTime = "ExpirationTime";
         }
     }
 }

@@ -1,17 +1,12 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Pokatun.API.Entities;
 using Pokatun.API.Helpers;
-using Pokatun.API.Models;
 using Pokatun.API.Services;
 using Pokatun.Data;
 
@@ -40,24 +35,33 @@ namespace Pokatun.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public ActionResult<ServerResponce<string>> Register([FromBody] HotelDto value)
+        public ActionResult<ServerResponce<TokenInfoDto>> Register([FromBody] HotelDto value)
         {
             try
             {
                 long id = _hotelsService.RegisterAsync(value);
 
                 JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-                var tokenDescriptor = new SecurityTokenDescriptor
+                byte[] key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+                DateTime expireTime = DateTime.UtcNow.AddDays(_appSettings.TokenExpirationDays);
+
+                SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[] { new Claim(ClaimTypes.Name, id.ToString()) }),
-                    Expires = DateTime.UtcNow.AddDays(7),
+                    Expires = expireTime,
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
-                SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
-                string tokenString = tokenHandler.WriteToken(token);
 
-                return Ok(new ServerResponce<string> { Data = tokenString });
+                string tokenString = tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
+
+                return Ok(new ServerResponce<TokenInfoDto>
+                {
+                    Data = new TokenInfoDto
+                    {
+                        Token = tokenString,
+                        ExpirationTime = expireTime
+                    }
+                });
             }
             catch (ApiException ex)
             {

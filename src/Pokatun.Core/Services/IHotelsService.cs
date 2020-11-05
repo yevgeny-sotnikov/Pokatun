@@ -6,6 +6,6 @@ namespace Pokatun.Core.Services
 {
     public interface IHotelsService
     {
-        Task<ServerResponce<string>> RegisterAsync(HotelDto hotel);
+        Task<ServerResponce<TokenInfoDto>> RegisterAsync(HotelDto hotel);
     }
 }

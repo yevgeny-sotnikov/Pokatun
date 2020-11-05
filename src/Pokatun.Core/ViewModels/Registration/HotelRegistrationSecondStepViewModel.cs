@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -177,7 +178,7 @@ namespace Pokatun.Core.ViewModels.Registration
                 hotel.BankCard = long.Parse(BankCardOrIban);
             }
 
-            ServerResponce<string> responce = null;
+            ServerResponce<TokenInfoDto> responce = null;
 
             using (_userDialogs.Loading())
             {
@@ -185,7 +186,12 @@ namespace Pokatun.Core.ViewModels.Registration
 
                 if (responce.Success)
                 {
-                    await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data);
+                    await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
+                    await _secureStorage.SetAsync(
+                        Constants.Keys.TokenExpirationTime,
+                        responce.Data.ExpirationTime.ToString(CultureInfo.InvariantCulture)
+                    );
+
                     await _navigationService.Close(this);
                     await _navigationService.Navigate<HotelMenuViewModel>();
 
