@@ -3,10 +3,16 @@ namespace Pokatun.Core
 {
     public static class Constants
     {
-        public const string EmailPattern = @"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$";
+        public const string iOSDebugIP = "localhost";
 
-        public const string PhonePattern = @"^(\+)\d{12,}$";
+        public const string AndroidDebugIP = "10.0.2.2";
 
-        public const string PasswordPattern = @"^[-A-Za-z0-9^*#'!@$%^&(){}\[\]:;<>,\.?\/~_`+=|\\]{8,}$";
+        public const string BaseUrl = "https://{0}:34312";
+
+        public static class Keys
+        {
+            public const string Token = "Token";
+            public const string TokenExpirationTime = "ExpirationTime";
+        }
     }
 }

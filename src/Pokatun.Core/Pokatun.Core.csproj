@@ -5,14 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmCross" Version="7.0.1" />
+    <PackageReference Include="MvvmCross" Version="7.1.2" />
     <PackageReference Include="MvvmValidation" Version="3.1.1" />
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.462" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.3.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\ChoiseUserRole\" />
     <Folder Include="Resources\" />
     <Folder Include="ViewModels\Registration\" />
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">
@@ -24,5 +28,8 @@
     <Compile Update="Resources\Strings.Designer.cs">
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pokatun.Data\Pokatun.Data.csproj" />
   </ItemGroup>
 </Project>

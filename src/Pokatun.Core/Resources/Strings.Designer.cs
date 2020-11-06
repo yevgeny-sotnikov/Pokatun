@@ -155,15 +155,69 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string USREOU {
+            get {
+                return ResourceManager.GetString("USREOU", resourceCulture);
+            }
+        }
+        
+        public static string InvalidUSREOU {
+            get {
+                return ResourceManager.GetString("InvalidUSREOU", resourceCulture);
+            }
+        }
+        
+        public static string BankName {
+            get {
+                return ResourceManager.GetString("BankName", resourceCulture);
+            }
+        }
+        
+        public static string CardNumberOrIBAN {
+            get {
+                return ResourceManager.GetString("CardNumberOrIBAN", resourceCulture);
+            }
+        }
+        
+        public static string FullCompanyName {
+            get {
+                return ResourceManager.GetString("FullCompanyName", resourceCulture);
+            }
+        }
+        
+        public static string CreateAccount {
+            get {
+                return ResourceManager.GetString("CreateAccount", resourceCulture);
+            }
+        }
+        
         public static string HotelNameRequiredMessage {
             get {
                 return ResourceManager.GetString("HotelNameRequiredMessage", resourceCulture);
             }
         }
         
+        public static string CompanyNameRequiredMessage {
+            get {
+                return ResourceManager.GetString("CompanyNameRequiredMessage", resourceCulture);
+            }
+        }
+        
+        public static string BankNameRequiredMessage {
+            get {
+                return ResourceManager.GetString("BankNameRequiredMessage", resourceCulture);
+            }
+        }
+        
         public static string InvalidPhoneNumberMessage {
             get {
                 return ResourceManager.GetString("InvalidPhoneNumberMessage", resourceCulture);
+            }
+        }
+        
+        public static string ValidBankCardOrIbanNotDefined {
+            get {
+                return ResourceManager.GetString("ValidBankCardOrIbanNotDefined", resourceCulture);
             }
         }
         
@@ -182,6 +236,36 @@ namespace Pokatun.Core.Resources {
         public static string PasswordMismatchMessage {
             get {
                 return ResourceManager.GetString("PasswordMismatchMessage", resourceCulture);
+            }
+        }
+        
+        public static string AccountAllreadyExistsError {
+            get {
+                return ResourceManager.GetString("AccountAllreadyExistsError", resourceCulture);
+            }
+        }
+        
+        public static string IbanAllreadyRegisteredError {
+            get {
+                return ResourceManager.GetString("IbanAllreadyRegisteredError", resourceCulture);
+            }
+        }
+        
+        public static string UsreouAllreadyRegisteredError {
+            get {
+                return ResourceManager.GetString("UsreouAllreadyRegisteredError", resourceCulture);
+            }
+        }
+        
+        public static string UnexpectedError {
+            get {
+                return ResourceManager.GetString("UnexpectedError", resourceCulture);
+            }
+        }
+        
+        public static string ProcessingRequest {
+            get {
+                return ResourceManager.GetString("ProcessingRequest", resourceCulture);
             }
         }
     }

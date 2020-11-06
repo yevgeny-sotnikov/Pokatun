@@ -21,7 +21,9 @@ namespace Pokatun.iOS.Views.PreEntrance
 
             // Perform any additional setup after loading the view, typically from a nib.
 
-            _helloLabel.Font = Fonts.HelveticaNeueCyrLightSubGigantic;
+            _helloLabel.ApplySubGiganticLabelStyle();
+            _iStillDoesntHaveAccLabel.ApplyLargeLabelStyle();
+            _iHaveAccLabel.ApplyLargeLabelStyle();
 
             _registrationButton.ApplyBigButtonStyle();
             _loginButton.ApplyBigButtonStyle();

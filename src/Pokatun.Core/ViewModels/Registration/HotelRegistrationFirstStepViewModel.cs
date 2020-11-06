@@ -1,17 +1,22 @@
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmValidation;
+using Pokatun.Core.Models;
 using Pokatun.Core.Resources;
+using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Registration
 {
     public sealed class HotelRegistrationFirstStepViewModel : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
+        private readonly IMvxNavigationService _navigationService;
+        private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
-        private ValidationHelper _validator;
 
         public override string Title => Strings.Registration;
 
@@ -97,25 +102,27 @@ namespace Pokatun.Core.ViewModels.Registration
 
         public bool IsHotelNameInvalid => CheckInvalid(nameof(HotelName));
 
-        private MvxCommand _furtherCommand;
+        private MvxAsyncCommand _furtherCommand;
         public IMvxCommand FurtherCommand
         {
             get
             {
-                return _furtherCommand ?? (_furtherCommand = new MvxCommand(DoFurtherCommand));
+                return _furtherCommand ?? (_furtherCommand = new MvxAsyncCommand(DoFurtherCommandAsync));
             }
         }
 
-        public HotelRegistrationFirstStepViewModel(IUserDialogs userDialogs)
+        public HotelRegistrationFirstStepViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService)
         {
             _userDialogs = userDialogs;
+            _navigationService = navigationService;
+
             _validator = new ValidationHelper();
 
             _validator.AddRule(nameof(HotelName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelName), Strings.HotelNameRequiredMessage));
-            _validator.AddRule(nameof(PhoneNumber), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(PhoneNumber.Trim(), Constants.PhonePattern), Strings.InvalidPhoneNumberMessage));
-            _validator.AddRule(nameof(Email), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Email.Trim(), Constants.EmailPattern), Strings.InvalidEmailMessage));
-            _validator.AddRule(nameof(Password), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Password.Trim(), Constants.PasswordPattern), Strings.InvalidPasswordMessage));
-            _validator.AddRule(nameof(PasswordConfirm), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(PasswordConfirm.Trim(), Constants.PasswordPattern), Strings.InvalidPasswordMessage));
+            _validator.AddRule(nameof(PhoneNumber), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(PhoneNumber.Trim(), DataPatterns.Phone), Strings.InvalidPhoneNumberMessage));
+            _validator.AddRule(nameof(Email), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Email.Trim(), DataPatterns.Email), Strings.InvalidEmailMessage));
+            _validator.AddRule(nameof(Password), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Password.Trim(), DataPatterns.Password), Strings.InvalidPasswordMessage));
+            _validator.AddRule(nameof(PasswordConfirm), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(PasswordConfirm.Trim(), DataPatterns.Password), Strings.InvalidPasswordMessage));
             _validator.AddRule(nameof(Password), nameof(PasswordConfirm), () => RuleResult.Assert(_viewInEditMode || Password == PasswordConfirm, Strings.PasswordMismatchMessage));
         }
 
@@ -124,25 +131,35 @@ namespace Pokatun.Core.ViewModels.Registration
             return !_validator.Validate(name).IsValid;
         }
 
-        private void DoFurtherCommand()
+        private async Task DoFurtherCommandAsync()
         {
             _viewInEditMode = false;
 
             ValidationResult validationResult = _validator.ValidateAll();
 
-            RaisePropertyChanged(nameof(IsHotelNameInvalid));
-            RaisePropertyChanged(nameof(IsPhoneNumberInvalid));
-            RaisePropertyChanged(nameof(IsEmailInvalid));
-            RaisePropertyChanged(nameof(IsPasswordInvalid));
-            RaisePropertyChanged(nameof(IsPasswordConfirmInvalid));
+            await Task.WhenAll(
+                RaisePropertyChanged(nameof(IsHotelNameInvalid)),
+                RaisePropertyChanged(nameof(IsPhoneNumberInvalid)),
+                RaisePropertyChanged(nameof(IsEmailInvalid)),
+                RaisePropertyChanged(nameof(IsPasswordInvalid)),
+                RaisePropertyChanged(nameof(IsPasswordConfirmInvalid))
+            );
 
             if (validationResult.IsValid)
             {
+                HotelRegistrationFirstData data = new HotelRegistrationFirstData
+                {
+                    HotelName = HotelName,
+                    PhoneNumber = PhoneNumber,
+                    Email = Email,
+                    Password = Password
+                };
+
+                await _navigationService.Navigate<HotelRegistrationSecondStepViewModel, HotelRegistrationFirstData>(data);
                 return;
             }
 
             _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
-
         }
     }
 }

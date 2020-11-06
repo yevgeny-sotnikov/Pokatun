@@ -17,8 +17,8 @@ namespace Pokatun.iOS.Styles
             textField.TextAlignment = UITextAlignment.Center;
             textField.EditingDidBegin += OnEditingDidBegin;
             textField.EditingDidEnd += OnEditingDidEnd;
-            textField.TextColor = ColorPalette.PrimaryText;
             textField.Font = Fonts.HelveticaNeueCyrLightLarge;
+            textField.TextColor = ColorPalette.PrimaryText;
         }
 
         public static void ApplyBigButtonStyle(this UIButton button)
@@ -27,14 +27,26 @@ namespace Pokatun.iOS.Styles
             button.Font = Fonts.HelveticaNeueCyrLightGigantic;
             button.SetHeight(75);
             button.Layer.CornerRadius = 37;
-            button.SetBackgroundImage(Image(ColorPalette.ButtonDefault), UIControlState.Normal);
-            button.SetBackgroundImage(Image(ColorPalette.ButtonDisabled), UIControlState.Disabled);
+            button.SetBackgroundImage(CreateBackgroundImage(ColorPalette.ButtonDefault), UIControlState.Normal);
+            button.SetBackgroundImage(CreateBackgroundImage(ColorPalette.ButtonDisabled), UIControlState.Disabled);
 
             button.SetTitleColor(ColorPalette.ButtonTextDefault, UIControlState.Normal);
             button.SetTitleColor(ColorPalette.ButtonTextDisabled, UIControlState.Disabled);
             button.SetTitleColor(ColorPalette.ButtonTextHighlgted, UIControlState.Highlighted);
 
             button.BackgroundColor = ColorPalette.PrimaryLight;
+        }
+
+        public static void ApplySubGiganticLabelStyle(this UILabel label)
+        {
+            UILabel.Appearance.Font = Fonts.HelveticaNeueCyrLightSubGigantic;
+            UILabel.Appearance.TextColor = ColorPalette.PrimaryText;
+        }
+
+        public static void ApplyLargeLabelStyle(this UILabel label)
+        {
+            UILabel.Appearance.Font = Fonts.HelveticaNeueCyrLightLarge;
+            UILabel.Appearance.TextColor = ColorPalette.PrimaryText;
         }
 
         public static void ResetStyles(this UITextField textField)
@@ -44,21 +56,20 @@ namespace Pokatun.iOS.Styles
         }
 
         // https://stackoverflow.com/questions/14523348/how-to-change-the-background-color-of-a-uibutton-while-its-highlighted
-        private static UIImage Image(UIColor color)
+        private static UIImage CreateBackgroundImage(UIColor color)
         {
             var rect = new CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0);
             UIGraphics.BeginImageContext(rect.Size);
-            var context = UIGraphics.GetCurrentContext();
+            CGContext context = UIGraphics.GetCurrentContext();
 
             context?.SetFillColor(color.CGColor);
             context?.FillRect(rect);
 
-            var image = UIGraphics.GetImageFromCurrentImageContext();
+            UIImage image = UIGraphics.GetImageFromCurrentImageContext();
             UIGraphics.EndImageContext();
 
             return image;
         }
-
 
         private static void SetHeight(this UIView view, int height)
         {

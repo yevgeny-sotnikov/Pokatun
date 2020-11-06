@@ -71,10 +71,12 @@
     <Compile Include="Views\ChoiseUserRole\ChoiseUserRoleFragment.cs" />
     <Compile Include="Views\PreEntrance\PreEntranceFragment.cs" />
     <Compile Include="Views\Registration\HotelRegistrationFirstStepFragment.cs" />
+    <Compile Include="Views\Registration\HotelRegistrationSecondStepFragment.cs" />
+    <Compile Include="Views\Menu\HotelMenuFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
-      <Version>7.0.1</Version>
+      <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.DroidX.Material">
       <Version>7.0.0</Version>
@@ -87,6 +89,9 @@
     </PackageReference>
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.1.0.462</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.5.3.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +201,18 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_hotel_registration_second_step.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\xml\auto_backup_rules.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_hotel_menu.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -237,6 +254,8 @@
     <Folder Include="Resources\font\" />
     <Folder Include="Views\PreEntrance\" />
     <Folder Include="Views\Registration\" />
+    <Folder Include="Resources\xml\" />
+    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

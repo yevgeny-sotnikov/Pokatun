@@ -25,6 +25,8 @@
     <MtouchDebug>true</MtouchDebug>
     <MtouchExtraArgs>--linkskip=Pokatun.Core</MtouchExtraArgs>
     <MtouchSdkVersion>13.6</MtouchSdkVersion>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -36,6 +38,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <MtouchExtraArgs>--linkskip=Pokatun.Core</MtouchExtraArgs>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,7 +51,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchLink>SdkOnly</MtouchLink>
@@ -59,7 +62,6 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Distribution</CodesignKey>
@@ -158,6 +160,16 @@
     <Compile Include="Styles\ViewStyles.cs" />
     <Compile Include="Converters\BorderEditTextValidationConverter.cs" />
     <Compile Include="Converters\EditTextValidationConverter.cs" />
+    <InterfaceDefinition Include="Views\Registration\HotelRegistrationSecondStepViewController.xib" />
+    <Compile Include="Views\Registration\HotelRegistrationSecondStepViewController.cs" />
+    <Compile Include="Views\Registration\HotelRegistrationSecondStepViewController.designer.cs">
+      <DependentUpon>HotelRegistrationSecondStepViewController.cs</DependentUpon>
+    </Compile>
+    <InterfaceDefinition Include="Views\Menu\HotelMenuViewController.xib" />
+    <Compile Include="Views\Menu\HotelMenuViewController.cs" />
+    <Compile Include="Views\Menu\HotelMenuViewController.designer.cs">
+      <DependentUpon>HotelMenuViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -173,13 +185,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
-      <Version>7.0.1</Version>
+      <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Hackiftekhar.IQKeyboardManager.Xamarin">
       <Version>6.5.6</Version>
     </PackageReference>
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.1.0.462</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.5.3.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +254,7 @@
     <Folder Include="Resources\Media.xcassets\logo_3.imageset\" />
     <Folder Include="Views\Registration\" />
     <Folder Include="Converters\" />
+    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
