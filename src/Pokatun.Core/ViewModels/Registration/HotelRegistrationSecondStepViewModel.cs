@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
@@ -14,7 +12,6 @@ using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Data;
-using RestSharp;
 using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.ViewModels.Registration
@@ -32,7 +29,7 @@ namespace Pokatun.Core.ViewModels.Registration
 
         public override string Title => Strings.Registration;
 
-        private string _fullCompanyName = "df";
+        private string _fullCompanyName = string.Empty;
         public string FullCompanyName
         {
             get { return _fullCompanyName; }
@@ -47,7 +44,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _bankCardOrIban = "1111222233334444";
+        private string _bankCardOrIban = string.Empty;
         public string BankCardOrIban
         {
             get { return _bankCardOrIban; }
@@ -62,7 +59,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _bankName = "df";
+        private string _bankName = string.Empty;
         public string BankName
         {
             get { return _bankName; }
@@ -77,7 +74,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _usreou = "12345678";
+        private string _usreou = string.Empty;
         public string USREOU
         {
             get { return _usreou; }
@@ -146,8 +143,8 @@ namespace Pokatun.Core.ViewModels.Registration
 
             ValidationResult validationResult = _validator.ValidateAll();
 
-            await Task.WhenAll(RaisePropertyChanged(
-                nameof(IsUsreouInvalid)),
+            await Task.WhenAll(
+                RaisePropertyChanged(nameof(IsUsreouInvalid)),
                 RaisePropertyChanged(nameof(IsBankCardOrIbanInvalid)),
                 RaisePropertyChanged(nameof(IsFullCompanyNameInvalid)),
                 RaisePropertyChanged(nameof(IsBankNameInvalid))
@@ -180,7 +177,7 @@ namespace Pokatun.Core.ViewModels.Registration
 
             ServerResponce<TokenInfoDto> responce = null;
 
-            using (_userDialogs.Loading())
+            using (_userDialogs.Loading(Strings.ProcessingRequest))
             {
                 responce = await _hotelsService.RegisterAsync(hotel);
 

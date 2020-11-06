@@ -24,7 +24,9 @@ namespace Pokatun.iOS.Views.ChoiseUserRole
 
             // Perform any additional setup after loading the view, typically from a nib.
 
-            _chooseRoleLabel.Font = Fonts.HelveticaNeueCyrLightSubGigantic;
+            _chooseRoleLabel.ApplySubGiganticLabelStyle();
+            _hotelDescriptionLabel.ApplyLargeLabelStyle();
+            _touristDescriptionLabel.ApplyLargeLabelStyle();
 
             _touristButton.ApplyBigButtonStyle();
             _hotelButton.ApplyBigButtonStyle();

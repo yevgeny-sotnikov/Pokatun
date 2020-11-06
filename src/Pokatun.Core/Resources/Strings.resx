@@ -121,4 +121,7 @@
     <data name="UnexpectedError" xml:space="preserve">
         <value>Произошла непредвиденная ошбика. Повторите ошибу позже</value>
     </data>
+    <data name="ProcessingRequest" xml:space="preserve">
+        <value>Обработка запроса</value>
+    </data>
 </root>

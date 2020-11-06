@@ -20,8 +20,6 @@ namespace Pokatun.iOS
 
             if (result)
             {
-                UILabel.Appearance.Font = Fonts.HelveticaNeueCyrLightLarge;
-                UILabel.Appearance.TextColor = ColorPalette.PrimaryText;
                 UILabel.AppearanceWhenContainedIn(typeof(UINavigationBar)).TextColor = ColorPalette.SecondaryText;
                 UILabel.AppearanceWhenContainedIn(typeof(UINavigationBar)).Font = Fonts.HelveticaNeueCyrBoldLarge;
 

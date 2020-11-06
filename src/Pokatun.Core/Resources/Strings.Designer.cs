@@ -262,5 +262,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("UnexpectedError", resourceCulture);
             }
         }
+        
+        public static string ProcessingRequest {
+            get {
+                return ResourceManager.GetString("ProcessingRequest", resourceCulture);
+            }
+        }
     }
 }

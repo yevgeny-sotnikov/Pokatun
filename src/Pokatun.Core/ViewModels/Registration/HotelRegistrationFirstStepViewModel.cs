@@ -20,7 +20,7 @@ namespace Pokatun.Core.ViewModels.Registration
 
         public override string Title => Strings.Registration;
 
-        private string _hotelName = "FFSDFD";
+        private string _hotelName = string.Empty;
         public string HotelName
         {
             get { return _hotelName; }
@@ -35,7 +35,7 @@ namespace Pokatun.Core.ViewModels.Registration
         }
 
 
-        private string _phoneNumber = "+380660303007";
+        private string _phoneNumber = string.Empty;
         public string PhoneNumber
         {
             get { return _phoneNumber; }
@@ -49,7 +49,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _email = "d@dd.com";
+        private string _email = string.Empty;
         public string Email
         {
             get { return _email; }
@@ -63,7 +63,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _password = "Zxcvbn123!";
+        private string _password = string.Empty;
         public string Password
         {
             get { return _password; }
@@ -77,7 +77,7 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        private string _passwordConfirm = "Zxcvbn123!";
+        private string _passwordConfirm = string.Empty;
         public string PasswordConfirm
         {
             get { return _passwordConfirm; }
@@ -137,11 +137,13 @@ namespace Pokatun.Core.ViewModels.Registration
 
             ValidationResult validationResult = _validator.ValidateAll();
 
-            RaisePropertyChanged(nameof(IsHotelNameInvalid));
-            RaisePropertyChanged(nameof(IsPhoneNumberInvalid));
-            RaisePropertyChanged(nameof(IsEmailInvalid));
-            RaisePropertyChanged(nameof(IsPasswordInvalid));
-            RaisePropertyChanged(nameof(IsPasswordConfirmInvalid));
+            await Task.WhenAll(
+                RaisePropertyChanged(nameof(IsHotelNameInvalid)),
+                RaisePropertyChanged(nameof(IsPhoneNumberInvalid)),
+                RaisePropertyChanged(nameof(IsEmailInvalid)),
+                RaisePropertyChanged(nameof(IsPasswordInvalid)),
+                RaisePropertyChanged(nameof(IsPasswordConfirmInvalid))
+            );
 
             if (validationResult.IsValid)
             {
