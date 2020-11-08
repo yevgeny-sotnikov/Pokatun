@@ -22,6 +22,7 @@ namespace Pokatun.iOS.Views.PreEntrance
             // Perform any additional setup after loading the view, typically from a nib.
 
             _helloLabel.ApplySubGiganticLabelStyle();
+            _preEntranceDescriptionLabel.ApplyLargeLabelStyle();
             _iStillDoesntHaveAccLabel.ApplyLargeLabelStyle();
             _iHaveAccLabel.ApplyLargeLabelStyle();
 
@@ -34,12 +35,11 @@ namespace Pokatun.iOS.Views.PreEntrance
             _loginButton.SetTitle(Strings.Entrance, UIControlState.Normal);
             _iHaveAccLabel.Text = Strings.IHaveAccText;
 
-            _loginButton.Enabled = false;
-
             MvxFluentBindingDescriptionSet<IMvxIosView<PreEntranceViewModel>, PreEntranceViewModel> set = CreateBindingSet();
 
             set.Bind(_preEntranceDescriptionLabel).To(vm => vm.PreEntranceDescriptionText);
             set.Bind(_registrationButton).To(vm => vm.RegistrationCommand);
+            set.Bind(_loginButton).To(vm => vm.LoginCommand);
 
             set.Apply();
         }
