@@ -107,6 +107,18 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string EntranceToAccount {
+            get {
+                return ResourceManager.GetString("EntranceToAccount", resourceCulture);
+            }
+        }
+        
+        public static string ToComeIn {
+            get {
+                return ResourceManager.GetString("ToComeIn", resourceCulture);
+            }
+        }
+        
         public static string IStillDoesntHaveAccText {
             get {
                 return ResourceManager.GetString("IStillDoesntHaveAccText", resourceCulture);
@@ -266,6 +278,12 @@ namespace Pokatun.Core.Resources {
         public static string ProcessingRequest {
             get {
                 return ResourceManager.GetString("ProcessingRequest", resourceCulture);
+            }
+        }
+        
+        public static string ForgotPasswordQuestion {
+            get {
+                return ResourceManager.GetString("ForgotPasswordQuestion", resourceCulture);
             }
         }
     }

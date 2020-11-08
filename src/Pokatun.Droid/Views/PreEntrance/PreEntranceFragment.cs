@@ -51,6 +51,7 @@ namespace Pokatun.Droid.Views.PreEntrance
 
             set.Bind(_preEntranceDescriptionLabel).To(vm => vm.PreEntranceDescriptionText);
             set.Bind(_registrationButton).To(vm => vm.RegistrationCommand);
+            set.Bind(_loginButton).To(vm => vm.LoginCommand);
 
             set.Apply();
 

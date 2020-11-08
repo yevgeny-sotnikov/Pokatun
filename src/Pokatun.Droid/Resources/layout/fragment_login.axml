@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:paddingTop="43dp"
+	android:paddingLeft="48dp"
+	android:paddingRight="48dp"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<EditText
+		style="@style/BorderedEditText"
+		android:maxLength="64"
+		android:inputType="textEmailAddress"
+		android:layout_width="match_parent"
+		android:layout_marginTop="16dp"
+		android:id="@+id/emailTextField"
+		/>
+	<EditText
+		style="@style/BorderedEditText"
+		android:maxLength="32"
+		android:inputType="textPassword"
+		android:layout_width="match_parent"
+		android:layout_marginTop="21dp"
+		android:layout_marginBottom="21dp"
+		android:id="@+id/passwordTextField"
+		/>
+
+	<Button
+		android:background="@null"
+		android:text="forgot password"
+		android:paddingTop="13dp"
+		android:paddingBottom="13dp"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:textColor="@color/primaryLightColor"
+		android:textSize="21dp"
+        android:textStyle="bold"
+		android:id="@+id/forgotPasswordButton"
+		/>
+
+	<Button
+		style="@style/BigButton"
+		android:text="ENTER"
+		android:layout_marginTop="34dp"
+		android:layout_width="match_parent"
+		android:id="@+id/loginButton"
+		/>
+
+</LinearLayout>

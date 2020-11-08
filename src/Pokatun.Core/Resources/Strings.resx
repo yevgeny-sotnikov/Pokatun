@@ -43,6 +43,12 @@
     <data name="Entrance" xml:space="preserve">
         <value>Вход</value>
     </data>
+    <data name="EntranceToAccount" xml:space="preserve">
+        <value>Вход в аккаунт</value>
+    </data>
+    <data name="ToComeIn" xml:space="preserve">
+        <value>Войти</value>
+    </data>
     <data name="IStillDoesntHaveAccText" xml:space="preserve">
         <value>У меня еще нет здесь аккаунта</value>
     </data>
@@ -123,5 +129,8 @@
     </data>
     <data name="ProcessingRequest" xml:space="preserve">
         <value>Обработка запроса</value>
+    </data>
+    <data name="ForgotPasswordQuestion" xml:space="preserve">
+        <value>Забыли пароль?</value>
     </data>
 </root>

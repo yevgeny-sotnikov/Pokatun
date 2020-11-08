@@ -57,7 +57,6 @@
 		android:text="ENTRANCE"
 		android:layout_width="match_parent"
 		android:id="@+id/loginButton"
-				android:enabled="false"
 		/>
 	<TextView
 		style="@style/InfoLabel"
