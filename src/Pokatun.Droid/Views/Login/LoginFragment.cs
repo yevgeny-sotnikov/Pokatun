@@ -1,14 +1,4 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -51,6 +41,21 @@ namespace Pokatun.Droid.Views.Login
             _passwordTextField.Hint = Strings.Password;
             _forgotPasswordButton.Text = Strings.ForgotPasswordQuestion;
             _loginButton.Text = Strings.ToComeIn;
+
+            #pragma warning disable IDE0008 // Use explicit type
+
+            var set = CreateBindingSet();
+
+            #pragma warning restore IDE0008 // Use explicit type
+
+            set.Bind(_emailTextField).To(vm => vm.Email).OneWayToSource();
+            set.Bind(_passwordTextField).To(vm => vm.Password).OneWayToSource();
+            set.Bind(_loginButton).To(vm => vm.LoginCommand);
+
+            set.Bind(_emailTextField).For(v => v.Activated).To(vm => vm.IsEmailInvalid).OneWay();
+            set.Bind(_passwordTextField).For(v => v.Activated).To(vm => vm.IsPasswordInvalid).OneWay();
+
+            set.Apply();
 
             return view;
         }

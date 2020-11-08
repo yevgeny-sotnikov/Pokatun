@@ -152,6 +152,8 @@ namespace Pokatun.Core.ViewModels.Registration
 
             if (!validationResult.IsValid)
             {
+                _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
+
                 return;
             }
 

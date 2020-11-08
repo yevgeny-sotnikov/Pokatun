@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Login;
+using Pokatun.iOS.Converters;
 using Pokatun.iOS.Styles;
 using UIKit;
 
@@ -43,10 +44,53 @@ namespace Pokatun.iOS.Views.Login
             _passwordTextField.Placeholder = Strings.Password;
             _forgotPasswordButton.SetTitle(Strings.ForgotPasswordQuestion, UIControlState.Normal);
             _loginButton.SetTitle(Strings.ToComeIn, UIControlState.Normal);
+            _loginButton.TouchUpInside += OnLoginButtonTouched;
+            #pragma warning disable IDE0008 // Use explicit type
+
+            var set = CreateBindingSet();
+
+            #pragma warning restore IDE0008 // Use explicit type
+
+            set.Bind(_emailTextField).To(vm => vm.Email).OneWayToSource();
+            set.Bind(_passwordTextField).To(vm => vm.Password).OneWayToSource();
+            set.Bind(_loginButton).To(vm => vm.LoginCommand);
+
+            set.Bind(_emailTextField.Layer)
+                .For(l => l.BorderColor)
+                .To(vm => vm.IsEmailInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_passwordTextField.Layer)
+                .For(l => l.BorderColor)
+                .To(vm => vm.IsPasswordInvalid)
+                .WithConversion<BorderEditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_emailTextField)
+                .For(l => l.TextColor)
+                .To(vm => vm.IsEmailInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
+
+            set.Bind(_passwordTextField)
+                .For(l => l.TextColor)
+                .To(vm => vm.IsPasswordInvalid)
+                .WithConversion<EditTextValidationConverter>()
+                .OneWay();
+
+            set.Apply();
+        }
+
+        private void OnLoginButtonTouched(object sender, EventArgs e)
+        {
+            View.EndEditing(true);
         }
 
         public override void ViewDidDisappear(bool animated)
         {
+            _loginButton.TouchUpInside -= OnLoginButtonTouched;
+
             _emailTextField.ResetStyles();
             _passwordTextField.ResetStyles();
 
