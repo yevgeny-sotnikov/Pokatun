@@ -175,6 +175,13 @@
     <Compile Include="Views\Login\LoginViewController.designer.cs">
       <DependentUpon>LoginViewController.cs</DependentUpon>
     </Compile>
+    <InterfaceDefinition Include="Views\ForgotPassword\VerificationCodeViewController.xib" />
+    <Compile Include="Views\ForgotPassword\VerificationCodeViewController.cs" />
+    <Compile Include="Views\ForgotPassword\VerificationCodeViewController.designer.cs">
+      <DependentUpon>VerificationCodeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForgotPassword\RequestVerificationCodeViewController.cs" />
+    <Compile Include="Views\ForgotPassword\СheckVerificationCodeViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -261,6 +268,7 @@
     <Folder Include="Converters\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\Login\" />
+    <Folder Include="Views\ForgotPassword\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

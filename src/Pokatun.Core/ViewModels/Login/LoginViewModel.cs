@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,6 +11,7 @@ using MvvmValidation;
 using Pokatun.Core.Models.Enums;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
+using Pokatun.Core.ViewModels.ForgotPassword;
 using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Data;
 using Xamarin.Essentials.Interfaces;
@@ -69,6 +71,15 @@ namespace Pokatun.Core.ViewModels.Login
             get
             {
                 return _loginCommand ?? (_loginCommand = new MvxAsyncCommand(DoLoginCommandAsync));
+            }
+        }
+
+        private MvxAsyncCommand _forgotPasswordCommand;
+        public IMvxCommand ForgotPasswordCommand
+        {
+            get
+            {
+                return _forgotPasswordCommand ?? (_forgotPasswordCommand = new MvxAsyncCommand(DoForgotPasswordCommandAsync));
             }
         }
 
@@ -150,6 +161,11 @@ namespace Pokatun.Core.ViewModels.Login
             }
 
             _userDialogs.Toast(Strings.UnexpectedError);
+        }
+
+        private Task DoForgotPasswordCommandAsync()
+        {
+            return _navigationService.Navigate<RequestVerificationCodeViewModel>();
         }
     }
 }

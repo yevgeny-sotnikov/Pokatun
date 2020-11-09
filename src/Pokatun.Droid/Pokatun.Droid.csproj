@@ -74,6 +74,8 @@
     <Compile Include="Views\Registration\HotelRegistrationSecondStepFragment.cs" />
     <Compile Include="Views\Menu\HotelMenuFragment.cs" />
     <Compile Include="Views\Login\LoginFragment.cs" />
+    <Compile Include="Views\ForgotPassword\RequestVerificationCodeFragment.cs" />
+    <Compile Include="Views\ForgotPassword\СheckVerificationCodeFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -218,6 +220,10 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_verification_code.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -262,6 +268,7 @@
     <Folder Include="Resources\xml\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\Login\" />
+    <Folder Include="Views\ForgotPassword\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

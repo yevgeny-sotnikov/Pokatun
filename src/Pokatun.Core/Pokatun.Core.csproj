@@ -18,6 +18,7 @@
     <Folder Include="Services\" />
     <Folder Include="ViewModels\Menu\" />
     <Folder Include="ViewModels\Login\" />
+    <Folder Include="ViewModels\ForgotPassword\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">

@@ -44,7 +44,9 @@ namespace Pokatun.iOS.Views.Login
             _passwordTextField.Placeholder = Strings.Password;
             _forgotPasswordButton.SetTitle(Strings.ForgotPasswordQuestion, UIControlState.Normal);
             _loginButton.SetTitle(Strings.ToComeIn, UIControlState.Normal);
+
             _loginButton.TouchUpInside += OnLoginButtonTouched;
+
             #pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
@@ -54,6 +56,7 @@ namespace Pokatun.iOS.Views.Login
             set.Bind(_emailTextField).To(vm => vm.Email).OneWayToSource();
             set.Bind(_passwordTextField).To(vm => vm.Password).OneWayToSource();
             set.Bind(_loginButton).To(vm => vm.LoginCommand);
+            set.Bind(_forgotPasswordButton).To(vm => vm.ForgotPasswordCommand);
 
             set.Bind(_emailTextField.Layer)
                 .For(l => l.BorderColor)
