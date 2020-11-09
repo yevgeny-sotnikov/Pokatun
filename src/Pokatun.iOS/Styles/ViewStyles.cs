@@ -17,7 +17,7 @@ namespace Pokatun.iOS.Styles
             textField.TextAlignment = UITextAlignment.Center;
             textField.EditingDidBegin += OnEditingDidBegin;
             textField.EditingDidEnd += OnEditingDidEnd;
-            textField.Font = Fonts.HelveticaNeueCyrLightLarge;
+            textField.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
             textField.TextColor = ColorPalette.PrimaryText;
         }
 
@@ -39,14 +39,14 @@ namespace Pokatun.iOS.Styles
 
         public static void ApplySubGiganticLabelStyle(this UILabel label)
         {
-            UILabel.Appearance.Font = Fonts.HelveticaNeueCyrLightSubGigantic;
-            UILabel.Appearance.TextColor = ColorPalette.PrimaryText;
+            label.Font = Fonts.HelveticaNeueCyrLightSubGigantic;
+            label.TextColor = ColorPalette.PrimaryText;
         }
 
         public static void ApplyLargeLabelStyle(this UILabel label)
         {
-            UILabel.Appearance.Font = Fonts.HelveticaNeueCyrLightLarge;
-            UILabel.Appearance.TextColor = ColorPalette.PrimaryText;
+            label.Font = Fonts.HelveticaNeueCyrLightLarge;
+            label.TextColor = ColorPalette.PrimaryText;
         }
 
         public static void ResetStyles(this UITextField textField)

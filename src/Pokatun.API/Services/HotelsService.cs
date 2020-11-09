@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -23,7 +24,33 @@ namespace Pokatun.API.Services
             return _context.Hotels.Find(userId);
         }
 
-        public long RegisterAsync(HotelDto value)
+        public long Login(string email, string password)
+        {
+            email = email.ToLower();
+
+            Hotel hotel = _context.Hotels.SingleOrDefault(x => x.Email == email);
+
+            if (hotel == null)
+            {
+                throw new ApiException(ErrorCodes.AccountDoesNotExistError);
+            }
+
+            using (var hmac = new HMACSHA512(hotel.PasswordSalt))
+            {
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                for (int i = 0; i < computedHash.Length; i++)
+                {
+                    if (computedHash[i] != hotel.PasswordHash[i])
+                    {
+                        throw new ApiException(ErrorCodes.IncorrectPasswordError);
+                    }
+                }
+            }
+
+            return hotel.Id;
+        }
+
+        public long Register(HotelDto value)
         {
             if (value == null)
             {
@@ -32,19 +59,26 @@ namespace Pokatun.API.Services
 
             value.Email = value.Email.ToLower();
 
+            IList<string> errors = new List<string>(3);
+
             if (_context.Hotels.Any(hotel => hotel.Email == value.Email))
             {
-                throw new ApiException(ErrorCodes.AccountAllreadyExistsError);
+                errors.Add(ErrorCodes.AccountAllreadyExistsError);
             }
 
             if (value.IBAN != null && _context.Hotels.Any(hotel => hotel.IBAN == value.IBAN))
             {
-                throw new ApiException(ErrorCodes.IbanAllreadyRegisteredError);
+                errors.Add(ErrorCodes.IbanAllreadyRegisteredError);
             }
 
             if (_context.Hotels.Any(hotel => hotel.USREOU == value.USREOU))
             {
-                throw new ApiException(ErrorCodes.UsreouAllreadyRegisteredError);
+                errors.Add(ErrorCodes.UsreouAllreadyRegisteredError);
+            }
+
+            if (errors.Any())
+            {
+                throw new ApiException(errors);
             }
 
             Hotel hotel = new Hotel

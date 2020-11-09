@@ -145,21 +145,21 @@ namespace Pokatun.Core.ViewModels.Registration
                 RaisePropertyChanged(nameof(IsPasswordConfirmInvalid))
             );
 
-            if (validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
-                HotelRegistrationFirstData data = new HotelRegistrationFirstData
-                {
-                    HotelName = HotelName,
-                    PhoneNumber = PhoneNumber,
-                    Email = Email,
-                    Password = Password
-                };
-
-                await _navigationService.Navigate<HotelRegistrationSecondStepViewModel, HotelRegistrationFirstData>(data);
+                _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
                 return;
             }
 
-            _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
+            HotelRegistrationFirstData data = new HotelRegistrationFirstData
+            {
+                HotelName = HotelName,
+                PhoneNumber = PhoneNumber,
+                Email = Email,
+                Password = Password
+            };
+
+            await _navigationService.Navigate<HotelRegistrationSecondStepViewModel, HotelRegistrationFirstData>(data);
         }
     }
 }

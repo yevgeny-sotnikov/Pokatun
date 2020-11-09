@@ -107,6 +107,18 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string EntranceToAccount {
+            get {
+                return ResourceManager.GetString("EntranceToAccount", resourceCulture);
+            }
+        }
+        
+        public static string ToComeIn {
+            get {
+                return ResourceManager.GetString("ToComeIn", resourceCulture);
+            }
+        }
+        
         public static string IStillDoesntHaveAccText {
             get {
                 return ResourceManager.GetString("IStillDoesntHaveAccText", resourceCulture);
@@ -239,9 +251,21 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string IncorrectPasswordError {
+            get {
+                return ResourceManager.GetString("IncorrectPasswordError", resourceCulture);
+            }
+        }
+        
         public static string AccountAllreadyExistsError {
             get {
                 return ResourceManager.GetString("AccountAllreadyExistsError", resourceCulture);
+            }
+        }
+        
+        public static string AccountDoesNotExistError {
+            get {
+                return ResourceManager.GetString("AccountDoesNotExistError", resourceCulture);
             }
         }
         
@@ -266,6 +290,12 @@ namespace Pokatun.Core.Resources {
         public static string ProcessingRequest {
             get {
                 return ResourceManager.GetString("ProcessingRequest", resourceCulture);
+            }
+        }
+        
+        public static string ForgotPasswordQuestion {
+            get {
+                return ResourceManager.GetString("ForgotPasswordQuestion", resourceCulture);
             }
         }
     }

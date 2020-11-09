@@ -43,6 +43,12 @@
     <data name="Entrance" xml:space="preserve">
         <value>Вход</value>
     </data>
+    <data name="EntranceToAccount" xml:space="preserve">
+        <value>Вход в аккаунт</value>
+    </data>
+    <data name="ToComeIn" xml:space="preserve">
+        <value>Войти</value>
+    </data>
     <data name="IStillDoesntHaveAccText" xml:space="preserve">
         <value>У меня еще нет здесь аккаунта</value>
     </data>
@@ -109,8 +115,14 @@
     <data name="PasswordMismatchMessage" xml:space="preserve">
         <value>Пароли должны совпадать</value>
     </data>
+    <data name="IncorrectPasswordError" xml:space="preserve">
+        <value>Неверный пароль</value>
+    </data>
     <data name="AccountAllreadyExistsError" xml:space="preserve">
         <value>Аккаунт с указанным почтовым адресом уже существует</value>
+    </data>
+    <data name="AccountDoesNotExistError" xml:space="preserve">
+        <value>Аккаунт с указанным почтовым адресом не существует</value>
     </data>
     <data name="IbanAllreadyRegisteredError" xml:space="preserve">
         <value>Такой IBAN уже был зарегистрирован в системе</value>
@@ -123,5 +135,8 @@
     </data>
     <data name="ProcessingRequest" xml:space="preserve">
         <value>Обработка запроса</value>
+    </data>
+    <data name="ForgotPasswordQuestion" xml:space="preserve">
+        <value>Забыли пароль?</value>
     </data>
 </root>

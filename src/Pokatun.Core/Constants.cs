@@ -9,6 +9,8 @@ namespace Pokatun.Core
 
         public const string BaseUrl = "https://{0}:34312";
 
+        public const string InvalidValueExceptionMessage = "Invalid value";
+
         public static class Keys
         {
             public const string Token = "Token";

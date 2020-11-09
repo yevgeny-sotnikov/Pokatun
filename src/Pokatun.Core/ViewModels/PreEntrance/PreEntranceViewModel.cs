@@ -4,6 +4,7 @@ using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Pokatun.Core.Models.Enums;
 using Pokatun.Core.Resources;
+using Pokatun.Core.ViewModels.Login;
 using Pokatun.Core.ViewModels.Registration;
 
 namespace Pokatun.Core.ViewModels.PreEntrance
@@ -24,6 +25,12 @@ namespace Pokatun.Core.ViewModels.PreEntrance
             get { return _registrationCommand ?? (_registrationCommand = new MvxAsyncCommand(OnRegistrationCommandAsync)); }
         }
 
+        private IMvxCommand _loginCommand;
+        public IMvxCommand LoginCommand
+        {
+            get { return _loginCommand ?? (_loginCommand = new MvxAsyncCommand(OnLoginCommandAsync)); }
+        }
+
         public PreEntranceViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -32,6 +39,11 @@ namespace Pokatun.Core.ViewModels.PreEntrance
         public override void Prepare(UserRole role)
         {
             _role = role;
+        }
+
+        private Task OnLoginCommandAsync()
+        {
+            return _navigationService.Navigate<LoginViewModel, UserRole>(_role);
         }
 
         private Task OnRegistrationCommandAsync()

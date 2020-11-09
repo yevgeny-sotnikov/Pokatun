@@ -170,6 +170,11 @@
     <Compile Include="Views\Menu\HotelMenuViewController.designer.cs">
       <DependentUpon>HotelMenuViewController.cs</DependentUpon>
     </Compile>
+    <InterfaceDefinition Include="Views\Login\LoginViewController.xib" />
+    <Compile Include="Views\Login\LoginViewController.cs" />
+    <Compile Include="Views\Login\LoginViewController.designer.cs">
+      <DependentUpon>LoginViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -255,6 +260,7 @@
     <Folder Include="Views\Registration\" />
     <Folder Include="Converters\" />
     <Folder Include="Views\Menu\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
