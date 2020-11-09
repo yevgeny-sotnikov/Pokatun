@@ -115,8 +115,14 @@
     <data name="PasswordMismatchMessage" xml:space="preserve">
         <value>Пароли должны совпадать</value>
     </data>
+    <data name="IncorrectPasswordError" xml:space="preserve">
+        <value>Неверный пароль</value>
+    </data>
     <data name="AccountAllreadyExistsError" xml:space="preserve">
         <value>Аккаунт с указанным почтовым адресом уже существует</value>
+    </data>
+    <data name="AccountDoesNotExistError" xml:space="preserve">
+        <value>Аккаунт с указанным почтовым адресом не существует</value>
     </data>
     <data name="IbanAllreadyRegisteredError" xml:space="preserve">
         <value>Такой IBAN уже был зарегистрирован в системе</value>

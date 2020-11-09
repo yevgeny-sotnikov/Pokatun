@@ -251,9 +251,21 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string IncorrectPasswordError {
+            get {
+                return ResourceManager.GetString("IncorrectPasswordError", resourceCulture);
+            }
+        }
+        
         public static string AccountAllreadyExistsError {
             get {
                 return ResourceManager.GetString("AccountAllreadyExistsError", resourceCulture);
+            }
+        }
+        
+        public static string AccountDoesNotExistError {
+            get {
+                return ResourceManager.GetString("AccountDoesNotExistError", resourceCulture);
             }
         }
         

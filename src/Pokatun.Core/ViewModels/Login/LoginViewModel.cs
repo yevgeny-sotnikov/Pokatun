@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -9,8 +9,10 @@ using MvvmCross.Navigation;
 using MvvmValidation;
 using Pokatun.Core.Models.Enums;
 using Pokatun.Core.Resources;
+using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Data;
+using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.ViewModels.Login
 {
@@ -19,6 +21,9 @@ namespace Pokatun.Core.ViewModels.Login
         private readonly ValidationHelper _validator;
         private readonly IUserDialogs _userDialogs;
         private readonly IMvxNavigationService _navigationService;
+        private readonly IHotelsService _hotelsService;
+        private readonly ISecureStorage _secureStorage;
+
         private bool _viewInEditMode = true;
         private UserRole _role;
 
@@ -67,10 +72,12 @@ namespace Pokatun.Core.ViewModels.Login
             }
         }
 
-        public LoginViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService)
+        public LoginViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService, IHotelsService hotelsService, ISecureStorage secureStorage)
         {
             _userDialogs = userDialogs;
             _navigationService = navigationService;
+            _hotelsService = hotelsService;
+            _secureStorage = secureStorage;
 
             _validator = new ValidationHelper();
 
@@ -111,39 +118,38 @@ namespace Pokatun.Core.ViewModels.Login
             using (_userDialogs.Loading(Strings.ProcessingRequest))
             {
 
-                responce = new ServerResponce<TokenInfoDto>();// await _hotelsService.RegisterAsync(hotel);
+                responce = await _hotelsService.LoginAsync(Email, Password);
 
-                //if (responce.Success)
-                //{
-                //    await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
-                //    await _secureStorage.SetAsync(
-                //        Constants.Keys.TokenExpirationTime,
-                //        responce.Data.ExpirationTime.ToString(CultureInfo.InvariantCulture)
-                //    );
+                if (responce.Success)
+                {
+                    await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
+                    await _secureStorage.SetAsync(
+                        Constants.Keys.TokenExpirationTime,
+                        responce.Data.ExpirationTime.ToUniversalTime().ToString(CultureInfo.InvariantCulture)
+                    );
 
-                //    await _navigationService.Close(this);
-                await _navigationService.Navigate<HotelMenuViewModel>();
+                    await _navigationService.Close(this);
+                    await _navigationService.Navigate<HotelMenuViewModel>();
 
-                return;
-                //}
+                    return;
+                }
             }
 
-            //ISet<string> knownErrorKodes = new HashSet<string>
-            //{
-            //    ErrorCodes.AccountAllreadyExistsError,
-            //    ErrorCodes.IbanAllreadyRegisteredError,
-            //    ErrorCodes.UsreouAllreadyRegisteredError
-            //};
+            ISet<string> knownErrorKodes = new HashSet<string>
+            {
+                ErrorCodes.AccountDoesNotExistError,
+                ErrorCodes.IncorrectPasswordError
+            };
 
-            //knownErrorKodes.IntersectWith(responce.ErrorCodes);
+            knownErrorKodes.IntersectWith(responce.ErrorCodes);
 
-            //if (knownErrorKodes.Count > 0)
-            //{
-            //    _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorKodes.First()));
-            //    return;
-            //}
+            if (knownErrorKodes.Count > 0)
+            {
+                _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorKodes.First()));
+                return;
+            }
 
-            //_userDialogs.Toast(Strings.UnexpectedError);
+            _userDialogs.Toast(Strings.UnexpectedError);
         }
     }
 }

@@ -34,12 +34,12 @@ namespace Pokatun.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("register")]
-        public ActionResult<ServerResponce<TokenInfoDto>> Register([FromBody] HotelDto value)
+        [HttpPost("login")]
+        public ActionResult<ServerResponce<TokenInfoDto>> Login([FromBody] LoginDto value)
         {
             try
             {
-                long id = _hotelsService.RegisterAsync(value);
+                long id = _hotelsService.Login(value.Email, value.Password);
 
                 JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
                 byte[] key = Encoding.ASCII.GetBytes(_appSettings.Secret);
@@ -65,7 +65,43 @@ namespace Pokatun.API.Controllers
             }
             catch (ApiException ex)
             {
-                return BadRequest(ServerResponce.ForError(ex.ErrorCode));
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public ActionResult<ServerResponce<TokenInfoDto>> Register([FromBody] HotelDto value)
+        {
+            try
+            {
+                long id = _hotelsService.Register(value);
+
+                JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+                byte[] key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+                DateTime expireTime = DateTime.UtcNow.AddDays(_appSettings.TokenExpirationDays);
+
+                SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[] { new Claim(ClaimTypes.Name, id.ToString()) }),
+                    Expires = expireTime,
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+
+                string tokenString = tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
+
+                return Ok(new ServerResponce<TokenInfoDto>
+                {
+                    Data = new TokenInfoDto
+                    {
+                        Token = tokenString,
+                        ExpirationTime = expireTime
+                    }
+                });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
             }
         }
     }

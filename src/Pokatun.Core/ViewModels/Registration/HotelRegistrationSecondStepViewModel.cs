@@ -188,7 +188,7 @@ namespace Pokatun.Core.ViewModels.Registration
                     await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
                     await _secureStorage.SetAsync(
                         Constants.Keys.TokenExpirationTime,
-                        responce.Data.ExpirationTime.ToString(CultureInfo.InvariantCulture)
+                        responce.Data.ExpirationTime.ToUniversalTime().ToString(CultureInfo.InvariantCulture)
                     );
 
                     await _navigationService.Close(this);

@@ -26,7 +26,8 @@ namespace Pokatun.Core
                 return;
             }
 
-            if (DateTime.Parse(await _secureStorage.GetAsync(Constants.Keys.TokenExpirationTime), CultureInfo.InvariantCulture) < DateTime.UtcNow)
+            DateTime utcTime = DateTime.Parse(await _secureStorage.GetAsync(Constants.Keys.TokenExpirationTime), CultureInfo.InvariantCulture);
+            if (utcTime < DateTime.UtcNow)
             {
                 await NavigationService.Navigate<ChoiseUserRoleViewModel>();
             }
