@@ -182,6 +182,11 @@
     </Compile>
     <Compile Include="Views\ForgotPassword\RequestVerificationCodeViewController.cs" />
     <Compile Include="Views\ForgotPassword\СheckVerificationCodeViewController.cs" />
+    <InterfaceDefinition Include="Views\ForgotPassword\NewPasswordViewController.xib" />
+    <Compile Include="Views\ForgotPassword\NewPasswordViewController.cs" />
+    <Compile Include="Views\ForgotPassword\NewPasswordViewController.designer.cs">
+      <DependentUpon>NewPasswordViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

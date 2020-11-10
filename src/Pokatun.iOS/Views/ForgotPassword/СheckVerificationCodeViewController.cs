@@ -1,4 +1,4 @@
-using System;
+using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.ForgotPassword;
 using Pokatun.Data;
@@ -6,6 +6,7 @@ using UIKit;
 
 namespace Pokatun.iOS.Views.ForgotPassword
 {
+    [MvxChildPresentation]
     public sealed class СheckVerificationCodeViewController : BaseViewController<СheckVerificationCodeViewModel>
     {
         private VerificationCodeViewController _controller;

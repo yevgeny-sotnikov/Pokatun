@@ -76,6 +76,7 @@
     <Compile Include="Views\Login\LoginFragment.cs" />
     <Compile Include="Views\ForgotPassword\RequestVerificationCodeFragment.cs" />
     <Compile Include="Views\ForgotPassword\СheckVerificationCodeFragment.cs" />
+    <Compile Include="Views\ForgotPassword\NewPasswordFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -220,7 +221,11 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\fragment_verification_code.xml">
+    <AndroidResource Include="Resources\layout\fragment_verification_code.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_new_password.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

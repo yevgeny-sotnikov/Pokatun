@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Login;
 using Pokatun.iOS.Converters;
@@ -8,6 +9,7 @@ using UIKit;
 
 namespace Pokatun.iOS.Views.Login
 {
+    [MvxChildPresentation]
     public sealed partial class LoginViewController : BaseViewController<LoginViewModel>
     {
         private IDictionary<UITextField, int> _maxLenght;
