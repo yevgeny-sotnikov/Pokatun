@@ -8,11 +8,11 @@ using Pokatun.API.Helpers;
 
 namespace Pokatun.API.Services
 {
-    public class EmailService : IEmailService
+    public class EmailApiService : IEmailApiService
     {
         private readonly MailSettings _mailSettings;
 
-        public EmailService(IOptions<MailSettings> mailSettings)
+        public EmailApiService(IOptions<MailSettings> mailSettings)
         {
             _mailSettings = mailSettings.Value;
         }

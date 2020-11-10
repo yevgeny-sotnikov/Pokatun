@@ -52,18 +52,13 @@ namespace Pokatun.Droid.Views.ForgotPassword
 
             #pragma warning restore IDE0008 // Use explicit type
 
-            //set.Bind(_button).To(vm => vm.RequestCodeCommand);
+            set.Bind(_button).To(vm => vm.MatchCodeCommand);
             set.Bind(_button).For(b => b.Enabled).To(vm => vm.IsMatchButtonEnabled);
             set.Bind(_textField).To(vm => vm.VerificationCode).OneWayToSource();
 
             set.Apply();
 
             return view;
-        }
-
-        private string GetDebuggerDisplay()
-        {
-            return ToString();
         }
     }
 }

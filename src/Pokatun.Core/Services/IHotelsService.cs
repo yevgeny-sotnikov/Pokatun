@@ -11,5 +11,7 @@ namespace Pokatun.Core.Services
         Task<ServerResponce<TokenInfoDto>> LoginAsync(string email, string password);
 
         Task<ServerResponce> ForgotPasswordAsync(string email);
+
+        Task<ServerResponce> ValidateResetToken(string code);
     }
 }

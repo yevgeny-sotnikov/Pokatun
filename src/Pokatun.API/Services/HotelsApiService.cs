@@ -10,12 +10,12 @@ using Pokatun.Data;
 
 namespace Pokatun.API.Services
 {
-    public sealed class HotelsService : IHotelsService
+    public sealed class HotelsApiService : IHotelsApiService
     {
         private readonly PokatunContext _context;
-        private readonly IEmailService _emailService;
+        private readonly IEmailApiService _emailService;
 
-        public HotelsService(PokatunContext context, IEmailService emailService)
+        public HotelsApiService(PokatunContext context, IEmailApiService emailService)
         {
             _context = context;
             _emailService = emailService;
@@ -133,6 +133,17 @@ namespace Pokatun.API.Services
             _context.SaveChanges();
 
             _emailService.Send(hotel.Email, "Sign-up Verification API - Reset Password", "Verification code: " + resetToken);
+        }
+
+        public void ValidateResetToken(string token)
+        {
+            Hotel hotel = _context.Hotels.SingleOrDefault(x => x.ResetToken == token);
+
+            if (hotel == null)
+                throw new ApiException(ErrorCodes.InvalidTokenError);
+
+            if (hotel.ResetTokenExpires < DateTime.UtcNow)
+                throw new ApiException(ErrorCodes.ExpiredTokenError);
         }
 
         private string GenerateRandomTokenString()

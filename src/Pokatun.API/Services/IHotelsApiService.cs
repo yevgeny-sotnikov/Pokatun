@@ -1,11 +1,9 @@
-using System;
-using System.Threading.Tasks;
 using Pokatun.API.Entities;
 using Pokatun.Data;
 
 namespace Pokatun.API.Services
 {
-    public interface IHotelsService
+    public interface IHotelsApiService
     {
         Hotel GetById(long id);
 
@@ -14,5 +12,7 @@ namespace Pokatun.API.Services
         long Login(string email, string password);
 
         void ForgotPassword(string email);
+
+        void ValidateResetToken(string token);
     }
 }

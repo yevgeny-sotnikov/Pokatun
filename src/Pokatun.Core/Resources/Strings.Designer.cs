@@ -305,6 +305,18 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string InvalidTokenError {
+            get {
+                return ResourceManager.GetString("InvalidTokenError", resourceCulture);
+            }
+        }
+        
+        public static string ExpiredTokenError {
+            get {
+                return ResourceManager.GetString("ExpiredTokenError", resourceCulture);
+            }
+        }
+        
         public static string ProcessingRequest {
             get {
                 return ResourceManager.GetString("ProcessingRequest", resourceCulture);
@@ -314,6 +326,12 @@ namespace Pokatun.Core.Resources {
         public static string ForgotPasswordQuestion {
             get {
                 return ResourceManager.GetString("ForgotPasswordQuestion", resourceCulture);
+            }
+        }
+        
+        public static string PasswordRecovery {
+            get {
+                return ResourceManager.GetString("PasswordRecovery", resourceCulture);
             }
         }
         

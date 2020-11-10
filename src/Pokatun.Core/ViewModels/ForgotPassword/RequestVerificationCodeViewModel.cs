@@ -20,6 +20,8 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
         private readonly IUserDialogs _userDialogs;
         private readonly IHotelsService _hotelsService;
 
+        public override string Title => Strings.PasswordRecovery;
+
         private string _email = string.Empty;
         public string Email
         {

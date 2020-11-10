@@ -1,9 +1,13 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmValidation;
+using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
+using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.ForgotPassword
@@ -14,6 +18,8 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
         private readonly IMvxNavigationService _navigationService;
         private readonly IUserDialogs _userDialogs;
         private readonly IHotelsService _hotelsService;
+
+        public override string Title => Strings.PasswordRecovery;
 
         private string _verificationCode = string.Empty;
         public string VerificationCode
@@ -55,34 +61,35 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
 
         private async Task DoMatchCodeCommandAsync()
         {
-            //ServerResponce responce = null;
+            ServerResponce responce = null;
 
-            //using (_userDialogs.Loading(Strings.ProcessingRequest))
-            //{
-            //    responce = await _hotelsService.ForgotPasswordAsync(Email);
+            using (_userDialogs.Loading(Strings.ProcessingRequest))
+            {
+                responce = await _hotelsService.ValidateResetToken(VerificationCode);
 
-            //    if (responce.Success)
-            //    {
-            //        await _navigationService.Navigate<СheckVerificationCodeViewModel>();
+                if (responce.Success)
+                {
+                    await _navigationService.Navigate<HotelMenuViewModel>();
 
-            //        return;
-            //    }
-            //}
+                    return;
+                }
+            }
 
-            //ISet<string> knownErrorCodes = new HashSet<string>
-            //{
-            //    ErrorCodes.AccountDoesNotExistError
-            //};
+            ISet<string> knownErrorCodes = new HashSet<string>
+            {
+                ErrorCodes.InvalidTokenError,
+                ErrorCodes.ExpiredTokenError
+            };
 
-            //knownErrorCodes.IntersectWith(responce.ErrorCodes);
+            knownErrorCodes.IntersectWith(responce.ErrorCodes);
 
-            //if (knownErrorCodes.Count > 0)
-            //{
-            //    _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorCodes.First()));
-            //    return;
-            //}
+            if (knownErrorCodes.Count > 0)
+            {
+                _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorCodes.First()));
+                return;
+            }
 
-            //_userDialogs.Toast(Strings.UnexpectedError);
+            _userDialogs.Toast(Strings.UnexpectedError);
         }
     }
 }
