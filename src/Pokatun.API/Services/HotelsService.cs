@@ -145,7 +145,7 @@ namespace Pokatun.API.Services
             }
 
             // convert random bytes to hex string
-            return BitConverter.ToString(randomBytes).Replace("-", "");
+            return BitConverter.ToString(randomBytes).Replace("-", "").ToLower();
         }
     }
 }

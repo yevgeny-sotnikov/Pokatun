@@ -53,7 +53,7 @@ namespace Pokatun.API.Entities
         [Required]
         public int USREOU { get; set; }
 
-        [MaxLength(8)]
+        [MaxLength(DataPatterns.VerificationCodeLenght)]
         public string ResetToken { get; set; }
 
         public DateTime? ResetTokenExpires { get; set; }

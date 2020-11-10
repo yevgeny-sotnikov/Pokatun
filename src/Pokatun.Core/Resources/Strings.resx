@@ -94,6 +94,12 @@
     <data name="GetCode" xml:space="preserve">
         <value>Получить код</value>
     </data>
+    <data name="Match" xml:space="preserve">
+        <value>Сопоставить</value>
+    </data>
+    <data name="VerificationCode" xml:space="preserve">
+        <value>Код верификации</value>
+    </data>
     <data name="HotelNameRequiredMessage" xml:space="preserve">
         <value>Необходимо указать название отеля</value>
     </data>
@@ -144,5 +150,8 @@
     </data>
     <data name="WriteRegistrationEmailMessage" xml:space="preserve">
         <value>Укажите email, с помощью которого вы регистрировались и мы отправим вам письмо с кодом для смены пароля</value>
+    </data>
+    <data name="WriteVerificationCodeMessage" xml:space="preserve">
+        <value>Введите полученный код для верификации. Код действителен 15 минут</value>
     </data>
 </root>

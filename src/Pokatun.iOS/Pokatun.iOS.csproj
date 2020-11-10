@@ -194,6 +194,10 @@
       <Project>{DA50DD18-DC13-4682-ADDE-61229F67867E}</Project>
       <Name>Pokatun.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Pokatun.Data\Pokatun.Data.csproj">
+      <Project>{46F1B75E-6E99-478A-952D-7617C504A809}</Project>
+      <Name>Pokatun.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">

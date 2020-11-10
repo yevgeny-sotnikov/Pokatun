@@ -7,7 +7,7 @@ namespace Pokatun.iOS.Views.ForgotPassword
 {
     public sealed class RequestVerificationCodeViewController : BaseViewController<RequestVerificationCodeViewModel>
     {
-        private const int MaxEmailLenght = 64;
+        private const int MaxEmailLength = 64;
 
         private VerificationCodeViewController _controller;
 
@@ -29,7 +29,7 @@ namespace Pokatun.iOS.Views.ForgotPassword
 
             _controller.TextField.Placeholder = Strings.Email;
             _controller.TextField.KeyboardType = UIKeyboardType.EmailAddress;
-            _controller.MaxTextFieldLenght = MaxEmailLenght;
+            _controller.MaxTextFieldLenght = MaxEmailLength;
             _controller.DescriptionLabel.Text = Strings.WriteRegistrationEmailMessage;
             _controller.Button.SetTitle(Strings.GetCode, UIControlState.Normal);
 

@@ -30,15 +30,22 @@ namespace Pokatun.iOS.Views.ForgotPassword
             DescriptionLabel.ApplyLargeLabelStyle();
             Button.ApplyBigButtonStyle();
 
+            Button.TouchUpInside += OnTouchButtonInside;
             TextField.ShouldChangeCharacters += OnShouldChangeCharacters;
         }
 
         public override void ViewDidDisappear(bool animated)
         {
             TextField.ResetStyles();
+            Button.TouchUpInside -= OnTouchButtonInside;
             TextField.ShouldChangeCharacters -= OnShouldChangeCharacters;
 
             base.ViewDidDisappear(animated);
+        }
+
+        private void OnTouchButtonInside(object sender, EventArgs e)
+        {
+            View.EndEditing(true);
         }
 
         private bool OnShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
