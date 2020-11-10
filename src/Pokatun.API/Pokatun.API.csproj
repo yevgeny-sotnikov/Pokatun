@@ -18,6 +18,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="MailKit" Version="2.9.0" />
+    <PackageReference Include="MimeKit" Version="2.9.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

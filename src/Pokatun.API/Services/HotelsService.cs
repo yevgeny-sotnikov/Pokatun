@@ -13,10 +13,12 @@ namespace Pokatun.API.Services
     public sealed class HotelsService : IHotelsService
     {
         private readonly PokatunContext _context;
+        private readonly IEmailService _emailService;
 
-        public HotelsService(PokatunContext context)
+        public HotelsService(PokatunContext context, IEmailService emailService)
         {
             _context = context;
+            _emailService = emailService;
         }
 
         public Hotel GetById(long userId)
@@ -103,6 +105,47 @@ namespace Pokatun.API.Services
             _context.SaveChanges();
 
             return hotel.Id;
+        }
+
+        public void ForgotPassword(string email)
+        {
+            email = email.ToLower();
+
+            Hotel hotel = _context.Hotels.SingleOrDefault(x => x.Email == email);
+
+            if (hotel == null)
+            {
+                throw new ApiException(ErrorCodes.AccountDoesNotExistError);
+            }
+
+            string resetToken;
+
+            do
+            {
+                resetToken = GenerateRandomTokenString();
+            }
+            while (_context.Hotels.Any(h => h.ResetToken == resetToken));
+
+            hotel.ResetToken = resetToken;
+            hotel.ResetTokenExpires = DateTime.UtcNow.AddMinutes(15);
+
+            _context.Hotels.Update(hotel);
+            _context.SaveChanges();
+
+            _emailService.Send(hotel.Email, "Sign-up Verification API - Reset Password", "Verification code: " + resetToken);
+        }
+
+        private string GenerateRandomTokenString()
+        {
+            var randomBytes = new byte[4];
+
+            using (var rngCryptoServiceProvider = new RNGCryptoServiceProvider())
+            {
+                rngCryptoServiceProvider.GetBytes(randomBytes);
+            }
+
+            // convert random bytes to hex string
+            return BitConverter.ToString(randomBytes).Replace("-", "");
         }
     }
 }

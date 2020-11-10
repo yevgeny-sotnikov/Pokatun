@@ -60,6 +60,29 @@ namespace Pokatun.Core.Services
             {
                 return new ServerResponce<TokenInfoDto> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
             }
+
+            return response.Data;
+        }
+
+        public async Task<ServerResponce> ForgotPasswordAsync(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(email));
+            }
+
+            RestRequest request = new RestRequest("hotels/forgot-password", Method.POST);
+
+            request.AddHeader("Content-Type", "application/json");
+            request.AddJsonBody(new ForgotPasswordRequest { Email = email }, "application/json");
+
+            IRestResponse<ServerResponce<object>> response = await _restClient.ExecuteAsync<ServerResponce<object>>(request);
+
+            if (response.Data == null && response.Content.Contains("Exception"))
+            {
+                return new ServerResponce { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
+            }
+
             return response.Data;
         }
     }

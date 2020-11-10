@@ -12,5 +12,7 @@ namespace Pokatun.API.Services
         long Register(HotelDto value);
 
         long Login(string email, string password);
+
+        void ForgotPassword(string email);
     }
 }

@@ -104,5 +104,20 @@ namespace Pokatun.API.Controllers
                 return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
             }
         }
+
+        [AllowAnonymous]
+        [HttpPost("forgot-password")]
+        public ActionResult<ServerResponce<string>> ForgotPassword(ForgotPasswordRequest model)
+        {
+            try
+            {
+                _hotelsService.ForgotPassword(model.Email);
+                return Ok(new ServerResponce<string> { Data = "OK" });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
     }
 }
