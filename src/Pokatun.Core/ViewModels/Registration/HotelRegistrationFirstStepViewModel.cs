@@ -103,7 +103,7 @@ namespace Pokatun.Core.ViewModels.Registration
         public bool IsHotelNameInvalid => CheckInvalid(nameof(HotelName));
 
         private MvxAsyncCommand _furtherCommand;
-        public IMvxCommand FurtherCommand
+        public IMvxAsyncCommand FurtherCommand
         {
             get
             {

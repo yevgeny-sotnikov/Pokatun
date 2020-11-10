@@ -47,6 +47,21 @@ namespace Pokatun.Droid.Views.ForgotPassword
             _confirmPasswordEditText.Hint = Strings.ConfirmPassword;
             _saveButton.Text = Strings.SavePassword;
 
+            #pragma warning disable IDE0008 // Use explicit type
+
+            var set = CreateBindingSet();
+
+            #pragma warning restore IDE0008 // Use explicit type
+
+            set.Bind(_passwordEditText).To(vm => vm.Password).OneWayToSource();
+            set.Bind(_confirmPasswordEditText).To(vm => vm.PasswordConfirm).OneWayToSource();
+            set.Bind(_saveButton).To(vm => vm.SavePasswordCommand);
+
+            set.Bind(_passwordEditText).For(v => v.Activated).To(vm => vm.IsPasswordInvalid).OneWay();
+            set.Bind(_confirmPasswordEditText).For(v => v.Activated).To(vm => vm.IsPasswordConfirmInvalid).OneWay();
+
+            set.Apply();
+
             return view;
         }
     }
