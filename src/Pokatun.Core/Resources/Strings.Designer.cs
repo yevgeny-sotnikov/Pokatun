@@ -323,6 +323,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string SavePassword {
+            get {
+                return ResourceManager.GetString("SavePassword", resourceCulture);
+            }
+        }
+        
         public static string NewPassword {
             get {
                 return ResourceManager.GetString("NewPassword", resourceCulture);

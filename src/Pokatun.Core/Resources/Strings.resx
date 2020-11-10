@@ -151,6 +151,9 @@
     <data name="ProcessingRequest" xml:space="preserve">
         <value>Обработка запроса</value>
     </data>
+    <data name="SavePassword" xml:space="preserve">
+        <value>Сохранить пароль</value>
+    </data>
     <data name="NewPassword" xml:space="preserve">
         <value>Новый пароль</value>
     </data>
