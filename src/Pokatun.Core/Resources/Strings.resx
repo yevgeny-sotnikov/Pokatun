@@ -91,6 +91,9 @@
     <data name="CreateAccount" xml:space="preserve">
         <value>Создать аккаунт</value>
     </data>
+    <data name="GetCode" xml:space="preserve">
+        <value>Получить код</value>
+    </data>
     <data name="HotelNameRequiredMessage" xml:space="preserve">
         <value>Необходимо указать название отеля</value>
     </data>
@@ -138,5 +141,8 @@
     </data>
     <data name="ForgotPasswordQuestion" xml:space="preserve">
         <value>Забыли пароль?</value>
+    </data>
+    <data name="WriteRegistrationEmailMessage" xml:space="preserve">
+        <value>Укажите email, с помощью которого вы регистрировались и мы отправим вам письмо с кодом для смены пароля</value>
     </data>
 </root>

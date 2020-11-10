@@ -203,6 +203,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string GetCode {
+            get {
+                return ResourceManager.GetString("GetCode", resourceCulture);
+            }
+        }
+        
         public static string HotelNameRequiredMessage {
             get {
                 return ResourceManager.GetString("HotelNameRequiredMessage", resourceCulture);
@@ -296,6 +302,12 @@ namespace Pokatun.Core.Resources {
         public static string ForgotPasswordQuestion {
             get {
                 return ResourceManager.GetString("ForgotPasswordQuestion", resourceCulture);
+            }
+        }
+        
+        public static string WriteRegistrationEmailMessage {
+            get {
+                return ResourceManager.GetString("WriteRegistrationEmailMessage", resourceCulture);
             }
         }
     }

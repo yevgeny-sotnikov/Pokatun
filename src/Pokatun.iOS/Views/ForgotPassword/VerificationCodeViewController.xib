@@ -11,6 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VerificationCodeViewController">
             <connections>
                 <outlet property="_button" destination="chy-76-h7P" id="XDr-f6-ckh"/>
+                <outlet property="_descriptionLabel" destination="e7W-Ud-0Le" id="yOt-bB-QfA"/>
+                <outlet property="_textField" destination="jrk-to-4TG" id="omo-BM-yuW"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -19,17 +21,34 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jrk-to-4TG">
+                    <rect key="frame" x="48" y="87" width="318" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7W-Ud-0Le">
+                    <rect key="frame" x="66" y="146" width="282" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chy-76-h7P">
-                    <rect key="frame" x="0.0" y="433" width="414" height="30"/>
+                    <rect key="frame" x="48" y="211.5" width="318" height="30"/>
                     <state key="normal" title="Button"/>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Ngx-xG-pEz"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="chy-76-h7P" firstAttribute="leading" secondItem="Ngx-xG-pEz" secondAttribute="leading" id="UZU-QT-gEs"/>
-                <constraint firstItem="chy-76-h7P" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="Z8s-5q-0nY"/>
-                <constraint firstItem="Ngx-xG-pEz" firstAttribute="trailing" secondItem="chy-76-h7P" secondAttribute="trailing" id="dNU-R6-77G"/>
+                <constraint firstItem="e7W-Ud-0Le" firstAttribute="top" secondItem="jrk-to-4TG" secondAttribute="bottom" constant="25" id="3mM-ZD-PI1"/>
+                <constraint firstItem="jrk-to-4TG" firstAttribute="top" secondItem="Ngx-xG-pEz" secondAttribute="top" constant="43" id="KPR-k5-llC"/>
+                <constraint firstItem="Ngx-xG-pEz" firstAttribute="trailing" secondItem="e7W-Ud-0Le" secondAttribute="trailing" constant="66" id="M5n-aT-xb3"/>
+                <constraint firstItem="chy-76-h7P" firstAttribute="top" secondItem="e7W-Ud-0Le" secondAttribute="bottom" constant="45" id="Mgd-cv-Jwo"/>
+                <constraint firstItem="chy-76-h7P" firstAttribute="leading" secondItem="Ngx-xG-pEz" secondAttribute="leading" constant="48" id="UZU-QT-gEs"/>
+                <constraint firstItem="jrk-to-4TG" firstAttribute="leading" secondItem="Ngx-xG-pEz" secondAttribute="leading" constant="48" id="YY1-zP-zFq"/>
+                <constraint firstItem="Ngx-xG-pEz" firstAttribute="trailing" secondItem="chy-76-h7P" secondAttribute="trailing" constant="48" id="dNU-R6-77G"/>
+                <constraint firstItem="Ngx-xG-pEz" firstAttribute="trailing" secondItem="jrk-to-4TG" secondAttribute="trailing" constant="48" id="hNX-OF-6pI"/>
+                <constraint firstItem="e7W-Ud-0Le" firstAttribute="leading" secondItem="Ngx-xG-pEz" secondAttribute="leading" constant="66" id="l5F-uv-tym"/>
             </constraints>
             <point key="canvasLocation" x="90" y="2"/>
         </view>

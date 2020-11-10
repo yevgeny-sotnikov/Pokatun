@@ -14,12 +14,28 @@ namespace Pokatun.iOS.Views.ForgotPassword
 	{
 		[Outlet]
 		UIKit.UIButton _button { get; set; }
+
+		[Outlet]
+		UIKit.UILabel _descriptionLabel { get; set; }
+
+		[Outlet]
+		UIKit.UITextField _textField { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (_button != null) {
 				_button.Dispose ();
 				_button = null;
+			}
+
+			if (_descriptionLabel != null) {
+				_descriptionLabel.Dispose ();
+				_descriptionLabel = null;
+			}
+
+			if (_textField != null) {
+				_textField.Dispose ();
+				_textField = null;
 			}
 		}
 	}
