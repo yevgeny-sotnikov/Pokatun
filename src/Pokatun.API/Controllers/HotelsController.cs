@@ -134,5 +134,41 @@ namespace Pokatun.API.Controllers
                 return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
             }
         }
+
+        [AllowAnonymous]
+        [HttpPost("reset-password")]
+        public ActionResult<ServerResponce<TokenInfoDto>> ResetPassword(ResetPasswordRequest model)
+        {
+            try
+            {
+                long id = _hotelsService.ResetPassword(model.Token, model.Password);
+
+                JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+                byte[] key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+                DateTime expireTime = DateTime.UtcNow.AddDays(_appSettings.TokenExpirationDays);
+
+                SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[] { new Claim(ClaimTypes.Name, id.ToString()) }),
+                    Expires = expireTime,
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+
+                string tokenString = tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
+
+                return Ok(new ServerResponce<TokenInfoDto>
+                {
+                    Data = new TokenInfoDto
+                    {
+                        Token = tokenString,
+                        ExpirationTime = expireTime
+                    }
+                });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
     }
 }

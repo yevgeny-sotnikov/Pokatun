@@ -13,6 +13,8 @@ namespace Pokatun.API.Services
 
         void ForgotPassword(string email);
 
-        void ValidateResetToken(string token);
+        Hotel ValidateResetToken(string token);
+
+        long ResetPassword(string token, string password);
     }
 }

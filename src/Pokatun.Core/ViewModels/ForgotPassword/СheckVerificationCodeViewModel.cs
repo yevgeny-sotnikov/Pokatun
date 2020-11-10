@@ -68,7 +68,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
 
                 if (responce.Success)
                 {
-                    await _navigationService.Navigate<NewPasswordViewModel>();
+                    await _navigationService.Navigate<NewPasswordViewModel, string>(VerificationCode);
 
                     return;
                 }

@@ -15,7 +15,7 @@ namespace Pokatun.Core.Services
             _restClient = restClient;
         }
 
-        public async Task<ServerResponce<TokenInfoDto>> LoginAsync(string email, string password)
+        public Task<ServerResponce<TokenInfoDto>> LoginAsync(string email, string password)
         {
             if (string.IsNullOrWhiteSpace(email))
             {
@@ -27,41 +27,17 @@ namespace Pokatun.Core.Services
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(password));
             }
 
-            RestRequest request = new RestRequest("hotels/login", Method.POST);
-
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new HotelDto { Email = email, Password = password }, "application/json");
-            
-            IRestResponse<ServerResponce<TokenInfoDto>> response = await _restClient.ExecuteAsync<ServerResponce<TokenInfoDto>>(request);
-
-            if (response.Data == null && response.Content.Contains("Exception"))
-            {
-                return new ServerResponce<TokenInfoDto> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
-            }
-
-            return response.Data;
+            return PostAsync<TokenInfoDto>("hotels/login", new LoginDto { Email = email, Password = password });
         }
 
-        public async Task<ServerResponce<TokenInfoDto>> RegisterAsync(HotelDto hotel)
+        public Task<ServerResponce<TokenInfoDto>> RegisterAsync(HotelDto hotel)
         {
             if (hotel == null)
             {
                 throw new ArgumentNullException(nameof(hotel));
             }
 
-            RestRequest request = new RestRequest("hotels/register", Method.POST);
-
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(hotel, "application/json");
-
-            IRestResponse<ServerResponce<TokenInfoDto>> response = await _restClient.ExecuteAsync<ServerResponce<TokenInfoDto>>(request);
-
-            if (response.Data == null && response.Content.Contains("Exception"))
-            {
-                return new ServerResponce<TokenInfoDto> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
-            }
-
-            return response.Data;
+            return PostAsync<TokenInfoDto>("hotels/register", hotel);
         }
 
         public async Task<ServerResponce> ForgotPasswordAsync(string email)
@@ -71,19 +47,7 @@ namespace Pokatun.Core.Services
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(email));
             }
 
-            RestRequest request = new RestRequest("hotels/forgot-password", Method.POST);
-
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new ForgotPasswordRequest { Email = email }, "application/json");
-
-            IRestResponse<ServerResponce<object>> response = await _restClient.ExecuteAsync<ServerResponce<object>>(request);
-
-            if (response.Data == null && response.Content.Contains("Exception"))
-            {
-                return new ServerResponce { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
-            }
-
-            return response.Data;
+            return await PostAsync<object>("hotels/forgot-password", new ForgotPasswordRequest { Email = email });
         }
 
         public async Task<ServerResponce> ValidateResetToken(string token)
@@ -93,16 +57,36 @@ namespace Pokatun.Core.Services
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(token));
             }
 
-            RestRequest request = new RestRequest("hotels/validate-reset-token", Method.POST);
+            return await PostAsync<object>("hotels/validate-reset-token", new ValidateResetTokenRequest { Token = token });
+        }
+
+        public Task<ServerResponce<TokenInfoDto>> ResetPassword(string token, string password)
+        {
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(token));
+            }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(password));
+            }
+
+            return PostAsync<TokenInfoDto>("hotels/reset-password", new ResetPasswordRequest { Token = token, Password = password });
+        }
+
+        private async Task<ServerResponce<T>> PostAsync<T>(string path, object body)
+        {
+            RestRequest request = new RestRequest(path, Method.POST);
 
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(new ValidateResetTokenRequest { Token = token }, "application/json");
+            request.AddJsonBody(body, "application/json");
 
-            IRestResponse<ServerResponce<object>> response = await _restClient.ExecuteAsync<ServerResponce<object>>(request);
+            IRestResponse<ServerResponce<T>> response = await _restClient.ExecuteAsync<ServerResponce<T>>(request);
 
-            if (response.Data == null && response.Content.Contains("Exception"))
+            if ((int)response.StatusCode / 100 > 3) //temp solution
             {
-                return new ServerResponce { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
+                return new ServerResponce<T> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
             }
 
             return response.Data;

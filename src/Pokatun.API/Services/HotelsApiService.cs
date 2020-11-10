@@ -135,7 +135,7 @@ namespace Pokatun.API.Services
             _emailService.Send(hotel.Email, "Sign-up Verification API - Reset Password", "Verification code: " + resetToken);
         }
 
-        public void ValidateResetToken(string token)
+        public Hotel ValidateResetToken(string token)
         {
             Hotel hotel = _context.Hotels.SingleOrDefault(x => x.ResetToken == token);
 
@@ -144,6 +144,27 @@ namespace Pokatun.API.Services
 
             if (hotel.ResetTokenExpires < DateTime.UtcNow)
                 throw new ApiException(ErrorCodes.ExpiredTokenError);
+
+            return hotel;
+        }
+
+        public long ResetPassword(string token, string password)
+        {
+            Hotel hotel = ValidateResetToken(token);
+
+            using (HMACSHA512 hmac = new HMACSHA512())
+            {
+                hotel.PasswordSalt = hmac.Key;
+                hotel.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            }
+
+            hotel.ResetToken = null;
+            hotel.ResetTokenExpires = null;
+
+            _context.Hotels.Update(hotel);
+            _context.SaveChanges();
+
+            return hotel.Id;
         }
 
         private string GenerateRandomTokenString()

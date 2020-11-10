@@ -25,6 +25,7 @@ namespace Pokatun.Data
         public string Email { get; set; }
 
         [Required]
+        [MinLength(8)]
         [MaxLength(32)]
         [RegularExpression(DataPatterns.Password)]
         public string Password { get; set; }
