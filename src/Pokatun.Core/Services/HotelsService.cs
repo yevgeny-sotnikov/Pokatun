@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using Pokatun.Data;
 using RestSharp;
 
@@ -83,6 +84,15 @@ namespace Pokatun.Core.Services
             request.AddJsonBody(body, "application/json");
 
             IRestResponse<ServerResponce<T>> response = await _restClient.ExecuteAsync<ServerResponce<T>>(request);
+
+            if (response.ErrorException != null)
+            {
+                Crashes.TrackError(response.ErrorException);
+            }
+            else if (response.Content.Contains("Exception"))
+            {
+                Crashes.TrackError(new Exception(response.Content));
+            }
 
             if (string.IsNullOrWhiteSpace(response.Content) || response.Content.Contains("Exception"))
             {

@@ -4,6 +4,9 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Pokatun.Core.ViewModels.Main;
 using Xamarin.Essentials;
@@ -30,6 +33,8 @@ namespace Pokatun.Droid.Views.Main
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            AppCenter.Start("c79dad39-68a6-4d34-b71a-c242aafe1193", typeof(Analytics), typeof(Crashes));
 
             Platform.Init(this, bundle); // add this line to your code, it may also be called: bundle
             UserDialogs.Init(this);
