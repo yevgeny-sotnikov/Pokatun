@@ -27,12 +27,6 @@ namespace Pokatun.API.Controllers
             _appSettings = appSettings.Value;
         }
 
-        [HttpGet("{number}")]
-        public IActionResult Get(int number)
-        {
-            return Ok(number * 2);
-        }
-
         [AllowAnonymous]
         [HttpPost("login")]
         public ActionResult<ServerResponce<TokenInfoDto>> Login([FromBody] LoginDto value)

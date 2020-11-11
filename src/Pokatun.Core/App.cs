@@ -29,7 +29,9 @@ namespace Pokatun.Core
             Mvx.IoCProvider.RegisterSingleton(() => UserDialogs.Instance);
             Mvx.IoCProvider.RegisterSingleton<ISecureStorage>(() => new SecureStorageImplementation());
             Mvx.IoCProvider.RegisterSingleton<IDeviceInfo>(() => new DeviceInfoImplementation());
-            
+
+            #if DEBUG
+
             Mvx.IoCProvider.RegisterSingleton<IRestClient>(
                 () => new RestClient(string.Format(Constants.BaseUrl,
                     Mvx.IoCProvider.Resolve<IDeviceInfo>().Platform == DevicePlatform.iOS
@@ -37,6 +39,12 @@ namespace Pokatun.Core
                     : Constants.AndroidDebugIP
                 )
             ));
+
+            #else
+
+            Mvx.IoCProvider.RegisterSingleton<IRestClient>(() => new RestClient(Constants.BaseUrl));
+
+            #endif
 
             RegisterCustomAppStart<AppStart>();
         }
