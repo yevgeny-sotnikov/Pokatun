@@ -8,43 +8,26 @@ using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmValidation;
-using Pokatun.Core.Models.Enums;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
-using Pokatun.Core.ViewModels.ForgotPassword;
 using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Data;
 using Xamarin.Essentials.Interfaces;
 
-namespace Pokatun.Core.ViewModels.Login
+namespace Pokatun.Core.ViewModels.ForgotPassword
 {
-    public class LoginViewModel : BaseViewModel<UserRole>
+    public sealed class NewPasswordViewModel : BaseViewModel<string>
     {
-        private readonly ValidationHelper _validator;
         private readonly IUserDialogs _userDialogs;
-        private readonly IMvxNavigationService _navigationService;
         private readonly IHotelsService _hotelsService;
         private readonly ISecureStorage _secureStorage;
+        private readonly IMvxNavigationService _navigationService;
+
+        private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
-        private UserRole _role;
 
-        public override string Title => Strings.EntranceToAccount;
-
-        private string _email = string.Empty;
-        public string Email
-        {
-            get { return _email; }
-            set
-            {
-                if (!SetProperty(ref _email, value))
-                    return;
-
-                _viewInEditMode = true;
-
-                RaisePropertyChanged(nameof(IsEmailInvalid));
-            }
-        }
+        public override string Title => Strings.NewPassword;
 
         private string _password = string.Empty;
         public string Password
@@ -61,66 +44,80 @@ namespace Pokatun.Core.ViewModels.Login
             }
         }
 
+        private string _passwordConfirm = string.Empty;
+        public string PasswordConfirm
+        {
+            get { return _passwordConfirm; }
+            set
+            {
+                if (!SetProperty(ref _passwordConfirm, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsPasswordConfirmInvalid));
+            }
+        }
+
+        public bool IsPasswordConfirmInvalid => CheckInvalid(nameof(PasswordConfirm));
+
         public bool IsPasswordInvalid => CheckInvalid(nameof(Password));
 
-        public bool IsEmailInvalid => CheckInvalid(nameof(Email));
+        private MvxAsyncCommand _savePasswordCommand;
+        private string _token;
 
-        private MvxAsyncCommand _loginCommand;
-        public IMvxCommand LoginCommand
+        public IMvxAsyncCommand SavePasswordCommand
         {
             get
             {
-                return _loginCommand ?? (_loginCommand = new MvxAsyncCommand(DoLoginCommandAsync));
+                return _savePasswordCommand ?? (_savePasswordCommand = new MvxAsyncCommand(DoSavePasswordCommandAsync));
             }
         }
 
-        private MvxAsyncCommand _forgotPasswordCommand;
-        public IMvxCommand ForgotPasswordCommand
+        public NewPasswordViewModel(IMvxNavigationService navigationService, IUserDialogs userDialogs, IHotelsService hotelsService, ISecureStorage secureStorage)
         {
-            get
-            {
-                return _forgotPasswordCommand ?? (_forgotPasswordCommand = new MvxAsyncCommand(DoForgotPasswordCommandAsync));
-            }
-        }
-
-        public LoginViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService, IHotelsService hotelsService, ISecureStorage secureStorage)
-        {
-            _userDialogs = userDialogs;
             _navigationService = navigationService;
+            _userDialogs = userDialogs;
             _hotelsService = hotelsService;
             _secureStorage = secureStorage;
 
             _validator = new ValidationHelper();
 
-            _validator.AddRule(nameof(Email), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Email.Trim(), DataPatterns.Email), Strings.InvalidEmailMessage));
             _validator.AddRule(nameof(Password), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Password.Trim(), DataPatterns.Password), Strings.InvalidPasswordMessage));
+            _validator.AddRule(nameof(PasswordConfirm), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(PasswordConfirm.Trim(), DataPatterns.Password), Strings.InvalidPasswordMessage));
+            _validator.AddRule(nameof(Password), nameof(PasswordConfirm), () => RuleResult.Assert(_viewInEditMode || Password == PasswordConfirm, Strings.PasswordMismatchMessage));
         }
 
-        public override void Prepare(UserRole role)
+        public override void Prepare(string parameter)
         {
-            _role = role;
+            if (string.IsNullOrWhiteSpace(parameter))
+            {
+                throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(parameter));
+            }
+
+            _token = parameter;
         }
+
 
         private bool CheckInvalid(string name)
         {
             return !_validator.Validate(name).IsValid;
         }
 
-        private async Task DoLoginCommandAsync()
+        private async Task DoSavePasswordCommandAsync()
         {
             _viewInEditMode = false;
 
             ValidationResult validationResult = _validator.ValidateAll();
 
             await Task.WhenAll(
-                RaisePropertyChanged(nameof(IsEmailInvalid)),
-                RaisePropertyChanged(nameof(IsPasswordInvalid))
+                RaisePropertyChanged(nameof(IsPasswordInvalid)),
+                RaisePropertyChanged(nameof(IsPasswordConfirmInvalid))
             );
 
             if (!validationResult.IsValid)
             {
                 _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
-
                 return;
             }
 
@@ -128,8 +125,7 @@ namespace Pokatun.Core.ViewModels.Login
 
             using (_userDialogs.Loading(Strings.ProcessingRequest))
             {
-
-                responce = await _hotelsService.LoginAsync(Email, Password);
+                responce = await _hotelsService.ResetPassword(_token, Password);
 
                 if (responce.Success)
                 {
@@ -146,26 +142,21 @@ namespace Pokatun.Core.ViewModels.Login
                 }
             }
 
-            ISet<string> knownErrorKodes = new HashSet<string>
+            ISet<string> knownErrorCodes = new HashSet<string>
             {
-                ErrorCodes.AccountDoesNotExistError,
-                ErrorCodes.IncorrectPasswordError
+                ErrorCodes.InvalidTokenError,
+                ErrorCodes.ExpiredTokenError
             };
 
-            knownErrorKodes.IntersectWith(responce.ErrorCodes);
+            knownErrorCodes.IntersectWith(responce.ErrorCodes);
 
-            if (knownErrorKodes.Count > 0)
+            if (knownErrorCodes.Count > 0)
             {
-                _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorKodes.First()));
+                _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorCodes.First()));
                 return;
             }
 
             _userDialogs.Toast(Strings.UnexpectedError);
-        }
-
-        private Task DoForgotPasswordCommandAsync()
-        {
-            return _navigationService.Navigate<RequestVerificationCodeViewModel>();
         }
     }
 }

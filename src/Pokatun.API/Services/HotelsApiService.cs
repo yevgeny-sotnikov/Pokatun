@@ -10,13 +10,15 @@ using Pokatun.Data;
 
 namespace Pokatun.API.Services
 {
-    public sealed class HotelsService : IHotelsService
+    public sealed class HotelsApiService : IHotelsApiService
     {
         private readonly PokatunContext _context;
+        private readonly IEmailApiService _emailService;
 
-        public HotelsService(PokatunContext context)
+        public HotelsApiService(PokatunContext context, IEmailApiService emailService)
         {
             _context = context;
+            _emailService = emailService;
         }
 
         public Hotel GetById(long userId)
@@ -103,6 +105,79 @@ namespace Pokatun.API.Services
             _context.SaveChanges();
 
             return hotel.Id;
+        }
+
+        public void ForgotPassword(string email)
+        {
+            email = email.ToLower();
+
+            Hotel hotel = _context.Hotels.SingleOrDefault(x => x.Email == email);
+
+            if (hotel == null)
+            {
+                throw new ApiException(ErrorCodes.AccountDoesNotExistError);
+            }
+
+            string resetToken;
+
+            do
+            {
+                resetToken = GenerateRandomTokenString();
+            }
+            while (_context.Hotels.Any(h => h.ResetToken == resetToken));
+
+            hotel.ResetToken = resetToken;
+            hotel.ResetTokenExpires = DateTime.UtcNow.AddMinutes(15);
+
+            _context.Hotels.Update(hotel);
+            _context.SaveChanges();
+
+            _emailService.Send(hotel.Email, "Sign-up Verification API - Reset Password", "Verification code: " + resetToken);
+        }
+
+        public Hotel ValidateResetToken(string token)
+        {
+            Hotel hotel = _context.Hotels.SingleOrDefault(x => x.ResetToken == token);
+
+            if (hotel == null)
+                throw new ApiException(ErrorCodes.InvalidTokenError);
+
+            if (hotel.ResetTokenExpires < DateTime.UtcNow)
+                throw new ApiException(ErrorCodes.ExpiredTokenError);
+
+            return hotel;
+        }
+
+        public long ResetPassword(string token, string password)
+        {
+            Hotel hotel = ValidateResetToken(token);
+
+            using (HMACSHA512 hmac = new HMACSHA512())
+            {
+                hotel.PasswordSalt = hmac.Key;
+                hotel.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            }
+
+            hotel.ResetToken = null;
+            hotel.ResetTokenExpires = null;
+
+            _context.Hotels.Update(hotel);
+            _context.SaveChanges();
+
+            return hotel.Id;
+        }
+
+        private string GenerateRandomTokenString()
+        {
+            var randomBytes = new byte[4];
+
+            using (var rngCryptoServiceProvider = new RNGCryptoServiceProvider())
+            {
+                rngCryptoServiceProvider.GetBytes(randomBytes);
+            }
+
+            // convert random bytes to hex string
+            return BitConverter.ToString(randomBytes).Replace("-", "").ToLower();
         }
     }
 }

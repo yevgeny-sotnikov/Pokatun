@@ -91,6 +91,15 @@
     <data name="CreateAccount" xml:space="preserve">
         <value>Создать аккаунт</value>
     </data>
+    <data name="GetCode" xml:space="preserve">
+        <value>Получить код</value>
+    </data>
+    <data name="Match" xml:space="preserve">
+        <value>Сопоставить</value>
+    </data>
+    <data name="VerificationCode" xml:space="preserve">
+        <value>Код верификации</value>
+    </data>
     <data name="HotelNameRequiredMessage" xml:space="preserve">
         <value>Необходимо указать название отеля</value>
     </data>
@@ -133,10 +142,31 @@
     <data name="UnexpectedError" xml:space="preserve">
         <value>Произошла непредвиденная ошбика. Повторите ошибу позже</value>
     </data>
+    <data name="InvalidTokenError" xml:space="preserve">
+        <value>Неверный код верификации</value>
+    </data>
+    <data name="ExpiredTokenError" xml:space="preserve">
+        <value>Истекло время действия кода верификации</value>
+    </data>
     <data name="ProcessingRequest" xml:space="preserve">
         <value>Обработка запроса</value>
     </data>
+    <data name="SavePassword" xml:space="preserve">
+        <value>Сохранить пароль</value>
+    </data>
+    <data name="NewPassword" xml:space="preserve">
+        <value>Новый пароль</value>
+    </data>
     <data name="ForgotPasswordQuestion" xml:space="preserve">
         <value>Забыли пароль?</value>
+    </data>
+    <data name="PasswordRecovery" xml:space="preserve">
+        <value>Восстановление пароля</value>
+    </data>
+    <data name="WriteRegistrationEmailMessage" xml:space="preserve">
+        <value>Укажите email, с помощью которого вы регистрировались и мы отправим вам письмо с кодом для смены пароля</value>
+    </data>
+    <data name="WriteVerificationCodeMessage" xml:space="preserve">
+        <value>Введите полученный код для верификации. Код действителен 15 минут</value>
     </data>
 </root>

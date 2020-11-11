@@ -18,10 +18,10 @@ namespace Pokatun.API.Controllers
     [Route("[controller]")]
     public class HotelsController : ControllerBase
     {
-        private readonly IHotelsService _hotelsService;
+        private readonly IHotelsApiService _hotelsService;
         private readonly AppSettings _appSettings;
 
-        public HotelsController(IHotelsService hotelsService, IOptions<AppSettings> appSettings)
+        public HotelsController(IHotelsApiService hotelsService, IOptions<AppSettings> appSettings)
         {
             _hotelsService = hotelsService;
             _appSettings = appSettings.Value;
@@ -76,6 +76,72 @@ namespace Pokatun.API.Controllers
             try
             {
                 long id = _hotelsService.Register(value);
+
+                JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+                byte[] key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+                DateTime expireTime = DateTime.UtcNow.AddDays(_appSettings.TokenExpirationDays);
+
+                SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[] { new Claim(ClaimTypes.Name, id.ToString()) }),
+                    Expires = expireTime,
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+
+                string tokenString = tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
+
+                return Ok(new ServerResponce<TokenInfoDto>
+                {
+                    Data = new TokenInfoDto
+                    {
+                        Token = tokenString,
+                        ExpirationTime = expireTime
+                    }
+                });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("forgot-password")]
+        public ActionResult<ServerResponce<string>> ForgotPassword(ForgotPasswordRequest model)
+        {
+            try
+            {
+                _hotelsService.ForgotPassword(model.Email);
+                return Ok(new ServerResponce<string> { Data = "OK" });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("validate-reset-token")]
+        public IActionResult ValidateResetToken(ValidateResetTokenRequest model)
+        {
+            try
+            {
+                _hotelsService.ValidateResetToken(model.Token);
+                return Ok(new ServerResponce<string> { Data = "OK" });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("reset-password")]
+        public ActionResult<ServerResponce<TokenInfoDto>> ResetPassword(ResetPasswordRequest model)
+        {
+            try
+            {
+                long id = _hotelsService.ResetPassword(model.Token, model.Password);
 
                 JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
                 byte[] key = Encoding.ASCII.GetBytes(_appSettings.Secret);

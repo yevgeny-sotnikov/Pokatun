@@ -51,6 +51,7 @@ namespace Pokatun.Droid.Views.Login
             set.Bind(_emailTextField).To(vm => vm.Email).OneWayToSource();
             set.Bind(_passwordTextField).To(vm => vm.Password).OneWayToSource();
             set.Bind(_loginButton).To(vm => vm.LoginCommand);
+            set.Bind(_forgotPasswordButton).To(vm => vm.ForgotPasswordCommand);
 
             set.Bind(_emailTextField).For(v => v.Activated).To(vm => vm.IsEmailInvalid).OneWay();
             set.Bind(_passwordTextField).For(v => v.Activated).To(vm => vm.IsPasswordInvalid).OneWay();

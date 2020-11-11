@@ -175,6 +175,18 @@
     <Compile Include="Views\Login\LoginViewController.designer.cs">
       <DependentUpon>LoginViewController.cs</DependentUpon>
     </Compile>
+    <InterfaceDefinition Include="Views\ForgotPassword\VerificationCodeViewController.xib" />
+    <Compile Include="Views\ForgotPassword\VerificationCodeViewController.cs" />
+    <Compile Include="Views\ForgotPassword\VerificationCodeViewController.designer.cs">
+      <DependentUpon>VerificationCodeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForgotPassword\RequestVerificationCodeViewController.cs" />
+    <Compile Include="Views\ForgotPassword\СheckVerificationCodeViewController.cs" />
+    <InterfaceDefinition Include="Views\ForgotPassword\NewPasswordViewController.xib" />
+    <Compile Include="Views\ForgotPassword\NewPasswordViewController.cs" />
+    <Compile Include="Views\ForgotPassword\NewPasswordViewController.designer.cs">
+      <DependentUpon>NewPasswordViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -186,6 +198,10 @@
     <ProjectReference Include="..\Pokatun.Core\Pokatun.Core.csproj">
       <Project>{DA50DD18-DC13-4682-ADDE-61229F67867E}</Project>
       <Name>Pokatun.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pokatun.Data\Pokatun.Data.csproj">
+      <Project>{46F1B75E-6E99-478A-952D-7617C504A809}</Project>
+      <Name>Pokatun.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +277,7 @@
     <Folder Include="Converters\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\Login\" />
+    <Folder Include="Views\ForgotPassword\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

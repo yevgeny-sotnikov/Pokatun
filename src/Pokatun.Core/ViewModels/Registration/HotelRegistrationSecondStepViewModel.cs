@@ -198,18 +198,18 @@ namespace Pokatun.Core.ViewModels.Registration
                 }
             }
 
-            ISet<string> knownErrorKodes = new HashSet<string>
+            ISet<string> knownErrorCodes = new HashSet<string>
             {
                 ErrorCodes.AccountAllreadyExistsError,
                 ErrorCodes.IbanAllreadyRegisteredError,
                 ErrorCodes.UsreouAllreadyRegisteredError
             };
 
-            knownErrorKodes.IntersectWith(responce.ErrorCodes);
+            knownErrorCodes.IntersectWith(responce.ErrorCodes);
 
-            if (knownErrorKodes.Count > 0)
+            if (knownErrorCodes.Count > 0)
             {
-                _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorKodes.First()));
+                _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorCodes.First()));
                 return;
             }
 

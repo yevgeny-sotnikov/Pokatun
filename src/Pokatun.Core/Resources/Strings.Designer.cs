@@ -203,6 +203,24 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string GetCode {
+            get {
+                return ResourceManager.GetString("GetCode", resourceCulture);
+            }
+        }
+        
+        public static string Match {
+            get {
+                return ResourceManager.GetString("Match", resourceCulture);
+            }
+        }
+        
+        public static string VerificationCode {
+            get {
+                return ResourceManager.GetString("VerificationCode", resourceCulture);
+            }
+        }
+        
         public static string HotelNameRequiredMessage {
             get {
                 return ResourceManager.GetString("HotelNameRequiredMessage", resourceCulture);
@@ -287,15 +305,57 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string InvalidTokenError {
+            get {
+                return ResourceManager.GetString("InvalidTokenError", resourceCulture);
+            }
+        }
+        
+        public static string ExpiredTokenError {
+            get {
+                return ResourceManager.GetString("ExpiredTokenError", resourceCulture);
+            }
+        }
+        
         public static string ProcessingRequest {
             get {
                 return ResourceManager.GetString("ProcessingRequest", resourceCulture);
             }
         }
         
+        public static string SavePassword {
+            get {
+                return ResourceManager.GetString("SavePassword", resourceCulture);
+            }
+        }
+        
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
         public static string ForgotPasswordQuestion {
             get {
                 return ResourceManager.GetString("ForgotPasswordQuestion", resourceCulture);
+            }
+        }
+        
+        public static string PasswordRecovery {
+            get {
+                return ResourceManager.GetString("PasswordRecovery", resourceCulture);
+            }
+        }
+        
+        public static string WriteRegistrationEmailMessage {
+            get {
+                return ResourceManager.GetString("WriteRegistrationEmailMessage", resourceCulture);
+            }
+        }
+        
+        public static string WriteVerificationCodeMessage {
+            get {
+                return ResourceManager.GetString("WriteVerificationCodeMessage", resourceCulture);
             }
         }
     }

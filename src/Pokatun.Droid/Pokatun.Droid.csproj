@@ -74,6 +74,9 @@
     <Compile Include="Views\Registration\HotelRegistrationSecondStepFragment.cs" />
     <Compile Include="Views\Menu\HotelMenuFragment.cs" />
     <Compile Include="Views\Login\LoginFragment.cs" />
+    <Compile Include="Views\ForgotPassword\RequestVerificationCodeFragment.cs" />
+    <Compile Include="Views\ForgotPassword\СheckVerificationCodeFragment.cs" />
+    <Compile Include="Views\ForgotPassword\NewPasswordFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -218,6 +221,14 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_verification_code.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_new_password.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -246,6 +257,10 @@
       <Project>{DA50DD18-DC13-4682-ADDE-61229F67867E}</Project>
       <Name>Pokatun.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Pokatun.Data\Pokatun.Data.csproj">
+      <Project>{46F1B75E-6E99-478A-952D-7617C504A809}</Project>
+      <Name>Pokatun.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />
@@ -262,6 +277,7 @@
     <Folder Include="Resources\xml\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\Login\" />
+    <Folder Include="Views\ForgotPassword\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

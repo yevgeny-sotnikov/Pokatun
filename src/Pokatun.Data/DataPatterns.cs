@@ -14,5 +14,7 @@ namespace Pokatun.Data
         public const string BankCard = @"^\d{16}$";
 
         public const string USREOU = @"^\d{8}$";
+
+        public const int VerificationCodeLenght = 8;
     }
 }

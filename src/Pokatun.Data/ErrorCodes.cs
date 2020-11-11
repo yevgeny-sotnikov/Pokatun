@@ -15,5 +15,7 @@ namespace Pokatun.Data
         public const string AccountDoesNotExistError = "AccountDoesNotExistError";
         public const string IbanAllreadyRegisteredError = "IbanAllreadyRegisteredError";
         public const string UsreouAllreadyRegisteredError = "UsreouAllreadyRegisteredError";
+        public const string InvalidTokenError = "InvalidTokenError";
+        public const string ExpiredTokenError = "ExpiredTokenError";
     }
 }

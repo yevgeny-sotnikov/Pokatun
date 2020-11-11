@@ -34,12 +34,14 @@ namespace Pokatun.API
             services.AddDbContext<PokatunContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // configure strongly typed settings objects
-            IConfigurationSection appSettingsSection = Configuration.GetSection("AppSettings");
+            IConfigurationSection appSettingsSection = Configuration.GetSection(nameof(AppSettings));
             services.Configure<AppSettings>(appSettingsSection);
 
             // configure jwt authentication
             AppSettings appSettings = appSettingsSection.Get<AppSettings>();
             byte[] key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+            services.Configure<MailSettings>(Configuration.GetSection(nameof(MailSettings)));
 
             services.AddAuthorization(options =>
             {
@@ -57,7 +59,7 @@ namespace Pokatun.API
                 {
                     OnTokenValidated = context =>
                     {
-                        IHotelsService hotelsService = context.HttpContext.RequestServices.GetRequiredService<IHotelsService>();
+                        IHotelsApiService hotelsService = context.HttpContext.RequestServices.GetRequiredService<IHotelsApiService>();
                         long id = long.Parse(context.Principal.Identity.Name);
                         Hotel hotel = hotelsService.GetById(id);
                         if (hotel == null)
@@ -88,7 +90,8 @@ namespace Pokatun.API
                 return new BadRequestObjectResult(errorResonce);
             });
 
-            services.AddScoped<IHotelsService, HotelsService>();
+            services.AddScoped<IHotelsApiService, HotelsApiService>();
+            services.AddScoped<IEmailApiService, EmailApiService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
