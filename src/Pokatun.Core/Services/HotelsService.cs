@@ -84,7 +84,7 @@ namespace Pokatun.Core.Services
 
             IRestResponse<ServerResponce<T>> response = await _restClient.ExecuteAsync<ServerResponce<T>>(request);
 
-            if ((int)response.StatusCode / 100 > 3) //temp solution
+            if (string.IsNullOrWhiteSpace(response.Content) || response.Content.Contains("Exception"))
             {
                 return new ServerResponce<T> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
             }
