@@ -51,7 +51,7 @@ namespace Pokatun.Droid.Views.Registration
             set.Bind(_bankNameTextField).To(vm => vm.BankName).OneWayToSource();
             set.Bind(_usreouTextField).To(vm => vm.USREOU).OneWayToSource();
             set.Bind(_createAccountButton).To(vm => vm.СreateAccountCommand);
-            _createAccountButton.Click += dd;
+
             set.Bind(_fullCompanyNameTextField).For(v => v.Activated).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
             set.Bind(_bankCardOrIbanTextField).For(v => v.Activated).To(vm => vm.IsBankCardOrIbanInvalid).OneWay();
             set.Bind(_bankNameTextField).For(v => v.Activated).To(vm => vm.IsBankNameInvalid).OneWay();
@@ -64,26 +64,7 @@ namespace Pokatun.Droid.Views.Registration
 
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
         {
-            return new MvxFragmentPresentationAttribute
-            {
-                ActivityHostViewModelType = typeof(MainContainerViewModel),
-                FragmentContentId = Resource.Id.content_frame,
-                AddToBackStack = true,
-                EnterAnimation = Android.Resource.Animation.FadeIn,
-                PopEnterAnimation = Android.Resource.Animation.FadeIn,
-                ExitAnimation = Android.Resource.Animation.SlideOutRight,
-                PopExitAnimation = Android.Resource.Animation.SlideOutRight,
-                PopBackStackImmediateName = typeof(PreEntranceFragment).FragmentJavaName(),
-                PopBackStackImmediateFlag = MvxPopBackStack.Inclusive
-            };
-        }
-
-        private void dd(object sender, EventArgs e)
-        {
-            //var fm = Activity.SupportFragmentManager;
-            //var f = fm.GetBackStackEntryAt(0);
-            //string n = typeof(PreEntranceFragment).FragmentJavaName();
-            //fm.PopBackStack(f.Name, (int)MvxPopBackStack.Inclusive.ToNativePopBackStackFlags());
+            return Utils.CreatePopBackStackAttribute();
         }
     }
 }

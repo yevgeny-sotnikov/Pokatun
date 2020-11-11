@@ -2,22 +2,18 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using MvvmCross.Platforms.Android.Views;
+using MvvmCross.Presenters;
+using MvvmCross.Presenters.Attributes;
+using MvvmCross.ViewModels;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Login;
 using Pokatun.Core.ViewModels.Main;
+using Pokatun.Droid.Views.PreEntrance;
 
 namespace Pokatun.Droid.Views.Login
 {
-    [MvxFragmentPresentation(
-        typeof(MainContainerViewModel),
-        Resource.Id.content_frame,
-        AddToBackStack = true,
-        EnterAnimation = Android.Resource.Animation.SlideInLeft,
-        PopEnterAnimation = Android.Resource.Animation.SlideInLeft,
-        ExitAnimation = Android.Resource.Animation.SlideOutRight,
-        PopExitAnimation = Android.Resource.Animation.SlideOutRight
-    )]
-    public class LoginFragment : BaseFragment<LoginViewModel>
+    public class LoginFragment : BaseFragment<LoginViewModel>, IMvxOverridePresentationAttribute
     {
         private EditText _emailTextField;
         private EditText _passwordTextField;
@@ -59,6 +55,11 @@ namespace Pokatun.Droid.Views.Login
             set.Apply();
 
             return view;
+        }
+
+        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        {
+            return Utils.CreatePopBackStackAttribute();
         }
     }
 }
