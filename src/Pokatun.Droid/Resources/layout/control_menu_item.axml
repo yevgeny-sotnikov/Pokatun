@@ -16,7 +16,7 @@
 	<TextView
 		style="@style/LargeLabel"
 		android:id="@+id/menuTextView"
-		android:text="TOURIST DESC"
+		android:text="TEXT"
 		android:layout_gravity="center_vertical"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

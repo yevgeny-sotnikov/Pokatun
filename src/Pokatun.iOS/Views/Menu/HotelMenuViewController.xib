@@ -11,6 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelMenuViewController">
             <connections>
+                <outlet property="_conditionsAndLoyaltyProgramItem" destination="nbs-rU-R4m" id="Vbp-i8-NT5"/>
+                <outlet property="_exitItem" destination="8Af-0X-PMS" id="RoY-Xx-lwH"/>
+                <outlet property="_hotelRatingItem" destination="3al-Xe-HKI" id="N1t-em-Jn8"/>
+                <outlet property="_myBidsItem" destination="3GO-v4-Vgd" id="e0L-NM-3UD"/>
+                <outlet property="_myHotelNumbersItem" destination="MvW-ar-aCs" id="eA5-PL-y6P"/>
+                <outlet property="_profileItem" destination="wR4-f0-z5s" id="kbI-FB-X6t"/>
+                <outlet property="_securityItem" destination="f5S-Ky-Gl9" id="aPR-8C-dsO"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -19,20 +26,46 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3GO-v4-Vgd" customClass="MenuItem">
-                    <rect key="frame" x="0.0" y="44" width="414" height="85"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="85" id="sLu-v9-SbN"/>
-                    </constraints>
-                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="2iN-dL-R4Z">
+                    <rect key="frame" x="0.0" y="44" width="414" height="595"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="3GO-v4-Vgd" customClass="MenuItem">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="MvW-ar-aCs" customClass="MenuItem">
+                            <rect key="frame" x="0.0" y="85" width="414" height="85"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="3al-Xe-HKI" customClass="MenuItem">
+                            <rect key="frame" x="0.0" y="170" width="414" height="85"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="wR4-f0-z5s" customClass="MenuItem">
+                            <rect key="frame" x="0.0" y="255" width="414" height="85"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-rU-R4m" customClass="MenuItem">
+                            <rect key="frame" x="0.0" y="340" width="414" height="85"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="f5S-Ky-Gl9" customClass="MenuItem">
+                            <rect key="frame" x="0.0" y="425" width="414" height="85"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="8Af-0X-PMS" customClass="MenuItem">
+                            <rect key="frame" x="0.0" y="510" width="414" height="85"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="4vi-nD-TwN"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="4vi-nD-TwN" firstAttribute="trailing" secondItem="3GO-v4-Vgd" secondAttribute="trailing" id="2BR-le-QUN"/>
-                <constraint firstItem="3GO-v4-Vgd" firstAttribute="leading" secondItem="4vi-nD-TwN" secondAttribute="leading" id="kAT-LD-efg"/>
-                <constraint firstItem="3GO-v4-Vgd" firstAttribute="top" secondItem="4vi-nD-TwN" secondAttribute="top" id="t6I-dT-8io"/>
+                <constraint firstAttribute="trailing" secondItem="2iN-dL-R4Z" secondAttribute="trailing" id="LGt-Wi-Yo2"/>
+                <constraint firstItem="2iN-dL-R4Z" firstAttribute="top" secondItem="4vi-nD-TwN" secondAttribute="top" id="M4k-2S-zVE"/>
+                <constraint firstItem="2iN-dL-R4Z" firstAttribute="leading" secondItem="4vi-nD-TwN" secondAttribute="leading" id="cYr-PN-p8U"/>
             </constraints>
             <point key="canvasLocation" x="94" y="3"/>
         </view>

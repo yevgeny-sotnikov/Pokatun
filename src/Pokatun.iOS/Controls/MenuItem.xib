@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuItem">
             <connections>
+                <outlet property="_menuItemIcon" destination="lDY-Dk-MfC" id="0DG-NT-Z7M"/>
+                <outlet property="_menuTextView" destination="ImK-v7-EDh" id="WfT-3z-sx8"/>
                 <outlet property="_rootView" destination="2" id="d4p-Xf-XGN"/>
             </connections>
         </placeholder>
@@ -24,7 +26,7 @@
                         <constraint firstAttribute="height" constant="22" id="Tys-g5-DNo"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ImK-v7-EDh">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ImK-v7-EDh">
                     <rect key="frame" x="64" y="32" width="331" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>

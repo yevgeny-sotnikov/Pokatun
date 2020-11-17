@@ -193,6 +193,20 @@
     <Compile Include="Controls\MenuItem.designer.cs">
       <DependentUpon>MenuItem.cs</DependentUpon>
     </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\applic.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\applic.imageset\applic%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\logout.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\logout.imageset\logout%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\loyaty.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\loyaty.imageset\loyaty%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\password.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\password.imageset\password%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\profile.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\profile.imageset\profile%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\rating.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\rating.imageset\rating%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\room.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\room.imageset\room%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -290,6 +304,13 @@
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\ForgotPassword\" />
+    <Folder Include="Resources\Media.xcassets\applic.imageset\" />
+    <Folder Include="Resources\Media.xcassets\logout.imageset\" />
+    <Folder Include="Resources\Media.xcassets\loyaty.imageset\" />
+    <Folder Include="Resources\Media.xcassets\password.imageset\" />
+    <Folder Include="Resources\Media.xcassets\profile.imageset\" />
+    <Folder Include="Resources\Media.xcassets\rating.imageset\" />
+    <Folder Include="Resources\Media.xcassets\room.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

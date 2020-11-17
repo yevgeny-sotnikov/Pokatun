@@ -1,6 +1,8 @@
 using System;
 using System.ComponentModel;
+using CoreGraphics;
 using Foundation;
+using Pokatun.iOS.Styles;
 using UIKit;
 
 namespace Pokatun.iOS.Controls
@@ -8,6 +10,22 @@ namespace Pokatun.iOS.Controls
     [DesignTimeVisible(true)]
     public sealed partial class MenuItem : UIView
     {
+        private static readonly CGSize ContentSize = new CGSize(NoIntrinsicMetric, 85);
+
+        public string Text
+        {
+            get { return _menuTextView.Text; }
+            set { _menuTextView.Text = value; }
+        }
+
+        public UIImage Image
+        {
+            get { return _menuItemIcon.Image; }
+            set { _menuItemIcon.Image = value; }
+        }
+
+        public override CGSize IntrinsicContentSize => ContentSize;
+
         public MenuItem(IntPtr handle) : base(handle)
         {
         }
@@ -25,7 +43,7 @@ namespace Pokatun.iOS.Controls
             _rootView.RightAnchor.ConstraintEqualTo(RightAnchor, 0).Active = true;
             _rootView.BottomAnchor.ConstraintEqualTo(BottomAnchor, 0).Active = true;
 
-            //Initialise();
+            _menuTextView.ApplyLargeLabelStyle();
         }
     }
 }
