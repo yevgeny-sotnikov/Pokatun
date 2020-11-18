@@ -11,9 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelMenuViewController">
             <connections>
+                <outlet property="_cardView" destination="Sgh-1n-l0P" id="L7g-Hx-GJ6"/>
                 <outlet property="_conditionsAndLoyaltyProgramItem" destination="nbs-rU-R4m" id="Vbp-i8-NT5"/>
                 <outlet property="_exitItem" destination="8Af-0X-PMS" id="RoY-Xx-lwH"/>
                 <outlet property="_hotelRatingItem" destination="3al-Xe-HKI" id="N1t-em-Jn8"/>
+                <outlet property="_menuContainer" destination="2iN-dL-R4Z" id="Yow-bH-6BW"/>
                 <outlet property="_myBidsItem" destination="3GO-v4-Vgd" id="e0L-NM-3UD"/>
                 <outlet property="_myHotelNumbersItem" destination="MvW-ar-aCs" id="eA5-PL-y6P"/>
                 <outlet property="_profileItem" destination="wR4-f0-z5s" id="kbI-FB-X6t"/>
@@ -26,46 +28,74 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="2iN-dL-R4Z">
-                    <rect key="frame" x="0.0" y="44" width="414" height="595"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZd-RY-vh6">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="3GO-v4-Vgd" customClass="MenuItem">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sgh-1n-l0P" customClass="CardView">
+                            <rect key="frame" x="7" y="7" width="400" height="595"/>
+                            <subviews>
+                                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="2iN-dL-R4Z">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="595"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="3GO-v4-Vgd" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="MvW-ar-aCs" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="85" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="3al-Xe-HKI" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="170" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="wR4-f0-z5s" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="255" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-rU-R4m" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="340" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="f5S-Ky-Gl9" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="425" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="8Af-0X-PMS" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="510" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.92941176469999998" green="0.81176470590000005" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </stackView>
+                            </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="MvW-ar-aCs" customClass="MenuItem">
-                            <rect key="frame" x="0.0" y="85" width="414" height="85"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="3al-Xe-HKI" customClass="MenuItem">
-                            <rect key="frame" x="0.0" y="170" width="414" height="85"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="wR4-f0-z5s" customClass="MenuItem">
-                            <rect key="frame" x="0.0" y="255" width="414" height="85"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-rU-R4m" customClass="MenuItem">
-                            <rect key="frame" x="0.0" y="340" width="414" height="85"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="f5S-Ky-Gl9" customClass="MenuItem">
-                            <rect key="frame" x="0.0" y="425" width="414" height="85"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="8Af-0X-PMS" customClass="MenuItem">
-                            <rect key="frame" x="0.0" y="510" width="414" height="85"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="2iN-dL-R4Z" secondAttribute="trailing" id="IRA-Wr-VRP"/>
+                                <constraint firstItem="2iN-dL-R4Z" firstAttribute="leading" secondItem="Sgh-1n-l0P" secondAttribute="leading" id="RfE-NY-PaD"/>
+                                <constraint firstAttribute="bottom" secondItem="2iN-dL-R4Z" secondAttribute="bottom" id="eH1-el-IqE"/>
+                                <constraint firstItem="2iN-dL-R4Z" firstAttribute="top" secondItem="Sgh-1n-l0P" secondAttribute="top" id="iSg-KI-fUu"/>
+                            </constraints>
                         </view>
                     </subviews>
-                </stackView>
+                    <constraints>
+                        <constraint firstItem="Sgh-1n-l0P" firstAttribute="leading" secondItem="9qB-JE-6lB" secondAttribute="leading" constant="7" id="ESB-4K-BP2"/>
+                        <constraint firstItem="Sgh-1n-l0P" firstAttribute="bottom" secondItem="9qB-JE-6lB" secondAttribute="bottom" constant="-7" id="WJQ-C5-Luf"/>
+                        <constraint firstItem="Sgh-1n-l0P" firstAttribute="top" secondItem="9qB-JE-6lB" secondAttribute="top" constant="7" id="cEa-WR-6KV"/>
+                        <constraint firstItem="Sgh-1n-l0P" firstAttribute="trailing" secondItem="9qB-JE-6lB" secondAttribute="trailing" constant="7" id="ewL-Jh-zhi"/>
+                        <constraint firstItem="Sgh-1n-l0P" firstAttribute="width" secondItem="HhE-UO-n6o" secondAttribute="width" constant="-14" id="utJ-3n-T6n"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="9qB-JE-6lB"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="HhE-UO-n6o"/>
+                </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="4vi-nD-TwN"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="2iN-dL-R4Z" secondAttribute="trailing" id="LGt-Wi-Yo2"/>
-                <constraint firstItem="2iN-dL-R4Z" firstAttribute="top" secondItem="4vi-nD-TwN" secondAttribute="top" id="M4k-2S-zVE"/>
-                <constraint firstItem="2iN-dL-R4Z" firstAttribute="leading" secondItem="4vi-nD-TwN" secondAttribute="leading" id="cYr-PN-p8U"/>
+                <constraint firstItem="mZd-RY-vh6" firstAttribute="leading" secondItem="4vi-nD-TwN" secondAttribute="leading" id="5zD-SZ-r8E"/>
+                <constraint firstItem="4vi-nD-TwN" firstAttribute="bottom" secondItem="mZd-RY-vh6" secondAttribute="bottom" id="deB-bu-ygw"/>
+                <constraint firstItem="4vi-nD-TwN" firstAttribute="trailing" secondItem="mZd-RY-vh6" secondAttribute="trailing" id="mXU-Wz-jfg"/>
+                <constraint firstItem="mZd-RY-vh6" firstAttribute="top" secondItem="4vi-nD-TwN" secondAttribute="top" id="zyf-69-IAm"/>
             </constraints>
             <point key="canvasLocation" x="94" y="3"/>
         </view>

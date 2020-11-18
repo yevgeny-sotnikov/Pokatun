@@ -207,6 +207,7 @@
     <ImageAsset Include="Resources\Media.xcassets\rating.imageset\rating%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\room.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\room.imageset\room%402x.png" />
+    <Compile Include="Controls\CardView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0027:Use expression body for accessors")]
+[assembly: SuppressMessage("Style", "IDE0007:Use implicit type")]

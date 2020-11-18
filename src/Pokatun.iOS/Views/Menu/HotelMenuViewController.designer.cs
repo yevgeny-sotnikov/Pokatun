@@ -13,6 +13,9 @@ namespace Pokatun.iOS.Views.Menu
 	partial class HotelMenuViewController
 	{
 		[Outlet]
+		Pokatun.iOS.Controls.CardView _cardView { get; set; }
+
+		[Outlet]
 		Pokatun.iOS.Controls.MenuItem _conditionsAndLoyaltyProgramItem { get; set; }
 
 		[Outlet]
@@ -20,6 +23,9 @@ namespace Pokatun.iOS.Views.Menu
 
 		[Outlet]
 		Pokatun.iOS.Controls.MenuItem _hotelRatingItem { get; set; }
+
+		[Outlet]
+		UIKit.UIStackView _menuContainer { get; set; }
 
 		[Outlet]
 		Pokatun.iOS.Controls.MenuItem _myBidsItem { get; set; }
@@ -35,6 +41,31 @@ namespace Pokatun.iOS.Views.Menu
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (_cardView != null) {
+				_cardView.Dispose ();
+				_cardView = null;
+			}
+
+			if (_conditionsAndLoyaltyProgramItem != null) {
+				_conditionsAndLoyaltyProgramItem.Dispose ();
+				_conditionsAndLoyaltyProgramItem = null;
+			}
+
+			if (_exitItem != null) {
+				_exitItem.Dispose ();
+				_exitItem = null;
+			}
+
+			if (_hotelRatingItem != null) {
+				_hotelRatingItem.Dispose ();
+				_hotelRatingItem = null;
+			}
+
+			if (_menuContainer != null) {
+				_menuContainer.Dispose ();
+				_menuContainer = null;
+			}
+
 			if (_myBidsItem != null) {
 				_myBidsItem.Dispose ();
 				_myBidsItem = null;
@@ -45,29 +76,14 @@ namespace Pokatun.iOS.Views.Menu
 				_myHotelNumbersItem = null;
 			}
 
-			if (_hotelRatingItem != null) {
-				_hotelRatingItem.Dispose ();
-				_hotelRatingItem = null;
-			}
-
 			if (_profileItem != null) {
 				_profileItem.Dispose ();
 				_profileItem = null;
 			}
 
-			if (_conditionsAndLoyaltyProgramItem != null) {
-				_conditionsAndLoyaltyProgramItem.Dispose ();
-				_conditionsAndLoyaltyProgramItem = null;
-			}
-
 			if (_securityItem != null) {
 				_securityItem.Dispose ();
 				_securityItem = null;
-			}
-
-			if (_exitItem != null) {
-				_exitItem.Dispose ();
-				_exitItem = null;
 			}
 		}
 	}
