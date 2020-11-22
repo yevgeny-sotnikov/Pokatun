@@ -52,7 +52,7 @@ namespace Pokatun.iOS.Controls
             }
         }
 
-        [DisplayName("Corner Radius"), Export("CornerRadius"), Browsable(true)]
+        [DisplayName("Corner Radius"), Export("cornerRadius"), Browsable(true)]
         public float CornerRadius
         {
             get { return _cornerRadius; }
@@ -63,7 +63,7 @@ namespace Pokatun.iOS.Controls
             }
         }
 
-        [DisplayName("Shadow Color"), Export("ShadowColor"), Browsable(true)]
+        [DisplayName("Shadow Color"), Export("shadowColor"), Browsable(true)]
         public UIColor ShadowColor
         {
             get { return _shadowColor; }

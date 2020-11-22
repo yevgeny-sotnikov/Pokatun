@@ -208,6 +208,11 @@
     <ImageAsset Include="Resources\Media.xcassets\room.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\room.imageset\room%402x.png" />
     <Compile Include="Controls\CardView.cs" />
+    <InterfaceDefinition Include="Controls\WrappedSplitter.xib" />
+    <Compile Include="Controls\WrappedSplitter.cs" />
+    <Compile Include="Controls\WrappedSplitter.designer.cs">
+      <DependentUpon>WrappedSplitter.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

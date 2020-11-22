@@ -10,18 +10,37 @@ namespace Pokatun.iOS.Controls
     [DesignTimeVisible(true)]
     public sealed partial class MenuItem : UIView
     {
-        private static readonly CGSize ContentSize = new CGSize(NoIntrinsicMetric, 85);
+        private static readonly CGSize ContentSize = new CGSize(NoIntrinsicMetric, 60);
 
+        private UIImage _image;
+        private string _text;
+
+        [DisplayName("Text"), Export("text"), Browsable(true)]
         public string Text
         {
-            get { return _menuTextView.Text; }
-            set { _menuTextView.Text = value; }
+            get { return _menuTextView?.Text; }
+            set
+            {
+                _text = value;
+
+                if (_menuTextView == null) return;
+
+                _menuTextView.Text = value;
+            }
         }
 
+        [DisplayName("Image"), Export("image"), Browsable(true)]
         public UIImage Image
         {
-            get { return _menuItemIcon.Image; }
-            set { _menuItemIcon.Image = value; }
+            get { return _menuItemIcon?.Image; }
+            set
+            {
+                _image = value;
+
+                if (_menuItemIcon == null) return;
+
+                _menuItemIcon.Image = value;
+            }
         }
 
         public override CGSize IntrinsicContentSize => ContentSize;
@@ -36,6 +55,9 @@ namespace Pokatun.iOS.Controls
 
             NSBundle.MainBundle.LoadNib(nameof(MenuItem), this, null);
             AddSubview(_rootView);
+
+            Image = _image;
+            Text = _text;
 
             _rootView.TranslatesAutoresizingMaskIntoConstraints = false;
             _rootView.TopAnchor.ConstraintEqualTo(TopAnchor, 0).Active = true;
