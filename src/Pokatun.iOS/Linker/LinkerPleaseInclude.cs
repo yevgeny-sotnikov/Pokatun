@@ -10,6 +10,7 @@ using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.ViewModels;
+using Pokatun.iOS.Controls;
 using UIKit;
 
 namespace Pokatun.iOS.Linker
@@ -19,6 +20,11 @@ namespace Pokatun.iOS.Linker
     [Preserve(AllMembers = true)]
     public class LinkerPleaseInclude
     {
+        public void Include(MenuItem item)
+        {
+            item.Clicked += (s, e) => item.BackgroundColor = UIColor.Red;
+        }
+
         public void Include(UIButton uiButton)
         {
             uiButton.TouchUpInside += (s, e) =>

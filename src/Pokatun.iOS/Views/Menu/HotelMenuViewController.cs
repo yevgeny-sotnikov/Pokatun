@@ -1,8 +1,7 @@
-using System;
-using CoreGraphics;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Menu;
+using Pokatun.iOS.Controls;
 using Pokatun.iOS.Styles;
 using UIKit;
 
@@ -23,7 +22,7 @@ namespace Pokatun.iOS.Views.Menu
             _cardView.ShadowOpacity = 1;
             _cardView.CornerRadius = 4;
             _cardView.ShadowColor = UIColor.Gray;
-
+            
             _menuContainer.Cornerize(4);
 
             _myBidsItem.Text = Strings.MyBids;
@@ -33,6 +32,17 @@ namespace Pokatun.iOS.Views.Menu
             _conditionsAndLoyaltyProgramItem.Text = Strings.ConditionsAndLoyaltyProgram;
             _securityItem.Text = Strings.Security;
             _exitItem.Text = Strings.Exit;
+
+            #pragma warning disable IDE0008 // Use explicit type
+
+            var set = CreateBindingSet();
+
+            #pragma warning restore IDE0008 // Use explicit type
+
+            
+            set.Bind(_exitItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ExitCommand);
+
+            set.Apply();
         }
     }
 }

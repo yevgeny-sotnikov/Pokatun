@@ -10,6 +10,8 @@ namespace Pokatun.iOS.Controls
     [DesignTimeVisible(true)]
     public sealed partial class MenuItem : UIView
     {
+        private const double ClickAnimationDuration = 0.125;
+
         private static readonly CGSize ContentSize = new CGSize(NoIntrinsicMetric, 60);
 
         private UIImage _image;
@@ -43,6 +45,8 @@ namespace Pokatun.iOS.Controls
             }
         }
 
+        public event EventHandler Clicked;
+
         public override CGSize IntrinsicContentSize => ContentSize;
 
         public MenuItem(IntPtr handle) : base(handle)
@@ -66,6 +70,12 @@ namespace Pokatun.iOS.Controls
             _rootView.BottomAnchor.ConstraintEqualTo(BottomAnchor, 0).Active = true;
 
             _menuTextView.ApplyLargeLabelStyle();
+
+            AddGestureRecognizer(new UITapGestureRecognizer(async () => {
+                Clicked?.Invoke(this, new EventArgs());
+                await AnimateAsync(ClickAnimationDuration, () => { Alpha = 0.5f; BackgroundColor = UIColor.SystemFillColor; });
+                await AnimateAsync(ClickAnimationDuration, () => { Alpha = 1f; BackgroundColor = UIColor.Clear; });
+            }));
         }
     }
 }
