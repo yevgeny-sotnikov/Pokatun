@@ -16,5 +16,6 @@
     <color name="pressedButtonColor">@color/primaryLightColor</color>
 
     <color name="borderColor">#7b7c7f</color>
+    <color name="separatorColor">#bdc3c7</color>
     <color name="faileValidationColor">#e9848d</color>
 </resources>

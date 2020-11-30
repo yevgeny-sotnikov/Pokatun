@@ -6,12 +6,18 @@ namespace Pokatun.iOS.Styles
 {
     public static class ViewStyles
     {
+        public static void Cornerize(this UIView view, nfloat radius)
+        {
+            view.ClipsToBounds = true;
+            view.Layer.CornerRadius = radius;
+            view.Layer.MasksToBounds = true;
+        }
 
         public static void ApplyBorderedEditTextStyle(this UITextField textField)
         {
             textField.SetHeight(40);
             textField.BorderStyle = UITextBorderStyle.None;
-            textField.Layer.CornerRadius = 19;
+            textField.Cornerize(19);
             textField.Layer.BorderWidth = 1;
             textField.Layer.BorderColor = ColorPalette.BorderColor.CGColor;
             textField.TextAlignment = UITextAlignment.Center;
@@ -26,7 +32,7 @@ namespace Pokatun.iOS.Styles
             button.ClipsToBounds = true;
             button.Font = Fonts.HelveticaNeueCyrLightGigantic;
             button.SetHeight(75);
-            button.Layer.CornerRadius = 37;
+            button.Cornerize(37);
             button.SetBackgroundImage(CreateBackgroundImage(ColorPalette.ButtonDefault), UIControlState.Normal);
             button.SetBackgroundImage(CreateBackgroundImage(ColorPalette.ButtonDisabled), UIControlState.Disabled);
 

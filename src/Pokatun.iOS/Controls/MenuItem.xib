@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuItem">
+            <connections>
+                <outlet property="_menuItemIcon" destination="lDY-Dk-MfC" id="0DG-NT-Z7M"/>
+                <outlet property="_menuTextView" destination="ImK-v7-EDh" id="WfT-3z-sx8"/>
+                <outlet property="_rootView" destination="2" id="d4p-Xf-XGN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lDY-Dk-MfC">
+                    <rect key="frame" x="13" y="19" width="22" height="22"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                    </accessibility>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="22" id="LKn-8Y-kwM"/>
+                        <constraint firstAttribute="height" constant="22" id="Tys-g5-DNo"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ImK-v7-EDh">
+                    <rect key="frame" x="48" y="19.5" width="347" height="21"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                    </accessibility>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="lDY-Dk-MfC" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="13" id="1Lr-ih-ime"/>
+                <constraint firstItem="ImK-v7-EDh" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="4Vm-xn-2vn"/>
+                <constraint firstItem="ImK-v7-EDh" firstAttribute="leading" secondItem="lDY-Dk-MfC" secondAttribute="trailing" constant="13" id="Kal-QN-Kkp"/>
+                <constraint firstAttribute="trailing" secondItem="ImK-v7-EDh" secondAttribute="trailing" constant="19" id="hg8-H3-9d1"/>
+                <constraint firstItem="lDY-Dk-MfC" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="wd0-Nb-GJV"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="90" y="3"/>
+        </view>
+    </objects>
+</document>

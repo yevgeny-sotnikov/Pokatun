@@ -99,7 +99,7 @@ namespace Pokatun.Core.ViewModels.Registration
 
         private MvxAsyncCommand _createAccountCommand;
 
-        public IMvxCommand СreateAccountCommand
+        public IMvxAsyncCommand СreateAccountCommand
         {
             get
             {

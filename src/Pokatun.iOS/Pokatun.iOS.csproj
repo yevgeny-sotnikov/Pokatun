@@ -24,7 +24,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <MtouchExtraArgs>--linkskip=Pokatun.Core</MtouchExtraArgs>
-    <MtouchSdkVersion>13.6</MtouchSdkVersion>
+    <MtouchSdkVersion>14.1</MtouchSdkVersion>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
@@ -187,6 +187,32 @@
     <Compile Include="Views\ForgotPassword\NewPasswordViewController.designer.cs">
       <DependentUpon>NewPasswordViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <InterfaceDefinition Include="Controls\MenuItem.xib" />
+    <Compile Include="Controls\MenuItem.cs" />
+    <Compile Include="Controls\MenuItem.designer.cs">
+      <DependentUpon>MenuItem.cs</DependentUpon>
+    </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\applic.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\applic.imageset\applic%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\logout.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\logout.imageset\logout%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\loyaty.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\loyaty.imageset\loyaty%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\password.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\password.imageset\password%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\profile.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\profile.imageset\profile%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\rating.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\rating.imageset\rating%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\room.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\room.imageset\room%402x.png" />
+    <Compile Include="Controls\CardView.cs" />
+    <InterfaceDefinition Include="Controls\WrappedSplitter.xib" />
+    <Compile Include="Controls\WrappedSplitter.cs" />
+    <Compile Include="Controls\WrappedSplitter.designer.cs">
+      <DependentUpon>WrappedSplitter.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -284,6 +310,13 @@
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\ForgotPassword\" />
+    <Folder Include="Resources\Media.xcassets\applic.imageset\" />
+    <Folder Include="Resources\Media.xcassets\logout.imageset\" />
+    <Folder Include="Resources\Media.xcassets\loyaty.imageset\" />
+    <Folder Include="Resources\Media.xcassets\password.imageset\" />
+    <Folder Include="Resources\Media.xcassets\profile.imageset\" />
+    <Folder Include="Resources\Media.xcassets\rating.imageset\" />
+    <Folder Include="Resources\Media.xcassets\room.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

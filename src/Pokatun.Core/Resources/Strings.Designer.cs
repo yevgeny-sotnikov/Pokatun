@@ -358,5 +358,47 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("WriteVerificationCodeMessage", resourceCulture);
             }
         }
+        
+        public static string MyBids {
+            get {
+                return ResourceManager.GetString("MyBids", resourceCulture);
+            }
+        }
+        
+        public static string MyHotelNumbers {
+            get {
+                return ResourceManager.GetString("MyHotelNumbers", resourceCulture);
+            }
+        }
+        
+        public static string HotelRating {
+            get {
+                return ResourceManager.GetString("HotelRating", resourceCulture);
+            }
+        }
+        
+        public static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        public static string ConditionsAndLoyaltyProgram {
+            get {
+                return ResourceManager.GetString("ConditionsAndLoyaltyProgram", resourceCulture);
+            }
+        }
+        
+        public static string Security {
+            get {
+                return ResourceManager.GetString("Security", resourceCulture);
+            }
+        }
+        
+        public static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
     }
 }

@@ -1,21 +1,90 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Visual Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
 using Foundation;
-using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace Pokatun.iOS.Views.Menu
 {
-    [Register("HotelMenuViewController")]
-    partial class HotelMenuViewController
-    {
-        void ReleaseDesignerOutlets()
-        {
-        }
-    }
+	[Register ("HotelMenuViewController")]
+	partial class HotelMenuViewController
+	{
+		[Outlet]
+		Pokatun.iOS.Controls.CardView _cardView { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.MenuItem _conditionsAndLoyaltyProgramItem { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.MenuItem _exitItem { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.MenuItem _hotelRatingItem { get; set; }
+
+		[Outlet]
+		UIKit.UIStackView _menuContainer { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.MenuItem _myBidsItem { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.MenuItem _myHotelNumbersItem { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.MenuItem _profileItem { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.MenuItem _securityItem { get; set; }
+		
+		void ReleaseDesignerOutlets ()
+		{
+			if (_cardView != null) {
+				_cardView.Dispose ();
+				_cardView = null;
+			}
+
+			if (_conditionsAndLoyaltyProgramItem != null) {
+				_conditionsAndLoyaltyProgramItem.Dispose ();
+				_conditionsAndLoyaltyProgramItem = null;
+			}
+
+			if (_exitItem != null) {
+				_exitItem.Dispose ();
+				_exitItem = null;
+			}
+
+			if (_hotelRatingItem != null) {
+				_hotelRatingItem.Dispose ();
+				_hotelRatingItem = null;
+			}
+
+			if (_menuContainer != null) {
+				_menuContainer.Dispose ();
+				_menuContainer = null;
+			}
+
+			if (_myBidsItem != null) {
+				_myBidsItem.Dispose ();
+				_myBidsItem = null;
+			}
+
+			if (_myHotelNumbersItem != null) {
+				_myHotelNumbersItem.Dispose ();
+				_myHotelNumbersItem = null;
+			}
+
+			if (_profileItem != null) {
+				_profileItem.Dispose ();
+				_profileItem = null;
+			}
+
+			if (_securityItem != null) {
+				_securityItem.Dispose ();
+				_securityItem = null;
+			}
+		}
+	}
 }

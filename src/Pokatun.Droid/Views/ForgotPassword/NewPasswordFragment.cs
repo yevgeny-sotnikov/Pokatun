@@ -12,22 +12,18 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using MvvmCross.Platforms.Android.Views;
+using MvvmCross.Presenters;
+using MvvmCross.Presenters.Attributes;
+using MvvmCross.ViewModels;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.ForgotPassword;
 using Pokatun.Core.ViewModels.Main;
+using Pokatun.Droid.Views.PreEntrance;
 
 namespace Pokatun.Droid.Views.ForgotPassword
 {
-    [MvxFragmentPresentation(
-        typeof(MainContainerViewModel),
-        Resource.Id.content_frame,
-        AddToBackStack = true,
-        EnterAnimation = Android.Resource.Animation.SlideInLeft,
-        PopEnterAnimation = Android.Resource.Animation.SlideInLeft,
-        ExitAnimation = Android.Resource.Animation.SlideOutRight,
-        PopExitAnimation = Android.Resource.Animation.SlideOutRight
-    )]
-    public sealed class NewPasswordFragment : BaseFragment<NewPasswordViewModel>
+    public sealed class NewPasswordFragment : BaseFragment<NewPasswordViewModel>, IMvxOverridePresentationAttribute
     {
         private EditText _passwordEditText;
         private EditText _confirmPasswordEditText;
@@ -63,6 +59,11 @@ namespace Pokatun.Droid.Views.ForgotPassword
             set.Apply();
 
             return view;
+        }
+
+        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        {
+            return Utils.CreatePopBackStackAttribute();
         }
     }
 }
