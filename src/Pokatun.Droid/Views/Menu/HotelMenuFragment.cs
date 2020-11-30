@@ -23,7 +23,7 @@ using Pokatun.Droid.Controls;
 using Pokatun.Droid.Views.ChoiseUserRole;
 using Pokatun.Droid.Views.PreEntrance;
 using Pokatun.Droid.Views.Registration;
-
+using MvvmCross.Platforms.Android.Binding;
 namespace Pokatun.Droid.Views.Menu
 {
     [MvxFragmentPresentation(
@@ -74,6 +74,15 @@ namespace Pokatun.Droid.Views.Menu
             _securityItem.SetImageResource(Resource.Drawable.password);
             _exitItem.SetImageResource(Resource.Drawable.logout);
 
+            #pragma warning disable IDE0008 // Use explicit type
+
+            var set = CreateBindingSet();
+
+            #pragma warning restore IDE0008 // Use explicit type
+            
+            set.Bind(_exitItem).For(_exitItem.BindClick()).To(vm => vm.ExitCommand);
+
+            set.Apply();
 
             return view;
         }
