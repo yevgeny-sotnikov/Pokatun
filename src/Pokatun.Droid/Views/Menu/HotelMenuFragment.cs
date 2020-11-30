@@ -1,28 +1,10 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
-using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Droid.Controls;
-using Pokatun.Droid.Views.ChoiseUserRole;
-using Pokatun.Droid.Views.PreEntrance;
-using Pokatun.Droid.Views.Registration;
 using MvvmCross.Platforms.Android.Binding;
 namespace Pokatun.Droid.Views.Menu
 {

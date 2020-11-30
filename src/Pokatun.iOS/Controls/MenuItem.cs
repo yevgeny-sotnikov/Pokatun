@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using CoreGraphics;
 using Foundation;
 using Pokatun.iOS.Styles;
@@ -10,7 +11,7 @@ namespace Pokatun.iOS.Controls
     [DesignTimeVisible(true)]
     public sealed partial class MenuItem : UIView
     {
-        private const double ClickAnimationDuration = 0.125;
+        private const double ClickAnimationDuration = 0.062;
 
         private static readonly CGSize ContentSize = new CGSize(NoIntrinsicMetric, 60);
 
@@ -71,11 +72,14 @@ namespace Pokatun.iOS.Controls
 
             _menuTextView.ApplyLargeLabelStyle();
 
-            AddGestureRecognizer(new UITapGestureRecognizer(async () => {
-                Clicked?.Invoke(this, new EventArgs());
-                await AnimateAsync(ClickAnimationDuration, () => { Alpha = 0.5f; BackgroundColor = UIColor.SystemFillColor; });
-                await AnimateAsync(ClickAnimationDuration, () => { Alpha = 1f; BackgroundColor = UIColor.Clear; });
-            }));
+            AddGestureRecognizer(new UITapGestureRecognizer(ClickAnimationAsync));
+        }
+
+        private async void ClickAnimationAsync()
+        {
+            await AnimateAsync(ClickAnimationDuration, () => { Alpha = 0.5f; BackgroundColor = UIColor.SystemFillColor; });
+            await AnimateAsync(ClickAnimationDuration, () => { Alpha = 1f; BackgroundColor = UIColor.Clear; });
+            Clicked?.Invoke(this, new EventArgs());
         }
     }
 }
