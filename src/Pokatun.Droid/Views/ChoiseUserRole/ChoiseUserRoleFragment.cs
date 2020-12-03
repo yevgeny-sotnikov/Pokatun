@@ -30,6 +30,8 @@ namespace Pokatun.Droid.Views.ChoiseUserRole
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_choise_user_role;
 
+        protected override bool IsHeaderBackButtonVisible => false;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = base.OnCreateView(inflater, container, savedInstanceState);

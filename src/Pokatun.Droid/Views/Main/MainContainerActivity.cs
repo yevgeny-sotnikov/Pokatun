@@ -43,8 +43,6 @@ namespace Pokatun.Droid.Views.Main
             ToolbarLogo = FindViewById<ImageView>(Resource.Id.toolbarLogo);
             ToolbarTitleLabel = FindViewById<TextView>(Resource.Id.toolbarTitleLabel);
             SetSupportActionBar(Toolbar);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            SupportActionBar.SetDisplayShowHomeEnabled(true);
             SupportActionBar.SetDisplayShowTitleEnabled(false);
         }
 

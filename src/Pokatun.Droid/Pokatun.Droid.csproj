@@ -80,6 +80,7 @@
     <Compile Include="Views\ForgotPassword\NewPasswordFragment.cs" />
     <Compile Include="Controls\MenuItem.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="Views\Profile\EditHotelProfileFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -354,6 +355,10 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_edit_hotel_profile.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -404,6 +409,7 @@
     <Folder Include="Views\Login\" />
     <Folder Include="Views\ForgotPassword\" />
     <Folder Include="Controls\" />
+    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

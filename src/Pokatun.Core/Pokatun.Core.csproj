@@ -21,6 +21,7 @@
     <Folder Include="ViewModels\Menu\" />
     <Folder Include="ViewModels\Login\" />
     <Folder Include="ViewModels\ForgotPassword\" />
+    <Folder Include="ViewModels\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">

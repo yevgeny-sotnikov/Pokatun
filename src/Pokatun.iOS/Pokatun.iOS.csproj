@@ -213,6 +213,11 @@
     <Compile Include="Controls\WrappedSplitter.designer.cs">
       <DependentUpon>WrappedSplitter.cs</DependentUpon>
     </Compile>
+    <InterfaceDefinition Include="Views\Profile\EditHotelProfileViewController.xib" />
+    <Compile Include="Views\Profile\EditHotelProfileViewController.cs" />
+    <Compile Include="Views\Profile\EditHotelProfileViewController.designer.cs">
+      <DependentUpon>EditHotelProfileViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -317,6 +322,7 @@
     <Folder Include="Resources\Media.xcassets\profile.imageset\" />
     <Folder Include="Resources\Media.xcassets\rating.imageset\" />
     <Folder Include="Resources\Media.xcassets\room.imageset\" />
+    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
