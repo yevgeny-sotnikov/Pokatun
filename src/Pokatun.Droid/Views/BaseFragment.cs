@@ -18,6 +18,8 @@ namespace Pokatun.Droid.Views
 
         private TextView ToolbarTitleLabel => CompatActivity.ToolbarTitleLabel;
 
+        protected ImageButton ToolbarRightButton => CompatActivity.ToolbarRightButton;
+
         protected virtual bool IsHeaderBackButtonVisible => true;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -39,6 +41,7 @@ namespace Pokatun.Droid.Views
             
             ToolbarLogo.Visibility = titleNotExists ? ViewStates.Visible : ViewStates.Gone;
             ToolbarTitleLabel.Visibility = titleNotExists ? ViewStates.Gone : ViewStates.Visible;
+            ToolbarRightButton.Visibility = ViewStates.Gone;
 
             ToolbarTitleLabel.Text = title;
         }

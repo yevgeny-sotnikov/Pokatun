@@ -1,6 +1,7 @@
 using Android.App;
 using Android.OS;
 using Android.Views;
+using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using MvvmCross.Platforms.Android.Views.Fragments;
@@ -23,6 +24,7 @@ namespace Pokatun.Droid.Views.Profile
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_profile;
 
         protected override bool IsHeaderBackButtonVisible => false;
+        
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -34,10 +36,20 @@ namespace Pokatun.Droid.Views.Profile
 
             #pragma warning restore IDE0008 // Use explicit type
 
+            set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand);
+
             set.Apply();
 
-
             return view;
+        }
+
+        public override void OnStart()
+        {
+            base.OnStart();
+
+            ToolbarRightButton.SetImageResource(Resource.Drawable.close);
+            ToolbarRightButton.Visibility = ViewStates.Visible;
+
         }
     }
 }

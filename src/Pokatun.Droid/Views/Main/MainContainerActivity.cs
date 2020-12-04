@@ -28,6 +28,8 @@ namespace Pokatun.Droid.Views.Main
 
         public TextView ToolbarTitleLabel { get; private set; }
 
+        public ImageButton ToolbarRightButton { get; private set; }
+
         protected override int ActivityLayoutId => Resource.Layout.activity_main_container;
 
         protected override void OnCreate(Bundle bundle)
@@ -42,6 +44,8 @@ namespace Pokatun.Droid.Views.Main
             Toolbar = FindViewById<ToolbarX>(Resource.Id.toolbar);
             ToolbarLogo = FindViewById<ImageView>(Resource.Id.toolbarLogo);
             ToolbarTitleLabel = FindViewById<TextView>(Resource.Id.toolbarTitleLabel);
+            ToolbarRightButton = FindViewById<ImageButton>(Resource.Id.toolbarRightButton);
+
             SetSupportActionBar(Toolbar);
             SupportActionBar.SetDisplayShowTitleEnabled(false);
         }
