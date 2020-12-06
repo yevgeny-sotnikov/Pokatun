@@ -8,84 +8,68 @@
     android:paddingBottom="58dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:src="@drawable/pass"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-            <TextView
-                android:text="Private data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:singleLine="true"
-                />
-        </LinearLayout>
-        <Space
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"/>
-        <LinearLayout
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="HotelInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:singleLine="true"
-                />
-            <ImageView
-                android:src="@drawable/hotel_info"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </LinearLayout>
-    </LinearLayout>
-    <View
-        android:background="#f1c40f"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        />
-    <ScrollView
-		android:overScrollMode="never"
-		android:requiresFadingEdge="vertical"
+
+    <TabHost
+        android:id="@android:id/tabhost"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
         <LinearLayout
-            android:paddingTop="23dp"
-            android:paddingBottom="23dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <TextView
-                android:text="HotelInfo"
-                android:layout_width="wrap_content"
+
+            <TabWidget
+                android:id="@android:id/tabs" 
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:singleLine="true"
                 />
+
+            <View
+                android:background="#f1c40f"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                />
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <ScrollView
+                    android:id="@+id/personalDataTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Personal data"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                </ScrollView>
+
+                <ScrollView
+                    android:id="@+id/hotelInfoTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Hotel info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                </ScrollView>
+            </FrameLayout>
         </LinearLayout>
-    </ScrollView>
+    </TabHost>
+    
     <Button
 		style="@style/BigButton"
 		android:text="SAVE"

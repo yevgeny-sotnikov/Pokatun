@@ -30,6 +30,13 @@
     <style name="AppTheme.Splash" parent="AppTheme.Splash.Base">
     </style>
 
+    <style name="InfoTabLabel">
+        <item name="android:textColor">@color/tab_text_color</item>
+        <item name="android:textSize">@dimen/font_large</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
     <style name="LabelBase">
         <item name="android:textColor">@color/primaryTextColor</item>
     </style>
