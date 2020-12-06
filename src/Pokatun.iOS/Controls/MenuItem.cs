@@ -18,7 +18,7 @@ namespace Pokatun.iOS.Controls
         private UIImage _image;
         private string _text;
 
-        [DisplayName("Text"), Export("text"), Browsable(true)]
+        [DisplayName(nameof(Text)), Export("text"), Browsable(true)]
         public string Text
         {
             get { return _menuTextView?.Text; }
@@ -32,7 +32,7 @@ namespace Pokatun.iOS.Controls
             }
         }
 
-        [DisplayName("Image"), Export("image"), Browsable(true)]
+        [DisplayName(nameof(Image)), Export("image"), Browsable(true)]
         public UIImage Image
         {
             get { return _menuItemIcon?.Image; }

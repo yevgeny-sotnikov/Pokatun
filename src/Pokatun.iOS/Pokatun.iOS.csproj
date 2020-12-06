@@ -218,6 +218,12 @@
     <Compile Include="Views\Profile\EditHotelProfileViewController.designer.cs">
       <DependentUpon>EditHotelProfileViewController.cs</DependentUpon>
     </Compile>
+    <InterfaceDefinition Include="Controls\Tabs\PersonalDataTab.xib" />
+    <InterfaceDefinition Include="Controls\Tabs\HotelInfoTab.xib" />
+    <Compile Include="Controls\Tabs\HotelProfileTab.cs" />
+    <Compile Include="Controls\Tabs\HotelProfileTab.designer.cs">
+      <DependentUpon>Controls\Tabs\HotelProfileTab.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -323,6 +329,7 @@
     <Folder Include="Resources\Media.xcassets\rating.imageset\" />
     <Folder Include="Resources\Media.xcassets\room.imageset\" />
     <Folder Include="Views\Profile\" />
+    <Folder Include="Controls\Tabs\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

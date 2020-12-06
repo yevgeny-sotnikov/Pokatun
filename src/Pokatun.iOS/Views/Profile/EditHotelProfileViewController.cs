@@ -7,7 +7,7 @@ using UIKit;
 namespace Pokatun.iOS.Views.Profile
 {
     [MvxModalPresentation(WrapInNavigationController = true, ModalPresentationStyle = UIModalPresentationStyle.BlurOverFullScreen)]
-    public partial class EditHotelProfileViewController : BaseViewController<EditHotelProfileViewModel>, IUIAdaptivePresentationControllerDelegate
+    public partial class EditHotelProfileViewController : BaseViewController<EditHotelProfileViewModel>
     {
         public EditHotelProfileViewController() : base(nameof(EditHotelProfileViewController), null)
         {
@@ -17,12 +17,6 @@ namespace Pokatun.iOS.Views.Profile
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
-        }
-
-        [Export("presentationControllerDidDismiss:")]
-        public void DidDismiss(UIPresentationController presentationController)
-        {
-            ViewModel.NavigationService.Close(ViewModel);
         }
 
         public override void DidReceiveMemoryWarning()
