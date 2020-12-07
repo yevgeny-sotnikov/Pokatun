@@ -18,17 +18,17 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pr7-ct-cdD">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pr7-ct-cdD">
                     <rect key="frame" x="0.0" y="4" width="414" height="22"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm9-yB-WPp">
-                            <rect key="frame" x="0.0" y="0.0" width="384" height="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm9-yB-WPp">
+                            <rect key="frame" x="0.0" y="1" width="384" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applic" translatesAutoresizingMaskIntoConstraints="NO" id="DUo-zD-Rmo">
-                            <rect key="frame" x="392" y="0.0" width="22" height="22"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotel_info" translatesAutoresizingMaskIntoConstraints="NO" id="DUo-zD-Rmo">
+                            <rect key="frame" x="392" y="3" width="22" height="16.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="22" id="5hU-xN-pft"/>
                             </constraints>
@@ -48,6 +48,6 @@
         </view>
     </objects>
     <resources>
-        <image name="applic" width="16.5" height="16.5"/>
+        <image name="hotel_info" width="16.5" height="16.5"/>
     </resources>
 </document>

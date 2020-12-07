@@ -10,20 +10,16 @@ namespace Pokatun.iOS.Controls.Tabs
     [Register(nameof(HotelProfileTab))]
     public partial class HotelProfileTab : UIView
     {
-        private bool _selected;
-
         [DisplayName(nameof(Selected)), Export("selected"), Browsable(true)]
-        public bool Selected
-        {
-            get { return _selected; }
-            set
-            {
-                _selected = value;
-            }
-        }
+        public bool Selected { get; set; }
 
         [DisplayName(nameof(NibName)), Export("nibName"), Browsable(true)]
         public string NibName { get; set; }
+
+        [DisplayName(nameof(TabContentViewTag)), Export("tabContentViewTag"), Browsable(true)]
+        public nint TabContentViewTag { get; set; }
+
+        public event EventHandler Tapped;
 
         public HotelProfileTab(IntPtr handle) : base(handle)
         {
@@ -43,6 +39,13 @@ namespace Pokatun.iOS.Controls.Tabs
             rootView.LeftAnchor.ConstraintEqualTo(LeftAnchor, 0).Active = true;
             rootView.RightAnchor.ConstraintEqualTo(RightAnchor, 0).Active = true;
             rootView.BottomAnchor.ConstraintEqualTo(BottomAnchor, 0).Active = true;
+
+            rootView.AddGestureRecognizer(new UITapGestureRecognizer(OnTapped));
+        }
+
+        private void OnTapped()
+        {
+            Tapped?.Invoke(this, new EventArgs());
         }
     }
 }

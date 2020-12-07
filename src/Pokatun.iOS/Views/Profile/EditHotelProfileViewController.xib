@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,35 +19,70 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="q1f-3A-ved">
-                    <rect key="frame" x="0.0" y="44" width="414" height="30"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvg-oj-uI6" customClass="TabHost">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6b-8O-bj3" customClass="HotelProfileTab">
-                            <rect key="frame" x="0.0" y="0.0" width="207" height="30"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="PersonalDataTab"/>
-                            </userDefinedRuntimeAttributes>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="q1f-3A-ved">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6b-8O-bj3" customClass="HotelProfileTab">
+                                    <rect key="frame" x="0.0" y="0.0" width="207" height="30"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="PersonalDataTab"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="tabContentViewTag">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="selected" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9k0-w7-D2e" customClass="HotelProfileTab">
+                                    <rect key="frame" x="207" y="0.0" width="207" height="30"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="HotelInfoTab"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="tabContentViewTag">
+                                            <integer key="value" value="2"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="6d3-2O-Br0"/>
+                            </constraints>
+                        </stackView>
+                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aPL-rQ-HZN">
+                            <rect key="frame" x="0.0" y="30" width="414" height="788"/>
+                            <color key="backgroundColor" systemColor="systemYellowColor"/>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9k0-w7-D2e" customClass="HotelProfileTab">
-                            <rect key="frame" x="207" y="0.0" width="207" height="30"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="HotelInfoTab"/>
-                            </userDefinedRuntimeAttributes>
+                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l7M-iB-gzy">
+                            <rect key="frame" x="0.0" y="30" width="414" height="788"/>
+                            <color key="backgroundColor" systemColor="systemRedColor"/>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="6d3-2O-Br0"/>
+                        <constraint firstItem="aPL-rQ-HZN" firstAttribute="leading" secondItem="fvg-oj-uI6" secondAttribute="leading" id="1VD-DR-CZF"/>
+                        <constraint firstAttribute="bottom" secondItem="aPL-rQ-HZN" secondAttribute="bottom" id="7Ss-rk-ESU"/>
+                        <constraint firstItem="aPL-rQ-HZN" firstAttribute="top" secondItem="q1f-3A-ved" secondAttribute="bottom" id="BNf-vU-eRP"/>
+                        <constraint firstItem="l7M-iB-gzy" firstAttribute="leading" secondItem="fvg-oj-uI6" secondAttribute="leading" id="Clf-Ct-zf4"/>
+                        <constraint firstAttribute="trailing" secondItem="l7M-iB-gzy" secondAttribute="trailing" id="HKV-WO-K5g"/>
+                        <constraint firstAttribute="trailing" secondItem="q1f-3A-ved" secondAttribute="trailing" id="HOf-Uc-GyX"/>
+                        <constraint firstItem="l7M-iB-gzy" firstAttribute="top" secondItem="q1f-3A-ved" secondAttribute="bottom" id="Ob2-vd-Y34"/>
+                        <constraint firstAttribute="trailing" secondItem="aPL-rQ-HZN" secondAttribute="trailing" id="URh-gj-BE8"/>
+                        <constraint firstItem="q1f-3A-ved" firstAttribute="top" secondItem="fvg-oj-uI6" secondAttribute="top" id="VlY-L5-WqV"/>
+                        <constraint firstItem="q1f-3A-ved" firstAttribute="leading" secondItem="fvg-oj-uI6" secondAttribute="leading" id="fe3-xS-FYa"/>
+                        <constraint firstAttribute="bottom" secondItem="l7M-iB-gzy" secondAttribute="bottom" id="o8V-JL-rvQ"/>
                     </constraints>
-                </stackView>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="9o8-j3-1A8"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="9o8-j3-1A8" firstAttribute="trailing" secondItem="q1f-3A-ved" secondAttribute="trailing" id="ddm-rR-nLP"/>
-                <constraint firstItem="q1f-3A-ved" firstAttribute="top" secondItem="9o8-j3-1A8" secondAttribute="top" id="lDm-qK-XWn"/>
-                <constraint firstItem="q1f-3A-ved" firstAttribute="leading" secondItem="9o8-j3-1A8" secondAttribute="leading" id="tvT-iD-Q7X"/>
+                <constraint firstItem="fvg-oj-uI6" firstAttribute="leading" secondItem="9o8-j3-1A8" secondAttribute="leading" id="0iP-fQ-kjC"/>
+                <constraint firstItem="fvg-oj-uI6" firstAttribute="top" secondItem="9o8-j3-1A8" secondAttribute="top" id="HBf-AU-b2Z"/>
+                <constraint firstItem="9o8-j3-1A8" firstAttribute="bottom" secondItem="fvg-oj-uI6" secondAttribute="bottom" id="i1x-fq-3Jm"/>
+                <constraint firstItem="9o8-j3-1A8" firstAttribute="trailing" secondItem="fvg-oj-uI6" secondAttribute="trailing" id="lZS-zq-OzX"/>
             </constraints>
             <point key="canvasLocation" x="109" y="3"/>
         </view>
@@ -55,6 +90,12 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

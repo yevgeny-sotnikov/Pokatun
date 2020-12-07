@@ -224,6 +224,13 @@
     <Compile Include="Controls\Tabs\HotelProfileTab.designer.cs">
       <DependentUpon>Controls\Tabs\HotelProfileTab.cs</DependentUpon>
     </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\hotel_info.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\hotel_info.imageset\hotel_info%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\hotel_info.imageset\hotel_info%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\pass.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\pass.imageset\pass%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\pass.imageset\pass%402x.png" />
+    <Compile Include="Controls\Tabs\TabHost.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -330,6 +337,8 @@
     <Folder Include="Resources\Media.xcassets\room.imageset\" />
     <Folder Include="Views\Profile\" />
     <Folder Include="Controls\Tabs\" />
+    <Folder Include="Resources\Media.xcassets\hotel_info.imageset\" />
+    <Folder Include="Resources\Media.xcassets\pass.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
