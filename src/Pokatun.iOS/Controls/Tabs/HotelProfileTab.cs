@@ -12,7 +12,9 @@ namespace Pokatun.iOS.Controls.Tabs
     public partial class HotelProfileTab : UIView
     {
         private const double TapAnimationDuration = 0.2;
-
+        private readonly nfloat SelectedAlpha = 1;
+        private readonly nfloat UnselectedAlpha = 0.25f;
+        y
         private bool _selected = false;
 
         [DisplayName(nameof(Selected)), Export("selected"), Browsable(true)]
@@ -29,11 +31,11 @@ namespace Pokatun.iOS.Controls.Tabs
 
                 if (value)
                 {
-                     Animate(TapAnimationDuration, () => Alpha = 1f );
+                     Animate(TapAnimationDuration, () => Alpha = SelectedAlpha);
                 }
                 else
                 {
-                    Animate(TapAnimationDuration, () => Alpha = 0.25f);
+                    Animate(TapAnimationDuration, () => Alpha = UnselectedAlpha);
                 }
             }
         }
@@ -61,7 +63,7 @@ namespace Pokatun.iOS.Controls.Tabs
 
             AddSubview(rootView);
 
-            Alpha = Selected ? 1 : 0.25f;
+            Alpha = Selected ? SelectedAlpha : UnselectedAlpha;
 
             rootView.TranslatesAutoresizingMaskIntoConstraints = false;
             rootView.TopAnchor.ConstraintEqualTo(TopAnchor, 0).Active = true;
