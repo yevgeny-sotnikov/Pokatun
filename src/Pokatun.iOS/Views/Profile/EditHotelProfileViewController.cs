@@ -2,6 +2,7 @@ using System;
 using Foundation;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.ViewModels.Profile;
+using Pokatun.iOS.Styles;
 using UIKit;
 
 namespace Pokatun.iOS.Views.Profile
@@ -16,7 +17,10 @@ namespace Pokatun.iOS.Views.Profile
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
             // Perform any additional setup after loading the view, typically from a nib.
+
+            _saveChangesButton.ApplyBigButtonStyle();
         }
 
         public override void DidReceiveMemoryWarning()

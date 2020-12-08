@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditHotelProfileViewController">
             <connections>
+                <outlet property="_saveChangesButton" destination="FOE-q5-ti4" id="pNH-dO-xxH"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -109,7 +110,6 @@
                             <viewLayoutGuide key="frameLayoutGuide" id="m9q-Ns-fcb"/>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemPinkColor"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="sif-dV-uK1" secondAttribute="trailing" id="2oy-N1-A3G"/>
                         <constraint firstItem="e5Q-tO-jrZ" firstAttribute="top" secondItem="SUt-cL-nI9" secondAttribute="top" id="3PY-z8-9aP"/>
@@ -129,7 +129,6 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-q5-ti4">
                     <rect key="frame" x="48" y="771" width="318" height="30"/>
-                    <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Button"/>
                 </button>
             </subviews>
@@ -150,9 +149,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

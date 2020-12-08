@@ -55,6 +55,12 @@ namespace Pokatun.iOS.Styles
             label.TextColor = ColorPalette.PrimaryText;
         }
 
+        public static void ApplyInfoTabLabelStyle(this UILabel label)
+        {
+            label.Font = Fonts.HelveticaNeueCyrBoldLarge;
+            label.TextColor = ColorPalette.TabText;
+        }
+
         public static void ResetStyles(this UITextField textField)
         {
             textField.EditingDidBegin -= OnEditingDidBegin;

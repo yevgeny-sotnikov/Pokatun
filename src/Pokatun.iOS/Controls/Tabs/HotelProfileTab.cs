@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using Foundation;
 using ObjCRuntime;
+using Pokatun.iOS.Styles;
 using UIKit;
 
 namespace Pokatun.iOS.Controls.Tabs
@@ -10,8 +11,32 @@ namespace Pokatun.iOS.Controls.Tabs
     [Register(nameof(HotelProfileTab))]
     public partial class HotelProfileTab : UIView
     {
+        private const double TapAnimationDuration = 0.2;
+
+        private bool _selected = false;
+
         [DisplayName(nameof(Selected)), Export("selected"), Browsable(true)]
-        public bool Selected { get; set; }
+        public bool Selected
+        {
+            get { return _selected; }
+            set
+            {
+                if (_selected == value) return;
+
+                _selected = value;
+
+                if (_imageView == null || _label == null) return;
+
+                if (value)
+                {
+                     Animate(TapAnimationDuration, () => Alpha = 1f );
+                }
+                else
+                {
+                    Animate(TapAnimationDuration, () => Alpha = 0.25f);
+                }
+            }
+        }
 
         [DisplayName(nameof(NibName)), Export("nibName"), Browsable(true)]
         public string NibName { get; set; }
@@ -32,7 +57,11 @@ namespace Pokatun.iOS.Controls.Tabs
             NSArray nib = NSBundle.MainBundle.LoadNib(NibName, this, null);
             UIView rootView = Runtime.GetNSObject<UIView>(nib.ValueAt(0));
 
+            _label.ApplyInfoTabLabelStyle();
+
             AddSubview(rootView);
+
+            Alpha = Selected ? 1 : 0.25f;
 
             rootView.TranslatesAutoresizingMaskIntoConstraints = false;
             rootView.TopAnchor.ConstraintEqualTo(TopAnchor, 0).Active = true;
