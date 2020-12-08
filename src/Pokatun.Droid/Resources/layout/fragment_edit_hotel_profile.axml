@@ -74,7 +74,7 @@
 		style="@style/BigButton"
 		android:text="SAVE"
 		android:layout_width="match_parent"
-		android:id="@+id/touristButton"
+		android:id="@+id/saveChangesButton"
         android:layout_marginBottom="3dp"
         />
 </LinearLayout>

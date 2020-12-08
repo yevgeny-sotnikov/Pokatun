@@ -1,6 +1,5 @@
-using System;
-using Foundation;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Profile;
 using Pokatun.iOS.Styles;
 using UIKit;
@@ -26,6 +25,10 @@ namespace Pokatun.iOS.Views.Profile
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, false);
 
             _saveChangesButton.ApplyBigButtonStyle();
+
+            _personalDataTab.Text = Strings.PersonalData;
+            _hotelInfoTab.Text = Strings.HotelInfo;
+            _saveChangesButton.SetTitle(Strings.SaveChanges, UIControlState.Normal);
 
             #pragma warning disable IDE0008 // Use explicit type
 

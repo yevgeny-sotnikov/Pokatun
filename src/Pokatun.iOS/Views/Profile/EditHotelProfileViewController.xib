@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditHotelProfileViewController">
             <connections>
+                <outlet property="_hotelInfoTab" destination="cNE-a1-MRc" id="O99-Qt-7hE"/>
+                <outlet property="_personalDataTab" destination="Vlg-lJ-85E" id="wOq-q9-SO5"/>
                 <outlet property="_saveChangesButton" destination="FOE-q5-ti4" id="pNH-dO-xxH"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>

@@ -329,6 +329,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string SaveChanges {
+            get {
+                return ResourceManager.GetString("SaveChanges", resourceCulture);
+            }
+        }
+        
         public static string NewPassword {
             get {
                 return ResourceManager.GetString("NewPassword", resourceCulture);
@@ -398,6 +404,18 @@ namespace Pokatun.Core.Resources {
         public static string Exit {
             get {
                 return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        public static string PersonalData {
+            get {
+                return ResourceManager.GetString("PersonalData", resourceCulture);
+            }
+        }
+        
+        public static string HotelInfo {
+            get {
+                return ResourceManager.GetString("HotelInfo", resourceCulture);
             }
         }
     }

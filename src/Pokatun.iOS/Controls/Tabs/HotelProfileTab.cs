@@ -46,6 +46,12 @@ namespace Pokatun.iOS.Controls.Tabs
         [DisplayName(nameof(TabContentViewTag)), Export("tabContentViewTag"), Browsable(true)]
         public nint TabContentViewTag { get; set; }
 
+        public string Text
+        {
+            get { return _label.Text; }
+            set { _label.Text = value; }
+        }
+
         public event EventHandler Tapped;
 
         public HotelProfileTab(IntPtr handle) : base(handle)

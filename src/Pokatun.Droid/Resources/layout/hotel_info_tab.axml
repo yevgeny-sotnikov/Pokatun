@@ -12,6 +12,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/tabLabel"
     		style="@style/InfoTabLabel"
             android:text="Hotel info"
             android:layout_width="wrap_content"

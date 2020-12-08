@@ -154,6 +154,9 @@
     <data name="SavePassword" xml:space="preserve">
         <value>Сохранить пароль</value>
     </data>
+    <data name="SaveChanges" xml:space="preserve">
+        <value>Сохранить изменения</value>
+    </data>
     <data name="NewPassword" xml:space="preserve">
         <value>Новый пароль</value>
     </data>
@@ -192,5 +195,11 @@
     </data>
     <data name="Exit" xml:space="preserve">
         <value>Выход</value>
+    </data>
+    <data name="PersonalData" xml:space="preserve">
+        <value>Личные данные</value>
+    </data>
+    <data name="HotelInfo" xml:space="preserve">
+        <value>Инфо об отеле</value>
     </data>
 </root>

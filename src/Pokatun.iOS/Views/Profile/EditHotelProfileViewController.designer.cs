@@ -13,10 +13,26 @@ namespace Pokatun.iOS.Views.Profile
 	partial class EditHotelProfileViewController
 	{
 		[Outlet]
+		Pokatun.iOS.Controls.Tabs.HotelProfileTab _hotelInfoTab { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.Tabs.HotelProfileTab _personalDataTab { get; set; }
+
+		[Outlet]
 		UIKit.UIButton _saveChangesButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (_personalDataTab != null) {
+				_personalDataTab.Dispose ();
+				_personalDataTab = null;
+			}
+
+			if (_hotelInfoTab != null) {
+				_hotelInfoTab.Dispose ();
+				_hotelInfoTab = null;
+			}
+
 			if (_saveChangesButton != null) {
 				_saveChangesButton.Dispose ();
 				_saveChangesButton = null;

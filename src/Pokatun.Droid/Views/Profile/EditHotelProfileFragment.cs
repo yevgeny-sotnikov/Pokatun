@@ -1,3 +1,4 @@
+using System;
 using Android.App;
 using Android.OS;
 using Android.Views;
@@ -6,6 +7,7 @@ using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using MvvmCross.Platforms.Android.Views.Fragments;
+using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Profile;
 using static Android.Widget.TabHost;
@@ -24,6 +26,7 @@ namespace Pokatun.Droid.Views.Profile
     public sealed class EditHotelProfileFragment : BaseFragment<EditHotelProfileViewModel>
     {
         private TabHost _tabHost;
+        private Button _saveChangesButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_profile;
 
@@ -35,18 +38,14 @@ namespace Pokatun.Droid.Views.Profile
             View view = base.OnCreateView(inflater, container, savedInstanceState);
 
             _tabHost = view.FindViewById<TabHost>(Android.Resource.Id.TabHost);
+            _saveChangesButton = view.FindViewById<Button>(Resource.Id.saveChangesButton);
 
             _tabHost.Setup();
 
-            TabSpec tabSpec = _tabHost.NewTabSpec("personalData");
-            tabSpec.SetContent(Resource.Id.personalDataTab);
-            tabSpec.SetIndicator(LayoutInflater.Inflate(Resource.Layout.personal_data_tab, null));
-            _tabHost.AddTab(tabSpec);
+            _tabHost.AddTab(CreateTab("personalData", Resource.Id.personalDataTab, Resource.Layout.personal_data_tab, Strings.PersonalData));
+            _tabHost.AddTab(CreateTab("hotelInfo", Resource.Id.hotelInfoTab, Resource.Layout.hotel_info_tab, Strings.HotelInfo));
 
-            tabSpec = _tabHost.NewTabSpec("hotelInfo");
-            tabSpec.SetContent(Resource.Id.hotelInfoTab);
-            tabSpec.SetIndicator(LayoutInflater.Inflate(Resource.Layout.hotel_info_tab, null));
-            _tabHost.AddTab(tabSpec);
+            _saveChangesButton.Text = Strings.SaveChanges;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -59,6 +58,21 @@ namespace Pokatun.Droid.Views.Profile
             set.Apply();
 
             return view;
+        }
+
+        private TabSpec CreateTab(string tag, int contentId, int tabLayoutId, string title)
+        {
+            TabSpec tabSpec = _tabHost.NewTabSpec(tag);
+            tabSpec.SetContent(contentId);
+
+            View view = LayoutInflater.Inflate(tabLayoutId, null);
+
+            TextView tabLabel = view.FindViewById<TextView>(Resource.Id.tabLabel);
+            tabLabel.Text = title;
+
+            tabSpec.SetIndicator(view);
+
+            return tabSpec;
         }
 
         public override void OnStart()
