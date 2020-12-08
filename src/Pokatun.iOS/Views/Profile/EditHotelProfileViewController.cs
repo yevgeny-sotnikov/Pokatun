@@ -20,7 +20,22 @@ namespace Pokatun.iOS.Views.Profile
 
             // Perform any additional setup after loading the view, typically from a nib.
 
+            UIBarButtonItem rightBarButtonItem = new UIBarButtonItem();
+            rightBarButtonItem.Image = UIImage.FromBundle("close");
+
+            NavigationItem.SetRightBarButtonItem(rightBarButtonItem, false);
+
             _saveChangesButton.ApplyBigButtonStyle();
+
+            #pragma warning disable IDE0008 // Use explicit type
+
+            var set = CreateBindingSet();
+
+            #pragma warning restore IDE0008 // Use explicit type
+
+            set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.CloseCommand);
+
+            set.Apply();
         }
 
         public override void DidReceiveMemoryWarning()

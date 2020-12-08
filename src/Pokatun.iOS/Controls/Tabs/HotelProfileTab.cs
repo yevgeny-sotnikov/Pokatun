@@ -12,9 +12,9 @@ namespace Pokatun.iOS.Controls.Tabs
     public partial class HotelProfileTab : UIView
     {
         private const double TapAnimationDuration = 0.2;
-        private readonly nfloat SelectedAlpha = 1;
-        private readonly nfloat UnselectedAlpha = 0.25f;
-        y
+        private static readonly nfloat SelectedAlpha = 1;
+        private static readonly nfloat UnselectedAlpha = 0.25f;
+        
         private bool _selected = false;
 
         [DisplayName(nameof(Selected)), Export("selected"), Browsable(true)]

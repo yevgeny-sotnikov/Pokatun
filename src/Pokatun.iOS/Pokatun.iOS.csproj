@@ -231,6 +231,9 @@
     <ImageAsset Include="Resources\Media.xcassets\pass.imageset\pass%403x.png" />
     <ImageAsset Include="Resources\Media.xcassets\pass.imageset\pass%402x.png" />
     <Compile Include="Controls\Tabs\TabHost.cs" />
+    <ImageAsset Include="Resources\Media.xcassets\close.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\close.imageset\close%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\close.imageset\close%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -339,6 +342,7 @@
     <Folder Include="Controls\Tabs\" />
     <Folder Include="Resources\Media.xcassets\hotel_info.imageset\" />
     <Folder Include="Resources\Media.xcassets\pass.imageset\" />
+    <Folder Include="Resources\Media.xcassets\close.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
