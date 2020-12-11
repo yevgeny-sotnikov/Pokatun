@@ -2,15 +2,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-	android:paddingLeft="48dp"
-	android:paddingRight="48dp"
-    android:paddingTop="40dp"
-    android:paddingBottom="58dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TabHost
         android:id="@android:id/tabhost"
+        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -21,11 +18,15 @@
 
             <TabWidget
                 android:id="@android:id/tabs" 
+                android:layout_marginLeft="@dimen/common_left_right_distanse"
+                android:layout_marginRight="@dimen/common_left_right_distanse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
 
             <View
+                android:layout_marginLeft="@dimen/common_left_right_distanse"
+                android:layout_marginRight="@dimen/common_left_right_distanse"
                 android:background="#f1c40f"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
@@ -34,36 +35,151 @@
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp">
+                android:layout_height="match_parent">
 
                 <ScrollView
                     android:id="@+id/personalDataTab"
+            		android:overScrollMode="never"
+		            android:requiresFadingEdge="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <LinearLayout
+                        android:orientation="vertical"
+                    	android:paddingLeft="@dimen/common_left_right_distanse"
+    	                android:paddingRight="@dimen/common_left_right_distanse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Personal data"
+                        <EditText
+                            style="@style/BorderedEditTextWithLeftImage"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+            				android:layout_marginTop="17dp"
+                            android:drawableLeft="@drawable/name"
+    				        android:maxLength="128"
+	    			        android:singleLine="true"
+                            android:hint="full name"
+                            />
+                        <EditText
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/phone"
+				            android:maxLength="16"
+				            android:inputType="phone"
+                            android:hint="phone number"
+                            />
+                        <EditText
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/mail"
+				            android:maxLength="64"
+				            android:inputType="textEmailAddress"
+                            android:hint="email"
+                            />
+                        <EditText
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/pin"
+                            />
+                        <EditText
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/i"
+				            android:maxLength="34"
+				            android:inputType="textPostalAddress"
+                            android:hint="IBAN"
+                            />
+                        <EditText
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/bank"
+				            android:maxLength="64"
+                            android:hint="bank name"
+                            />
+                        <EditText
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+            				android:layout_marginBottom="17dp"
+                            android:drawableLeft="@drawable/i"
+				            android:maxLength="16"
+				            android:inputType="textPostalAddress"
+                            android:hint="bank card"
                             />
                     </LinearLayout>
                 </ScrollView>
 
                 <ScrollView
                     android:id="@+id/hotelInfoTab"
+            		android:overScrollMode="never"
+		            android:requiresFadingEdge="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <LinearLayout
+                        android:orientation="vertical"
+                    	android:paddingLeft="@dimen/common_left_right_distanse"
+    	                android:paddingRight="@dimen/common_left_right_distanse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Hotel info"
+			            <EditText
+				            style="@style/BorderedEditTextWithLeftImage"
+            				android:layout_marginTop="17dp"
+				            android:maxLength="64"
+				            android:singleLine="true"
+				            android:layout_width="match_parent"
+				            android:id="@+id/hotelNameEditText"
+				            />
+			            <EditText
+				            style="@style/BorderedEditTextWithLeftImage"
+				            android:maxLength="16"
+				            android:inputType="phone"
+				            android:layout_width="match_parent"
+				            android:layout_marginTop="16dp"
+                            android:hint="phone number"
+				            android:id="@+id/phoneNumberEditText"
+				            />
+			            <EditText
+				            style="@style/BorderedEditTextWithLeftImage"
+				            android:maxLength="16"
+				            android:inputType="phone"
+				            android:layout_width="match_parent"
+				            android:layout_marginTop="16dp"
+                            android:hint="add phone number"
+				            android:id="@+id/addPhoneNumberButton"
+				            />
+                        <EditText
+                            style="@style/BorderedEditTextWithLeftImage"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/mail"
+				            android:maxLength="64"
+				            android:inputType="textEmailAddress"
+                            android:hint="email"
                             />
+                        <EditText
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/pin"
+                            />
+                        <Button
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/clock"
+				            android:inputType="textEmailAddress"
+                            />
+                        <Button
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/clock"
+				            android:inputType="textEmailAddress"
+                            />
+
                     </LinearLayout>
                 </ScrollView>
             </FrameLayout>
@@ -74,7 +190,9 @@
 		style="@style/BigButton"
 		android:text="SAVE"
 		android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/common_left_right_distanse"
+        android:layout_marginRight="@dimen/common_left_right_distanse"
 		android:id="@+id/saveChangesButton"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="43dp"
         />
 </LinearLayout>

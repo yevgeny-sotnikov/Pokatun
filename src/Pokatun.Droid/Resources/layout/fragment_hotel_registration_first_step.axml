@@ -11,15 +11,14 @@
         android:layout_height="0dp"
 		android:layout_weight="1">
 		<LinearLayout
-			android:layout_marginTop="43dp"
-			android:layout_marginLeft="48dp"
-			android:layout_marginRight="48dp"
-			android:layout_marginBottom="43dp"
+			android:layout_marginLeft="@dimen/common_left_right_distanse"
+			android:layout_marginRight="@dimen/common_left_right_distanse"
 			android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 			<EditText
 				style="@style/BorderedEditText"
+				android:layout_marginTop="43dp"
 				android:maxLength="64"
 				android:singleLine="true"
 				android:layout_width="match_parent"
@@ -52,10 +51,10 @@
 			<EditText
 				style="@style/BorderedEditText"
 				android:maxLength="32"
-				android:layout_marginBottom="50dp"
 				android:inputType="textPassword"
 				android:layout_width="match_parent"
 				android:layout_marginTop="16dp"
+				android:layout_marginBottom="43dp"
 				android:id="@+id/confirmPasswordEditText"
 				/>
 		</LinearLayout>
@@ -63,9 +62,8 @@
 	<Button
 		style="@style/BigButton"
 		android:text="NEXT"
-		android:layout_marginTop="43dp"
-		android:layout_marginLeft="48dp"
-		android:layout_marginRight="48dp"
+		android:layout_marginLeft="@dimen/common_left_right_distanse"
+		android:layout_marginRight="@dimen/common_left_right_distanse"
 		android:layout_marginBottom="43dp"
 		android:layout_width="match_parent"
 		android:id="@+id/furtherButton"
