@@ -38,7 +38,7 @@ namespace Pokatun.iOS.Controls
         [DisplayName(nameof(TextColor)), Export("textColor"), Browsable(true)]
         public UIColor TextColor
         {
-            get { return _textField == null ? _textColor : _textField.TextColor; }
+            get { return _textColor; }
             set
             {
                 _textColor = value;
@@ -188,6 +188,7 @@ namespace Pokatun.iOS.Controls
             _textField.TextAlignment = UITextAlignment.Center;
             _textField.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
             _textField.TextColor = TextColor;
+            _textField.SetTextContentType(UITextContentType.NewPassword);
 
             _textField.EditingChanged += OnEditingChanged;
             _textField.EditingDidBegin += OnEditingDidBegin;
