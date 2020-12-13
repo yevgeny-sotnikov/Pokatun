@@ -7,30 +7,29 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Pokatun.iOS.Views.ForgotPassword
+namespace Pokatun.iOS.Controls
 {
-	[Register ("VerificationCodeViewController")]
-	partial class VerificationCodeViewController
+	partial class BorderedTextField
 	{
 		[Outlet]
-		UIKit.UIButton _button { get; set; }
+		UIKit.UIImageView _leftImageView { get; set; }
 
 		[Outlet]
-		UIKit.UILabel _descriptionLabel { get; set; }
+		UIKit.UIButton _rightButton { get; set; }
 
 		[Outlet]
-		Pokatun.iOS.Controls.BorderedTextField _textField { get; set; }
+		UIKit.UITextField _textField { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (_button != null) {
-				_button.Dispose ();
-				_button = null;
+			if (_leftImageView != null) {
+				_leftImageView.Dispose ();
+				_leftImageView = null;
 			}
 
-			if (_descriptionLabel != null) {
-				_descriptionLabel.Dispose ();
-				_descriptionLabel = null;
+			if (_rightButton != null) {
+				_rightButton.Dispose ();
+				_rightButton = null;
 			}
 
 			if (_textField != null) {

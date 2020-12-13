@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelRegistrationSecondStepViewController">
             <connections>
-                <outlet property="_bankCardOrIbanTextField" destination="0cS-Qp-38o" id="JLA-au-ahE"/>
-                <outlet property="_bankNameTextField" destination="ypD-Of-jfk" id="96z-5A-AIJ"/>
+                <outlet property="_bankCardOrIbanTextField" destination="fmX-t6-h7i" id="HCk-tI-KMS"/>
+                <outlet property="_bankNameTextField" destination="4Na-jC-CSq" id="eZl-bd-YLy"/>
                 <outlet property="_createAccountButton" destination="m6S-bl-dcY" id="xJp-wd-9he"/>
-                <outlet property="_fullCompanyNameTextField" destination="HBZ-KI-fF1" id="BWO-kj-hVO"/>
-                <outlet property="_usreouTextField" destination="0Fc-JU-8jS" id="hvq-PE-nwP"/>
+                <outlet property="_fullCompanyNameTextField" destination="Z3c-F9-gSG" id="tPe-JL-NXT"/>
+                <outlet property="_usreouTextField" destination="QkS-eu-FZ0" id="qtW-nV-tWb"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -27,60 +28,44 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="702"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="TqQ-j6-aH1">
-                            <rect key="frame" x="48" y="43" width="318" height="199"/>
+                            <rect key="frame" x="48" y="43" width="318" height="223"/>
                             <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HBZ-KI-fF1">
-                                    <rect key="frame" x="0.0" y="0.0" width="318" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" textContentType="organization"/>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="Z3c-F9-gSG" userLabel="full company name" customClass="BorderedTextField">
+                                    <rect key="frame" x="0.0" y="0.0" width="318" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="19"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                            <integer key="value" value="128"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0cS-Qp-38o">
-                                    <rect key="frame" x="0.0" y="55" width="318" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                </view>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="fmX-t6-h7i" userLabel="card or IBAN" customClass="BorderedTextField">
+                                    <rect key="frame" x="0.0" y="61" width="318" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="19"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                            <integer key="value" value="34"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ypD-Of-jfk">
-                                    <rect key="frame" x="0.0" y="110" width="318" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" textContentType="organization"/>
+                                </view>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="4Na-jC-CSq" userLabel="bank name" customClass="BorderedTextField">
+                                    <rect key="frame" x="0.0" y="122" width="318" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="19"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                            <integer key="value" value="64"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Fc-JU-8jS">
-                                    <rect key="frame" x="0.0" y="165" width="318" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                </view>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="QkS-eu-FZ0" userLabel="USREOU" customClass="BorderedTextField">
+                                    <rect key="frame" x="0.0" y="183" width="318" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="19"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                            <integer key="value" value="8"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                </textField>
+                                </view>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -111,4 +96,9 @@
             <point key="canvasLocation" x="94" y="3"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -1,4 +1,5 @@
-﻿using MvvmCross.Binding.Bindings.Target;
+﻿using System;
+using MvvmCross.Binding.Bindings.Target;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Platforms.Ios.Core;
 using Pokatun.Core;
@@ -10,12 +11,30 @@ namespace Pokatun.iOS
     {
         protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
         {
-            base.FillTargetFactories(registry);
-
             registry.RegisterCustomBindingFactory<MenuItem>(
                 nameof(MenuItem.Clicked),
                 view => new MvxEventNameTargetBinding<MenuItem>(view, nameof(MenuItem.Clicked))
             );
+
+            Type textFieldType = typeof(BorderedTextField);
+
+            //registry.RegisterCustomBindingFactory<BorderedTextField>(
+            //    v => v.Text,
+            //    view => new MvxWithEventPropertyInfoTargetBinding(
+            //        view,
+            //        textFieldType.GetProperty(v => v.Text)
+            //    )
+            //);
+
+            //registry.RegisterCustomBindingFactory<BorderedTextField>(
+            //    v => v.Highlighted,
+            //    view => new MvxPropertyInfoTargetBinding(
+            //        view,
+            //        textFieldType.GetProperty(v => v.Highlighted)
+            //    )
+            //);
+
+            base.FillTargetFactories(registry);
         }
     }
 }

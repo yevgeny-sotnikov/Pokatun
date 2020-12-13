@@ -20,6 +20,11 @@ namespace Pokatun.iOS.Linker
     [Preserve(AllMembers = true)]
     public class LinkerPleaseInclude
     {
+        public void Include(BorderedTextField textField)
+        {
+            textField.Highlighted = true;
+        }
+
         public void Include(MenuItem item)
         {
             item.Clicked += (s, e) => item.BackgroundColor = UIColor.Red;

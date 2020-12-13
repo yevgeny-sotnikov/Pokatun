@@ -2,6 +2,7 @@ using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.ForgotPassword;
 using Pokatun.Data;
+using Pokatun.iOS.Controls;
 using UIKit;
 
 namespace Pokatun.iOS.Views.ForgotPassword
@@ -28,7 +29,8 @@ namespace Pokatun.iOS.Views.ForgotPassword
             _controller.DidMoveToParentViewController(this);
 
             _controller.TextField.Placeholder = Strings.VerificationCode;
-            _controller.MaxTextFieldLenght = DataPatterns.VerificationCodeLenght;
+            _controller.TextField.MaxLenght = DataPatterns.VerificationCodeLenght;
+            _controller.TextField.KeyboardType = UIKeyboardType.NumberPad;
             _controller.DescriptionLabel.Text = Strings.WriteVerificationCodeMessage;
             _controller.Button.SetTitle(Strings.Match, UIControlState.Normal);
 
@@ -40,7 +42,7 @@ namespace Pokatun.iOS.Views.ForgotPassword
 
             set.Bind(_controller.Button).To(vm => vm.MatchCodeCommand);
             set.Bind(_controller.Button).For(b => b.Enabled).To(vm => vm.IsMatchButtonEnabled);
-            set.Bind(_controller.TextField).To(vm => vm.VerificationCode).OneWayToSource();
+            set.Bind(_controller.TextField).For(v => v.Text).To(vm => vm.VerificationCode).OneWayToSource();
 
             set.Apply();
         }

@@ -1,6 +1,5 @@
 using System;
-using Foundation;
-using Pokatun.Core.ViewModels;
+using Pokatun.iOS.Controls;
 using Pokatun.iOS.Styles;
 using UIKit;
 
@@ -12,9 +11,7 @@ namespace Pokatun.iOS.Views.ForgotPassword
 
         public UILabel DescriptionLabel => _descriptionLabel;
 
-        public UITextField TextField => _textField;
-
-        public int MaxTextFieldLenght { get; set; }
+        public BorderedTextField TextField => _textField;
 
         public VerificationCodeViewController() : base(nameof(VerificationCodeViewController), null)
         {
@@ -31,14 +28,11 @@ namespace Pokatun.iOS.Views.ForgotPassword
             Button.ApplyBigButtonStyle();
 
             Button.TouchUpInside += OnTouchButtonInside;
-            TextField.ShouldChangeCharacters += OnShouldChangeCharacters;
         }
 
         public override void ViewDidDisappear(bool animated)
         {
-            TextField.ResetStyles();
             Button.TouchUpInside -= OnTouchButtonInside;
-            TextField.ShouldChangeCharacters -= OnShouldChangeCharacters;
 
             base.ViewDidDisappear(animated);
         }
@@ -46,13 +40,6 @@ namespace Pokatun.iOS.Views.ForgotPassword
         private void OnTouchButtonInside(object sender, EventArgs e)
         {
             View.EndEditing(true);
-        }
-
-        private bool OnShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
-        {
-            nint newLength = textField.Text.Length + replacementString.Length - range.Length;
-
-            return newLength <= MaxTextFieldLenght;
         }
     }
 }

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelRegistrationFirstStepViewController">
             <connections>
-                <outlet property="_confirmPasswordEditText" destination="YH5-Yv-ksa" id="ofE-o2-hO0"/>
-                <outlet property="_emailEditText" destination="cEd-tJ-UfH" id="1cQ-oU-xkL"/>
+                <outlet property="_confirmPasswordEditText" destination="VU2-HF-ubO" id="mlZ-bE-bct"/>
+                <outlet property="_emailEditText" destination="E51-GG-GE9" id="70l-Hu-eD1"/>
                 <outlet property="_furtherButton" destination="YmG-zI-As2" id="Ofq-H5-mT9"/>
-                <outlet property="_hotelNameEditText" destination="Atj-Rr-Vdg" id="t6q-wb-twj"/>
-                <outlet property="_passwordEditText" destination="jP3-sa-Qq1" id="i7N-0C-uKp"/>
-                <outlet property="_phoneNumberEditText" destination="O9k-1A-LBQ" id="2Xh-Va-2Np"/>
+                <outlet property="_hotelNameEditText" destination="bIW-Wr-jcd" id="KvT-VU-qn1"/>
+                <outlet property="_passwordEditText" destination="r9p-pK-WTC" id="ZTB-fr-3LO"/>
+                <outlet property="_phoneNumberEditText" destination="wct-4Y-4jg" id="bkk-J0-7PR"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -28,73 +29,55 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="702"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="dmL-ug-HfH">
-                            <rect key="frame" x="48" y="43" width="318" height="254"/>
+                            <rect key="frame" x="48" y="43" width="318" height="284"/>
                             <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Atj-Rr-Vdg">
-                                    <rect key="frame" x="0.0" y="0.0" width="318" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="bIW-Wr-jcd" userLabel="hotel name" customClass="BorderedTextField">
+                                    <rect key="frame" x="0.0" y="0.0" width="318" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="19"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                            <integer key="value" value="64"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9k-1A-LBQ">
-                                    <rect key="frame" x="0.0" y="55" width="318" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                </view>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="wct-4Y-4jg" userLabel="phone number" customClass="BorderedTextField">
+                                    <rect key="frame" x="0.0" y="61" width="318" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="19"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                            <integer key="value" value="16"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cEd-tJ-UfH">
-                                    <rect key="frame" x="0.0" y="110" width="318" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                </view>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="E51-GG-GE9" userLabel="email" customClass="BorderedTextField">
+                                    <rect key="frame" x="0.0" y="122" width="318" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="19"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                            <integer key="value" value="64"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jP3-sa-Qq1">
-                                    <rect key="frame" x="0.0" y="165" width="318" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                                </view>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="r9p-pK-WTC" userLabel="password" customClass="BorderedTextField">
+                                    <rect key="frame" x="0.0" y="183" width="318" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="19"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                            <integer key="value" value="32"/>
                                         </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="secureTextEntry" value="YES"/>
                                     </userDefinedRuntimeAttributes>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YH5-Yv-ksa">
-                                    <rect key="frame" x="0.0" y="220" width="318" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                                </view>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="VU2-HF-ubO" userLabel="confirm password" customClass="BorderedTextField">
+                                    <rect key="frame" x="0.0" y="244" width="318" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="19"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                            <integer key="value" value="32"/>
                                         </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="secureTextEntry" value="YES"/>
                                     </userDefinedRuntimeAttributes>
-                                </textField>
+                                </view>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -125,4 +108,9 @@
             <point key="canvasLocation" x="96" y="3"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

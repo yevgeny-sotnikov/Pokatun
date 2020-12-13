@@ -13,19 +13,19 @@ namespace Pokatun.iOS.Views.Registration
 	partial class HotelRegistrationSecondStepViewController
 	{
 		[Outlet]
-		UIKit.UITextField _bankCardOrIbanTextField { get; set; }
+		Pokatun.iOS.Controls.BorderedTextField _bankCardOrIbanTextField { get; set; }
 
 		[Outlet]
-		UIKit.UITextField _bankNameTextField { get; set; }
+		Pokatun.iOS.Controls.BorderedTextField _bankNameTextField { get; set; }
 
 		[Outlet]
 		UIKit.UIButton _createAccountButton { get; set; }
 
 		[Outlet]
-		UIKit.UITextField _fullCompanyNameTextField { get; set; }
+		Pokatun.iOS.Controls.BorderedTextField _fullCompanyNameTextField { get; set; }
 
 		[Outlet]
-		UIKit.UITextField _usreouTextField { get; set; }
+		Pokatun.iOS.Controls.BorderedTextField _usreouTextField { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -39,6 +39,11 @@ namespace Pokatun.iOS.Views.Registration
 				_bankNameTextField = null;
 			}
 
+			if (_createAccountButton != null) {
+				_createAccountButton.Dispose ();
+				_createAccountButton = null;
+			}
+
 			if (_fullCompanyNameTextField != null) {
 				_fullCompanyNameTextField.Dispose ();
 				_fullCompanyNameTextField = null;
@@ -47,11 +52,6 @@ namespace Pokatun.iOS.Views.Registration
 			if (_usreouTextField != null) {
 				_usreouTextField.Dispose ();
 				_usreouTextField = null;
-			}
-
-			if (_createAccountButton != null) {
-				_createAccountButton.Dispose ();
-				_createAccountButton = null;
 			}
 		}
 	}

@@ -158,8 +158,6 @@
       <DependentUpon>HotelRegistrationFirstStepViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Styles\ViewStyles.cs" />
-    <Compile Include="Converters\BorderEditTextValidationConverter.cs" />
-    <Compile Include="Converters\EditTextValidationConverter.cs" />
     <InterfaceDefinition Include="Views\Registration\HotelRegistrationSecondStepViewController.xib" />
     <Compile Include="Views\Registration\HotelRegistrationSecondStepViewController.cs" />
     <Compile Include="Views\Registration\HotelRegistrationSecondStepViewController.designer.cs">
@@ -234,6 +232,11 @@
     <ImageAsset Include="Resources\Media.xcassets\close.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\close.imageset\close%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\close.imageset\close%403x.png" />
+    <InterfaceDefinition Include="Controls\BorderedTextField.xib" />
+    <Compile Include="Controls\BorderedTextField.cs" />
+    <Compile Include="Controls\BorderedTextField.designer.cs">
+      <DependentUpon>Controls\BorderedTextField.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -327,7 +330,6 @@
     <Folder Include="Controls\" />
     <Folder Include="Resources\Media.xcassets\logo_3.imageset\" />
     <Folder Include="Views\Registration\" />
-    <Folder Include="Converters\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\ForgotPassword\" />
