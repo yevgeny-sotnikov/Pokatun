@@ -39,8 +39,8 @@ namespace Pokatun.iOS.Views.ForgotPassword
 
             #pragma warning restore IDE0008 // Use explicit type
 
-            set.Bind(_passwordEditText).To(vm => vm.Password).OneWayToSource();
-            set.Bind(_confirmPasswordEditText).To(vm => vm.PasswordConfirm).OneWayToSource();
+            set.Bind(_passwordEditText).For(v => v.Text).To(vm => vm.Password).OneWayToSource();
+            set.Bind(_confirmPasswordEditText).For(v => v.Text).To(vm => vm.PasswordConfirm).OneWayToSource();
             set.Bind(_saveButton).To(vm => vm.SavePasswordCommand);
 
             set.Bind(_passwordEditText).For(v => v.Highlighted).To(vm => vm.IsPasswordInvalid).OneWay();
