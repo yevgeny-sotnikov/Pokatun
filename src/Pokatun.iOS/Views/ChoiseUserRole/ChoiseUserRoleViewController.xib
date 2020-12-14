@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,31 +25,31 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="aHZ-6E-4b8">
-                    <rect key="frame" x="48" y="44" width="318" height="818"/>
+                    <rect key="frame" x="38" y="44" width="338" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-j8-yTh">
-                            <rect key="frame" x="0.0" y="0.0" width="318" height="0.0"/>
+                            <rect key="frame" x="0.0" y="0.0" width="338" height="0.0"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" id="QzB-fZ-Mfd"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROLE TEXT" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80P-yg-Diz">
-                            <rect key="frame" x="0.0" y="115.5" width="318" height="20.5"/>
+                            <rect key="frame" x="0.0" y="115.5" width="338" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCY-2W-wCZ">
-                            <rect key="frame" x="0.0" y="251.5" width="318" height="178"/>
+                            <rect key="frame" x="0.0" y="251.5" width="338" height="178"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjQ-Ob-15g">
-                                    <rect key="frame" x="0.0" y="0.0" width="318" height="140.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="338" height="140.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="TOURIST_TEXT"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOURIST DESC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvY-JL-Hbc">
-                                    <rect key="frame" x="0.0" y="157.5" width="318" height="20.5"/>
+                                    <rect key="frame" x="0.0" y="157.5" width="338" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -66,15 +66,15 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5N-uV-z8d">
-                            <rect key="frame" x="0.0" y="544.5" width="318" height="158"/>
+                            <rect key="frame" x="0.0" y="544.5" width="338" height="158"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xj-45-4gL">
-                                    <rect key="frame" x="0.0" y="0.0" width="318" height="120.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="338" height="120.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="HOTEL_TEXT"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOTEL DESC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkn-ef-ccn">
-                                    <rect key="frame" x="0.0" y="137.5" width="318" height="20.5"/>
+                                    <rect key="frame" x="0.0" y="137.5" width="338" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -91,7 +91,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4Y-zx-84X">
-                            <rect key="frame" x="0.0" y="818" width="318" height="0.0"/>
+                            <rect key="frame" x="0.0" y="818" width="338" height="0.0"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" id="RsL-2e-0HB"/>
@@ -104,9 +104,9 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="aHZ-6E-4b8" firstAttribute="top" secondItem="i9x-Nx-0cA" secondAttribute="top" id="7ph-Pv-cZ2"/>
-                <constraint firstItem="i9x-Nx-0cA" firstAttribute="trailing" secondItem="aHZ-6E-4b8" secondAttribute="trailing" constant="48" id="DVX-py-LED"/>
+                <constraint firstItem="i9x-Nx-0cA" firstAttribute="trailing" secondItem="aHZ-6E-4b8" secondAttribute="trailing" constant="38" id="DVX-py-LED"/>
                 <constraint firstItem="i9x-Nx-0cA" firstAttribute="bottom" secondItem="aHZ-6E-4b8" secondAttribute="bottom" id="chy-Tc-aBh"/>
-                <constraint firstItem="aHZ-6E-4b8" firstAttribute="leading" secondItem="i9x-Nx-0cA" secondAttribute="leading" constant="48" id="cqs-0u-7jI"/>
+                <constraint firstItem="aHZ-6E-4b8" firstAttribute="leading" secondItem="i9x-Nx-0cA" secondAttribute="leading" constant="38" id="cqs-0u-7jI"/>
             </constraints>
             <point key="canvasLocation" x="95.652173913043484" y="2.6785714285714284"/>
         </view>

@@ -19,8 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-ZZ-Kyy">
-                    <rect key="frame" x="5" y="0.0" width="404" height="40"/>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-ZZ-Kyy">
+                    <rect key="frame" x="8" y="0.0" width="398" height="40"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Y2-QM-iWg">
                             <rect key="frame" x="0.0" y="0.0" width="15" height="40"/>
@@ -29,12 +29,15 @@
                             </constraints>
                         </imageView>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SDs-SP-dks">
-                            <rect key="frame" x="25" y="11" width="379" height="18.5"/>
+                            <rect key="frame" x="20" y="0.0" width="378" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="b8f-Yu-CwD"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyi-aX-GkJ">
-                            <rect key="frame" x="404" y="9" width="0.0" height="22"/>
+                            <rect key="frame" x="398" y="9" width="0.0" height="22"/>
                             <state key="normal" image="applic"/>
                         </button>
                     </subviews>
@@ -43,8 +46,8 @@
             <constraints>
                 <constraint firstItem="hAe-ZZ-Kyy" firstAttribute="top" secondItem="1" secondAttribute="top" id="3yV-k3-J1Q"/>
                 <constraint firstAttribute="bottom" secondItem="hAe-ZZ-Kyy" secondAttribute="bottom" id="YIk-tF-IxV"/>
-                <constraint firstItem="hAe-ZZ-Kyy" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="5" id="f8C-y8-Uw4"/>
-                <constraint firstAttribute="trailing" secondItem="hAe-ZZ-Kyy" secondAttribute="trailing" constant="5" id="hEF-Jm-j7o"/>
+                <constraint firstItem="hAe-ZZ-Kyy" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="f8C-y8-Uw4"/>
+                <constraint firstAttribute="trailing" secondItem="hAe-ZZ-Kyy" secondAttribute="trailing" constant="8" id="hEF-Jm-j7o"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="109" y="2"/>

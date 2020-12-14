@@ -29,10 +29,10 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="702"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="dmL-ug-HfH">
-                            <rect key="frame" x="48" y="43" width="318" height="284"/>
+                            <rect key="frame" x="38" y="43" width="338" height="284"/>
                             <subviews>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="bIW-Wr-jcd" userLabel="hotel name" customClass="BorderedTextField">
-                                    <rect key="frame" x="0.0" y="0.0" width="318" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
@@ -41,7 +41,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="wct-4Y-4jg" userLabel="phone number" customClass="BorderedTextField">
-                                    <rect key="frame" x="0.0" y="61" width="318" height="40"/>
+                                    <rect key="frame" x="0.0" y="61" width="338" height="40"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
@@ -50,7 +50,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="E51-GG-GE9" userLabel="email" customClass="BorderedTextField">
-                                    <rect key="frame" x="0.0" y="122" width="318" height="40"/>
+                                    <rect key="frame" x="0.0" y="122" width="338" height="40"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
@@ -59,7 +59,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="r9p-pK-WTC" userLabel="password" customClass="BorderedTextField">
-                                    <rect key="frame" x="0.0" y="183" width="318" height="40"/>
+                                    <rect key="frame" x="0.0" y="183" width="338" height="40"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
@@ -69,7 +69,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="VU2-HF-ubO" userLabel="confirm password" customClass="BorderedTextField">
-                                    <rect key="frame" x="0.0" y="244" width="318" height="40"/>
+                                    <rect key="frame" x="0.0" y="244" width="338" height="40"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
@@ -84,13 +84,13 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="dmL-ug-HfH" secondAttribute="bottom" constant="43" id="08a-SL-T0E"/>
                         <constraint firstItem="dmL-ug-HfH" firstAttribute="top" secondItem="jEi-Yp-5dJ" secondAttribute="top" constant="43" id="JCu-L9-dzL"/>
-                        <constraint firstAttribute="trailing" secondItem="dmL-ug-HfH" secondAttribute="trailing" constant="48" id="Jel-Uz-lOb"/>
-                        <constraint firstItem="dmL-ug-HfH" firstAttribute="leading" secondItem="jEi-Yp-5dJ" secondAttribute="leading" constant="48" id="U6r-tl-5tM"/>
-                        <constraint firstItem="dmL-ug-HfH" firstAttribute="width" secondItem="jEi-Yp-5dJ" secondAttribute="width" constant="-96" id="Z1D-Bj-bSI"/>
+                        <constraint firstAttribute="trailing" secondItem="dmL-ug-HfH" secondAttribute="trailing" constant="38" id="Jel-Uz-lOb"/>
+                        <constraint firstItem="dmL-ug-HfH" firstAttribute="leading" secondItem="jEi-Yp-5dJ" secondAttribute="leading" constant="38" id="U6r-tl-5tM"/>
+                        <constraint firstItem="dmL-ug-HfH" firstAttribute="width" secondItem="jEi-Yp-5dJ" secondAttribute="width" constant="-76" id="Z1D-Bj-bSI"/>
                     </constraints>
                 </scrollView>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YmG-zI-As2">
-                    <rect key="frame" x="48" y="789" width="318" height="30"/>
+                    <rect key="frame" x="38" y="789" width="338" height="30"/>
                     <state key="normal" title="Button"/>
                 </button>
             </subviews>
@@ -98,12 +98,12 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="YmG-zI-As2" firstAttribute="top" secondItem="jEi-Yp-5dJ" secondAttribute="bottom" constant="43" id="AzJ-rg-5XK"/>
-                <constraint firstItem="YmG-zI-As2" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="48" id="BEx-Rz-cVM"/>
+                <constraint firstItem="YmG-zI-As2" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="38" id="BEx-Rz-cVM"/>
                 <constraint firstItem="jEi-Yp-5dJ" firstAttribute="trailing" secondItem="FeZ-vQ-UsJ" secondAttribute="trailing" id="CWG-p8-EeI"/>
                 <constraint firstItem="FeZ-vQ-UsJ" firstAttribute="bottom" secondItem="YmG-zI-As2" secondAttribute="bottom" constant="43" id="DN9-zO-3e7"/>
                 <constraint firstItem="jEi-Yp-5dJ" firstAttribute="leading" secondItem="FeZ-vQ-UsJ" secondAttribute="leading" id="kdN-Cu-hBp"/>
                 <constraint firstItem="jEi-Yp-5dJ" firstAttribute="top" secondItem="FeZ-vQ-UsJ" secondAttribute="top" id="r7g-YO-OdG"/>
-                <constraint firstAttribute="trailing" secondItem="YmG-zI-As2" secondAttribute="trailing" constant="48" id="xcv-HK-Kjj"/>
+                <constraint firstAttribute="trailing" secondItem="YmG-zI-As2" secondAttribute="trailing" constant="38" id="xcv-HK-Kjj"/>
             </constraints>
             <point key="canvasLocation" x="96" y="3"/>
         </view>

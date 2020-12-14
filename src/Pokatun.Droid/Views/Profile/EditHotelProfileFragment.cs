@@ -1,12 +1,8 @@
-using System;
-using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Binding;
-using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views.Fragments;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Profile;
@@ -27,6 +23,8 @@ namespace Pokatun.Droid.Views.Profile
     {
         private TabHost _tabHost;
         private Button _saveChangesButton;
+        private EditText _hotelNameEditText;
+        private EditText _fullCompanyNameTextField;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_profile;
 
@@ -39,6 +37,8 @@ namespace Pokatun.Droid.Views.Profile
 
             _tabHost = view.FindViewById<TabHost>(Android.Resource.Id.TabHost);
             _saveChangesButton = view.FindViewById<Button>(Resource.Id.saveChangesButton);
+            _hotelNameEditText = view.FindViewById<EditText>(Resource.Id.hotelNameEditText);
+            _fullCompanyNameTextField = view.FindViewById<EditText>(Resource.Id.fullCompanyNameTextField);
 
             _tabHost.Setup();
 
@@ -46,6 +46,8 @@ namespace Pokatun.Droid.Views.Profile
             _tabHost.AddTab(CreateTab("hotelInfo", Resource.Id.hotelInfoTab, Resource.Layout.hotel_info_tab, Strings.HotelInfo));
 
             _saveChangesButton.Text = Strings.SaveChanges;
+            _hotelNameEditText.Hint = Strings.Name;
+            _fullCompanyNameTextField.Hint = Strings.FullCompanyName;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -54,6 +56,11 @@ namespace Pokatun.Droid.Views.Profile
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand);
+            set.Bind(_hotelNameEditText).For(v => v.Text).To(vm => vm.HotelName).OneWayToSource();
+            set.Bind(_fullCompanyNameTextField).For(v => v.Text).To(vm => vm.FullCompanyName).OneWayToSource();
+
+            set.Bind(_hotelNameEditText).For(v => v.Activated).To(vm => vm.IsHotelNameInvalid).OneWay();
+            set.Bind(_fullCompanyNameTextField).For(v => v.Activated).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
 
             set.Apply();
 

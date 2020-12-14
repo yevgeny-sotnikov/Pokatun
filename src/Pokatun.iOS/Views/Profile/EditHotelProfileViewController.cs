@@ -26,6 +26,15 @@ namespace Pokatun.iOS.Views.Profile
 
             _saveChangesButton.ApplyBigButtonStyle();
 
+            _hotelNameEditText.ApplyBorderedEditTextStyle();
+            _fullCompanyNameTextField.ApplyBorderedEditTextStyle();
+
+            _hotelNameEditText.KeyboardType = UIKeyboardType.Default;
+            _fullCompanyNameTextField.KeyboardType = UIKeyboardType.Default;
+
+            _hotelNameEditText.Placeholder = Strings.Name;
+            _fullCompanyNameTextField.Placeholder = Strings.FullCompanyName;
+
             _personalDataTab.Text = Strings.PersonalData;
             _hotelInfoTab.Text = Strings.HotelInfo;
             _saveChangesButton.SetTitle(Strings.SaveChanges, UIControlState.Normal);
@@ -37,6 +46,11 @@ namespace Pokatun.iOS.Views.Profile
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.CloseCommand);
+            set.Bind(_hotelNameEditText).For(v => v.Text).To(vm => vm.HotelName).OneWayToSource();
+            set.Bind(_fullCompanyNameTextField).For(v => v.Text).To(vm => vm.FullCompanyName).OneWayToSource();
+
+            set.Bind(_hotelNameEditText).For(v => v.Highlighted).To(vm => vm.IsHotelNameInvalid).OneWay();
+            set.Bind(_fullCompanyNameTextField).For(v => v.Highlighted).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
 
             set.Apply();
         }

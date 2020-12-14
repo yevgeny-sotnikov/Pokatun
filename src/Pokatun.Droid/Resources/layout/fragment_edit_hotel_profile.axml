@@ -50,6 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
+                            android:id="@+id/fullCompanyNameTextField"
                             style="@style/BorderedEditTextWithLeftImage"
                             android:layout_width="match_parent"
             				android:layout_marginTop="17dp"

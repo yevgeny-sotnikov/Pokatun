@@ -237,6 +237,9 @@
     <Compile Include="Controls\BorderedTextField.designer.cs">
       <DependentUpon>Controls\BorderedTextField.cs</DependentUpon>
     </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\name.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\name.imageset\name%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\name.imageset\name%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -345,6 +348,7 @@
     <Folder Include="Resources\Media.xcassets\hotel_info.imageset\" />
     <Folder Include="Resources\Media.xcassets\pass.imageset\" />
     <Folder Include="Resources\Media.xcassets\close.imageset\" />
+    <Folder Include="Resources\Media.xcassets\name.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

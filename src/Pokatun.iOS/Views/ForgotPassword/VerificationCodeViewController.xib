@@ -22,16 +22,16 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="LvB-WD-dQe" userLabel="text field" customClass="BorderedTextField">
-                    <rect key="frame" x="48" y="87" width="318" height="40"/>
+                    <rect key="frame" x="38" y="87" width="338" height="40"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7W-Ud-0Le">
-                    <rect key="frame" x="66" y="152" width="282" height="20.5"/>
+                    <rect key="frame" x="56" y="152" width="302" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chy-76-h7P">
-                    <rect key="frame" x="48" y="217.5" width="318" height="30"/>
+                    <rect key="frame" x="38" y="217.5" width="338" height="30"/>
                     <state key="normal" title="Button"/>
                 </button>
             </subviews>
@@ -39,14 +39,14 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="LvB-WD-dQe" firstAttribute="top" secondItem="Ngx-xG-pEz" secondAttribute="top" constant="43" id="2zA-Pe-J0V"/>
-                <constraint firstItem="Ngx-xG-pEz" firstAttribute="trailing" secondItem="e7W-Ud-0Le" secondAttribute="trailing" constant="66" id="M5n-aT-xb3"/>
+                <constraint firstItem="Ngx-xG-pEz" firstAttribute="trailing" secondItem="e7W-Ud-0Le" secondAttribute="trailing" constant="56" id="M5n-aT-xb3"/>
                 <constraint firstItem="chy-76-h7P" firstAttribute="top" secondItem="e7W-Ud-0Le" secondAttribute="bottom" constant="45" id="Mgd-cv-Jwo"/>
-                <constraint firstItem="chy-76-h7P" firstAttribute="leading" secondItem="Ngx-xG-pEz" secondAttribute="leading" constant="48" id="UZU-QT-gEs"/>
+                <constraint firstItem="chy-76-h7P" firstAttribute="leading" secondItem="Ngx-xG-pEz" secondAttribute="leading" constant="38" id="UZU-QT-gEs"/>
                 <constraint firstItem="e7W-Ud-0Le" firstAttribute="top" secondItem="LvB-WD-dQe" secondAttribute="bottom" constant="25" id="XBy-mm-mfM"/>
-                <constraint firstItem="Ngx-xG-pEz" firstAttribute="trailing" secondItem="chy-76-h7P" secondAttribute="trailing" constant="48" id="dNU-R6-77G"/>
-                <constraint firstItem="e7W-Ud-0Le" firstAttribute="leading" secondItem="Ngx-xG-pEz" secondAttribute="leading" constant="66" id="l5F-uv-tym"/>
-                <constraint firstItem="LvB-WD-dQe" firstAttribute="leading" secondItem="Ngx-xG-pEz" secondAttribute="leading" constant="48" id="qln-9T-ZBc"/>
-                <constraint firstItem="Ngx-xG-pEz" firstAttribute="trailing" secondItem="LvB-WD-dQe" secondAttribute="trailing" constant="48" id="w0i-lV-zX1"/>
+                <constraint firstItem="Ngx-xG-pEz" firstAttribute="trailing" secondItem="chy-76-h7P" secondAttribute="trailing" constant="38" id="dNU-R6-77G"/>
+                <constraint firstItem="e7W-Ud-0Le" firstAttribute="leading" secondItem="Ngx-xG-pEz" secondAttribute="leading" constant="56" id="l5F-uv-tym"/>
+                <constraint firstItem="LvB-WD-dQe" firstAttribute="leading" secondItem="Ngx-xG-pEz" secondAttribute="leading" constant="38" id="qln-9T-ZBc"/>
+                <constraint firstItem="Ngx-xG-pEz" firstAttribute="trailing" secondItem="LvB-WD-dQe" secondAttribute="trailing" constant="38" id="w0i-lV-zX1"/>
             </constraints>
             <point key="canvasLocation" x="90" y="2"/>
         </view>

@@ -24,10 +24,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aPP-2j-Rov">
-                    <rect key="frame" x="48" y="87" width="318" height="775"/>
+                    <rect key="frame" x="38" y="87" width="338" height="775"/>
                     <subviews>
                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="l38-LV-8Qb" userLabel="EMAIL" customClass="BorderedTextField">
-                            <rect key="frame" x="0.0" y="0.0" width="318" height="40"/>
+                            <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
                                     <integer key="value" value="64"/>
@@ -35,7 +35,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="5bK-Qy-7XX" userLabel="PASSWORD" customClass="BorderedTextField">
-                            <rect key="frame" x="0.0" y="61" width="318" height="40"/>
+                            <rect key="frame" x="0.0" y="61" width="338" height="40"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
                                     <integer key="value" value="32"/>
@@ -44,14 +44,14 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-gn-0VD">
-                            <rect key="frame" x="103" y="122" width="112" height="45"/>
+                            <rect key="frame" x="113" y="122" width="112" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="TNg-kj-p63"/>
                             </constraints>
                             <state key="normal" title="forgot password"/>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BU-0G-bok">
-                            <rect key="frame" x="0.0" y="202" width="318" height="30"/>
+                            <rect key="frame" x="0.0" y="202" width="338" height="30"/>
                             <state key="normal" title="TO COME IN"/>
                         </button>
                     </subviews>
@@ -75,9 +75,9 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="aPP-2j-Rov" firstAttribute="top" secondItem="e65-YG-3zc" secondAttribute="top" constant="43" id="9RM-Rf-c1d"/>
-                <constraint firstItem="e65-YG-3zc" firstAttribute="trailing" secondItem="aPP-2j-Rov" secondAttribute="trailing" constant="48" id="VPX-bw-j7d"/>
+                <constraint firstItem="e65-YG-3zc" firstAttribute="trailing" secondItem="aPP-2j-Rov" secondAttribute="trailing" constant="38" id="VPX-bw-j7d"/>
                 <constraint firstItem="e65-YG-3zc" firstAttribute="bottom" secondItem="aPP-2j-Rov" secondAttribute="bottom" id="nNq-GU-AoI"/>
-                <constraint firstItem="aPP-2j-Rov" firstAttribute="leading" secondItem="e65-YG-3zc" secondAttribute="leading" constant="48" id="ser-Gk-zBs"/>
+                <constraint firstItem="aPP-2j-Rov" firstAttribute="leading" secondItem="e65-YG-3zc" secondAttribute="leading" constant="38" id="ser-Gk-zBs"/>
             </constraints>
             <point key="canvasLocation" x="131" y="3"/>
         </view>
