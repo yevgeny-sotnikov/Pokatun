@@ -128,11 +128,11 @@ namespace Pokatun.Core.ViewModels.Login
 
             using (_userDialogs.Loading(Strings.ProcessingRequest))
             {
-
                 responce = await _hotelsService.LoginAsync(Email, Password);
 
                 if (responce.Success)
                 {
+                    await _secureStorage.SetAsync(Constants.Keys.AccountId, responce.Data.AccountId.ToString(CultureInfo.InvariantCulture));
                     await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
                     await _secureStorage.SetAsync(
                         Constants.Keys.TokenExpirationTime,

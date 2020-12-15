@@ -129,6 +129,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
 
                 if (responce.Success)
                 {
+                    await _secureStorage.SetAsync(Constants.Keys.AccountId, responce.Data.AccountId.ToString(CultureInfo.InvariantCulture));
                     await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
                     await _secureStorage.SetAsync(
                         Constants.Keys.TokenExpirationTime,

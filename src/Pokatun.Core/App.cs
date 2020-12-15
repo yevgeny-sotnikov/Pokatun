@@ -3,6 +3,7 @@ using Acr.UserDialogs;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
+using Pokatun.Core.Executors;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
 using RestSharp;
 using Xamarin.Essentials;
@@ -29,6 +30,7 @@ namespace Pokatun.Core
             Mvx.IoCProvider.RegisterSingleton(() => UserDialogs.Instance);
             Mvx.IoCProvider.RegisterSingleton<ISecureStorage>(() => new SecureStorageImplementation());
             Mvx.IoCProvider.RegisterSingleton<IDeviceInfo>(() => new DeviceInfoImplementation());
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<INetworkRequestExecutor, NetworkRequestExecutor>();
 
             #if DEBUG
 

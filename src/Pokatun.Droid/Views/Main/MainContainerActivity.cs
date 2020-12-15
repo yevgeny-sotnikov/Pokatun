@@ -39,7 +39,6 @@ namespace Pokatun.Droid.Views.Main
             AppCenter.Start("c79dad39-68a6-4d34-b71a-c242aafe1193", typeof(Analytics), typeof(Crashes));
 
             Platform.Init(this, bundle); // add this line to your code, it may also be called: bundle
-            UserDialogs.Init(this);
 
             Toolbar = FindViewById<ToolbarX>(Resource.Id.toolbar);
             ToolbarLogo = FindViewById<ImageView>(Resource.Id.toolbarLogo);

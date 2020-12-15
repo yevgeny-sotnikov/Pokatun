@@ -21,9 +21,20 @@ namespace Pokatun.API.Services
             _emailService = emailService;
         }
 
-        public Hotel GetById(long userId)
+        public Hotel GetById(long hotelId)
         {
-            return _context.Hotels.Find(userId);
+            if (hotelId <= 0)
+            {
+                throw new ApiException(ErrorCodes.IncorrectIdError);
+            }
+            Hotel hotel = _context.Hotels.Find(hotelId);
+
+            if (hotel == null)
+            {
+                throw new ApiException(ErrorCodes.AccountDoesNotExistError);
+            }
+
+            return hotel;
         }
 
         public long Login(string email, string password)

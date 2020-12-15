@@ -1,5 +1,5 @@
 using System;
-
+using Acr.UserDialogs;
 using Android.App;
 using Android.Runtime;
 using MvvmCross.Platforms.Android.Views;
@@ -16,6 +16,11 @@ namespace Pokatun.Droid
     {
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
+        }
+
+        public override void OnCreate()
+        {
+            UserDialogs.Init(this);
         }
     }
 }

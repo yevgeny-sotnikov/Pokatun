@@ -1,13 +1,13 @@
-using System;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmValidation;
 using Pokatun.Core.Resources;
+using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Profile
 {
-    public sealed class EditHotelProfileViewModel : BaseViewModelResult<bool>
+    public sealed class EditHotelProfileViewModel : BaseViewModel<HotelDto, bool>
     {
         private readonly IMvxNavigationService _navigationService;
 
@@ -65,6 +65,12 @@ namespace Pokatun.Core.ViewModels.Profile
 
             _validator.AddRule(nameof(HotelName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelName), Strings.HotelNameRequiredMessage));
             _validator.AddRule(nameof(FullCompanyName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(FullCompanyName), Strings.CompanyNameRequiredMessage));
+        }
+
+        public override void Prepare(HotelDto parameter)
+        {
+            HotelName = parameter.HotelName;
+            FullCompanyName = parameter.FullCompanyName;
         }
 
         private Task DoCloseCommandAsync()
