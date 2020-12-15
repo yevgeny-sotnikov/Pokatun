@@ -7,6 +7,7 @@ using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmValidation;
+using Pokatun.Core.Executors;
 using Pokatun.Core.Models;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
@@ -22,6 +23,7 @@ namespace Pokatun.Core.ViewModels.Registration
         private readonly IMvxNavigationService _navigationService;
         private readonly ValidationHelper _validator;
         private readonly IHotelsService _hotelsService;
+        private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly ISecureStorage _secureStorage;
         private bool _viewInEditMode = true;
 
@@ -112,11 +114,17 @@ namespace Pokatun.Core.ViewModels.Registration
             _firstData = parameter;
         }
 
-        public HotelRegistrationSecondStepViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService, IHotelsService hotelsService, ISecureStorage secureStorage)
+        public HotelRegistrationSecondStepViewModel(
+            IUserDialogs userDialogs,
+            IMvxNavigationService navigationService,
+            IHotelsService hotelsService,
+            INetworkRequestExecutor networkRequestExecutor,
+            ISecureStorage secureStorage)
         {
             _userDialogs = userDialogs;
             _navigationService = navigationService;
             _hotelsService = hotelsService;
+            _networkRequestExecutor = networkRequestExecutor;
             _secureStorage = secureStorage;
 
             _validator = new ValidationHelper();
@@ -177,44 +185,27 @@ namespace Pokatun.Core.ViewModels.Registration
                 hotel.BankCard = long.Parse(BankCardOrIban);
             }
 
-            ServerResponce<TokenInfoDto> responce = null;
-
-            using (_userDialogs.Loading(Strings.ProcessingRequest))
-            {
-                responce = await _hotelsService.RegisterAsync(hotel);
-
-                if (responce.Success)
+            ServerResponce<TokenInfoDto> responce = await _networkRequestExecutor.MakeRequestAsync(
+                () => _hotelsService.RegisterAsync(hotel),
+                new HashSet<string>
                 {
-                    await _secureStorage.SetAsync(Constants.Keys.AccountId, responce.Data.AccountId.ToString(CultureInfo.InvariantCulture));
-                    await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
-                    await _secureStorage.SetAsync(
-                        Constants.Keys.TokenExpirationTime,
-                        responce.Data.ExpirationTime.ToUniversalTime().ToString(CultureInfo.InvariantCulture)
-                    );
-
-                    await _navigationService.Close(this);
-                    await _navigationService.Navigate<HotelMenuViewModel>();
-
-                    return;
+                    ErrorCodes.AccountAllreadyExistsError,
+                    ErrorCodes.IbanAllreadyRegisteredError,
+                    ErrorCodes.UsreouAllreadyRegisteredError
                 }
-            }
+            );
 
-            ISet<string> knownErrorCodes = new HashSet<string>
-            {
-                ErrorCodes.AccountAllreadyExistsError,
-                ErrorCodes.IbanAllreadyRegisteredError,
-                ErrorCodes.UsreouAllreadyRegisteredError
-            };
+            if (responce == null) return;
 
-            knownErrorCodes.IntersectWith(responce.ErrorCodes);
+            await _secureStorage.SetAsync(Constants.Keys.AccountId, responce.Data.AccountId.ToString(CultureInfo.InvariantCulture));
+            await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
+            await _secureStorage.SetAsync(
+                Constants.Keys.TokenExpirationTime,
+                responce.Data.ExpirationTime.ToUniversalTime().ToString(CultureInfo.InvariantCulture)
+            );
 
-            if (knownErrorCodes.Count > 0)
-            {
-                _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorCodes.First()));
-                return;
-            }
-
-            _userDialogs.Toast(Strings.UnexpectedError);
+            await _navigationService.Close(this);
+            await _navigationService.Navigate<HotelMenuViewModel>();
         }
 
         private bool CheckInvalid(string name)

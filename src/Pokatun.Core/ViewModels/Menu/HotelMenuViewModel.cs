@@ -50,6 +50,7 @@ namespace Pokatun.Core.ViewModels.Menu
         private async Task DoProfileCommandAsync()
         {
             long hotelId = long.Parse(await _secureStorage.GetAsync(Constants.Keys.AccountId));
+
             ServerResponce<HotelDto> responce = await _networkRequestExecutor.MakeRequestAsync(
                 () => _hotelsService.GetAsync(hotelId),
                 new HashSet<string> { ErrorCodes.AccountDoesNotExistError }

@@ -5,6 +5,7 @@ using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmValidation;
+using Pokatun.Core.Executors;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
 using Pokatun.Data;
@@ -15,8 +16,8 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
     {
         private readonly ValidationHelper _validator;
         private readonly IMvxNavigationService _navigationService;
-        private readonly IUserDialogs _userDialogs;
         private readonly IHotelsService _hotelsService;
+        private readonly INetworkRequestExecutor _networkRequestExecutor;
 
         public override string Title => Strings.PasswordRecovery;
 
@@ -41,11 +42,11 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
             get { return _matchCodeCommand ?? (_matchCodeCommand = new MvxAsyncCommand(DoMatchCodeCommandAsync)); }
         }
 
-        public СheckVerificationCodeViewModel(IMvxNavigationService navigationService, IUserDialogs userDialogs, IHotelsService hotelsService)
+        public СheckVerificationCodeViewModel(IMvxNavigationService navigationService, IHotelsService hotelsService, INetworkRequestExecutor networkRequestExecutor)
         {
             _navigationService = navigationService;
-            _userDialogs = userDialogs;
             _hotelsService = hotelsService;
+            _networkRequestExecutor = networkRequestExecutor;
 
             _validator = new ValidationHelper();
 
@@ -60,35 +61,18 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
 
         private async Task DoMatchCodeCommandAsync()
         {
-            ServerResponce responce = null;
-
-            using (_userDialogs.Loading(Strings.ProcessingRequest))
-            {
-                responce = await _hotelsService.ValidateResetToken(VerificationCode);
-
-                if (responce.Success)
+            ServerResponce responce = await _networkRequestExecutor.MakeRequestAsync(
+                () => _hotelsService.ValidateResetToken(VerificationCode),
+                new HashSet<string>
                 {
-                    await _navigationService.Navigate<NewPasswordViewModel, string>(VerificationCode);
-
-                    return;
+                    ErrorCodes.InvalidTokenError,
+                    ErrorCodes.ExpiredTokenError
                 }
-            }
+            );
 
-            ISet<string> knownErrorCodes = new HashSet<string>
-            {
-                ErrorCodes.InvalidTokenError,
-                ErrorCodes.ExpiredTokenError
-            };
+            if (responce == null) return;
 
-            knownErrorCodes.IntersectWith(responce.ErrorCodes);
-
-            if (knownErrorCodes.Count > 0)
-            {
-                _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorCodes.First()));
-                return;
-            }
-
-            _userDialogs.Toast(Strings.UnexpectedError);
+            await _navigationService.Navigate<NewPasswordViewModel, string>(VerificationCode);
         }
     }
 }
