@@ -7,6 +7,8 @@ namespace Pokatun.API.Models
     {
         public DbSet<Hotel> Hotels { get; set; }
 
+        public DbSet<Hotel> Phones { get; set; }
+
         public PokatunContext(DbContextOptions<PokatunContext> options) : base(options)
         {
         }

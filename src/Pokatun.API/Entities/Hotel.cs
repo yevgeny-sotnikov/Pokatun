@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Pokatun.Data;
@@ -6,7 +7,7 @@ using Pokatun.Data;
 namespace Pokatun.API.Entities
 {
     [Table(nameof(Hotel))]
-    public class Hotel
+    public sealed class Hotel
     {
         [Key]
         public long Id { get; set; }
@@ -16,10 +17,7 @@ namespace Pokatun.API.Entities
         [MinLength(1)]
         public string HotelName { get; set; }
 
-        [Required]
-        [Phone]
-        [MaxLength(16)]
-        public string PhoneNumber { get; set; }
+        public ICollection<Phone> Phones { get; set; }
 
         [Required]
         [MaxLength(64)]

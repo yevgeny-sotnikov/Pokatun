@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Pokatun.API.Entities;
 using Pokatun.API.Models;
 using Pokatun.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Pokatun.API.Services
 {
@@ -27,7 +28,7 @@ namespace Pokatun.API.Services
             {
                 throw new ApiException(ErrorCodes.IncorrectIdError);
             }
-            Hotel hotel = _context.Hotels.Find(hotelId);
+            Hotel hotel = _context.Hotels.Include(h => h.Phones).FirstOrDefault(h => h.Id == hotelId);
 
             if (hotel == null)
             {
@@ -97,7 +98,7 @@ namespace Pokatun.API.Services
             Hotel hotel = new Hotel
             {
                 HotelName = value.HotelName,
-                PhoneNumber = value.PhoneNumber,
+                Phones = new List<Phone>(value.Phones.Select(p => new Phone { Id = p.Id, Number = p.Number })),
                 Email = value.Email,
                 FullCompanyName = value.FullCompanyName,
                 BankCard = value.BankCard,

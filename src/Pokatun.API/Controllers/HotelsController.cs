@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
@@ -40,7 +42,7 @@ namespace Pokatun.API.Controllers
                     {
                         Id = hotel.Id,
                         HotelName = hotel.HotelName,
-                        PhoneNumber = hotel.PhoneNumber,
+                        Phones = new List<PhoneDto>(hotel.Phones.Select(p => new PhoneDto { Id = p.Id, Number = p.Number })),
                         Email = hotel.Email,
                         FullCompanyName = hotel.FullCompanyName,
                         BankCard = hotel.BankCard,
@@ -49,6 +51,7 @@ namespace Pokatun.API.Controllers
                         USREOU = hotel.USREOU
                     }
                 });
+                ;
             }
             catch (ApiException ex)
             {
