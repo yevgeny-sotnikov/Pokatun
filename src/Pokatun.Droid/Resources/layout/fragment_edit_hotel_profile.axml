@@ -45,10 +45,12 @@
                     android:layout_height="match_parent">
                     <LinearLayout
                         android:orientation="vertical"
+                        android:animateLayoutChanges="true"
                     	android:paddingLeft="@dimen/common_left_right_distanse"
     	                android:paddingRight="@dimen/common_left_right_distanse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <EditText
                             android:id="@+id/fullCompanyNameTextField"
                             style="@style/BorderedEditTextWithLeftImage"
@@ -59,15 +61,24 @@
 	    			        android:singleLine="true"
                             android:hint="full name"
                             />
-                        <EditText
-                            style="@style/BorderedEditTextWithLeftImage"
+
+                        <MvvmCross.Platforms.Android.Binding.Views.MvxLinearLayout
+                            android:id="@+id/phonesTable"
+                            android:animateLayoutChanges="true"
                             android:layout_width="match_parent"
-            				android:layout_marginTop="16dp"
-                            android:drawableLeft="@drawable/phone"
-				            android:maxLength="16"
-				            android:inputType="phone"
-                            android:hint="phone number"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp"
                             />
+
+                        <Button
+                            android:id="@+id/addPhoneButton"
+                            style="@style/BorderedButton"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="8dp"
+                            android:drawableLeft="@drawable/phone"
+                            />
+
                         <EditText
                             style="@style/BorderedEditTextWithLeftImage"
                             android:layout_width="match_parent"
@@ -121,6 +132,7 @@
                     android:layout_height="match_parent">
                     <LinearLayout
                         android:orientation="vertical"
+                        android:animateLayoutChanges="true"
                     	android:paddingLeft="@dimen/common_left_right_distanse"
     	                android:paddingRight="@dimen/common_left_right_distanse"
                         android:layout_width="match_parent"

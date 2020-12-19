@@ -64,13 +64,23 @@
         <item name="android:background">@drawable/big_button_background</item>
     </style>
 
-    <style name="BorderedEditText">
+    <style name="BorderedView">
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:textSize">@dimen/font_large</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/edit_text_color</item>
+    </style>
+
+    <style name="BorderedButton" parent="BorderedView">
+        <item name="android:paddingLeft">13dp</item>
+        <item name="android:paddingRight">13dp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:background">@drawable/bordered_button</item>
+    </style>
+
+    <style name="BorderedEditText" parent="BorderedView">
         <item name="android:textColorHint">@color/hint_text_color</item>
         <item name="android:background">@drawable/bordered_edit_text</item>
     </style>
