@@ -168,7 +168,7 @@ namespace Pokatun.Core.ViewModels.Registration
             HotelDto hotel = new HotelDto
             {
                 HotelName = _firstData.HotelName,
-                PhoneNumber = _firstData.PhoneNumber,
+                Phones = new List<PhoneDto> { new PhoneDto { Number = _firstData.PhoneNumber } },
                 Email = _firstData.Email,
                 Password = _firstData.Password,
                 FullCompanyName = FullCompanyName,

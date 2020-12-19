@@ -1,6 +1,5 @@
-using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pokatun.Data
 {
@@ -14,10 +13,7 @@ namespace Pokatun.Data
         [MinLength(1)]
         public string HotelName { get; set; }
 
-        [Required]
-        [Phone]
-        [MaxLength(16)]
-        public string PhoneNumber { get; set; }
+        public IList<PhoneDto> Phones { get; set; }
 
         [Required]
         [MaxLength(64)]

@@ -202,4 +202,10 @@
     <data name="HotelInfo" xml:space="preserve">
         <value>Инфо об отеле</value>
     </data>
+    <data name="AddPhone" xml:space="preserve">
+        <value>Добавить телефон</value>
+    </data>
+    <data name="EnterPhone" xml:space="preserve">
+        <value>Введите телефон</value>
+    </data>
 </root>
