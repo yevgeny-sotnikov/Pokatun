@@ -15,6 +15,7 @@
                 <outlet property="_hotelInfoTab" destination="cNE-a1-MRc" id="O99-Qt-7hE"/>
                 <outlet property="_hotelNameEditText" destination="40p-pA-7lq" id="Y3c-Ay-SaU"/>
                 <outlet property="_personalDataTab" destination="Vlg-lJ-85E" id="wOq-q9-SO5"/>
+                <outlet property="_phonesTable" destination="gWo-90-jJ2" id="IMK-Ho-vAF"/>
                 <outlet property="_saveChangesButton" destination="FOE-q5-ti4" id="pNH-dO-xxH"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
@@ -66,18 +67,32 @@
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhf-Wf-OZq">
                             <rect key="frame" x="0.0" y="33" width="414" height="627"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TjC-Nm-qRj">
-                                    <rect key="frame" x="38" y="23" width="338" height="40"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TjC-Nm-qRj">
+                                    <rect key="frame" x="38" y="23" width="338" height="86"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="ej4-ud-kVL" userLabel="hotel full name" customClass="BorderedTextField">
-                                            <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
-                                                    <integer key="value" value="128"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="name"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TbS-Pr-dPu">
+                                            <rect key="frame" x="0.0" y="0.0" width="338" height="86"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="ej4-ud-kVL" userLabel="hotel full name" customClass="BorderedTextField">
+                                                    <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                                            <integer key="value" value="128"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="name"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="0.0" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="56" estimatedRowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gWo-90-jJ2" customClass="ResizableTableView">
+                                                    <rect key="frame" x="0.0" y="48" width="338" height="0.0"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </tableView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27b-c3-wTX">
+                                                    <rect key="frame" x="0.0" y="56" width="338" height="30"/>
+                                                    <color key="backgroundColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                 </stackView>
                             </subviews>

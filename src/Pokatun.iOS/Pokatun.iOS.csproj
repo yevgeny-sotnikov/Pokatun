@@ -240,6 +240,15 @@
     <ImageAsset Include="Resources\Media.xcassets\name.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\name.imageset\name%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\name.imageset\name%403x.png" />
+    <InterfaceDefinition Include="Cells\PhoneItemViewCell.xib" />
+    <Compile Include="Cells\PhoneItemViewCell.cs" />
+    <Compile Include="Cells\PhoneItemViewCell.designer.cs">
+      <DependentUpon>PhoneItemViewCell.cs</DependentUpon>
+    </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\phone.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\phone.imageset\phone%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\phone.imageset\phone%403x.png" />
+    <Compile Include="Controls\ResizableTableView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -349,6 +358,8 @@
     <Folder Include="Resources\Media.xcassets\pass.imageset\" />
     <Folder Include="Resources\Media.xcassets\close.imageset\" />
     <Folder Include="Resources\Media.xcassets\name.imageset\" />
+    <Folder Include="Cells\" />
+    <Folder Include="Resources\Media.xcassets\phone.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

@@ -39,6 +39,9 @@
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyi-aX-GkJ">
                             <rect key="frame" x="398" y="9" width="0.0" height="22"/>
                             <state key="normal" image="applic"/>
+                            <connections>
+                                <action selector="OnRightButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="Xxy-I8-2cD"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

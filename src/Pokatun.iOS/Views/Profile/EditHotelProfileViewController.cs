@@ -1,6 +1,8 @@
+using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Profile;
+using Pokatun.iOS.Cells;
 using Pokatun.iOS.Styles;
 using UIKit;
 
@@ -9,6 +11,8 @@ namespace Pokatun.iOS.Views.Profile
     [MvxModalPresentation(WrapInNavigationController = true, ModalPresentationStyle = UIModalPresentationStyle.BlurOverFullScreen)]
     public partial class EditHotelProfileViewController : BaseViewController<EditHotelProfileViewModel>
     {
+        private MvxSimpleTableViewSource _phonesTableViewSource;
+
         public EditHotelProfileViewController() : base(nameof(EditHotelProfileViewController), null)
         {
         }
@@ -23,6 +27,14 @@ namespace Pokatun.iOS.Views.Profile
             rightBarButtonItem.Image = UIImage.FromBundle("close");
 
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, false);
+
+            _phonesTableViewSource = new MvxSimpleTableViewSource(_phonesTable, PhoneItemViewCell.Key)
+            {
+                UseAnimations = true,
+                RemoveAnimation = UITableViewRowAnimation.Right
+            };
+
+            _phonesTable.Source = _phonesTableViewSource;
 
             _saveChangesButton.ApplyBigButtonStyle();
 
@@ -48,7 +60,8 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.CloseCommand);
             set.Bind(_hotelNameEditText).For(v => v.Text).To(vm => vm.HotelName).TwoWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Text).To(vm => vm.FullCompanyName).TwoWay();
-
+            set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
+            
             set.Bind(_hotelNameEditText).For(v => v.Highlighted).To(vm => vm.IsHotelNameInvalid).OneWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Highlighted).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
 

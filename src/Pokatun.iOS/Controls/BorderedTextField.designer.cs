@@ -19,6 +19,9 @@ namespace Pokatun.iOS.Controls
 
 		[Outlet]
 		UIKit.UITextField _textField { get; set; }
+
+		[Action ("OnRightButtonTouchUpInside:")]
+		partial void OnRightButtonTouchUpInside (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

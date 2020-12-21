@@ -25,18 +25,21 @@ namespace Pokatun.iOS.Views.Profile
 		Pokatun.iOS.Controls.Tabs.HotelProfileTab _personalDataTab { get; set; }
 
 		[Outlet]
+		Pokatun.iOS.Controls.ResizableTableView _phonesTable { get; set; }
+
+		[Outlet]
 		UIKit.UIButton _saveChangesButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (_fullCompanyNameTextField != null) {
+				_fullCompanyNameTextField.Dispose ();
+				_fullCompanyNameTextField = null;
+			}
+
 			if (_hotelInfoTab != null) {
 				_hotelInfoTab.Dispose ();
 				_hotelInfoTab = null;
-			}
-
-			if (_personalDataTab != null) {
-				_personalDataTab.Dispose ();
-				_personalDataTab = null;
 			}
 
 			if (_hotelNameEditText != null) {
@@ -44,9 +47,14 @@ namespace Pokatun.iOS.Views.Profile
 				_hotelNameEditText = null;
 			}
 
-			if (_fullCompanyNameTextField != null) {
-				_fullCompanyNameTextField.Dispose ();
-				_fullCompanyNameTextField = null;
+			if (_personalDataTab != null) {
+				_personalDataTab.Dispose ();
+				_personalDataTab = null;
+			}
+
+			if (_phonesTable != null) {
+				_phonesTable.Dispose ();
+				_phonesTable = null;
 			}
 
 			if (_saveChangesButton != null) {

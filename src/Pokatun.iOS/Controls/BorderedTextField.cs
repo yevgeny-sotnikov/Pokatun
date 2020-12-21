@@ -23,6 +23,7 @@ namespace Pokatun.iOS.Controls
         private UIColor _textColor;
         private UIColor _borderColor;
         private bool _secureTextEntry;
+        private bool _rightButtonHidden = true;
 
         [DisplayName(nameof(BorderColor)), Export("borderColor"), Browsable(true)]
         public UIColor BorderColor
@@ -73,6 +74,23 @@ namespace Pokatun.iOS.Controls
                 _leftImageView.Hidden = value == null;
             }
         }
+
+        [DisplayName(nameof(RightButtonHidden)), Export("rightButtonHidden"), Browsable(true)]
+        public bool RightButtonHidden
+        {
+            get { return _rightButton == null ? _rightButtonHidden : _rightButton.Hidden; }
+            set
+            {
+                _rightButtonHidden = value;
+
+                if (_rightButton == null)
+                    return;
+
+                _rightButton.Hidden = value;
+            }
+        }
+
+        public event EventHandler RightButtonClicked;
 
         [DisplayName(nameof(KeyboardType)), Export("keyboardType"), Browsable(true)]
         public UIKeyboardType KeyboardType
@@ -149,7 +167,7 @@ namespace Pokatun.iOS.Controls
             }
         }
 
-        public override CGSize   IntrinsicContentSize => ContentSize;
+        public override CGSize IntrinsicContentSize => ContentSize;
 
         public BorderedTextField(IntPtr handle) : base(handle)
         {
@@ -169,6 +187,7 @@ namespace Pokatun.iOS.Controls
             AddSubview(rootView);
 
             LeftImage = _leftImage;
+            RightButtonHidden = _rightButtonHidden;
             Text = _text;
             Placeholder = _placeholderStr;
             Highlighted = _highlighted;
@@ -236,6 +255,11 @@ namespace Pokatun.iOS.Controls
             nint newLength = textField.Text.Length + replacementString.Length - range.Length;
 
             return newLength <= MaxLenght;
+        }
+
+        partial void OnRightButtonTouchUpInside(Foundation.NSObject sender)
+        {
+            RightButtonClicked?.Invoke(this, new EventArgs());
         }
     }
 }
