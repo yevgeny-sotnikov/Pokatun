@@ -22,6 +22,12 @@ namespace Pokatun.iOS.Styles
             textField.TextColor = ColorPalette.PrimaryText;
         }
 
+        public static void ApplyBorderedButtonStyle(this BorderedButton button)
+        {
+            button.BorderColor = ColorPalette.BorderColor;
+            button.TextColor = ColorPalette.PrimaryText;
+        }
+
         public static void ApplyBigButtonStyle(this UIButton button)
         {
             button.ClipsToBounds = true;

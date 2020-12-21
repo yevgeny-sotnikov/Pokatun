@@ -3,6 +3,7 @@ using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Profile;
 using Pokatun.iOS.Cells;
+using Pokatun.iOS.Controls;
 using Pokatun.iOS.Styles;
 using UIKit;
 
@@ -31,7 +32,8 @@ namespace Pokatun.iOS.Views.Profile
             _phonesTableViewSource = new MvxSimpleTableViewSource(_phonesTable, PhoneItemViewCell.Key)
             {
                 UseAnimations = true,
-                RemoveAnimation = UITableViewRowAnimation.Right
+                RemoveAnimation = UITableViewRowAnimation.Right,
+                AddAnimation = UITableViewRowAnimation.Fade
             };
 
             _phonesTable.Source = _phonesTableViewSource;
@@ -40,12 +42,14 @@ namespace Pokatun.iOS.Views.Profile
 
             _hotelNameEditText.ApplyBorderedEditTextStyle();
             _fullCompanyNameTextField.ApplyBorderedEditTextStyle();
+            _addPhoneButton.ApplyBorderedButtonStyle();
 
             _hotelNameEditText.KeyboardType = UIKeyboardType.Default;
             _fullCompanyNameTextField.KeyboardType = UIKeyboardType.Default;
 
             _hotelNameEditText.Placeholder = Strings.Name;
             _fullCompanyNameTextField.Placeholder = Strings.FullCompanyName;
+            _addPhoneButton.Text = Strings.AddPhone;
 
             _personalDataTab.Text = Strings.PersonalData;
             _hotelInfoTab.Text = Strings.HotelInfo;
@@ -61,7 +65,8 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_hotelNameEditText).For(v => v.Text).To(vm => vm.HotelName).TwoWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Text).To(vm => vm.FullCompanyName).TwoWay();
             set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
-            
+            set.Bind(_addPhoneButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.AddPhoneCommand);
+
             set.Bind(_hotelNameEditText).For(v => v.Highlighted).To(vm => vm.IsHotelNameInvalid).OneWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Highlighted).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
 

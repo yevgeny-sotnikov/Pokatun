@@ -257,7 +257,7 @@ namespace Pokatun.iOS.Controls
             return newLength <= MaxLenght;
         }
 
-        partial void OnRightButtonTouchUpInside(Foundation.NSObject sender)
+        partial void OnRightButtonTouchUpInside(NSObject sender)
         {
             RightButtonClicked?.Invoke(this, new EventArgs());
         }

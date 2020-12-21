@@ -1,5 +1,4 @@
-﻿using System;
-using MvvmCross.Binding.Bindings.Target;
+﻿using MvvmCross.Binding.Bindings.Target;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Platforms.Ios.Core;
 using Pokatun.Core;
@@ -15,8 +14,6 @@ namespace Pokatun.iOS
                 nameof(MenuItem.Clicked),
                 view => new MvxEventNameTargetBinding<MenuItem>(view, nameof(MenuItem.Clicked))
             );
-
-            Type textFieldType = typeof(BorderedTextField);
 
             base.FillTargetFactories(registry);
         }

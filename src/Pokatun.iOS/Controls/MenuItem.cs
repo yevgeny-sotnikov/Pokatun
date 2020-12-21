@@ -72,10 +72,10 @@ namespace Pokatun.iOS.Controls
 
             _menuTextView.ApplyLargeLabelStyle();
 
-            AddGestureRecognizer(new UITapGestureRecognizer(ClickAnimationAsync));
+            AddGestureRecognizer(new UITapGestureRecognizer(OnItemTapped));
         }
 
-        private async void ClickAnimationAsync()
+        private async void OnItemTapped()
         {
             await AnimateAsync(ClickAnimationDuration, () => { Alpha = 0.5f; BackgroundColor = UIColor.SystemFillColor; });
             await AnimateAsync(ClickAnimationDuration, () => { Alpha = 1f; BackgroundColor = UIColor.Clear; });

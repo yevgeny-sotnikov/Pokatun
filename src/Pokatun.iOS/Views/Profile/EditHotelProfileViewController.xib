@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditHotelProfileViewController">
             <connections>
+                <outlet property="_addPhoneButton" destination="jGp-c2-j2O" id="Ged-31-Kg7"/>
                 <outlet property="_fullCompanyNameTextField" destination="ej4-ud-kVL" id="56I-6W-N1d"/>
                 <outlet property="_hotelInfoTab" destination="cNE-a1-MRc" id="O99-Qt-7hE"/>
                 <outlet property="_hotelNameEditText" destination="40p-pA-7lq" id="Y3c-Ay-SaU"/>
@@ -68,10 +69,10 @@
                             <rect key="frame" x="0.0" y="33" width="414" height="627"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TjC-Nm-qRj">
-                                    <rect key="frame" x="38" y="23" width="338" height="86"/>
+                                    <rect key="frame" x="38" y="23" width="338" height="96"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TbS-Pr-dPu">
-                                            <rect key="frame" x="0.0" y="0.0" width="338" height="86"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="338" height="96"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="ej4-ud-kVL" userLabel="hotel full name" customClass="BorderedTextField">
                                                     <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
@@ -82,15 +83,16 @@
                                                         <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="name"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="0.0" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="56" estimatedRowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gWo-90-jJ2" customClass="ResizableTableView">
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="0.0" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="56" estimatedRowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gWo-90-jJ2" customClass="ResizableTableView">
                                                     <rect key="frame" x="0.0" y="48" width="338" height="0.0"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </tableView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27b-c3-wTX">
-                                                    <rect key="frame" x="0.0" y="56" width="338" height="30"/>
-                                                    <color key="backgroundColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Button"/>
-                                                </button>
+                                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="jGp-c2-j2O" customClass="BorderedButton">
+                                                    <rect key="frame" x="0.0" y="56" width="338" height="40"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="phone"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                         </stackView>
                                     </subviews>
@@ -98,7 +100,7 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="TjC-Nm-qRj" firstAttribute="leading" secondItem="oA3-fc-aN7" secondAttribute="leading" constant="38" id="DQ9-ZJ-Bhk"/>
-                                <constraint firstItem="TjC-Nm-qRj" firstAttribute="bottom" secondItem="oA3-fc-aN7" secondAttribute="bottom" constant="23" id="DjY-JB-dNP"/>
+                                <constraint firstItem="TjC-Nm-qRj" firstAttribute="bottom" secondItem="oA3-fc-aN7" secondAttribute="bottom" constant="-23" id="DjY-JB-dNP"/>
                                 <constraint firstItem="oA3-fc-aN7" firstAttribute="top" secondItem="TjC-Nm-qRj" secondAttribute="top" constant="-23" id="T2Z-m6-hcL"/>
                                 <constraint firstItem="TjC-Nm-qRj" firstAttribute="trailing" secondItem="oA3-fc-aN7" secondAttribute="trailing" constant="38" id="aJT-32-hcx"/>
                                 <constraint firstItem="TjC-Nm-qRj" firstAttribute="width" secondItem="bif-nO-Sgg" secondAttribute="width" constant="-76" id="b61-am-Ued"/>
@@ -129,7 +131,7 @@
                                 <constraint firstItem="0kr-ph-3O9" firstAttribute="top" secondItem="TvX-dY-LwP" secondAttribute="top" constant="-23" id="Sp7-Xi-1XY"/>
                                 <constraint firstItem="TvX-dY-LwP" firstAttribute="leading" secondItem="0kr-ph-3O9" secondAttribute="leading" constant="38" id="TnH-nx-aGg"/>
                                 <constraint firstItem="TvX-dY-LwP" firstAttribute="width" secondItem="m9q-Ns-fcb" secondAttribute="width" constant="-76" id="h7v-fl-hdj"/>
-                                <constraint firstItem="TvX-dY-LwP" firstAttribute="bottom" secondItem="0kr-ph-3O9" secondAttribute="bottom" constant="23" id="spC-5M-VJH"/>
+                                <constraint firstItem="TvX-dY-LwP" firstAttribute="bottom" secondItem="0kr-ph-3O9" secondAttribute="bottom" constant="-23" id="spC-5M-VJH"/>
                             </constraints>
                             <viewLayoutGuide key="contentLayoutGuide" id="0kr-ph-3O9"/>
                             <viewLayoutGuide key="frameLayoutGuide" id="m9q-Ns-fcb"/>
@@ -173,6 +175,7 @@
     </objects>
     <resources>
         <image name="name" width="10.5" height="10.5"/>
+        <image name="phone" width="7.5" height="13"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -13,6 +13,9 @@ namespace Pokatun.iOS.Views.Profile
 	partial class EditHotelProfileViewController
 	{
 		[Outlet]
+		Pokatun.iOS.Controls.BorderedButton _addPhoneButton { get; set; }
+
+		[Outlet]
 		Pokatun.iOS.Controls.BorderedTextField _fullCompanyNameTextField { get; set; }
 
 		[Outlet]
@@ -60,6 +63,11 @@ namespace Pokatun.iOS.Views.Profile
 			if (_saveChangesButton != null) {
 				_saveChangesButton.Dispose ();
 				_saveChangesButton = null;
+			}
+
+			if (_addPhoneButton != null) {
+				_addPhoneButton.Dispose ();
+				_addPhoneButton = null;
 			}
 		}
 	}

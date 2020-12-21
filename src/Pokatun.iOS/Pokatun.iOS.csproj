@@ -249,6 +249,11 @@
     <ImageAsset Include="Resources\Media.xcassets\phone.imageset\phone%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\phone.imageset\phone%403x.png" />
     <Compile Include="Controls\ResizableTableView.cs" />
+    <InterfaceDefinition Include="Controls\BorderedButton.xib" />
+    <Compile Include="Controls\BorderedButton.cs" />
+    <Compile Include="Controls\BorderedButton.designer.cs">
+      <DependentUpon>Controls\BorderedButton.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
