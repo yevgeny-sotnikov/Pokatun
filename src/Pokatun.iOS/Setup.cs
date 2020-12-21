@@ -18,22 +18,6 @@ namespace Pokatun.iOS
 
             Type textFieldType = typeof(BorderedTextField);
 
-            //registry.RegisterCustomBindingFactory<BorderedTextField>(
-            //    v => v.Text,
-            //    view => new MvxWithEventPropertyInfoTargetBinding(
-            //        view,
-            //        textFieldType.GetProperty(v => v.Text)
-            //    )
-            //);
-
-            //registry.RegisterCustomBindingFactory<BorderedTextField>(
-            //    v => v.Highlighted,
-            //    view => new MvxPropertyInfoTargetBinding(
-            //        view,
-            //        textFieldType.GetProperty(v => v.Highlighted)
-            //    )
-            //);
-
             base.FillTargetFactories(registry);
         }
     }
