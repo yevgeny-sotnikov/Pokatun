@@ -26,7 +26,15 @@ namespace Pokatun.Core
                 return;
             }
 
-            DateTime utcTime = DateTime.Parse(await _secureStorage.GetAsync(Constants.Keys.TokenExpirationTime), CultureInfo.InvariantCulture);
+            string expirationTimeString = await _secureStorage.GetAsync(Constants.Keys.TokenExpirationTime);
+
+            if (string.IsNullOrWhiteSpace(expirationTimeString))
+            {
+                await NavigationService.Navigate<ChoiseUserRoleViewModel>();
+                return;
+            }
+
+            DateTime utcTime = DateTime.Parse(expirationTimeString, CultureInfo.InvariantCulture);
             if (utcTime < DateTime.UtcNow)
             {
                 await NavigationService.Navigate<ChoiseUserRoleViewModel>();
