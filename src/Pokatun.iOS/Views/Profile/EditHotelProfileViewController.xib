@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditHotelProfileViewController">
             <connections>
                 <outlet property="_addPhoneButton" destination="jGp-c2-j2O" id="Ged-31-Kg7"/>
+                <outlet property="_bankCardOrIbanTextField" destination="N3R-gS-1TU" id="QCx-63-RZc"/>
+                <outlet property="_bankNameTextField" destination="n5z-ka-w9c" id="RNg-7D-pKs"/>
                 <outlet property="_emailTextField" destination="RHc-jm-CXw" id="dGt-Sr-HiH"/>
                 <outlet property="_fullCompanyNameTextField" destination="ej4-ud-kVL" id="56I-6W-N1d"/>
                 <outlet property="_hotelInfoTab" destination="cNE-a1-MRc" id="O99-Qt-7hE"/>
@@ -20,6 +22,7 @@
                 <outlet property="_personalDataTab" destination="Vlg-lJ-85E" id="wOq-q9-SO5"/>
                 <outlet property="_phonesTable" destination="gWo-90-jJ2" id="IMK-Ho-vAF"/>
                 <outlet property="_saveChangesButton" destination="FOE-q5-ti4" id="pNH-dO-xxH"/>
+                <outlet property="_usreouTextField" destination="FdY-HC-cPL" id="Re7-bQ-r6W"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -71,7 +74,7 @@
                             <rect key="frame" x="0.0" y="33" width="414" height="627"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TjC-Nm-qRj">
-                                    <rect key="frame" x="38" y="23" width="338" height="152"/>
+                                    <rect key="frame" x="38" y="23" width="338" height="320"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TbS-Pr-dPu">
                                             <rect key="frame" x="0.0" y="0.0" width="338" height="96"/>
@@ -97,13 +100,40 @@
                                                 </view>
                                             </subviews>
                                         </stackView>
-                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="RHc-jm-CXw" userLabel="hotel full name" customClass="BorderedTextField">
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="RHc-jm-CXw" userLabel="email" customClass="BorderedTextField">
                                             <rect key="frame" x="0.0" y="112" width="338" height="40"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
                                                     <integer key="value" value="64"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="mail"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="N3R-gS-1TU" userLabel="bank card or IBAN" customClass="BorderedTextField">
+                                            <rect key="frame" x="0.0" y="168" width="338" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                                    <integer key="value" value="34"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="i"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="n5z-ka-w9c" userLabel="bank name" customClass="BorderedTextField">
+                                            <rect key="frame" x="0.0" y="224" width="338" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                                    <integer key="value" value="64"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="bank"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="FdY-HC-cPL" userLabel="USREOU" customClass="BorderedTextField">
+                                            <rect key="frame" x="0.0" y="280" width="338" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="i"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
@@ -191,10 +221,12 @@
         </view>
     </objects>
     <resources>
-        <image name="mail" width="128" height="128"/>
+        <image name="bank" width="10.5" height="10.5"/>
+        <image name="i" width="10.5" height="10.5"/>
+        <image name="mail" width="11.5" height="9.5"/>
         <image name="name" width="10.5" height="10.5"/>
         <image name="phone" width="7.5" height="13"/>
-        <image name="pin" width="128" height="128"/>
+        <image name="pin" width="9.5" height="13.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

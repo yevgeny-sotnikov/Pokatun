@@ -30,6 +30,9 @@ namespace Pokatun.Droid.Views.Profile
         private Button _addPhoneButton;
         private EditText _emailTextField;
         private Button _hotelLocationButton;
+        private EditText _bankCardOrIbanTextField;
+        private EditText _bankNameTextField;
+        private EditText _usreouTextField;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_profile;
 
@@ -48,6 +51,9 @@ namespace Pokatun.Droid.Views.Profile
             _addPhoneButton = view.FindViewById<Button>(Resource.Id.addPhoneButton);
             _emailTextField = view.FindViewById<EditText>(Resource.Id.emailTextField);
             _hotelLocationButton = view.FindViewById<Button>(Resource.Id.hotelLocationButton);
+            _bankCardOrIbanTextField = view.FindViewById<EditText>(Resource.Id.bankCardOrIbanTextField);
+            _bankNameTextField = view.FindViewById<EditText>(Resource.Id.bankNameTextField);
+            _usreouTextField = view.FindViewById<EditText>(Resource.Id.usreouTextField);
 
             _tabHost.Setup();
 
@@ -62,6 +68,9 @@ namespace Pokatun.Droid.Views.Profile
             _addPhoneButton.Text = Strings.AddPhone;
             _emailTextField.Hint = Strings.Email;
             _hotelLocationButton.Text = Strings.HotelLocationAddress;
+            _bankCardOrIbanTextField.Hint = Strings.CardNumberOrIBAN;
+            _bankNameTextField.Hint = Strings.BankName;
+            _usreouTextField.Hint = Strings.USREOU;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -74,12 +83,18 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_hotelNameEditText).To(vm => vm.HotelName).TwoWay();
             set.Bind(_fullCompanyNameTextField).To(vm => vm.FullCompanyName).TwoWay();
             set.Bind(_emailTextField).To(vm => vm.Email).TwoWay();
+            set.Bind(_bankCardOrIbanTextField).To(vm => vm.BankCardOrIban).OneWayToSource().TwoWay();
+            set.Bind(_bankNameTextField).To(vm => vm.BankName).OneWayToSource().TwoWay();
+            set.Bind(_usreouTextField).To(vm => vm.USREOU).OneWayToSource().TwoWay();
 
             set.Bind(_phonesTable).For(v => v.ItemsSource).To(vm => vm.PhoneNumbers).OneTime();
 
             set.Bind(_hotelNameEditText).For(v => v.Activated).To(vm => vm.IsHotelNameInvalid).OneWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Activated).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
             set.Bind(_emailTextField).For(v => v.Activated).To(vm => vm.IsEmailInvalid).OneWay();
+            set.Bind(_bankCardOrIbanTextField).For(v => v.Activated).To(vm => vm.IsBankCardOrIbanInvalid).OneWay();
+            set.Bind(_bankNameTextField).For(v => v.Activated).To(vm => vm.IsBankNameInvalid).OneWay();
+            set.Bind(_usreouTextField).For(v => v.Activated).To(vm => vm.IsUsreouInvalid).OneWay();
 
             set.Bind(_addPhoneButton).To(vm => vm.AddPhoneCommand).OneTime();
 

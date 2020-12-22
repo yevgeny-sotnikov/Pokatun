@@ -62,6 +62,51 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private string _bankCardOrIban = string.Empty;
+        public string BankCardOrIban
+        {
+            get { return _bankCardOrIban; }
+            set
+            {
+                if (!SetProperty(ref _bankCardOrIban, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsBankCardOrIbanInvalid));
+            }
+        }
+
+        private string _bankName = string.Empty;
+        public string BankName
+        {
+            get { return _bankName; }
+            set
+            {
+                if (!SetProperty(ref _bankName, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsBankNameInvalid));
+            }
+        }
+
+        private string _usreou = string.Empty;
+        public string USREOU
+        {
+            get { return _usreou; }
+            set
+            {
+                if (!SetProperty(ref _usreou, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsUsreouInvalid));
+            }
+        }
+
         public MvxObservableCollection<PhoneItemViewModel> PhoneNumbers { get; private set; }
 
         public bool IsHotelNameInvalid => CheckInvalid(nameof(HotelName));
@@ -69,6 +114,12 @@ namespace Pokatun.Core.ViewModels.Profile
         public bool IsFullCompanyNameInvalid => CheckInvalid(nameof(FullCompanyName));
 
         public bool IsEmailInvalid => CheckInvalid(nameof(Email));
+
+        public bool IsUsreouInvalid => CheckInvalid(nameof(USREOU));
+
+        public bool IsBankNameInvalid => CheckInvalid(nameof(BankName));
+
+        public bool IsBankCardOrIbanInvalid => CheckInvalid(nameof(BankCardOrIban));
 
         private MvxAsyncCommand _closeCommand;
         public IMvxAsyncCommand CloseCommand
@@ -113,6 +164,10 @@ namespace Pokatun.Core.ViewModels.Profile
         {
             HotelName = parameter.HotelName;
             FullCompanyName = parameter.FullCompanyName;
+            Email = parameter.Email;
+            BankCardOrIban = parameter.BankCard == null ? parameter.IBAN : parameter.BankCard.ToString();
+            BankName = parameter.BankName;
+            USREOU = parameter.USREOU.ToString();
 
             PhoneNumbers.AddRange(parameter.Phones.Select(p => new PhoneItemViewModel(p, DeletePhoneCommand)));
         }

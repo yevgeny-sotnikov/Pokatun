@@ -16,6 +16,12 @@ namespace Pokatun.iOS.Views.Profile
 		Pokatun.iOS.Controls.BorderedButton _addPhoneButton { get; set; }
 
 		[Outlet]
+		Pokatun.iOS.Controls.BorderedTextField _bankCardOrIbanTextField { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.BorderedTextField _bankNameTextField { get; set; }
+
+		[Outlet]
 		Pokatun.iOS.Controls.BorderedTextField _emailTextField { get; set; }
 
 		[Outlet]
@@ -38,22 +44,35 @@ namespace Pokatun.iOS.Views.Profile
 
 		[Outlet]
 		UIKit.UIButton _saveChangesButton { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.BorderedTextField _usreouTextField { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (_emailTextField != null) {
-				_emailTextField.Dispose ();
-				_emailTextField = null;
+			if (_bankNameTextField != null) {
+				_bankNameTextField.Dispose ();
+				_bankNameTextField = null;
 			}
 
-			if (_hotelLocationButton != null) {
-				_hotelLocationButton.Dispose ();
-				_hotelLocationButton = null;
+			if (_usreouTextField != null) {
+				_usreouTextField.Dispose ();
+				_usreouTextField = null;
 			}
 
 			if (_addPhoneButton != null) {
 				_addPhoneButton.Dispose ();
 				_addPhoneButton = null;
+			}
+
+			if (_bankCardOrIbanTextField != null) {
+				_bankCardOrIbanTextField.Dispose ();
+				_bankCardOrIbanTextField = null;
+			}
+
+			if (_emailTextField != null) {
+				_emailTextField.Dispose ();
+				_emailTextField = null;
 			}
 
 			if (_fullCompanyNameTextField != null) {
@@ -64,6 +83,11 @@ namespace Pokatun.iOS.Views.Profile
 			if (_hotelInfoTab != null) {
 				_hotelInfoTab.Dispose ();
 				_hotelInfoTab = null;
+			}
+
+			if (_hotelLocationButton != null) {
+				_hotelLocationButton.Dispose ();
+				_hotelLocationButton = null;
 			}
 
 			if (_hotelNameEditText != null) {

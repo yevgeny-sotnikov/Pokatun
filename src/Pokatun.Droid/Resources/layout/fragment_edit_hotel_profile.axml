@@ -91,6 +91,7 @@
                             />
 
                         <EditText
+				            android:id="@+id/bankCardOrIbanTextField"
                             style="@style/BorderedEditTextWithLeftImage"
                             android:layout_width="match_parent"
             				android:layout_marginTop="16dp"
@@ -100,22 +101,25 @@
                             android:hint="IBAN"
                             />
                         <EditText
+				            android:id="@+id/bankNameTextField"
                             style="@style/BorderedEditTextWithLeftImage"
                             android:layout_width="match_parent"
             				android:layout_marginTop="16dp"
                             android:drawableLeft="@drawable/bank"
+	    		            android:singleLine="true"
 				            android:maxLength="64"
                             android:hint="bank name"
                             />
                         <EditText
+    				        android:id="@+id/usreouTextField"
                             style="@style/BorderedEditTextWithLeftImage"
                             android:layout_width="match_parent"
             				android:layout_marginTop="16dp"
             				android:layout_marginBottom="17dp"
                             android:drawableLeft="@drawable/i"
-				            android:maxLength="16"
-				            android:inputType="textPostalAddress"
-                            android:hint="bank card"
+				            android:maxLength="8"
+				            android:inputType="number"
+                            android:hint="USREOU"
                             />
                     </LinearLayout>
                 </ScrollView>

@@ -43,6 +43,9 @@ namespace Pokatun.iOS.Views.Profile
             _hotelNameEditText.ApplyBorderedEditTextStyle();
             _fullCompanyNameTextField.ApplyBorderedEditTextStyle();
             _emailTextField.ApplyBorderedEditTextStyle();
+            _bankCardOrIbanTextField.ApplyBorderedEditTextStyle();
+            _bankNameTextField.ApplyBorderedEditTextStyle();
+            _usreouTextField.ApplyBorderedEditTextStyle();
 
             _addPhoneButton.ApplyBorderedButtonStyle();
             _hotelLocationButton.ApplyBorderedButtonStyle();
@@ -50,10 +53,16 @@ namespace Pokatun.iOS.Views.Profile
             _hotelNameEditText.KeyboardType = UIKeyboardType.Default;
             _fullCompanyNameTextField.KeyboardType = UIKeyboardType.Default;
             _emailTextField.KeyboardType = UIKeyboardType.EmailAddress;
+            _bankCardOrIbanTextField.KeyboardType = UIKeyboardType.NamePhonePad;
+            _bankNameTextField.KeyboardType = UIKeyboardType.Default;
+            _usreouTextField.KeyboardType = UIKeyboardType.NumberPad;
 
             _hotelNameEditText.Placeholder = Strings.Name;
             _fullCompanyNameTextField.Placeholder = Strings.FullCompanyName;
             _emailTextField.Placeholder = Strings.Email;
+            _bankCardOrIbanTextField.Placeholder = Strings.CardNumberOrIBAN;
+            _bankNameTextField.Placeholder = Strings.BankName;
+            _usreouTextField.Placeholder = Strings.USREOU;
 
             _addPhoneButton.Text = Strings.AddPhone;
             _hotelLocationButton.Text = Strings.HotelLocationAddress;
@@ -73,6 +82,9 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_hotelNameEditText).For(v => v.Text).To(vm => vm.HotelName).TwoWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Text).To(vm => vm.FullCompanyName).TwoWay();
             set.Bind(_emailTextField).For(v => v.Text).To(vm => vm.Email).TwoWay();
+            set.Bind(_bankCardOrIbanTextField).For(v => v.Text).To(vm => vm.BankCardOrIban).TwoWay();
+            set.Bind(_bankNameTextField).For(v => v.Text).To(vm => vm.BankName).TwoWay();
+            set.Bind(_usreouTextField).For(v => v.Text).To(vm => vm.USREOU).TwoWay();
 
             set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
 
@@ -81,6 +93,9 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_hotelNameEditText).For(v => v.Highlighted).To(vm => vm.IsHotelNameInvalid).OneWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Highlighted).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
             set.Bind(_emailTextField).For(v => v.Highlighted).To(vm => vm.IsEmailInvalid).OneWay();
+            set.Bind(_bankCardOrIbanTextField).For(v => v.Highlighted).To(vm => vm.IsBankCardOrIbanInvalid).OneWay();
+            set.Bind(_bankNameTextField).For(v => v.Highlighted).To(vm => vm.IsBankNameInvalid).OneWay();
+            set.Bind(_usreouTextField).For(v => v.Highlighted).To(vm => vm.IsUsreouInvalid).OneWay();
 
             set.Apply();
         }

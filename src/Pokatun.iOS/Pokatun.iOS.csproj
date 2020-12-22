@@ -254,6 +254,18 @@
     <Compile Include="Controls\BorderedButton.designer.cs">
       <DependentUpon>Controls\BorderedButton.cs</DependentUpon>
     </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\bank.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\i.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\mail.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\pin.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\pin.imageset\pin%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\mail.imageset\mail%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\i.imageset\i%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\bank.imageset\bank%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\bank.imageset\bank%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\i.imageset\i%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\mail.imageset\mail%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\pin.imageset\pin%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -365,6 +377,10 @@
     <Folder Include="Resources\Media.xcassets\name.imageset\" />
     <Folder Include="Cells\" />
     <Folder Include="Resources\Media.xcassets\phone.imageset\" />
+    <Folder Include="Resources\Media.xcassets\bank.imageset\" />
+    <Folder Include="Resources\Media.xcassets\i.imageset\" />
+    <Folder Include="Resources\Media.xcassets\mail.imageset\" />
+    <Folder Include="Resources\Media.xcassets\pin.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

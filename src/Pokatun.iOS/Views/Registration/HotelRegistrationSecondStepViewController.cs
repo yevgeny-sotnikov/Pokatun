@@ -36,6 +36,7 @@ namespace Pokatun.iOS.Views.Registration
             _bankCardOrIbanTextField.Placeholder = Strings.CardNumberOrIBAN;
             _bankNameTextField.Placeholder = Strings.BankName;
             _usreouTextField.Placeholder = Strings.USREOU;
+
             _createAccountButton.SetTitle(Strings.CreateAccount, UIControlState.Normal);
 
             #pragma warning disable IDE0008 // Use explicit type
