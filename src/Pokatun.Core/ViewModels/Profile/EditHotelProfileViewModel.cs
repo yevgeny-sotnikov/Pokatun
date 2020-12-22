@@ -47,11 +47,28 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private string _email = string.Empty;
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                if (!SetProperty(ref _email, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsEmailInvalid));
+            }
+        }
+
         public MvxObservableCollection<PhoneItemViewModel> PhoneNumbers { get; private set; }
 
         public bool IsHotelNameInvalid => CheckInvalid(nameof(HotelName));
 
         public bool IsFullCompanyNameInvalid => CheckInvalid(nameof(FullCompanyName));
+
+        public bool IsEmailInvalid => CheckInvalid(nameof(Email));
 
         private MvxAsyncCommand _closeCommand;
         public IMvxAsyncCommand CloseCommand

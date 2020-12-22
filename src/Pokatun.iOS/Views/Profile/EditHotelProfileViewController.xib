@@ -12,8 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditHotelProfileViewController">
             <connections>
                 <outlet property="_addPhoneButton" destination="jGp-c2-j2O" id="Ged-31-Kg7"/>
+                <outlet property="_emailTextField" destination="RHc-jm-CXw" id="dGt-Sr-HiH"/>
                 <outlet property="_fullCompanyNameTextField" destination="ej4-ud-kVL" id="56I-6W-N1d"/>
                 <outlet property="_hotelInfoTab" destination="cNE-a1-MRc" id="O99-Qt-7hE"/>
+                <outlet property="_hotelLocationButton" destination="G8w-wk-uBP" id="xUP-pY-Qeb"/>
                 <outlet property="_hotelNameEditText" destination="40p-pA-7lq" id="Y3c-Ay-SaU"/>
                 <outlet property="_personalDataTab" destination="Vlg-lJ-85E" id="wOq-q9-SO5"/>
                 <outlet property="_phonesTable" destination="gWo-90-jJ2" id="IMK-Ho-vAF"/>
@@ -69,7 +71,7 @@
                             <rect key="frame" x="0.0" y="33" width="414" height="627"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TjC-Nm-qRj">
-                                    <rect key="frame" x="38" y="23" width="338" height="96"/>
+                                    <rect key="frame" x="38" y="23" width="338" height="152"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TbS-Pr-dPu">
                                             <rect key="frame" x="0.0" y="0.0" width="338" height="96"/>
@@ -87,7 +89,7 @@
                                                     <rect key="frame" x="0.0" y="48" width="338" height="0.0"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </tableView>
-                                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="jGp-c2-j2O" customClass="BorderedButton">
+                                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="jGp-c2-j2O" userLabel="add phone button" customClass="BorderedButton">
                                                     <rect key="frame" x="0.0" y="56" width="338" height="40"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="phone"/>
@@ -95,6 +97,15 @@
                                                 </view>
                                             </subviews>
                                         </stackView>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="RHc-jm-CXw" userLabel="hotel full name" customClass="BorderedTextField">
+                                            <rect key="frame" x="0.0" y="112" width="338" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                                    <integer key="value" value="64"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="mail"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                 </stackView>
                             </subviews>
@@ -111,8 +122,8 @@
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sif-dV-uK1">
                             <rect key="frame" x="0.0" y="33" width="414" height="627"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TvX-dY-LwP">
-                                    <rect key="frame" x="38" y="23" width="338" height="40"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TvX-dY-LwP">
+                                    <rect key="frame" x="38" y="23" width="338" height="96"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="40p-pA-7lq" userLabel="hotel name" customClass="BorderedTextField">
                                             <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
@@ -121,6 +132,12 @@
                                                     <integer key="value" value="64"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="name"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="G8w-wk-uBP" userLabel="hotel location button" customClass="BorderedButton">
+                                            <rect key="frame" x="0.0" y="56" width="338" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="pin"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
@@ -174,8 +191,10 @@
         </view>
     </objects>
     <resources>
+        <image name="mail" width="128" height="128"/>
         <image name="name" width="10.5" height="10.5"/>
         <image name="phone" width="7.5" height="13"/>
+        <image name="pin" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

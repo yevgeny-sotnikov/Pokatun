@@ -80,6 +80,7 @@
                             />
 
                         <EditText
+                            android:id="@+id/emailTextField"
                             style="@style/BorderedEditTextWithLeftImage"
                             android:layout_width="match_parent"
             				android:layout_marginTop="16dp"
@@ -88,12 +89,7 @@
 				            android:inputType="textEmailAddress"
                             android:hint="email"
                             />
-                        <EditText
-                            style="@style/BorderedEditTextWithLeftImage"
-                            android:layout_width="match_parent"
-            				android:layout_marginTop="16dp"
-                            android:drawableLeft="@drawable/pin"
-                            />
+
                         <EditText
                             style="@style/BorderedEditTextWithLeftImage"
                             android:layout_width="match_parent"
@@ -145,39 +141,15 @@
 				            android:layout_width="match_parent"
 				            android:id="@+id/hotelNameEditText"
 				            />
-			            <EditText
-				            style="@style/BorderedEditTextWithLeftImage"
-				            android:maxLength="16"
-				            android:inputType="phone"
-				            android:layout_width="match_parent"
-				            android:layout_marginTop="16dp"
-                            android:hint="phone number"
-				            android:id="@+id/phoneNumberEditText"
-				            />
-			            <EditText
-				            style="@style/BorderedEditTextWithLeftImage"
-				            android:maxLength="16"
-				            android:inputType="phone"
-				            android:layout_width="match_parent"
-				            android:layout_marginTop="16dp"
-                            android:hint="add phone number"
-				            android:id="@+id/addPhoneNumberButton"
-				            />
-                        <EditText
-                            style="@style/BorderedEditTextWithLeftImage"
-                            android:layout_width="match_parent"
-            				android:layout_marginTop="16dp"
-                            android:drawableLeft="@drawable/mail"
-				            android:maxLength="64"
-				            android:inputType="textEmailAddress"
-                            android:hint="email"
-                            />
-                        <EditText
-                            style="@style/BorderedEditTextWithLeftImage"
+
+                         <Button
+                            android:id="@+id/hotelLocationButton"
+                            style="@style/BorderedButton"
                             android:layout_width="match_parent"
             				android:layout_marginTop="16dp"
                             android:drawableLeft="@drawable/pin"
                             />
+
                         <Button
                             style="@style/BorderedEditTextWithLeftImage"
                             android:layout_width="match_parent"

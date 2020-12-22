@@ -1,8 +1,6 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using AndroidX.RecyclerView.Widget;
-using MvvmCross.DroidX.RecyclerView;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -30,6 +28,8 @@ namespace Pokatun.Droid.Views.Profile
         private EditText _fullCompanyNameTextField;
         private MvxLinearLayout _phonesTable;
         private Button _addPhoneButton;
+        private EditText _emailTextField;
+        private Button _hotelLocationButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_profile;
 
@@ -46,6 +46,8 @@ namespace Pokatun.Droid.Views.Profile
             _fullCompanyNameTextField = view.FindViewById<EditText>(Resource.Id.fullCompanyNameTextField);
             _phonesTable = view.FindViewById<MvxLinearLayout>(Resource.Id.phonesTable);
             _addPhoneButton = view.FindViewById<Button>(Resource.Id.addPhoneButton);
+            _emailTextField = view.FindViewById<EditText>(Resource.Id.emailTextField);
+            _hotelLocationButton = view.FindViewById<Button>(Resource.Id.hotelLocationButton);
 
             _tabHost.Setup();
 
@@ -58,6 +60,8 @@ namespace Pokatun.Droid.Views.Profile
             _hotelNameEditText.Hint = Strings.Name;
             _fullCompanyNameTextField.Hint = Strings.FullCompanyName;
             _addPhoneButton.Text = Strings.AddPhone;
+            _emailTextField.Hint = Strings.Email;
+            _hotelLocationButton.Text = Strings.HotelLocationAddress;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -65,14 +69,19 @@ namespace Pokatun.Droid.Views.Profile
 
             #pragma warning restore IDE0008 // Use explicit type
 
-            set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand);
-            set.Bind(_hotelNameEditText).For(v => v.Text).To(vm => vm.HotelName).TwoWay();
-            set.Bind(_fullCompanyNameTextField).For(v => v.Text).To(vm => vm.FullCompanyName).TwoWay();
+            set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand).OneTime();
+
+            set.Bind(_hotelNameEditText).To(vm => vm.HotelName).TwoWay();
+            set.Bind(_fullCompanyNameTextField).To(vm => vm.FullCompanyName).TwoWay();
+            set.Bind(_emailTextField).To(vm => vm.Email).TwoWay();
+
             set.Bind(_phonesTable).For(v => v.ItemsSource).To(vm => vm.PhoneNumbers).OneTime();
 
             set.Bind(_hotelNameEditText).For(v => v.Activated).To(vm => vm.IsHotelNameInvalid).OneWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Activated).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
-            set.Bind(_addPhoneButton).To(vm => vm.AddPhoneCommand);
+            set.Bind(_emailTextField).For(v => v.Activated).To(vm => vm.IsEmailInvalid).OneWay();
+
+            set.Bind(_addPhoneButton).To(vm => vm.AddPhoneCommand).OneTime();
 
             set.Apply();
 

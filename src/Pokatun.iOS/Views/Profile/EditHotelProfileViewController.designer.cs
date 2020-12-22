@@ -16,10 +16,16 @@ namespace Pokatun.iOS.Views.Profile
 		Pokatun.iOS.Controls.BorderedButton _addPhoneButton { get; set; }
 
 		[Outlet]
+		Pokatun.iOS.Controls.BorderedTextField _emailTextField { get; set; }
+
+		[Outlet]
 		Pokatun.iOS.Controls.BorderedTextField _fullCompanyNameTextField { get; set; }
 
 		[Outlet]
 		Pokatun.iOS.Controls.Tabs.HotelProfileTab _hotelInfoTab { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.BorderedButton _hotelLocationButton { get; set; }
 
 		[Outlet]
 		Pokatun.iOS.Controls.BorderedTextField _hotelNameEditText { get; set; }
@@ -35,6 +41,21 @@ namespace Pokatun.iOS.Views.Profile
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (_emailTextField != null) {
+				_emailTextField.Dispose ();
+				_emailTextField = null;
+			}
+
+			if (_hotelLocationButton != null) {
+				_hotelLocationButton.Dispose ();
+				_hotelLocationButton = null;
+			}
+
+			if (_addPhoneButton != null) {
+				_addPhoneButton.Dispose ();
+				_addPhoneButton = null;
+			}
+
 			if (_fullCompanyNameTextField != null) {
 				_fullCompanyNameTextField.Dispose ();
 				_fullCompanyNameTextField = null;
@@ -63,11 +84,6 @@ namespace Pokatun.iOS.Views.Profile
 			if (_saveChangesButton != null) {
 				_saveChangesButton.Dispose ();
 				_saveChangesButton = null;
-			}
-
-			if (_addPhoneButton != null) {
-				_addPhoneButton.Dispose ();
-				_addPhoneButton = null;
 			}
 		}
 	}

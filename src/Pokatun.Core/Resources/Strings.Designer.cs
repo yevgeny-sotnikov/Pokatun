@@ -430,5 +430,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("EnterPhone", resourceCulture);
             }
         }
+        
+        public static string HotelLocationAddress {
+            get {
+                return ResourceManager.GetString("HotelLocationAddress", resourceCulture);
+            }
+        }
     }
 }
