@@ -266,6 +266,9 @@
     <ImageAsset Include="Resources\Media.xcassets\i.imageset\i%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\mail.imageset\mail%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\pin.imageset\pin%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\clock.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\clock.imageset\clock%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\clock.imageset\clock%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -381,6 +384,7 @@
     <Folder Include="Resources\Media.xcassets\i.imageset\" />
     <Folder Include="Resources\Media.xcassets\mail.imageset\" />
     <Folder Include="Resources\Media.xcassets\pin.imageset\" />
+    <Folder Include="Resources\Media.xcassets\clock.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

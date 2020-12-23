@@ -23,6 +23,7 @@
     <Folder Include="ViewModels\ForgotPassword\" />
     <Folder Include="ViewModels\Profile\" />
     <Folder Include="Executors\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">

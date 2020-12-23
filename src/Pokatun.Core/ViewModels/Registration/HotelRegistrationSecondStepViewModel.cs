@@ -164,7 +164,7 @@ namespace Pokatun.Core.ViewModels.Registration
 
                 return;
             }
-
+            
             HotelDto hotel = new HotelDto
             {
                 HotelName = _firstData.HotelName,

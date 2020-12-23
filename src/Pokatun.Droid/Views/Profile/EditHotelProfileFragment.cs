@@ -4,6 +4,7 @@ using Android.Widget;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Profile;
@@ -33,6 +34,8 @@ namespace Pokatun.Droid.Views.Profile
         private EditText _bankCardOrIbanTextField;
         private EditText _bankNameTextField;
         private EditText _usreouTextField;
+        private Button _checkInTimeButton;
+        private Button _checkOutTimeButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_profile;
 
@@ -54,6 +57,8 @@ namespace Pokatun.Droid.Views.Profile
             _bankCardOrIbanTextField = view.FindViewById<EditText>(Resource.Id.bankCardOrIbanTextField);
             _bankNameTextField = view.FindViewById<EditText>(Resource.Id.bankNameTextField);
             _usreouTextField = view.FindViewById<EditText>(Resource.Id.usreouTextField);
+            _checkInTimeButton = view.FindViewById<Button>(Resource.Id.checkInTimeButton);
+            _checkOutTimeButton = view.FindViewById<Button>(Resource.Id.checkOutTimeButton);
 
             _tabHost.Setup();
 
@@ -83,9 +88,12 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_hotelNameEditText).To(vm => vm.HotelName).TwoWay();
             set.Bind(_fullCompanyNameTextField).To(vm => vm.FullCompanyName).TwoWay();
             set.Bind(_emailTextField).To(vm => vm.Email).TwoWay();
-            set.Bind(_bankCardOrIbanTextField).To(vm => vm.BankCardOrIban).OneWayToSource().TwoWay();
-            set.Bind(_bankNameTextField).To(vm => vm.BankName).OneWayToSource().TwoWay();
-            set.Bind(_usreouTextField).To(vm => vm.USREOU).OneWayToSource().TwoWay();
+            set.Bind(_bankCardOrIbanTextField).To(vm => vm.BankCardOrIban).TwoWay();
+            set.Bind(_bankNameTextField).To(vm => vm.BankName).TwoWay();
+            set.Bind(_usreouTextField).To(vm => vm.USREOU).TwoWay();
+
+            set.Bind(_checkInTimeButton).For(v => v.Text).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.CheckInTime).OneWay();
+            set.Bind(_checkOutTimeButton).For(v => v.Text).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.CheckOutTime).OneWay();
 
             set.Bind(_phonesTable).For(v => v.ItemsSource).To(vm => vm.PhoneNumbers).OneTime();
 
@@ -97,6 +105,8 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_usreouTextField).For(v => v.Activated).To(vm => vm.IsUsreouInvalid).OneWay();
 
             set.Bind(_addPhoneButton).To(vm => vm.AddPhoneCommand).OneTime();
+            set.Bind(_checkInTimeButton).To(vm => vm.ChooseCheckInTimeCommand).OneTime();
+            set.Bind(_checkOutTimeButton).To(vm => vm.ChooseCheckOutTimeCommand).OneTime();
 
             set.Apply();
 

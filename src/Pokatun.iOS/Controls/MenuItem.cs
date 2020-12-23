@@ -77,7 +77,7 @@ namespace Pokatun.iOS.Controls
 
         private async void OnItemTapped()
         {
-            await AnimateAsync(ClickAnimationDuration, () => { Alpha = 0.5f; BackgroundColor = UIColor.SystemFillColor; });
+            await AnimateAsync(ClickAnimationDuration, () => { Alpha = 0.5f; BackgroundColor = UIColor.LightGray; });
             await AnimateAsync(ClickAnimationDuration, () => { Alpha = 1f; BackgroundColor = UIColor.Clear; });
             Clicked?.Invoke(this, new EventArgs());
         }

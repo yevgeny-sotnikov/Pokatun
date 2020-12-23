@@ -211,4 +211,10 @@
     <data name="HotelLocationAddress" xml:space="preserve">
         <value>Адрес расположения отеля</value>
     </data>
+    <data name="CheckInTime" xml:space="preserve">
+        <value>Время заселения</value>
+    </data>
+    <data name="CheckOutTime" xml:space="preserve">
+        <value>Время выселения</value>
+    </data>
 </root>

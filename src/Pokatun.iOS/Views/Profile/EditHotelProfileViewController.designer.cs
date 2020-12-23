@@ -22,6 +22,12 @@ namespace Pokatun.iOS.Views.Profile
 		Pokatun.iOS.Controls.BorderedTextField _bankNameTextField { get; set; }
 
 		[Outlet]
+		Pokatun.iOS.Controls.BorderedButton _checkInTimeButton { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.BorderedButton _checkOutTimeButton { get; set; }
+
+		[Outlet]
 		Pokatun.iOS.Controls.BorderedTextField _emailTextField { get; set; }
 
 		[Outlet]
@@ -50,14 +56,14 @@ namespace Pokatun.iOS.Views.Profile
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (_bankNameTextField != null) {
-				_bankNameTextField.Dispose ();
-				_bankNameTextField = null;
+			if (_checkInTimeButton != null) {
+				_checkInTimeButton.Dispose ();
+				_checkInTimeButton = null;
 			}
 
-			if (_usreouTextField != null) {
-				_usreouTextField.Dispose ();
-				_usreouTextField = null;
+			if (_checkOutTimeButton != null) {
+				_checkOutTimeButton.Dispose ();
+				_checkOutTimeButton = null;
 			}
 
 			if (_addPhoneButton != null) {
@@ -68,6 +74,11 @@ namespace Pokatun.iOS.Views.Profile
 			if (_bankCardOrIbanTextField != null) {
 				_bankCardOrIbanTextField.Dispose ();
 				_bankCardOrIbanTextField = null;
+			}
+
+			if (_bankNameTextField != null) {
+				_bankNameTextField.Dispose ();
+				_bankNameTextField = null;
 			}
 
 			if (_emailTextField != null) {
@@ -108,6 +119,11 @@ namespace Pokatun.iOS.Views.Profile
 			if (_saveChangesButton != null) {
 				_saveChangesButton.Dispose ();
 				_saveChangesButton = null;
+			}
+
+			if (_usreouTextField != null) {
+				_usreouTextField.Dispose ();
+				_usreouTextField = null;
 			}
 		}
 	}

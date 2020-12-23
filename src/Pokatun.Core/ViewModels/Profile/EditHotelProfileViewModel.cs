@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -13,10 +14,10 @@ namespace Pokatun.Core.ViewModels.Profile
     public sealed class EditHotelProfileViewModel : BaseViewModel<HotelDto, bool>
     {
         private readonly IMvxNavigationService _navigationService;
-
-        private bool _viewInEditMode = true;
+        private readonly IUserDialogs _userDialogs;
         private readonly ValidationHelper _validator;
 
+        private bool _viewInEditMode = true;
         private string _hotelName = string.Empty;
         public string HotelName
         {
@@ -107,6 +108,20 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private TimeSpan? _checkInTime;
+        public TimeSpan? CheckInTime
+        {
+            get { return _checkInTime; }
+            set { SetProperty(ref _checkInTime, value); }
+        }
+
+        private TimeSpan? _checkOutTime;
+        public TimeSpan? CheckOutTime
+        {
+            get { return _checkOutTime; }
+            set { SetProperty(ref _checkOutTime, value); }
+        }
+
         public MvxObservableCollection<PhoneItemViewModel> PhoneNumbers { get; private set; }
 
         public bool IsHotelNameInvalid => CheckInvalid(nameof(HotelName));
@@ -148,9 +163,28 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        public EditHotelProfileViewModel(IMvxNavigationService navigationService)
+        private MvxAsyncCommand _chooseCheckInTimeCommand;
+        public IMvxAsyncCommand ChooseCheckInTimeCommand
+        {
+            get
+            {
+                return _chooseCheckInTimeCommand ?? (_chooseCheckInTimeCommand = new MvxAsyncCommand(DoChooseCheckInTimeCommandAsync));
+            }
+        }
+
+        private MvxAsyncCommand _chooseCheckOutTimeCommand;
+        public IMvxAsyncCommand ChooseCheckOutTimeCommand
+        {
+            get
+            {
+                return _chooseCheckOutTimeCommand ?? (_chooseCheckOutTimeCommand = new MvxAsyncCommand(DoChooseCheckOutTimeCommandAsync));
+            }
+        }
+
+        public EditHotelProfileViewModel(IMvxNavigationService navigationService, IUserDialogs userDialogs)
         {
             _navigationService = navigationService;
+            _userDialogs = userDialogs;
 
             _validator = new ValidationHelper();
 
@@ -182,9 +216,33 @@ namespace Pokatun.Core.ViewModels.Profile
             PhoneNumbers.Remove(phoneVM);
         }
 
+        private async Task DoChooseCheckInTimeCommandAsync()
+        {
+            TimePromptResult res = await ShowTimePromptAsync();
+
+            if (!res.Ok) return;
+
+            CheckInTime = res.Value;
+        }
+
+        private async Task DoChooseCheckOutTimeCommandAsync()
+        {
+            TimePromptResult res = await ShowTimePromptAsync();
+
+            if (!res.Ok) return;
+
+            CheckOutTime = res.Value;
+        }
+
+
         private Task DoCloseCommandAsync()
         {
             return _navigationService.Close(this, false);
+        }
+
+        private Task<TimePromptResult> ShowTimePromptAsync()
+        {
+            return _userDialogs.TimePromptAsync(new TimePromptConfig { Use24HourClock = true });
         }
 
         private bool CheckInvalid(string name)

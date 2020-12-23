@@ -207,7 +207,7 @@ namespace Pokatun.iOS.Controls
             _textField.TextAlignment = UITextAlignment.Center;
             _textField.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
             _textField.TextColor = TextColor;
-            _textField.SetTextContentType(UITextContentType.NewPassword);
+            _textField.SetTextContentType(UITextContentType.Nickname);
 
             _textField.EditingChanged += OnEditingChanged;
             _textField.EditingDidBegin += OnEditingDidBegin;

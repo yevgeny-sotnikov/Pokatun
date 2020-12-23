@@ -146,7 +146,7 @@
 				            android:id="@+id/hotelNameEditText"
 				            />
 
-                         <Button
+                        <Button
                             android:id="@+id/hotelLocationButton"
                             style="@style/BorderedButton"
                             android:layout_width="match_parent"
@@ -155,18 +155,18 @@
                             />
 
                         <Button
-                            style="@style/BorderedEditTextWithLeftImage"
+                            android:id="@+id/checkInTimeButton"
+                            style="@style/BorderedButton"
                             android:layout_width="match_parent"
             				android:layout_marginTop="16dp"
                             android:drawableLeft="@drawable/clock"
-				            android:inputType="textEmailAddress"
                             />
                         <Button
-                            style="@style/BorderedEditTextWithLeftImage"
+                            android:id="@+id/checkOutTimeButton"
+                            style="@style/BorderedButton"
                             android:layout_width="match_parent"
             				android:layout_marginTop="16dp"
                             android:drawableLeft="@drawable/clock"
-				            android:inputType="textEmailAddress"
                             />
 
                     </LinearLayout>

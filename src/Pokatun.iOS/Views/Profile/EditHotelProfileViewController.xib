@@ -14,6 +14,8 @@
                 <outlet property="_addPhoneButton" destination="jGp-c2-j2O" id="Ged-31-Kg7"/>
                 <outlet property="_bankCardOrIbanTextField" destination="N3R-gS-1TU" id="QCx-63-RZc"/>
                 <outlet property="_bankNameTextField" destination="n5z-ka-w9c" id="RNg-7D-pKs"/>
+                <outlet property="_checkInTimeButton" destination="YRf-vK-Ydm" id="bmQ-lc-h5x"/>
+                <outlet property="_checkOutTimeButton" destination="q7a-YK-Umv" id="PVY-1T-avo"/>
                 <outlet property="_emailTextField" destination="RHc-jm-CXw" id="dGt-Sr-HiH"/>
                 <outlet property="_fullCompanyNameTextField" destination="ej4-ud-kVL" id="56I-6W-N1d"/>
                 <outlet property="_hotelInfoTab" destination="cNE-a1-MRc" id="O99-Qt-7hE"/>
@@ -153,7 +155,7 @@
                             <rect key="frame" x="0.0" y="33" width="414" height="627"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TvX-dY-LwP">
-                                    <rect key="frame" x="38" y="23" width="338" height="96"/>
+                                    <rect key="frame" x="38" y="23" width="338" height="208"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="40p-pA-7lq" userLabel="hotel name" customClass="BorderedTextField">
                                             <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
@@ -168,6 +170,18 @@
                                             <rect key="frame" x="0.0" y="56" width="338" height="40"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="pin"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="YRf-vK-Ydm" userLabel="check in time" customClass="BorderedButton">
+                                            <rect key="frame" x="0.0" y="112" width="338" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="clock"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="q7a-YK-Umv" userLabel="check out time" customClass="BorderedButton">
+                                            <rect key="frame" x="0.0" y="168" width="338" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="clock"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
@@ -222,6 +236,7 @@
     </objects>
     <resources>
         <image name="bank" width="10.5" height="10.5"/>
+        <image name="clock" width="10.5" height="10.5"/>
         <image name="i" width="10.5" height="10.5"/>
         <image name="mail" width="11.5" height="9.5"/>
         <image name="name" width="10.5" height="10.5"/>

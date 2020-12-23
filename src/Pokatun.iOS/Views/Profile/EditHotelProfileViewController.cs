@@ -1,5 +1,6 @@
 using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Profile;
 using Pokatun.iOS.Cells;
@@ -49,6 +50,8 @@ namespace Pokatun.iOS.Views.Profile
 
             _addPhoneButton.ApplyBorderedButtonStyle();
             _hotelLocationButton.ApplyBorderedButtonStyle();
+            _checkInTimeButton.ApplyBorderedButtonStyle();
+            _checkOutTimeButton.ApplyBorderedButtonStyle();
 
             _hotelNameEditText.KeyboardType = UIKeyboardType.Default;
             _fullCompanyNameTextField.KeyboardType = UIKeyboardType.Default;
@@ -86,9 +89,14 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_bankNameTextField).For(v => v.Text).To(vm => vm.BankName).TwoWay();
             set.Bind(_usreouTextField).For(v => v.Text).To(vm => vm.USREOU).TwoWay();
 
+            set.Bind(_checkInTimeButton).For(v => v.Text).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.CheckInTime).OneWay();
+            set.Bind(_checkOutTimeButton).For(v => v.Text).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.CheckOutTime).OneWay();
+
             set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
 
             set.Bind(_addPhoneButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.AddPhoneCommand).OneTime();
+            set.Bind(_checkInTimeButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.ChooseCheckInTimeCommand).OneTime();
+            set.Bind(_checkOutTimeButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.ChooseCheckOutTimeCommand).OneTime();
 
             set.Bind(_hotelNameEditText).For(v => v.Highlighted).To(vm => vm.IsHotelNameInvalid).OneWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Highlighted).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
