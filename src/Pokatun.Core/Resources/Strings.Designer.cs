@@ -425,6 +425,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string AddLink {
+            get {
+                return ResourceManager.GetString("AddLink", resourceCulture);
+            }
+        }
+        
         public static string EnterPhone {
             get {
                 return ResourceManager.GetString("EnterPhone", resourceCulture);
@@ -446,6 +452,12 @@ namespace Pokatun.Core.Resources {
         public static string CheckOutTime {
             get {
                 return ResourceManager.GetString("CheckOutTime", resourceCulture);
+            }
+        }
+        
+        public static string SiteOrSocialNetworkLink {
+            get {
+                return ResourceManager.GetString("SiteOrSocialNetworkLink", resourceCulture);
             }
         }
     }

@@ -1,13 +1,13 @@
 using System;
 
 using Foundation;
-using MvvmCross.Platforms.Ios.Binding.Views;
-using UIKit;
-using Pokatun.iOS.Styles;
-using Pokatun.Core.Resources;
 using MvvmCross.Binding.BindingContext;
-using Pokatun.Core.ViewModels.Profile;
+using MvvmCross.Platforms.Ios.Binding.Views;
+using Pokatun.Core.Resources;
+using Pokatun.Core.ViewModels.Collections;
 using Pokatun.iOS.Controls;
+using Pokatun.iOS.Styles;
+using UIKit;
 
 namespace Pokatun.iOS.Cells
 {
@@ -39,12 +39,12 @@ namespace Pokatun.iOS.Cells
             {
                 #pragma warning disable IDE0008 // Use explicit type
 
-                var set = this.CreateBindingSet<PhoneItemViewCell, PhoneItemViewModel>();
+                var set = this.CreateBindingSet<PhoneItemViewCell, EntryItemViewModel>();
 
                 #pragma warning restore IDE0008 // Use explicit type
 
-                set.Bind(_phoneTextField).For(v => v.Text).To(vm => vm.PhoneNumber).TwoWay();
-                set.Bind(_phoneTextField).For(nameof(BorderedTextField.RightButtonClicked)).To(vm => vm.DeleteItemCommand).OneWay();
+                set.Bind(_phoneTextField).For(v => v.Text).To(vm => vm.Text).TwoWay();
+                set.Bind(_phoneTextField).For(nameof(BorderedTextField.RightButtonClicked)).To(vm => vm.DeleteCommand).OneWay();
 
                 set.Apply();
             });

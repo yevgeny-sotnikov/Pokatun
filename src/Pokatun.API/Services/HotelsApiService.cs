@@ -28,7 +28,10 @@ namespace Pokatun.API.Services
             {
                 throw new ApiException(ErrorCodes.IncorrectIdError);
             }
-            Hotel hotel = _context.Hotels.Include(h => h.Phones).FirstOrDefault(h => h.Id == hotelId);
+            Hotel hotel = _context.Hotels
+                .Include(h => h.Phones)
+                .Include(h => h.SocialResources)
+                .FirstOrDefault(h => h.Id == hotelId);
 
             if (hotel == null)
             {

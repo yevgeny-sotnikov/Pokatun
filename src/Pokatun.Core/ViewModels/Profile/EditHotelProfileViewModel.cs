@@ -7,6 +7,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using MvvmValidation;
 using Pokatun.Core.Resources;
+using Pokatun.Core.ViewModels.Collections;
 using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Profile
@@ -122,7 +123,9 @@ namespace Pokatun.Core.ViewModels.Profile
             set { SetProperty(ref _checkOutTime, value); }
         }
 
-        public MvxObservableCollection<PhoneItemViewModel> PhoneNumbers { get; private set; }
+        public MvxObservableCollection<EntryItemViewModel> PhoneNumbers { get; private set; }
+
+        public MvxObservableCollection<EntryItemViewModel> SocialResources { get; private set; }
 
         public bool IsHotelNameInvalid => CheckInvalid(nameof(HotelName));
 
@@ -154,12 +157,30 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        private MvxCommand<PhoneItemViewModel> _deletePhoneCommand;
-        public IMvxCommand<PhoneItemViewModel> DeletePhoneCommand
+        private MvxCommand<EntryItemViewModel> _deletePhoneCommand;
+        public IMvxCommand<EntryItemViewModel> DeletePhoneCommand
         {
             get
             {
-                return _deletePhoneCommand ?? (_deletePhoneCommand = new MvxCommand<PhoneItemViewModel>(DoDeletePhoneCommand));
+                return _deletePhoneCommand ?? (_deletePhoneCommand = new MvxCommand<EntryItemViewModel>(DoDeletePhoneCommand));
+            }
+        }
+
+        private MvxCommand _addSocialResourceCommand;
+        public IMvxCommand AddSocialResourceCommand
+        {
+            get
+            {
+                return _addSocialResourceCommand ?? (_addSocialResourceCommand = new MvxCommand(DoAddSocialResourceCommand));
+            }
+        }
+
+        private MvxCommand<EntryItemViewModel> _removeSocialResourceCommand;
+        public IMvxCommand<EntryItemViewModel> RemoveSocialResourceCommand
+        {
+            get
+            {
+                return _removeSocialResourceCommand ?? (_removeSocialResourceCommand = new MvxCommand<EntryItemViewModel>(DoRemoveSocialResourceCommand));
             }
         }
 
@@ -191,7 +212,8 @@ namespace Pokatun.Core.ViewModels.Profile
             _validator.AddRule(nameof(HotelName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelName), Strings.HotelNameRequiredMessage));
             _validator.AddRule(nameof(FullCompanyName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(FullCompanyName), Strings.CompanyNameRequiredMessage));
 
-            PhoneNumbers = new MvxObservableCollection<PhoneItemViewModel>();
+            PhoneNumbers = new MvxObservableCollection<EntryItemViewModel>();
+            SocialResources = new MvxObservableCollection<EntryItemViewModel>();
         }
 
         public override void Prepare(HotelDto parameter)
@@ -203,17 +225,28 @@ namespace Pokatun.Core.ViewModels.Profile
             BankName = parameter.BankName;
             USREOU = parameter.USREOU.ToString();
 
-            PhoneNumbers.AddRange(parameter.Phones.Select(p => new PhoneItemViewModel(p, DeletePhoneCommand)));
+            PhoneNumbers.AddRange(parameter.Phones.Select(p => new EntryItemViewModel(p.Number, DeletePhoneCommand)));
+            SocialResources.AddRange(parameter.SocialResources.Select(sr => new EntryItemViewModel(sr.Link, RemoveSocialResourceCommand)));
         }
 
         private void DoAddPhoneCommand()
         {
-            PhoneNumbers.Add(new PhoneItemViewModel(null, DeletePhoneCommand));
+            PhoneNumbers.Add(new EntryItemViewModel(null, DeletePhoneCommand));
         }
 
-        private void DoDeletePhoneCommand(PhoneItemViewModel phoneVM)
+        private void DoDeletePhoneCommand(EntryItemViewModel phoneVM)
         {
             PhoneNumbers.Remove(phoneVM);
+        }
+
+        private void DoAddSocialResourceCommand()
+        {
+            SocialResources.Add(new EntryItemViewModel(null, RemoveSocialResourceCommand));
+        }
+
+        private void DoRemoveSocialResourceCommand(EntryItemViewModel srVM)
+        {
+            SocialResources.Remove(srVM);
         }
 
         private async Task DoChooseCheckInTimeCommandAsync()

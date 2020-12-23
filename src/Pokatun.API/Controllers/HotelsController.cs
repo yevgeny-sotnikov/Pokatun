@@ -43,6 +43,7 @@ namespace Pokatun.API.Controllers
                         Id = hotel.Id,
                         HotelName = hotel.HotelName,
                         Phones = new List<PhoneDto>(hotel.Phones.Select(p => new PhoneDto { Id = p.Id, Number = p.Number })),
+                        SocialResources = new List<SocialResourceDto>(hotel.SocialResources.Select(sr => new SocialResourceDto { Id = sr.Id, Link = sr.Link })),
                         Email = hotel.Email,
                         FullCompanyName = hotel.FullCompanyName,
                         BankCard = hotel.BankCard,
@@ -51,7 +52,6 @@ namespace Pokatun.API.Controllers
                         USREOU = hotel.USREOU
                     }
                 });
-                ;
             }
             catch (ApiException ex)
             {

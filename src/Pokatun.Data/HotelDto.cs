@@ -13,8 +13,6 @@ namespace Pokatun.Data
         [MinLength(1)]
         public string HotelName { get; set; }
 
-        public IList<PhoneDto> Phones { get; set; }
-
         [Required]
         [MaxLength(64)]
         [EmailAddress]
@@ -44,5 +42,9 @@ namespace Pokatun.Data
 
         [Required]
         public int USREOU { get; set; }
+
+        public List<PhoneDto> Phones { get; set; }
+
+        public List<SocialResourceDto> SocialResources { get; set; }
     }
 }

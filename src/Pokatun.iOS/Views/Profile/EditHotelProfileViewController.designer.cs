@@ -13,6 +13,9 @@ namespace Pokatun.iOS.Views.Profile
 	partial class EditHotelProfileViewController
 	{
 		[Outlet]
+		Pokatun.iOS.Controls.BorderedButton _addLinkButton { get; set; }
+
+		[Outlet]
 		Pokatun.iOS.Controls.BorderedButton _addPhoneButton { get; set; }
 
 		[Outlet]
@@ -43,6 +46,9 @@ namespace Pokatun.iOS.Views.Profile
 		Pokatun.iOS.Controls.BorderedTextField _hotelNameEditText { get; set; }
 
 		[Outlet]
+		Pokatun.iOS.Controls.ResizableTableView _linksTable { get; set; }
+
+		[Outlet]
 		Pokatun.iOS.Controls.Tabs.HotelProfileTab _personalDataTab { get; set; }
 
 		[Outlet]
@@ -56,14 +62,14 @@ namespace Pokatun.iOS.Views.Profile
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (_checkInTimeButton != null) {
-				_checkInTimeButton.Dispose ();
-				_checkInTimeButton = null;
+			if (_addLinkButton != null) {
+				_addLinkButton.Dispose ();
+				_addLinkButton = null;
 			}
 
-			if (_checkOutTimeButton != null) {
-				_checkOutTimeButton.Dispose ();
-				_checkOutTimeButton = null;
+			if (_linksTable != null) {
+				_linksTable.Dispose ();
+				_linksTable = null;
 			}
 
 			if (_addPhoneButton != null) {
@@ -79,6 +85,16 @@ namespace Pokatun.iOS.Views.Profile
 			if (_bankNameTextField != null) {
 				_bankNameTextField.Dispose ();
 				_bankNameTextField = null;
+			}
+
+			if (_checkInTimeButton != null) {
+				_checkInTimeButton.Dispose ();
+				_checkInTimeButton = null;
+			}
+
+			if (_checkOutTimeButton != null) {
+				_checkOutTimeButton.Dispose ();
+				_checkOutTimeButton = null;
 			}
 
 			if (_emailTextField != null) {

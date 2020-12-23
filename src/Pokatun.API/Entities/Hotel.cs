@@ -17,8 +17,6 @@ namespace Pokatun.API.Entities
         [MinLength(1)]
         public string HotelName { get; set; }
 
-        public ICollection<Phone> Phones { get; set; }
-
         [Required]
         [MaxLength(64)]
         [EmailAddress]
@@ -55,5 +53,9 @@ namespace Pokatun.API.Entities
         public string ResetToken { get; set; }
 
         public DateTime? ResetTokenExpires { get; set; }
+
+        public ICollection<Phone> Phones { get; set; }
+
+        public ICollection<SocialResource> SocialResources { get; set; }
     }
 }

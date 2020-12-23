@@ -269,6 +269,14 @@
     <ImageAsset Include="Resources\Media.xcassets\clock.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\clock.imageset\clock%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\clock.imageset\clock%403x.png" />
+    <InterfaceDefinition Include="Cells\LinkItemViewCell.xib" />
+    <Compile Include="Cells\LinkItemViewCell.cs" />
+    <Compile Include="Cells\LinkItemViewCell.designer.cs">
+      <DependentUpon>LinkItemViewCell.cs</DependentUpon>
+    </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\web.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\web.imageset\web%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\web.imageset\web%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -385,6 +393,7 @@
     <Folder Include="Resources\Media.xcassets\mail.imageset\" />
     <Folder Include="Resources\Media.xcassets\pin.imageset\" />
     <Folder Include="Resources\Media.xcassets\clock.imageset\" />
+    <Folder Include="Resources\Media.xcassets\web.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

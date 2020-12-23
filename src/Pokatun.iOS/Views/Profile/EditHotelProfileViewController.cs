@@ -14,6 +14,7 @@ namespace Pokatun.iOS.Views.Profile
     public partial class EditHotelProfileViewController : BaseViewController<EditHotelProfileViewModel>
     {
         private MvxSimpleTableViewSource _phonesTableViewSource;
+        private MvxSimpleTableViewSource _linksTableViewSource;
 
         public EditHotelProfileViewController() : base(nameof(EditHotelProfileViewController), null)
         {
@@ -30,14 +31,11 @@ namespace Pokatun.iOS.Views.Profile
 
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, false);
 
-            _phonesTableViewSource = new MvxSimpleTableViewSource(_phonesTable, PhoneItemViewCell.Key)
-            {
-                UseAnimations = true,
-                RemoveAnimation = UITableViewRowAnimation.Right,
-                AddAnimation = UITableViewRowAnimation.Fade
-            };
+            _phonesTableViewSource = CreateTableViewSource(_phonesTable, PhoneItemViewCell.Key);
+            _linksTableViewSource = CreateTableViewSource(_linksTable, LinkItemViewCell.Key);
 
             _phonesTable.Source = _phonesTableViewSource;
+            _linksTable.Source = _linksTableViewSource;
 
             _saveChangesButton.ApplyBigButtonStyle();
 
@@ -52,6 +50,7 @@ namespace Pokatun.iOS.Views.Profile
             _hotelLocationButton.ApplyBorderedButtonStyle();
             _checkInTimeButton.ApplyBorderedButtonStyle();
             _checkOutTimeButton.ApplyBorderedButtonStyle();
+            _addLinkButton.ApplyBorderedButtonStyle();
 
             _hotelNameEditText.KeyboardType = UIKeyboardType.Default;
             _fullCompanyNameTextField.KeyboardType = UIKeyboardType.Default;
@@ -69,6 +68,7 @@ namespace Pokatun.iOS.Views.Profile
 
             _addPhoneButton.Text = Strings.AddPhone;
             _hotelLocationButton.Text = Strings.HotelLocationAddress;
+            _addLinkButton.Text = Strings.AddLink;
 
             _personalDataTab.Text = Strings.PersonalData;
             _hotelInfoTab.Text = Strings.HotelInfo;
@@ -93,8 +93,10 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_checkOutTimeButton).For(v => v.Text).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.CheckOutTime).OneWay();
 
             set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
+            set.Bind(_linksTableViewSource).To(vm => vm.SocialResources).OneTime();
 
             set.Bind(_addPhoneButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.AddPhoneCommand).OneTime();
+            set.Bind(_addLinkButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.AddSocialResourceCommand).OneTime();
             set.Bind(_checkInTimeButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.ChooseCheckInTimeCommand).OneTime();
             set.Bind(_checkOutTimeButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.ChooseCheckOutTimeCommand).OneTime();
 
@@ -108,10 +110,14 @@ namespace Pokatun.iOS.Views.Profile
             set.Apply();
         }
 
-        public override void DidReceiveMemoryWarning()
+        private MvxSimpleTableViewSource CreateTableViewSource(UITableView tableView, string nibName)
         {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
+            return new MvxSimpleTableViewSource(tableView, nibName)
+            {
+                UseAnimations = true,
+                RemoveAnimation = UITableViewRowAnimation.Right,
+                AddAnimation = UITableViewRowAnimation.Fade
+            };
         }
     }
 }

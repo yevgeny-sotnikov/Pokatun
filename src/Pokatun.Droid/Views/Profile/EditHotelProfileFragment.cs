@@ -36,6 +36,8 @@ namespace Pokatun.Droid.Views.Profile
         private EditText _usreouTextField;
         private Button _checkInTimeButton;
         private Button _checkOutTimeButton;
+        private MvxLinearLayout _linksTable;
+        private Button _addLinkButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_profile;
 
@@ -59,6 +61,8 @@ namespace Pokatun.Droid.Views.Profile
             _usreouTextField = view.FindViewById<EditText>(Resource.Id.usreouTextField);
             _checkInTimeButton = view.FindViewById<Button>(Resource.Id.checkInTimeButton);
             _checkOutTimeButton = view.FindViewById<Button>(Resource.Id.checkOutTimeButton);
+            _linksTable = view.FindViewById<MvxLinearLayout>(Resource.Id.linksTable);
+            _addLinkButton = view.FindViewById<Button>(Resource.Id.addLinkButton);
 
             _tabHost.Setup();
 
@@ -66,6 +70,7 @@ namespace Pokatun.Droid.Views.Profile
             _tabHost.AddTab(CreateTab("hotelInfo", Resource.Id.hotelInfoTab, Resource.Layout.hotel_info_tab, Strings.HotelInfo));
 
             _phonesTable.ItemTemplateId = Resource.Layout.phone_item_template;
+            _linksTable.ItemTemplateId = Resource.Layout.link_item_template;
 
             _saveChangesButton.Text = Strings.SaveChanges;
             _hotelNameEditText.Hint = Strings.Name;
@@ -76,6 +81,7 @@ namespace Pokatun.Droid.Views.Profile
             _bankCardOrIbanTextField.Hint = Strings.CardNumberOrIBAN;
             _bankNameTextField.Hint = Strings.BankName;
             _usreouTextField.Hint = Strings.USREOU;
+            _addLinkButton.Text = Strings.AddLink;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -96,6 +102,7 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_checkOutTimeButton).For(v => v.Text).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.CheckOutTime).OneWay();
 
             set.Bind(_phonesTable).For(v => v.ItemsSource).To(vm => vm.PhoneNumbers).OneTime();
+            set.Bind(_linksTable).For(v => v.ItemsSource).To(vm => vm.SocialResources).OneTime();
 
             set.Bind(_hotelNameEditText).For(v => v.Activated).To(vm => vm.IsHotelNameInvalid).OneWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Activated).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
@@ -103,10 +110,11 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_bankCardOrIbanTextField).For(v => v.Activated).To(vm => vm.IsBankCardOrIbanInvalid).OneWay();
             set.Bind(_bankNameTextField).For(v => v.Activated).To(vm => vm.IsBankNameInvalid).OneWay();
             set.Bind(_usreouTextField).For(v => v.Activated).To(vm => vm.IsUsreouInvalid).OneWay();
-
+            
             set.Bind(_addPhoneButton).To(vm => vm.AddPhoneCommand).OneTime();
             set.Bind(_checkInTimeButton).To(vm => vm.ChooseCheckInTimeCommand).OneTime();
             set.Bind(_checkOutTimeButton).To(vm => vm.ChooseCheckOutTimeCommand).OneTime();
+            set.Bind(_addLinkButton).To(vm => vm.AddSocialResourceCommand).OneTime();
 
             set.Apply();
 

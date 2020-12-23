@@ -666,11 +666,15 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\phone_item_template.xml">
+    <AndroidResource Include="Resources\layout\phone_item_template.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\bordered_button.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\link_item_template.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

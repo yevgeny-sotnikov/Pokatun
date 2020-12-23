@@ -24,6 +24,7 @@
     <Folder Include="ViewModels\Profile\" />
     <Folder Include="Executors\" />
     <Folder Include="Converters\" />
+    <Folder Include="ViewModels\Collections\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">

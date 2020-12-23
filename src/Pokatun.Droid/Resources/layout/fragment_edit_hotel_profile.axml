@@ -169,6 +169,23 @@
                             android:drawableLeft="@drawable/clock"
                             />
 
+                        <MvvmCross.Platforms.Android.Binding.Views.MvxLinearLayout
+                            android:id="@+id/linksTable"
+                            android:animateLayoutChanges="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp"
+                            />
+
+                        <Button
+                            android:id="@+id/addLinkButton"
+                            style="@style/BorderedButton"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="8dp"
+                            android:drawableLeft="@drawable/web"
+                            />
+
                     </LinearLayout>
                 </ScrollView>
             </FrameLayout>

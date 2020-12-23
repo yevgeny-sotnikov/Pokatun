@@ -205,6 +205,9 @@
     <data name="AddPhone" xml:space="preserve">
         <value>Добавить телефон</value>
     </data>
+    <data name="AddLink" xml:space="preserve">
+        <value>Добавить ссылку</value>
+    </data>
     <data name="EnterPhone" xml:space="preserve">
         <value>Введите телефон</value>
     </data>
@@ -216,5 +219,8 @@
     </data>
     <data name="CheckOutTime" xml:space="preserve">
         <value>Время выселения</value>
+    </data>
+    <data name="SiteOrSocialNetworkLink" xml:space="preserve">
+        <value>Ссылка на сайт или соц сеть</value>
     </data>
 </root>

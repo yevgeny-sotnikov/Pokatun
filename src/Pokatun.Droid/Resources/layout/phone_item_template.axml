@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+	android:orientation="horizontal"
+	android:paddingTop="8dp"
+	android:paddingBottom="8dp"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+	<EditText
+        android:id="@+id/phoneTextField"
+        style="@style/BorderedEditTextWithLeftImage"
+		android:paddingRight="56dp"
+        android:layout_width="match_parent"
+        android:drawableLeft="@drawable/phone"
+		android:maxLength="16"
+		android:inputType="phone"
+        android:hint="Введите телефон"
+		local:MvxBind="Text Text"
+		/>
+	<ImageButton
+        android:id="@+id/deleteButton"
+		android:layout_gravity="center_vertical|right"
+		android:src="@drawable/close"
+        android:layout_height="30dp"
+        android:layout_width="30dp"
+		android:layout_marginRight="13dp"
+		android:background="@android:color/holo_red_dark"
+		local:MvxBind="Click DeleteCommand"
+		/>
+</FrameLayout>
