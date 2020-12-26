@@ -20,17 +20,6 @@ namespace Pokatun.iOS.Controls
         private UIColor _textColor;
         private UIImage _leftImage;
 
-        [DisplayName(nameof(BorderColor)), Export("borderColor"), Browsable(true)]
-        public UIColor BorderColor
-        {
-            get { return _borderColor; }
-            set
-            {
-                _borderColor = value;
-                Layer.BorderColor = value.CGColor;
-            }
-        }
-
         public string Text
         {
             get { return _label == null ? _text : _label.Text; }
@@ -82,7 +71,6 @@ namespace Pokatun.iOS.Controls
 
         public BorderedButton(IntPtr handle) : base(handle)
         {
-            BorderColor = UIColor.Black;
             TextColor = UIColor.Black;
         }
 
@@ -96,7 +84,6 @@ namespace Pokatun.iOS.Controls
             AddSubview(rootView);
 
             LeftImage = _leftImage;
-            //RightButtonHidden = _rightButtonHidden;
             Text = _text;
             TextColor = _textColor;
 
@@ -106,9 +93,8 @@ namespace Pokatun.iOS.Controls
             rootView.RightAnchor.ConstraintEqualTo(RightAnchor, 0).Active = true;
             rootView.BottomAnchor.ConstraintEqualTo(BottomAnchor, 0).Active = true;
 
-            this.Cornerize(19);
-            Layer.BorderWidth = 1;
-            Layer.BorderColor = BorderColor.CGColor;
+            _borderView.ApplyBorderViewStyle();
+
             _label.TextAlignment = UITextAlignment.Center;
             _label.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
             _label.TextColor = TextColor;

@@ -12,6 +12,9 @@ namespace Pokatun.iOS.Controls
 	partial class BorderedButton
 	{
 		[Outlet]
+		Pokatun.iOS.BorderView _borderView { get; set; }
+
+		[Outlet]
 		UIKit.UILabel _label { get; set; }
 
 		[Outlet]
@@ -30,6 +33,11 @@ namespace Pokatun.iOS.Controls
 			if (_leftImageView != null) {
 				_leftImageView.Dispose ();
 				_leftImageView = null;
+			}
+
+			if (_borderView != null) {
+				_borderView.Dispose ();
+				_borderView = null;
 			}
 		}
 	}

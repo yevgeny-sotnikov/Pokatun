@@ -15,7 +15,7 @@ namespace Pokatun.iOS.Styles
         #region FontSizes
 
         private static readonly nfloat SmallSize = 12; //TODO: setup later
-        private static readonly nfloat MediumSize = 14; //TODO: setup later
+        private static readonly nfloat MediumSize = 12;
         private static readonly nfloat LargeSize = 15;
         private static readonly nfloat ExtraLargeSize = 17;
         private static readonly nfloat SubGiganticSize = 20;

@@ -81,6 +81,7 @@
     <Compile Include="Controls\MenuItem.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Views\Profile\EditHotelProfileFragment.cs" />
+    <Compile Include="Controls\MultilineCountableEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -675,6 +676,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\link_item_template.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\control_multiline_countable_editor.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

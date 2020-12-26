@@ -41,11 +41,12 @@
         <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 
-    <style name="LargeLabel">
+    <style name="LargeLabel" parent="LabelBase">
         <item name="android:textSize">@dimen/font_large</item>
     </style>
 
     <style name="InfoLabel" parent="LabelBase">
+        <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">@dimen/font_large</item>
     </style>

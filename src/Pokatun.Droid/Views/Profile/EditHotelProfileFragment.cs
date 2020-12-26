@@ -8,6 +8,7 @@ using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Profile;
+using Pokatun.Droid.Controls;
 using static Android.Widget.TabHost;
 
 namespace Pokatun.Droid.Views.Profile
@@ -38,6 +39,8 @@ namespace Pokatun.Droid.Views.Profile
         private Button _checkOutTimeButton;
         private MvxLinearLayout _linksTable;
         private Button _addLinkButton;
+        private MultilineCountableEditor _withinTerritoryEditText;
+        private MultilineCountableEditor _hotelDescriptionEditText;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_profile;
 
@@ -63,6 +66,8 @@ namespace Pokatun.Droid.Views.Profile
             _checkOutTimeButton = view.FindViewById<Button>(Resource.Id.checkOutTimeButton);
             _linksTable = view.FindViewById<MvxLinearLayout>(Resource.Id.linksTable);
             _addLinkButton = view.FindViewById<Button>(Resource.Id.addLinkButton);
+            _withinTerritoryEditText = view.FindViewById<MultilineCountableEditor>(Resource.Id.withinTerritoryEditText);
+            _hotelDescriptionEditText = view.FindViewById<MultilineCountableEditor>(Resource.Id.hotelDescriptionEditText);
 
             _tabHost.Setup();
 
@@ -83,6 +88,14 @@ namespace Pokatun.Droid.Views.Profile
             _usreouTextField.Hint = Strings.USREOU;
             _addLinkButton.Text = Strings.AddLink;
 
+            _withinTerritoryEditText.Title = Strings.WithinTerritory;
+            _withinTerritoryEditText.Hint = Strings.WithinTerritoryFillingInstruction;
+            _hotelDescriptionEditText.Title = Strings.Description;
+            _hotelDescriptionEditText.Hint = Strings.DescriptionFillingInstruction;
+
+            _withinTerritoryEditText.MaxLenght = 200;
+            _hotelDescriptionEditText.MaxLenght = 600;
+
             #pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
@@ -100,6 +113,9 @@ namespace Pokatun.Droid.Views.Profile
 
             set.Bind(_checkInTimeButton).For(v => v.Text).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.CheckInTime).OneWay();
             set.Bind(_checkOutTimeButton).For(v => v.Text).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.CheckOutTime).OneWay();
+
+            set.Bind(_withinTerritoryEditText).For(v => v.Data).To(vm => vm.WithinTerritoryDescription).TwoWay();
+            set.Bind(_hotelDescriptionEditText).For(v => v.Data).To(vm => vm.HotelDescription).TwoWay();
 
             set.Bind(_phonesTable).For(v => v.ItemsSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTable).For(v => v.ItemsSource).To(vm => vm.SocialResources).OneTime();

@@ -19,6 +19,7 @@
                 <outlet property="_checkOutTimeButton" destination="q7a-YK-Umv" id="PVY-1T-avo"/>
                 <outlet property="_emailTextField" destination="RHc-jm-CXw" id="dGt-Sr-HiH"/>
                 <outlet property="_fullCompanyNameTextField" destination="ej4-ud-kVL" id="56I-6W-N1d"/>
+                <outlet property="_hotelDescriptionEditText" destination="gJB-Cp-Y7t" id="WBg-5x-eYq"/>
                 <outlet property="_hotelInfoTab" destination="cNE-a1-MRc" id="O99-Qt-7hE"/>
                 <outlet property="_hotelLocationButton" destination="G8w-wk-uBP" id="xUP-pY-Qeb"/>
                 <outlet property="_hotelNameEditText" destination="40p-pA-7lq" id="Y3c-Ay-SaU"/>
@@ -27,6 +28,7 @@
                 <outlet property="_phonesTable" destination="gWo-90-jJ2" id="IMK-Ho-vAF"/>
                 <outlet property="_saveChangesButton" destination="FOE-q5-ti4" id="pNH-dO-xxH"/>
                 <outlet property="_usreouTextField" destination="FdY-HC-cPL" id="Re7-bQ-r6W"/>
+                <outlet property="_withinTerritoryEditText" destination="WDJ-gD-o1d" id="zSG-lc-FBd"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -157,7 +159,7 @@
                             <rect key="frame" x="0.0" y="33" width="414" height="627"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TvX-dY-LwP">
-                                    <rect key="frame" x="38" y="23" width="338" height="264"/>
+                                    <rect key="frame" x="38" y="23" width="338" height="596"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="40p-pA-7lq" userLabel="hotel name" customClass="BorderedTextField">
                                             <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
@@ -201,6 +203,14 @@
                                                 </view>
                                             </subviews>
                                         </stackView>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="WDJ-gD-o1d" customClass="MultilineCountableEditor">
+                                            <rect key="frame" x="0.0" y="280" width="338" height="150"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="gJB-Cp-Y7t" customClass="MultilineCountableEditor">
+                                            <rect key="frame" x="0.0" y="446" width="338" height="150"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
                                     </subviews>
                                 </stackView>
                             </subviews>
@@ -259,7 +269,7 @@
         <image name="name" width="10.5" height="10.5"/>
         <image name="phone" width="7.5" height="13"/>
         <image name="pin" width="9.5" height="13.5"/>
-        <image name="web" width="128" height="128"/>
+        <image name="web" width="10.5" height="10.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

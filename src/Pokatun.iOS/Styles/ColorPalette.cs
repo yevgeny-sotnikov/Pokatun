@@ -28,7 +28,7 @@ namespace Pokatun.iOS.Styles
         public static readonly UIColor ButtonTextHighlgted = UIColor.White;
 
         public static readonly UIColor BorderColor = FromHexString("#7b7c7f");
-        public static readonly UIColor FaileValidationColor = FromHexString("#e9848d");
+        public static readonly UIColor FailValidationColor = FromHexString("#e9848d");
 
         private static UIColor FromHexString(string hexValue)
         {

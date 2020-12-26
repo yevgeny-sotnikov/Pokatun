@@ -12,6 +12,9 @@ namespace Pokatun.iOS.Controls
 	partial class BorderedTextField
 	{
 		[Outlet]
+		Pokatun.iOS.BorderView _borderView { get; set; }
+
+		[Outlet]
 		UIKit.UIImageView _leftImageView { get; set; }
 
 		[Outlet]
@@ -25,6 +28,11 @@ namespace Pokatun.iOS.Controls
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (_borderView != null) {
+				_borderView.Dispose ();
+				_borderView = null;
+			}
+
 			if (_leftImageView != null) {
 				_leftImageView.Dispose ();
 				_leftImageView = null;

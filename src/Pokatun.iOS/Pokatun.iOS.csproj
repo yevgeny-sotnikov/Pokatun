@@ -277,6 +277,12 @@
     <ImageAsset Include="Resources\Media.xcassets\web.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\web.imageset\web%403x.png" />
     <ImageAsset Include="Resources\Media.xcassets\web.imageset\web%402x.png" />
+    <InterfaceDefinition Include="Controls\MultilineCountableEditor.xib" />
+    <Compile Include="Controls\MultilineCountableEditor.cs" />
+    <Compile Include="Controls\MultilineCountableEditor.designer.cs">
+      <DependentUpon>MultilineCountableEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BorderView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

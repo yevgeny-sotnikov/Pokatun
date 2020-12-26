@@ -5,7 +5,7 @@ using Android.Widget;
 
 namespace Pokatun.Droid.Controls
 {
-    public class MenuItem : FrameLayout
+    public sealed class MenuItem : FrameLayout
     {
         private ImageView _menuItemIcon;
         private TextView _menuTextView;

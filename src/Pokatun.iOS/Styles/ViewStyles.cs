@@ -14,17 +14,21 @@ namespace Pokatun.iOS.Styles
             view.Layer.MasksToBounds = true;
         }
 
+        public static void ApplyBorderViewStyle(this BorderView borderView)
+        {
+            borderView.BorderColor = ColorPalette.BorderColor;
+            borderView.HighlightedColor = ColorPalette.FailValidationColor;
+            borderView.SelectionColor = ColorPalette.PrimaryLight;
+        }
+
         public static void ApplyBorderedEditTextStyle(this BorderedTextField textField)
         {
-            textField.BorderColor = ColorPalette.BorderColor;
-            textField.HighlightedColor = ColorPalette.FaileValidationColor;
-            textField.SelectionColor = ColorPalette.PrimaryLight;
+            textField.HighlightedColor = ColorPalette.FailValidationColor;
             textField.TextColor = ColorPalette.PrimaryText;
         }
 
         public static void ApplyBorderedButtonStyle(this BorderedButton button)
         {
-            button.BorderColor = ColorPalette.BorderColor;
             button.TextColor = ColorPalette.PrimaryText;
         }
 

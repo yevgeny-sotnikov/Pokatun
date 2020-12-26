@@ -18,23 +18,10 @@ namespace Pokatun.iOS.Controls
         private string _placeholderStr;
         private string _text;
         private bool _highlighted;
-        private bool _inEditMode;
         private UIKeyboardType _keyboardType;
         private UIColor _textColor;
-        private UIColor _borderColor;
         private bool _secureTextEntry;
         private bool _rightButtonHidden = true;
-
-        [DisplayName(nameof(BorderColor)), Export("borderColor"), Browsable(true)]
-        public UIColor BorderColor
-        {
-            get { return _borderColor; }
-            set
-            {
-                _borderColor = value;
-                Layer.BorderColor = value.CGColor;
-            }
-        }
 
         [DisplayName(nameof(TextColor)), Export("textColor"), Browsable(true)]
         public UIColor TextColor
@@ -50,10 +37,7 @@ namespace Pokatun.iOS.Controls
             }
         }
 
-        [DisplayName(nameof(SelectionColor)), Export("selectionColor"), Browsable(true)]
-        public UIColor SelectionColor { get; set; }
-
-        [DisplayName(nameof(HighlightedColor)), Export("validationFailedColor"), Browsable(true)]
+        [DisplayName(nameof(HighlightedColor)), Export("highlightedColor"), Browsable(true)]
         public UIColor HighlightedColor { get; set; }
 
         [DisplayName(nameof(MaxLenght)), Export("maxLenght"), Browsable(true)]
@@ -157,13 +141,12 @@ namespace Pokatun.iOS.Controls
             {
                 _highlighted = value;
 
-                if (_textField == null)
+                if (_textField == null || _borderView == null)
                     return;
 
-                UIColor color = _highlighted ? HighlightedColor : BorderColor;
-                
-                Layer.BorderColor = _inEditMode ? SelectionColor.CGColor : color.CGColor;
-                _textField.TextColor = color;
+                _borderView.Highlighted = _highlighted;
+
+                _textField.TextColor = _highlighted ? HighlightedColor : TextColor;
             }
         }
 
@@ -171,9 +154,7 @@ namespace Pokatun.iOS.Controls
 
         public BorderedTextField(IntPtr handle) : base(handle)
         {
-            BorderColor = UIColor.Black;
             TextColor = UIColor.Black;
-            SelectionColor = UIColor.Blue;
             HighlightedColor = UIColor.Red;
         }
 
@@ -186,6 +167,19 @@ namespace Pokatun.iOS.Controls
 
             AddSubview(rootView);
 
+            rootView.TranslatesAutoresizingMaskIntoConstraints = false;
+            rootView.TopAnchor.ConstraintEqualTo(TopAnchor, 0).Active = true;
+            rootView.LeftAnchor.ConstraintEqualTo(LeftAnchor, 0).Active = true;
+            rootView.RightAnchor.ConstraintEqualTo(RightAnchor, 0).Active = true;
+            rootView.BottomAnchor.ConstraintEqualTo(BottomAnchor, 0).Active = true;
+
+            _borderView.ApplyBorderViewStyle();
+
+            _textField.TextAlignment = UITextAlignment.Center;
+            _textField.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
+            _textField.TextColor = TextColor;
+            _textField.SetTextContentType(UITextContentType.Nickname);
+
             LeftImage = _leftImage;
             RightButtonHidden = _rightButtonHidden;
             Text = _text;
@@ -194,20 +188,6 @@ namespace Pokatun.iOS.Controls
             KeyboardType = _keyboardType;
             TextColor = _textColor;
             SecureTextEntry = _secureTextEntry;
-
-            rootView.TranslatesAutoresizingMaskIntoConstraints = false;
-            rootView.TopAnchor.ConstraintEqualTo(TopAnchor, 0).Active = true;
-            rootView.LeftAnchor.ConstraintEqualTo(LeftAnchor, 0).Active = true;
-            rootView.RightAnchor.ConstraintEqualTo(RightAnchor, 0).Active = true;
-            rootView.BottomAnchor.ConstraintEqualTo(BottomAnchor, 0).Active = true;
-
-            this.Cornerize(19);
-            Layer.BorderWidth = 1;
-            Layer.BorderColor = BorderColor.CGColor;
-            _textField.TextAlignment = UITextAlignment.Center;
-            _textField.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
-            _textField.TextColor = TextColor;
-            _textField.SetTextContentType(UITextContentType.Nickname);
 
             _textField.EditingChanged += OnEditingChanged;
             _textField.EditingDidBegin += OnEditingDidBegin;
@@ -230,24 +210,19 @@ namespace Pokatun.iOS.Controls
 
         private void OnEditingChanged(object sender, EventArgs e)
         {
+
             TextChanged?.Invoke(this, e);
         }
 
         private void OnEditingDidBegin(object sender, EventArgs e)
         {
-            _inEditMode = true;
+            _borderView.InEditMode = true;
             _textField.TextColor = TextColor;
-
-            Layer.BorderWidth = 2;
-            Layer.BorderColor = SelectionColor.CGColor;
         }
 
         private void OnEditingDidEnd(object sender, EventArgs e)
         {
-            _inEditMode = false;
-
-            Layer.BorderWidth = 1;
-            Layer.BorderColor = BorderColor.CGColor;
+            _borderView.InEditMode = false;
         }
 
         private bool OnShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)

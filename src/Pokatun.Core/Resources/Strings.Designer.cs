@@ -460,5 +460,35 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("SiteOrSocialNetworkLink", resourceCulture);
             }
         }
+        
+        public static string SymbolsLeftFormat {
+            get {
+                return ResourceManager.GetString("SymbolsLeftFormat", resourceCulture);
+            }
+        }
+        
+        public static string WithinTerritory {
+            get {
+                return ResourceManager.GetString("WithinTerritory", resourceCulture);
+            }
+        }
+        
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        public static string WithinTerritoryFillingInstruction {
+            get {
+                return ResourceManager.GetString("WithinTerritoryFillingInstruction", resourceCulture);
+            }
+        }
+        
+        public static string DescriptionFillingInstruction {
+            get {
+                return ResourceManager.GetString("DescriptionFillingInstruction", resourceCulture);
+            }
+        }
     }
 }

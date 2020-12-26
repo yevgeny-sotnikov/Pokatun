@@ -9,12 +9,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BorderedButton">
             <connections>
+                <outlet property="_borderView" destination="1" id="ott-nB-i5N"/>
                 <outlet property="_label" destination="eKJ-I3-k48" id="7jA-Fo-Sgw"/>
                 <outlet property="_leftImageView" destination="wW9-nN-emh" id="uk4-ba-Af8"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1">
+        <view contentMode="scaleToFill" id="1" customClass="BorderView">
             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>

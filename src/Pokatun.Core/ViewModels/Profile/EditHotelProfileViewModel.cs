@@ -123,6 +123,20 @@ namespace Pokatun.Core.ViewModels.Profile
             set { SetProperty(ref _checkOutTime, value); }
         }
 
+        private string _withinTerritoryDescription;
+        public string WithinTerritoryDescription
+        {
+            get { return _withinTerritoryDescription; }
+            set { SetProperty(ref _withinTerritoryDescription, value); }
+        }
+
+        private string _hotelDescription;
+        public string HotelDescription
+        {
+            get { return _hotelDescription; }
+            set { SetProperty(ref _hotelDescription, value); }
+        }
+
         public MvxObservableCollection<EntryItemViewModel> PhoneNumbers { get; private set; }
 
         public MvxObservableCollection<EntryItemViewModel> SocialResources { get; private set; }

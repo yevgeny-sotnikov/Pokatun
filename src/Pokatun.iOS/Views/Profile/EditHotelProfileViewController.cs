@@ -66,6 +66,11 @@ namespace Pokatun.iOS.Views.Profile
             _bankNameTextField.Placeholder = Strings.BankName;
             _usreouTextField.Placeholder = Strings.USREOU;
 
+            _withinTerritoryEditText.Title = Strings.WithinTerritory;
+            _withinTerritoryEditText.Hint = Strings.WithinTerritoryFillingInstruction;
+            _hotelDescriptionEditText.Title = Strings.Description;
+            _hotelDescriptionEditText.Hint = Strings.DescriptionFillingInstruction;
+
             _addPhoneButton.Text = Strings.AddPhone;
             _hotelLocationButton.Text = Strings.HotelLocationAddress;
             _addLinkButton.Text = Strings.AddLink;
@@ -74,8 +79,11 @@ namespace Pokatun.iOS.Views.Profile
             _hotelInfoTab.Text = Strings.HotelInfo;
             _saveChangesButton.SetTitle(Strings.SaveChanges, UIControlState.Normal);
 
-            #pragma warning disable IDE0008 // Use explicit type
+            _withinTerritoryEditText.MaxLenght = 200;
+            _hotelDescriptionEditText.MaxLenght = 600;
 
+            #pragma warning disable IDE0008 // Use explicit type
+    
             var set = CreateBindingSet();
 
             #pragma warning restore IDE0008 // Use explicit type
@@ -88,6 +96,9 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_bankCardOrIbanTextField).For(v => v.Text).To(vm => vm.BankCardOrIban).TwoWay();
             set.Bind(_bankNameTextField).For(v => v.Text).To(vm => vm.BankName).TwoWay();
             set.Bind(_usreouTextField).For(v => v.Text).To(vm => vm.USREOU).TwoWay();
+
+            set.Bind(_withinTerritoryEditText).For(v => v.Data).To(vm => vm.WithinTerritoryDescription).TwoWay();
+            set.Bind(_hotelDescriptionEditText).For(v => v.Data).To(vm => vm.HotelDescription).TwoWay();
 
             set.Bind(_checkInTimeButton).For(v => v.Text).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.CheckInTime).OneWay();
             set.Bind(_checkOutTimeButton).For(v => v.Text).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.CheckOutTime).OneWay();

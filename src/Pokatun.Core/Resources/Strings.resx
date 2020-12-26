@@ -223,4 +223,19 @@
     <data name="SiteOrSocialNetworkLink" xml:space="preserve">
         <value>Ссылка на сайт или соц сеть</value>
     </data>
+    <data name="SymbolsLeftFormat" xml:space="preserve">
+        <value>Осталось {0} символов</value>
+    </data>
+    <data name="WithinTerritory" xml:space="preserve">
+        <value>На территории:</value>
+    </data>
+    <data name="Description" xml:space="preserve">
+        <value>Описание:</value>
+    </data>
+    <data name="WithinTerritoryFillingInstruction" xml:space="preserve">
+        <value>Перечисляйте через запятую особенности вашего отеля, не более трех слов подряд (напр.: парковка, бассейн, бар, мангальная зона и т.п.)</value>
+    </data>
+    <data name="DescriptionFillingInstruction" xml:space="preserve">
+        <value>Напишите самое главное о вашем отеле в свободной форме</value>
+    </data>
 </root>
