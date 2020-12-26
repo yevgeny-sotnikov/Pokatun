@@ -289,7 +289,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private Task<TimePromptResult> ShowTimePromptAsync()
         {
-            return _userDialogs.TimePromptAsync(new TimePromptConfig { Use24HourClock = true });
+            return _userDialogs.TimePromptAsync(new TimePromptConfig { iOSPickerStyle = iOSPickerStyle.Wheels, Use24HourClock = true });
         }
 
         private bool CheckInvalid(string name)
