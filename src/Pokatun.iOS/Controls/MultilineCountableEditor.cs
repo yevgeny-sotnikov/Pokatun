@@ -105,6 +105,20 @@ namespace Pokatun.iOS.Controls
             _dataTextField.Started += OnEditingStarted;
             _dataTextField.Ended += OnEditingEnded;
             _dataTextField.Changed += OnTextChanged;
+            _dataTextField.ShouldChangeText += OnShouldChangeText;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _dataTextField.Started -= OnEditingStarted;
+                _dataTextField.Ended -= OnEditingEnded;
+                _dataTextField.Changed -= OnTextChanged;
+                _dataTextField.ShouldChangeText -= OnShouldChangeText;
+            }
+
+            base.Dispose(disposing);
         }
 
         partial void OnWrapperAreaTapped(NSObject sender)
@@ -132,6 +146,13 @@ namespace Pokatun.iOS.Controls
         private void OnEditingEnded(object sender, EventArgs e)
         {
             _borderView.InEditMode = false;
+        }
+
+        private bool OnShouldChangeText(UITextView textView, NSRange range, string text)
+        {
+            nint newLength = textView.Text.Length + text.Length - range.Length;
+
+            return newLength <= MaxLenght;
         }
 
         private void SetupCounterText(int counterVal)

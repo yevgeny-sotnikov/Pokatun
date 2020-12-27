@@ -88,7 +88,7 @@
                             </constraints>
                         </view>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="i" translatesAutoresizingMaskIntoConstraints="NO" id="Dtm-f9-GDy">
-                            <rect key="frame" x="8" y="14" width="10.5" height="10.5"/>
+                            <rect key="frame" x="10" y="14" width="10.5" height="10.5"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -96,7 +96,7 @@
                         <constraint firstItem="7fl-Xw-uVO" firstAttribute="leading" secondItem="O2Q-Yw-U22" secondAttribute="leading" constant="30" id="1Kl-sY-4oP"/>
                         <constraint firstItem="Dtm-f9-GDy" firstAttribute="top" secondItem="7fl-Xw-uVO" secondAttribute="top" constant="5" id="4Fu-4e-y3Y"/>
                         <constraint firstAttribute="bottom" secondItem="7fl-Xw-uVO" secondAttribute="bottom" constant="5" id="BNl-Nt-OOL"/>
-                        <constraint firstItem="Dtm-f9-GDy" firstAttribute="leading" secondItem="O2Q-Yw-U22" secondAttribute="leading" constant="8" id="Ua6-Vo-vCD"/>
+                        <constraint firstItem="Dtm-f9-GDy" firstAttribute="leading" secondItem="O2Q-Yw-U22" secondAttribute="leading" constant="10" id="Ua6-Vo-vCD"/>
                         <constraint firstItem="7fl-Xw-uVO" firstAttribute="top" secondItem="O2Q-Yw-U22" secondAttribute="top" constant="9" id="bb0-Ql-oeV"/>
                         <constraint firstAttribute="trailing" secondItem="7fl-Xw-uVO" secondAttribute="trailing" constant="30" id="iWJ-pa-PYW"/>
                         <constraint firstAttribute="height" constant="125" id="pxS-Mg-21g"/>

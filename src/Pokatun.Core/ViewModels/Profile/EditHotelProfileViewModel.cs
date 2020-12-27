@@ -19,6 +19,10 @@ namespace Pokatun.Core.ViewModels.Profile
         private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
+
+        private string _title;
+        public override string Title => _title;
+
         private string _hotelName = string.Empty;
         public string HotelName
         {
@@ -232,6 +236,9 @@ namespace Pokatun.Core.ViewModels.Profile
 
         public override void Prepare(HotelDto parameter)
         {
+            _title = parameter.HotelName;
+            RaisePropertyChanged(nameof(Title));
+
             HotelName = parameter.HotelName;
             FullCompanyName = parameter.FullCompanyName;
             Email = parameter.Email;

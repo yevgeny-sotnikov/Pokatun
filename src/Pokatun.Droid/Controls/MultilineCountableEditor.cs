@@ -49,6 +49,7 @@ namespace Pokatun.Droid.Controls
             set
             {
                 _maxLenght = value;
+                _dataTextField.SetFilters(new InputFilterLengthFilter[] { new InputFilterLengthFilter(value) });
                 SetupCounterText(value - Data.Length);
             }
         }
