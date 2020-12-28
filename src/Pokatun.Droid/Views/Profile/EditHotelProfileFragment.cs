@@ -1,6 +1,7 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using FFImageLoading.Cross;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -50,7 +51,7 @@ namespace Pokatun.Droid.Views.Profile
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = base.OnCreateView(inflater, container, savedInstanceState);
-
+            
             _tabHost = view.FindViewById<TabHost>(Android.Resource.Id.TabHost);
             _saveChangesButton = view.FindViewById<Button>(Resource.Id.saveChangesButton);
             _hotelNameEditText = view.FindViewById<EditText>(Resource.Id.hotelNameEditText);
@@ -103,6 +104,8 @@ namespace Pokatun.Droid.Views.Profile
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand).OneTime();
+            set.Bind(ToolbarAddPhotoButton).For(ToolbarAddPhotoButton.BindClick()).To(vm => vm.AddPhotoCommand).OneTime();
+            set.Bind(ToolbarPhotoView).For(v => v.ImagePath).To(vm => vm.PhotoFilePath).OneWay();
 
             set.Bind(_hotelNameEditText).To(vm => vm.HotelName).TwoWay();
             set.Bind(_fullCompanyNameTextField).To(vm => vm.FullCompanyName).TwoWay();
@@ -158,7 +161,8 @@ namespace Pokatun.Droid.Views.Profile
 
             ToolbarRightButton.SetImageResource(Resource.Drawable.close);
             ToolbarRightButton.Visibility = ViewStates.Visible;
-
+            ToolbarAddPhotoButton.Visibility = ViewStates.Visible;
+            ToolbarPhotoView.Visibility = ViewStates.Visible;
         }
     }
 }

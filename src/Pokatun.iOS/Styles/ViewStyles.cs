@@ -32,6 +32,11 @@ namespace Pokatun.iOS.Styles
             button.TextColor = ColorPalette.PrimaryText;
         }
 
+        public static void ApplyShadowedButtonStyle(this UIButton button)
+        {
+            button.SetBackgroundImage(CreateBackgroundImage(ColorPalette.ShadowButtonColor), UIControlState.Normal);
+        }
+
         public static void ApplyBigButtonStyle(this UIButton button)
         {
             button.ClipsToBounds = true;

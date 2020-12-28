@@ -1,3 +1,6 @@
+using System;
+using System.Threading.Tasks;
+using Foundation;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Converters;
@@ -15,6 +18,7 @@ namespace Pokatun.iOS.Views.Profile
     {
         private MvxSimpleTableViewSource _phonesTableViewSource;
         private MvxSimpleTableViewSource _linksTableViewSource;
+        private TitlePhotoView _titlePhotoView;
 
         public EditHotelProfileViewController() : base(nameof(EditHotelProfileViewController), null)
         {
@@ -26,9 +30,11 @@ namespace Pokatun.iOS.Views.Profile
 
             // Perform any additional setup after loading the view, typically from a nib.
 
-            UIBarButtonItem rightBarButtonItem = new UIBarButtonItem();
-            rightBarButtonItem.Image = UIImage.FromBundle("close");
+            UIBarButtonItem rightBarButtonItem = new UIBarButtonItem { Image = UIImage.FromBundle("close") };
 
+            _titlePhotoView = TitlePhotoView.Create();
+
+            NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_titlePhotoView), true);
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, false);
 
             _phonesTableViewSource = CreateTableViewSource(_phonesTable, PhoneItemViewCell.Key);
@@ -89,6 +95,8 @@ namespace Pokatun.iOS.Views.Profile
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.CloseCommand).OneTime();
+            set.Bind(_titlePhotoView).For(v => v.ImagePath).To(vm => vm.PhotoFilePath).OneWay();
+            set.Bind(_titlePhotoView).For(nameof(TitlePhotoView.Clicked)).To(vm => vm.AddPhotoCommand).OneTime();
 
             set.Bind(_hotelNameEditText).For(v => v.Text).To(vm => vm.HotelName).TwoWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Text).To(vm => vm.FullCompanyName).TwoWay();

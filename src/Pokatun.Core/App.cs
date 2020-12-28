@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Acr.UserDialogs;
+using FFImageLoading;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
@@ -28,10 +29,12 @@ namespace Pokatun.Core
                 .RegisterAsLazySingleton();
 
             Mvx.IoCProvider.RegisterSingleton(() => UserDialogs.Instance);
-            Mvx.IoCProvider.RegisterSingleton<ISecureStorage>(() => new SecureStorageImplementation());
-            Mvx.IoCProvider.RegisterSingleton<IDeviceInfo>(() => new DeviceInfoImplementation());
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<INetworkRequestExecutor, NetworkRequestExecutor>();
 
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISecureStorage, SecureStorageImplementation>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDeviceInfo, DeviceInfoImplementation>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPickerImplementation>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<INetworkRequestExecutor, NetworkRequestExecutor>();
+            
             #if DEBUG
 
             Mvx.IoCProvider.RegisterSingleton<IRestClient>(

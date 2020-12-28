@@ -15,6 +15,18 @@ namespace Pokatun.iOS
         private bool _highlighted;
         private bool _selected;
         private bool _inEditMode;
+        private nfloat _cornerRadius = 19;
+
+        [DisplayName(nameof(CornerRadius)), Export("cornerRadius"), Browsable(true)]
+        public nfloat CornerRadius
+        {
+            get { return _cornerRadius; }
+            set
+            {
+                _cornerRadius = value;
+                this.Cornerize(_cornerRadius);
+            }
+        }
 
         [DisplayName(nameof(BorderColor)), Export("borderColor"), Browsable(true)]
         public UIColor BorderColor
@@ -98,7 +110,7 @@ namespace Pokatun.iOS
             base.AwakeFromNib();
 
             Layer.BorderWidth = 1;
-            this.Cornerize(19);
+            this.Cornerize(_cornerRadius);
         }
     }
 }

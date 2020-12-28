@@ -5,6 +5,7 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Views.Fragments;
 using Pokatun.Droid.Views.Main;
 using Pokatun.Core.ViewModels;
+using FFImageLoading.Cross;
 
 namespace Pokatun.Droid.Views
 {
@@ -18,7 +19,11 @@ namespace Pokatun.Droid.Views
 
         private TextView ToolbarTitleLabel => CompatActivity.ToolbarTitleLabel;
 
+        protected ImageButton ToolbarAddPhotoButton => CompatActivity.ToolbarAddPhotoButton;
+
         protected ImageButton ToolbarRightButton => CompatActivity.ToolbarRightButton;
+
+        protected MvxCachedImageView ToolbarPhotoView => CompatActivity.ToolbarPhotoView;
 
         protected virtual bool IsHeaderBackButtonVisible => true;
 
@@ -42,6 +47,8 @@ namespace Pokatun.Droid.Views
             ToolbarLogo.Visibility = titleNotExists ? ViewStates.Visible : ViewStates.Gone;
             ToolbarTitleLabel.Visibility = titleNotExists ? ViewStates.Gone : ViewStates.Visible;
             ToolbarRightButton.Visibility = ViewStates.Gone;
+            ToolbarAddPhotoButton.Visibility = ViewStates.Gone;
+            ToolbarPhotoView.Visibility = ViewStates.Gone;
 
             ToolbarTitleLabel.Text = title;
         }

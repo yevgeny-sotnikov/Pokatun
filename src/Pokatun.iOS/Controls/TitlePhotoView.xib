@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TitlePhotoView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2" customClass="TitlePhotoView">
+            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfl-ah-65f" customClass="BorderView">
+                    <rect key="frame" x="3" y="3" width="38" height="38"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDo-Mo-Sbe" customClass="MvxCachedImageView">
+                            <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bl2-Qq-hgj">
+                            <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
+                            <state key="normal" image="plus_photo"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Bl2-Qq-hgj" secondAttribute="bottom" id="EKU-us-qrB"/>
+                        <constraint firstAttribute="width" constant="38" id="Ptx-tu-zb2"/>
+                        <constraint firstAttribute="height" constant="38" id="S0l-Wy-Sxp"/>
+                        <constraint firstItem="oDo-Mo-Sbe" firstAttribute="top" secondItem="Rfl-ah-65f" secondAttribute="top" id="Teo-EX-8zS"/>
+                        <constraint firstItem="Bl2-Qq-hgj" firstAttribute="leading" secondItem="Rfl-ah-65f" secondAttribute="leading" id="VC6-tE-5F1"/>
+                        <constraint firstAttribute="bottom" secondItem="oDo-Mo-Sbe" secondAttribute="bottom" id="VGb-Em-29F"/>
+                        <constraint firstItem="Bl2-Qq-hgj" firstAttribute="top" secondItem="Rfl-ah-65f" secondAttribute="top" id="cN8-qZ-QFM"/>
+                        <constraint firstAttribute="trailing" secondItem="Bl2-Qq-hgj" secondAttribute="trailing" id="cbu-n7-CCQ"/>
+                        <constraint firstItem="oDo-Mo-Sbe" firstAttribute="leading" secondItem="Rfl-ah-65f" secondAttribute="leading" id="etf-fv-dra"/>
+                        <constraint firstAttribute="trailing" secondItem="oDo-Mo-Sbe" secondAttribute="trailing" id="mkv-70-z7H"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="19"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Rfl-ah-65f" firstAttribute="top" secondItem="2" secondAttribute="top" constant="3" id="OV5-5V-wwh"/>
+                <constraint firstAttribute="trailing" secondItem="Rfl-ah-65f" secondAttribute="trailing" constant="3" id="d4p-gh-qL6"/>
+                <constraint firstAttribute="bottom" secondItem="Rfl-ah-65f" secondAttribute="bottom" constant="3" id="mDK-EP-2jq"/>
+                <constraint firstItem="Rfl-ah-65f" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="3" id="uXA-4F-QDC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="_addPhotoButton" destination="Bl2-Qq-hgj" id="xNQ-5I-fEc"/>
+                <outlet property="_imageView" destination="oDo-Mo-Sbe" id="UnK-Jy-kWt"/>
+            </connections>
+            <point key="canvasLocation" x="108.69565217391305" y="2.6785714285714284"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="plus_photo" width="22.5" height="22.5"/>
+    </resources>
+</document>

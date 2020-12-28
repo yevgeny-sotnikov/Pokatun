@@ -9,6 +9,8 @@ using MvvmValidation;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Collections;
 using Pokatun.Data;
+using Xamarin.Essentials;
+using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.ViewModels.Profile
 {
@@ -16,12 +18,20 @@ namespace Pokatun.Core.ViewModels.Profile
     {
         private readonly IMvxNavigationService _navigationService;
         private readonly IUserDialogs _userDialogs;
+        private readonly IMediaPicker _mediaPicker;
         private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
 
         private string _title;
         public override string Title => _title;
+
+        private string _photoFilePath;
+        public string PhotoFilePath
+        {
+            get { return _photoFilePath; }
+            set { SetProperty(ref _photoFilePath, value); }
+        }
 
         private string _hotelName = string.Empty;
         public string HotelName
@@ -166,6 +176,15 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private MvxAsyncCommand _addPhotoCommand;
+        public IMvxAsyncCommand AddPhotoCommand
+        {
+            get
+            {
+                return _addPhotoCommand ?? (_addPhotoCommand = new MvxAsyncCommand(DoAddPhotoCommandAsync));
+            }
+        }
+
         private MvxCommand _addPhoneCommand;
         public IMvxCommand AddPhoneCommand
         {
@@ -220,10 +239,11 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        public EditHotelProfileViewModel(IMvxNavigationService navigationService, IUserDialogs userDialogs)
+        public EditHotelProfileViewModel(IMvxNavigationService navigationService, IUserDialogs userDialogs, IMediaPicker mediaPicker)
         {
             _navigationService = navigationService;
             _userDialogs = userDialogs;
+            _mediaPicker = mediaPicker;
 
             _validator = new ValidationHelper();
 
@@ -245,7 +265,7 @@ namespace Pokatun.Core.ViewModels.Profile
             BankCardOrIban = parameter.BankCard == null ? parameter.IBAN : parameter.BankCard.ToString();
             BankName = parameter.BankName;
             USREOU = parameter.USREOU.ToString();
-
+            
             PhoneNumbers.AddRange(parameter.Phones.Select(p => new EntryItemViewModel(p.Number, DeletePhoneCommand)));
             SocialResources.AddRange(parameter.SocialResources.Select(sr => new EntryItemViewModel(sr.Link, RemoveSocialResourceCommand)));
         }
@@ -288,6 +308,14 @@ namespace Pokatun.Core.ViewModels.Profile
             CheckOutTime = res.Value;
         }
 
+        private async Task DoAddPhotoCommandAsync()
+        {
+            FileResult result = await _mediaPicker.PickPhotoAsync();
+
+            if (result == null) return;
+
+            PhotoFilePath = result.FullPath;
+        }
 
         private Task DoCloseCommandAsync()
         {
