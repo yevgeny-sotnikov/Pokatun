@@ -7,6 +7,7 @@ using MvvmCross.ViewModels;
 using Pokatun.Core.Executors;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
 using RestSharp;
+using RestSharp.Serializers.NewtonsoftJson;
 using Xamarin.Essentials;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
@@ -38,16 +39,30 @@ namespace Pokatun.Core
             #if DEBUG
 
             Mvx.IoCProvider.RegisterSingleton<IRestClient>(
-                () => new RestClient(string.Format(Constants.BaseUrl,
-                    Mvx.IoCProvider.Resolve<IDeviceInfo>().Platform == DevicePlatform.iOS
-                    ? Constants.iOSDebugIP
-                    : Constants.AndroidDebugIP
-                )
-            ));
+                () =>
+                {
+                    RestClient client = new RestClient(string.Format(Constants.BaseUrl,
+                        Mvx.IoCProvider.Resolve<IDeviceInfo>().Platform == DevicePlatform.iOS
+                        ? Constants.iOSDebugIP
+                        : Constants.AndroidDebugIP
+                    ));
+
+                    client.UseNewtonsoftJson();
+
+                    return client;
+                }
+            );
 
             #else
 
-            Mvx.IoCProvider.RegisterSingleton<IRestClient>(() => new RestClient(Constants.BaseUrl));
+            Mvx.IoCProvider.RegisterSingleton<IRestClient>(() =>
+            {
+                RestClient client = new RestClient(Constants.BaseUrl);
+
+                client.UseNewtonsoftJson();
+
+                return client;
+            });
 
             #endif
 

@@ -9,6 +9,9 @@ namespace Pokatun.Core.ViewModels.Collections
         private readonly IMvxCommand<EntryItemViewModel> _deleteItemCommand;
 
         private string _text;
+
+        public long Id { get; private set; }
+
         public string Text
         {
             get { return _text; }
@@ -27,12 +30,14 @@ namespace Pokatun.Core.ViewModels.Collections
             }
         }
 
-        public EntryItemViewModel(string text, IMvxCommand<EntryItemViewModel> deleteItemCommand)
+        public EntryItemViewModel(long id, string text, IMvxCommand<EntryItemViewModel> deleteItemCommand)
         {
             if (deleteItemCommand == null)
             {
                 throw new ArgumentNullException(nameof(deleteItemCommand));
             }
+
+            Id = id;
 
             Text = text;
 

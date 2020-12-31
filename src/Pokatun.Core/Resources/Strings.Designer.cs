@@ -449,9 +449,21 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string CheckInTimeDidntSetted {
+            get {
+                return ResourceManager.GetString("CheckInTimeDidntSetted", resourceCulture);
+            }
+        }
+        
         public static string CheckOutTime {
             get {
                 return ResourceManager.GetString("CheckOutTime", resourceCulture);
+            }
+        }
+        
+        public static string CheckOutTimeDidntSetted {
+            get {
+                return ResourceManager.GetString("CheckOutTimeDidntSetted", resourceCulture);
             }
         }
         
@@ -488,6 +500,24 @@ namespace Pokatun.Core.Resources {
         public static string DescriptionFillingInstruction {
             get {
                 return ResourceManager.GetString("DescriptionFillingInstruction", resourceCulture);
+            }
+        }
+        
+        public static string HotelPhotoDidntChoosen {
+            get {
+                return ResourceManager.GetString("HotelPhotoDidntChoosen", resourceCulture);
+            }
+        }
+        
+        public static string WithinTerritoryDescriptionDidntAdded {
+            get {
+                return ResourceManager.GetString("WithinTerritoryDescriptionDidntAdded", resourceCulture);
+            }
+        }
+        
+        public static string HotelDescriptionDidntAdded {
+            get {
+                return ResourceManager.GetString("HotelDescriptionDidntAdded", resourceCulture);
             }
         }
     }

@@ -7,7 +7,9 @@ namespace Pokatun.API.Services
     {
         Hotel GetById(long id);
 
-        long Register(HotelDto value);
+        void Update(HotelDto hotel);
+
+        long Register(HotelRegistrationDto value);
 
         long Login(string email, string password);
 

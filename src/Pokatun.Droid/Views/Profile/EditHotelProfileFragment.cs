@@ -113,27 +113,31 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_bankCardOrIbanTextField).To(vm => vm.BankCardOrIban).TwoWay();
             set.Bind(_bankNameTextField).To(vm => vm.BankName).TwoWay();
             set.Bind(_usreouTextField).To(vm => vm.USREOU).TwoWay();
+            set.Bind(_withinTerritoryEditText).For(v => v.Data).To(vm => vm.WithinTerritoryDescription).TwoWay();
+            set.Bind(_hotelDescriptionEditText).For(v => v.Data).To(vm => vm.HotelDescription).TwoWay();
 
             set.Bind(_checkInTimeButton).For(v => v.Text).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.CheckInTime).OneWay();
             set.Bind(_checkOutTimeButton).For(v => v.Text).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.CheckOutTime).OneWay();
-
-            set.Bind(_withinTerritoryEditText).For(v => v.Data).To(vm => vm.WithinTerritoryDescription).TwoWay();
-            set.Bind(_hotelDescriptionEditText).For(v => v.Data).To(vm => vm.HotelDescription).TwoWay();
 
             set.Bind(_phonesTable).For(v => v.ItemsSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTable).For(v => v.ItemsSource).To(vm => vm.SocialResources).OneTime();
 
             set.Bind(_hotelNameEditText).For(v => v.Activated).To(vm => vm.IsHotelNameInvalid).OneWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Activated).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
-            set.Bind(_emailTextField).For(v => v.Activated).To(vm => vm.IsEmailInvalid).OneWay();
+            set.Bind(_usreouTextField).For(v => v.Activated).To(vm => vm.IsUsreouInvalid).OneWay();
             set.Bind(_bankCardOrIbanTextField).For(v => v.Activated).To(vm => vm.IsBankCardOrIbanInvalid).OneWay();
             set.Bind(_bankNameTextField).For(v => v.Activated).To(vm => vm.IsBankNameInvalid).OneWay();
-            set.Bind(_usreouTextField).For(v => v.Activated).To(vm => vm.IsUsreouInvalid).OneWay();
-            
+            set.Bind(_emailTextField).For(v => v.Activated).To(vm => vm.IsEmailInvalid).OneWay();
+            set.Bind(_checkInTimeButton).For(v => v.Activated).To(vm => vm.IsCheckInTimeInvalid).OneWay();
+            set.Bind(_checkOutTimeButton).For(v => v.Activated).To(vm => vm.IsCheckOutTimeInvalid).OneWay();
+            set.Bind(_withinTerritoryEditText).For(v => v.Activated).To(vm => vm.IsWithinTerritoryDescriptionInvalid).OneWay();
+            set.Bind(_hotelDescriptionEditText).For(v => v.Activated).To(vm => vm.IsHotelDescriptionInvalid).OneWay();
+
             set.Bind(_addPhoneButton).To(vm => vm.AddPhoneCommand).OneTime();
+            set.Bind(_addLinkButton).To(vm => vm.AddSocialResourceCommand).OneTime();
             set.Bind(_checkInTimeButton).To(vm => vm.ChooseCheckInTimeCommand).OneTime();
             set.Bind(_checkOutTimeButton).To(vm => vm.ChooseCheckOutTimeCommand).OneTime();
-            set.Bind(_addLinkButton).To(vm => vm.AddSocialResourceCommand).OneTime();
+            set.Bind(_saveChangesButton).To(vm => vm.SaveChangesCommand).OneTime();
 
             set.Apply();
 

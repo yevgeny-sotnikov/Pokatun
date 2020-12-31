@@ -104,7 +104,6 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_bankCardOrIbanTextField).For(v => v.Text).To(vm => vm.BankCardOrIban).TwoWay();
             set.Bind(_bankNameTextField).For(v => v.Text).To(vm => vm.BankName).TwoWay();
             set.Bind(_usreouTextField).For(v => v.Text).To(vm => vm.USREOU).TwoWay();
-
             set.Bind(_withinTerritoryEditText).For(v => v.Data).To(vm => vm.WithinTerritoryDescription).TwoWay();
             set.Bind(_hotelDescriptionEditText).For(v => v.Data).To(vm => vm.HotelDescription).TwoWay();
 
@@ -114,17 +113,22 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTableViewSource).To(vm => vm.SocialResources).OneTime();
 
+            set.Bind(_hotelNameEditText).For(v => v.Highlighted).To(vm => vm.IsHotelNameInvalid).OneWay();
+            set.Bind(_fullCompanyNameTextField).For(v => v.Highlighted).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
+            set.Bind(_usreouTextField).For(v => v.Highlighted).To(vm => vm.IsUsreouInvalid).OneWay();
+            set.Bind(_bankCardOrIbanTextField).For(v => v.Highlighted).To(vm => vm.IsBankCardOrIbanInvalid).OneWay();
+            set.Bind(_bankNameTextField).For(v => v.Highlighted).To(vm => vm.IsBankNameInvalid).OneWay();
+            set.Bind(_emailTextField).For(v => v.Highlighted).To(vm => vm.IsEmailInvalid).OneWay();
+            set.Bind(_checkInTimeButton).For(v => v.Highlighted).To(vm => vm.IsCheckInTimeInvalid).OneWay();
+            set.Bind(_checkOutTimeButton).For(v => v.Highlighted).To(vm => vm.IsCheckOutTimeInvalid).OneWay();
+            set.Bind(_withinTerritoryEditText).For(v => v.Highlighted).To(vm => vm.IsWithinTerritoryDescriptionInvalid).OneWay();
+            set.Bind(_hotelDescriptionEditText).For(v => v.Highlighted).To(vm => vm.IsHotelDescriptionInvalid).OneWay();
+
             set.Bind(_addPhoneButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.AddPhoneCommand).OneTime();
             set.Bind(_addLinkButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.AddSocialResourceCommand).OneTime();
             set.Bind(_checkInTimeButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.ChooseCheckInTimeCommand).OneTime();
             set.Bind(_checkOutTimeButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.ChooseCheckOutTimeCommand).OneTime();
-
-            set.Bind(_hotelNameEditText).For(v => v.Highlighted).To(vm => vm.IsHotelNameInvalid).OneWay();
-            set.Bind(_fullCompanyNameTextField).For(v => v.Highlighted).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
-            set.Bind(_emailTextField).For(v => v.Highlighted).To(vm => vm.IsEmailInvalid).OneWay();
-            set.Bind(_bankCardOrIbanTextField).For(v => v.Highlighted).To(vm => vm.IsBankCardOrIbanInvalid).OneWay();
-            set.Bind(_bankNameTextField).For(v => v.Highlighted).To(vm => vm.IsBankNameInvalid).OneWay();
-            set.Bind(_usreouTextField).For(v => v.Highlighted).To(vm => vm.IsUsreouInvalid).OneWay();
+            set.Bind(_saveChangesButton).To(vm => vm.SaveChangesCommand).OneTime();
 
             set.Apply();
         }

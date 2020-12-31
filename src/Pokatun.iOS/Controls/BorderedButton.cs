@@ -19,6 +19,7 @@ namespace Pokatun.iOS.Controls
         private UIColor _borderColor;
         private UIColor _textColor;
         private UIImage _leftImage;
+        private bool _highlighted;
 
         public string Text
         {
@@ -49,6 +50,9 @@ namespace Pokatun.iOS.Controls
             }
         }
 
+        [DisplayName(nameof(HighlightedColor)), Export("highlightedColor"), Browsable(true)]
+        public UIColor HighlightedColor { get; set; }
+
         [DisplayName(nameof(LeftImage)), Export("leftImage"), Browsable(true)]
         public UIImage LeftImage
         {
@@ -62,6 +66,22 @@ namespace Pokatun.iOS.Controls
 
                 _leftImageView.Image = value;
                 _leftImageView.Hidden = value == null;
+            }
+        }
+
+        public bool Highlighted
+        {
+            get { return _highlighted; }
+            set
+            {
+                _highlighted = value;
+
+                if (_label == null || _borderView == null)
+                    return;
+
+                _borderView.Highlighted = _highlighted;
+
+                _label.TextColor = _highlighted ? HighlightedColor : TextColor;
             }
         }
 

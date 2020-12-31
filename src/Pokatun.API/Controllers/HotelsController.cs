@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -49,9 +50,28 @@ namespace Pokatun.API.Controllers
                         BankCard = hotel.BankCard,
                         IBAN = hotel.IBAN,
                         BankName = hotel.BankName,
-                        USREOU = hotel.USREOU
+                        USREOU = hotel.USREOU,
+                        CheckInTime = hotel.CheckInTime,
+                        CheckOutTime = hotel.CheckOutTime,
+                        HotelDescription = hotel.HotelDescription,
+                        WithinTerritoryDescription = hotel.WithinTerritoryDescription,
+                        PhotoUrl = hotel.PhotoUrl
                     }
                 });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult<ServerResponce> Post([FromBody] HotelDto hotel)
+        {
+            try
+            {
+                _hotelsService.Update(hotel);
+                return Ok(new ServerResponce<string> { Data = "OK" });
             }
             catch (ApiException ex)
             {
@@ -68,7 +88,7 @@ namespace Pokatun.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public ActionResult<ServerResponce<TokenInfoDto>> Register([FromBody] HotelDto value)
+        public ActionResult<ServerResponce<TokenInfoDto>> Register([FromBody] HotelRegistrationDto value)
         {
             return HandleAuthorizationRequest(() => _hotelsService.Register(value));
         }

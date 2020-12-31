@@ -27,6 +27,7 @@ namespace Pokatun.API.Models
             builder.Entity<Hotel>().HasIndex(h => h.USREOU).IsUnique();
             builder.Entity<Hotel>().HasIndex(h => h.IBAN).IsUnique();
             builder.Entity<Hotel>().HasIndex(h => h.ResetToken).IsUnique();
+            builder.Entity<Hotel>().HasIndex(h => h.PhotoUrl).IsUnique();
 
             builder.Entity<SocialResource>().HasIndex(sr => sr.Link).IsUnique();
 

@@ -1,12 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using MvvmValidation;
+using Pokatun.Core.Executors;
 using Pokatun.Core.Resources;
+using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.Collections;
 using Pokatun.Data;
 using Xamarin.Essentials;
@@ -19,9 +23,12 @@ namespace Pokatun.Core.ViewModels.Profile
         private readonly IMvxNavigationService _navigationService;
         private readonly IUserDialogs _userDialogs;
         private readonly IMediaPicker _mediaPicker;
+        private readonly IHotelsService _hotelsService;
+        private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
+        private long _currentHotelId;
 
         private string _title;
         public override string Title => _title;
@@ -127,28 +134,60 @@ namespace Pokatun.Core.ViewModels.Profile
         public TimeSpan? CheckInTime
         {
             get { return _checkInTime; }
-            set { SetProperty(ref _checkInTime, value); }
+            set
+            {
+                if (!SetProperty(ref _checkInTime, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsCheckInTimeInvalid));
+            }
         }
 
         private TimeSpan? _checkOutTime;
         public TimeSpan? CheckOutTime
         {
             get { return _checkOutTime; }
-            set { SetProperty(ref _checkOutTime, value); }
+            set
+            {
+                if (!SetProperty(ref _checkOutTime, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsCheckOutTimeInvalid));
+            }
         }
 
         private string _withinTerritoryDescription;
         public string WithinTerritoryDescription
         {
             get { return _withinTerritoryDescription; }
-            set { SetProperty(ref _withinTerritoryDescription, value); }
+            set
+            {
+                if (!SetProperty(ref _withinTerritoryDescription, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsWithinTerritoryDescriptionInvalid));
+            }
         }
 
         private string _hotelDescription;
         public string HotelDescription
         {
             get { return _hotelDescription; }
-            set { SetProperty(ref _hotelDescription, value); }
+            set
+            {
+                if (!SetProperty(ref _hotelDescription, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsHotelDescriptionInvalid));
+            }
         }
 
         public MvxObservableCollection<EntryItemViewModel> PhoneNumbers { get; private set; }
@@ -166,6 +205,14 @@ namespace Pokatun.Core.ViewModels.Profile
         public bool IsBankNameInvalid => CheckInvalid(nameof(BankName));
 
         public bool IsBankCardOrIbanInvalid => CheckInvalid(nameof(BankCardOrIban));
+
+        public bool IsCheckInTimeInvalid => CheckInvalid(nameof(CheckInTime));
+
+        public bool IsCheckOutTimeInvalid => CheckInvalid(nameof(CheckOutTime));
+
+        public bool IsWithinTerritoryDescriptionInvalid => CheckInvalid(nameof(WithinTerritoryDescription));
+
+        public bool IsHotelDescriptionInvalid => CheckInvalid(nameof(HotelDescription));
 
         private MvxAsyncCommand _closeCommand;
         public IMvxAsyncCommand CloseCommand
@@ -239,16 +286,49 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        public EditHotelProfileViewModel(IMvxNavigationService navigationService, IUserDialogs userDialogs, IMediaPicker mediaPicker)
+        private MvxAsyncCommand _saveChangesCommand;
+        public IMvxAsyncCommand SaveChangesCommand
+        {
+            get
+            {
+                return _saveChangesCommand ?? (_saveChangesCommand = new MvxAsyncCommand(DoSaveChangesCommandAsync));
+            }
+        }
+
+        public EditHotelProfileViewModel(
+            IMvxNavigationService navigationService,
+            IUserDialogs userDialogs,
+            IMediaPicker mediaPicker,
+            IHotelsService hotelsService,
+            INetworkRequestExecutor networkRequestExecutor)
         {
             _navigationService = navigationService;
             _userDialogs = userDialogs;
             _mediaPicker = mediaPicker;
+            _hotelsService = hotelsService;
+            _networkRequestExecutor = networkRequestExecutor;
 
             _validator = new ValidationHelper();
 
             _validator.AddRule(nameof(HotelName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelName), Strings.HotelNameRequiredMessage));
             _validator.AddRule(nameof(FullCompanyName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(FullCompanyName), Strings.CompanyNameRequiredMessage));
+            _validator.AddRule(
+                nameof(BankCardOrIban),
+                () => RuleResult.Assert(
+                    _viewInEditMode
+                    || Regex.IsMatch(BankCardOrIban.Trim(), DataPatterns.BankCard)
+                    || Regex.IsMatch(BankCardOrIban.Trim(), DataPatterns.IBAN
+                ),
+                Strings.ValidBankCardOrIbanNotDefined)
+            );
+
+            _validator.AddRule(nameof(BankName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(BankName), Strings.BankNameRequiredMessage));
+            _validator.AddRule(nameof(USREOU), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(USREOU.Trim(), DataPatterns.USREOU), Strings.InvalidUSREOU));
+            _validator.AddRule(nameof(CheckInTime), () => RuleResult.Assert(_viewInEditMode || CheckInTime != null, Strings.CheckInTimeDidntSetted));
+            _validator.AddRule(nameof(CheckOutTime), () => RuleResult.Assert(_viewInEditMode || CheckOutTime != null, Strings.CheckOutTimeDidntSetted));
+            _validator.AddRule(nameof(PhotoFilePath), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(PhotoFilePath), Strings.HotelPhotoDidntChoosen));
+            _validator.AddRule(nameof(WithinTerritoryDescription), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(WithinTerritoryDescription), Strings.WithinTerritoryDescriptionDidntAdded));
+            _validator.AddRule(nameof(HotelDescription), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelDescription), Strings.HotelDescriptionDidntAdded));
 
             PhoneNumbers = new MvxObservableCollection<EntryItemViewModel>();
             SocialResources = new MvxObservableCollection<EntryItemViewModel>();
@@ -256,6 +336,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
         public override void Prepare(HotelDto parameter)
         {
+            _currentHotelId = parameter.Id;
             _title = parameter.HotelName;
             RaisePropertyChanged(nameof(Title));
 
@@ -265,14 +346,19 @@ namespace Pokatun.Core.ViewModels.Profile
             BankCardOrIban = parameter.BankCard == null ? parameter.IBAN : parameter.BankCard.ToString();
             BankName = parameter.BankName;
             USREOU = parameter.USREOU.ToString();
+            CheckInTime = parameter.CheckInTime;
+            CheckOutTime = parameter.CheckOutTime;
+            HotelDescription = parameter.HotelDescription;
+            WithinTerritoryDescription = parameter.WithinTerritoryDescription;
+            PhotoFilePath = parameter.PhotoUrl;
             
-            PhoneNumbers.AddRange(parameter.Phones.Select(p => new EntryItemViewModel(p.Number, DeletePhoneCommand)));
-            SocialResources.AddRange(parameter.SocialResources.Select(sr => new EntryItemViewModel(sr.Link, RemoveSocialResourceCommand)));
+            PhoneNumbers.AddRange(parameter.Phones.Select(p => new EntryItemViewModel(p.Id, p.Number, DeletePhoneCommand)));
+            SocialResources.AddRange(parameter.SocialResources.Select(sr => new EntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand)));
         }
 
         private void DoAddPhoneCommand()
         {
-            PhoneNumbers.Add(new EntryItemViewModel(null, DeletePhoneCommand));
+            PhoneNumbers.Add(new EntryItemViewModel(0, null, DeletePhoneCommand));
         }
 
         private void DoDeletePhoneCommand(EntryItemViewModel phoneVM)
@@ -282,7 +368,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private void DoAddSocialResourceCommand()
         {
-            SocialResources.Add(new EntryItemViewModel(null, RemoveSocialResourceCommand));
+            SocialResources.Add(new EntryItemViewModel(0, null, RemoveSocialResourceCommand));
         }
 
         private void DoRemoveSocialResourceCommand(EntryItemViewModel srVM)
@@ -292,7 +378,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private async Task DoChooseCheckInTimeCommandAsync()
         {
-            TimePromptResult res = await ShowTimePromptAsync();
+            TimePromptResult res = await ShowTimePromptAsync(Strings.CheckInTime, CheckInTime);
 
             if (!res.Ok) return;
 
@@ -301,7 +387,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private async Task DoChooseCheckOutTimeCommandAsync()
         {
-            TimePromptResult res = await ShowTimePromptAsync();
+            TimePromptResult res = await ShowTimePromptAsync(Strings.CheckOutTime, CheckOutTime);
 
             if (!res.Ok) return;
 
@@ -322,9 +408,79 @@ namespace Pokatun.Core.ViewModels.Profile
             return _navigationService.Close(this, false);
         }
 
-        private Task<TimePromptResult> ShowTimePromptAsync()
+        private async Task DoSaveChangesCommandAsync()
         {
-            return _userDialogs.TimePromptAsync(new TimePromptConfig { iOSPickerStyle = iOSPickerStyle.Wheels, Use24HourClock = true });
+            _viewInEditMode = false;
+
+            ValidationResult validationResult = _validator.ValidateAll();
+
+            await Task.WhenAll(
+                RaisePropertyChanged(nameof(IsHotelNameInvalid)),
+                RaisePropertyChanged(nameof(IsFullCompanyNameInvalid)),
+                RaisePropertyChanged(nameof(IsUsreouInvalid)),
+                RaisePropertyChanged(nameof(IsBankCardOrIbanInvalid)),
+                RaisePropertyChanged(nameof(IsBankNameInvalid)),
+                RaisePropertyChanged(nameof(IsCheckInTimeInvalid)),
+                RaisePropertyChanged(nameof(IsCheckOutTimeInvalid)),
+                RaisePropertyChanged(nameof(IsHotelDescriptionInvalid)),
+                RaisePropertyChanged(nameof(IsWithinTerritoryDescriptionInvalid))
+            );
+
+            if (!validationResult.IsValid)
+            {
+                _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
+
+                return;
+            }
+
+            string IBAN = null;
+            long? bankCard = null;
+
+            if (Regex.IsMatch(BankCardOrIban, DataPatterns.IBAN))
+            {
+                IBAN = BankCardOrIban;
+            }
+            else
+            {
+                bankCard = long.Parse(BankCardOrIban);
+            }
+
+            ServerResponce responce = await _networkRequestExecutor.MakeRequestAsync(() =>
+                _hotelsService.SaveChangesAsync(
+                    _currentHotelId,
+                    HotelName,
+                    FullCompanyName,
+                    Email,
+                    BankName,
+                    IBAN,
+                    bankCard,
+                    int.Parse(USREOU),
+                    PhoneNumbers.Select(e => new PhoneDto { Id = e.Id, Number = e.Text }).ToArray(),
+                    SocialResources.Select(e => new SocialResourceDto { Id = e.Id, Link = e.Text }).ToArray(),
+                    CheckInTime.Value,
+                    CheckOutTime.Value,
+                    WithinTerritoryDescription,
+                    HotelDescription,
+                    PhotoFilePath
+                ),
+                new HashSet<string>()
+            );
+
+            if (responce == null)
+                return;
+
+            await _navigationService.Close(this);
+        }
+
+        private Task<TimePromptResult> ShowTimePromptAsync(string titleText, TimeSpan? startTime)
+        {
+            return _userDialogs.TimePromptAsync(new TimePromptConfig
+            {
+                iOSPickerStyle = iOSPickerStyle.Wheels,
+                Use24HourClock = true,
+                Title = titleText,
+                SelectedTime = startTime
+            });
         }
 
         private bool CheckInvalid(string name)

@@ -18,5 +18,6 @@ namespace Pokatun.Data
         public const string InvalidTokenError = "InvalidTokenError";
         public const string ExpiredTokenError = "ExpiredTokenError";
         public const string IncorrectIdError = "IncorrectIdError";
+        public const string InvalidFileError = "InvalidFileError";
     }
 }

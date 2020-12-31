@@ -140,7 +140,7 @@
         <value>Такой ЕДРПОУ уже был зарегистрирован в системе</value>
     </data>
     <data name="UnexpectedError" xml:space="preserve">
-        <value>Произошла непредвиденная ошбика. Повторите ошибу позже</value>
+        <value>Произошла непредвиденная ошибка. Повторите попытку позже</value>
     </data>
     <data name="InvalidTokenError" xml:space="preserve">
         <value>Неверный код верификации</value>
@@ -217,8 +217,14 @@
     <data name="CheckInTime" xml:space="preserve">
         <value>Время заселения</value>
     </data>
+    <data name="CheckInTimeDidntSetted" xml:space="preserve">
+        <value>Не задано время заселения</value>
+    </data>
     <data name="CheckOutTime" xml:space="preserve">
         <value>Время выселения</value>
+    </data>
+    <data name="CheckOutTimeDidntSetted" xml:space="preserve">
+        <value>Не задано время выселения</value>
     </data>
     <data name="SiteOrSocialNetworkLink" xml:space="preserve">
         <value>Ссылка на сайт или соц сеть</value>
@@ -237,5 +243,14 @@
     </data>
     <data name="DescriptionFillingInstruction" xml:space="preserve">
         <value>Напишите самое главное о вашем отеле в свободной форме</value>
+    </data>
+    <data name="HotelPhotoDidntChoosen" xml:space="preserve">
+        <value>Фото отеля не выбрано</value>
+    </data>
+    <data name="WithinTerritoryDescriptionDidntAdded" xml:space="preserve">
+        <value>Описание территории отеля не добавлено</value>
+    </data>
+    <data name="HotelDescriptionDidntAdded" xml:space="preserve">
+        <value>Описание отеля не добавлено</value>
     </data>
 </root>

@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,7 +82,7 @@ namespace Pokatun.API
                 };
             });
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new TimeSpanToStringJsonConverter()));
 
             services.Configure<ApiBehaviorOptions>(a => a.InvalidModelStateResponseFactory = (context) =>
             {
@@ -98,6 +99,11 @@ namespace Pokatun.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             UpdateDatabase(app);
+
+            if (string.IsNullOrWhiteSpace(env.WebRootPath))
+            {
+                env.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            }
 
             if (env.IsDevelopment())
             {

@@ -30,6 +30,7 @@ namespace Pokatun.iOS.Styles
         public static void ApplyBorderedButtonStyle(this BorderedButton button)
         {
             button.TextColor = ColorPalette.PrimaryText;
+            button.HighlightedColor = ColorPalette.FailValidationColor;
         }
 
         public static void ApplyShadowedButtonStyle(this UIButton button)

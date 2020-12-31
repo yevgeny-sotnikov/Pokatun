@@ -164,29 +164,29 @@ namespace Pokatun.Core.ViewModels.Registration
 
                 return;
             }
-            
-            HotelDto hotel = new HotelDto
-            {
-                HotelName = _firstData.HotelName,
-                Phones = new List<PhoneDto> { new PhoneDto { Number = _firstData.PhoneNumber } },
-                Email = _firstData.Email,
-                Password = _firstData.Password,
-                FullCompanyName = FullCompanyName,
-                BankName = BankName,
-                USREOU = int.Parse(USREOU)
-            };
+
+            string IBAN = null;
+            long? bankCard = null;
 
             if (Regex.IsMatch(BankCardOrIban, DataPatterns.IBAN))
             {
-                hotel.IBAN = BankCardOrIban;
+                IBAN = BankCardOrIban;
             }
             else
             {
-                hotel.BankCard = long.Parse(BankCardOrIban);
+                bankCard = long.Parse(BankCardOrIban);
             }
 
             ServerResponce<TokenInfoDto> responce = await _networkRequestExecutor.MakeRequestAsync(
-                () => _hotelsService.RegisterAsync(hotel),
+                () => _hotelsService.RegisterAsync(
+                    _firstData.HotelName,
+                    FullCompanyName,
+                    _firstData.Email,
+                    _firstData.PhoneNumber,
+                    BankName, IBAN,
+                    bankCard,
+                    int.Parse(USREOU)
+                ),
                 new HashSet<string>
                 {
                     ErrorCodes.AccountAllreadyExistsError,

@@ -49,6 +49,19 @@ namespace Pokatun.API.Entities
         [Required]
         public int USREOU { get; set; }
 
+        public TimeSpan? CheckInTime { get; set; }
+
+        public TimeSpan? CheckOutTime { get; set; }
+
+        [MaxLength(200)]
+        public string WithinTerritoryDescription { get; set; }
+
+        [MaxLength(600)]
+        public string HotelDescription { get; set; }
+
+        [MaxLength(256)]
+        public string PhotoUrl { get; set; }
+
         [MaxLength(DataPatterns.VerificationCodeLenght)]
         public string ResetToken { get; set; }
 

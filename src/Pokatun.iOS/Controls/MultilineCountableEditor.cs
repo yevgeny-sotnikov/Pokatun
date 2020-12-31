@@ -13,6 +13,7 @@ namespace Pokatun.iOS.Controls
     {
         private int _maxLenght;
         private UIColor _textColor;
+        private bool _highlighted;
 
         [DisplayName(nameof(TextColor)), Export("textColor"), Browsable(true)]
         public UIColor TextColor
@@ -29,6 +30,9 @@ namespace Pokatun.iOS.Controls
             }
         }
 
+        [DisplayName(nameof(HighlightedColor)), Export("highlightedColor"), Browsable(true)]
+        public UIColor HighlightedColor { get; set; }
+
         public string Title
         {
             get { return _titleLabel.Text; }
@@ -41,6 +45,8 @@ namespace Pokatun.iOS.Controls
             set
             {
                 _dataTextField.Text = value;
+
+                _hintLabel.Hidden = !string.IsNullOrEmpty(value);
                 SetupCounterText(MaxLenght - value.Length);
             }
         }
@@ -64,6 +70,26 @@ namespace Pokatun.iOS.Controls
                 SetupCounterText(value - Data.Length);
             }
         }
+
+        public bool Highlighted
+        {
+            get { return _highlighted; }
+            set
+            {
+                _highlighted = value;
+
+                if (_dataTextField == null || _borderView == null)
+                    return;
+
+                _borderView.Highlighted = _highlighted;
+
+                _dataTextField.TextColor = _highlighted ? HighlightedColor : TextColor;
+                _titleLabel.TextColor = _highlighted ? HighlightedColor : ColorPalette.PrimaryText;
+                _hintLabel.TextColor = _highlighted ? HighlightedColor : ColorPalette.BorderColor;
+                _counterLabel.TextColor = _highlighted ? HighlightedColor : ColorPalette.PrimaryText;
+            }
+        }
+
 
         public event EventHandler DataChanged;
 
@@ -101,7 +127,8 @@ namespace Pokatun.iOS.Controls
             _hintLabel.TextColor = ColorPalette.PrimaryText;
 
             TextColor = _textColor;
-            
+            HighlightedColor = ColorPalette.FailValidationColor;
+
             _dataTextField.Started += OnEditingStarted;
             _dataTextField.Ended += OnEditingEnded;
             _dataTextField.Changed += OnTextChanged;
@@ -140,7 +167,11 @@ namespace Pokatun.iOS.Controls
         private void OnEditingStarted(object sender, EventArgs e)
         {
             _borderView.InEditMode = true;
+
             _dataTextField.TextColor = TextColor;
+            _titleLabel.TextColor = ColorPalette.PrimaryText;
+            _hintLabel.TextColor = ColorPalette.BorderColor;
+            _counterLabel.TextColor = ColorPalette.PrimaryText;
         }
 
         private void OnEditingEnded(object sender, EventArgs e)
