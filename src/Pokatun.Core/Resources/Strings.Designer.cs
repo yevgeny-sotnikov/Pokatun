@@ -520,5 +520,17 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("HotelDescriptionDidntAdded", resourceCulture);
             }
         }
+        
+        public static string PhoneNumbersDuplication {
+            get {
+                return ResourceManager.GetString("PhoneNumbersDuplication", resourceCulture);
+            }
+        }
+        
+        public static string SocialResourcesDuplication {
+            get {
+                return ResourceManager.GetString("SocialResourcesDuplication", resourceCulture);
+            }
+        }
     }
 }

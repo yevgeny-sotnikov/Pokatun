@@ -7,16 +7,28 @@ namespace Pokatun.Core.ViewModels.Collections
     public sealed class EntryItemViewModel : MvxViewModel
     {
         private readonly IMvxCommand<EntryItemViewModel> _deleteItemCommand;
+        private readonly Func<string, bool> _validator;
 
         private string _text;
+        private bool _viewInEditMode = true;
 
         public long Id { get; private set; }
 
         public string Text
         {
             get { return _text; }
-            set { SetProperty(ref _text, value); }
+            set
+            {
+                if (!SetProperty(ref _text, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsInvalid));
+            }
         }
+
+        public bool IsInvalid => !_viewInEditMode && _validator(Text);
 
         private MvxCommand _deleteCommand;
         public IMvxCommand DeleteCommand
@@ -30,11 +42,16 @@ namespace Pokatun.Core.ViewModels.Collections
             }
         }
 
-        public EntryItemViewModel(long id, string text, IMvxCommand<EntryItemViewModel> deleteItemCommand)
+        public EntryItemViewModel(long id, string text, IMvxCommand<EntryItemViewModel> deleteItemCommand, Func<string, bool> validator)
         {
             if (deleteItemCommand == null)
             {
                 throw new ArgumentNullException(nameof(deleteItemCommand));
+            }
+
+            if (validator == null)
+            {
+                throw new ArgumentNullException(nameof(validator));
             }
 
             Id = id;
@@ -42,6 +59,14 @@ namespace Pokatun.Core.ViewModels.Collections
             Text = text;
 
             _deleteItemCommand = deleteItemCommand;
+            _validator = validator;
+        }
+
+        public void Validate()
+        {
+            _viewInEditMode = false;
+
+            RaisePropertyChanged(nameof(IsInvalid));
         }
     }
 }

@@ -17,7 +17,7 @@
 		android:maxLength="16"
 		android:inputType="phone"
         android:hint="Введите телефон"
-		local:MvxBind="Text Text"
+		local:MvxBind="Text Text; Activated IsInvalid"
 		/>
 	<ImageButton
         android:id="@+id/deleteButton"

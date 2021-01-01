@@ -17,7 +17,7 @@
 		android:inputType="textWebEditText"
 		android:singleLine="true"
         android:hint="Ссылка на сайт или соц сеть"
-		local:MvxBind="Text Text"
+		local:MvxBind="Text Text; Activated IsInvalid"
 		/>
 	<ImageButton
 		android:layout_gravity="center_vertical|right"

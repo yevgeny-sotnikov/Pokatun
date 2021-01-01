@@ -253,4 +253,10 @@
     <data name="HotelDescriptionDidntAdded" xml:space="preserve">
         <value>Описание отеля не добавлено</value>
     </data>
+    <data name="PhoneNumbersDuplication" xml:space="preserve">
+        <value>Повторение телефонных номеров</value>
+    </data>
+    <data name="SocialResourcesDuplication" xml:space="preserve">
+        <value>Повторение ссылок</value>
+    </data>
 </root>
