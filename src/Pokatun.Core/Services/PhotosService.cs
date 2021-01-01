@@ -21,6 +21,26 @@ namespace Pokatun.Core.Services
             _secureStorage = secureStorage;
         }
 
+        public async Task<Stream> GetAsync(string photoName)
+        {
+            if (string.IsNullOrWhiteSpace(photoName))
+            {
+                throw new ArgumentException(nameof(photoName) + " doesn't exist");
+            }
+
+            RestRequest request = new RestRequest("photos?name=" + photoName, Method.GET);
+            request.AddHeader("Authorization", string.Format("Bearer {0}", await _secureStorage.GetAsync(Constants.Keys.Token)));
+
+            IRestResponse restResponse = await _restClient.ExecuteAsync(request);
+
+            if (!restResponse.IsSuccessful)
+            {
+                return null;
+            }
+
+            return new MemoryStream(restResponse.RawBytes);
+        }
+
         public async Task<ServerResponce<string>> UploadAsync(string photofilePath)
         {
             if (Uri.IsWellFormedUriString(photofilePath, UriKind.Absolute))

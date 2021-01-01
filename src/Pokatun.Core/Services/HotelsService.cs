@@ -13,12 +13,14 @@ namespace Pokatun.Core.Services
         private readonly IRestClient _restClient;
         private readonly ISecureStorage _secureStorage;
         private readonly IPhotosService _photosService;
+        private readonly System.IO.Abstractions.IFileSystem _fileSystem;
 
-        public HotelsService(IRestClient restClient, ISecureStorage secureStorage, IPhotosService photosService)
+        public HotelsService(IRestClient restClient, ISecureStorage secureStorage, IPhotosService photosService, System.IO.Abstractions.IFileSystem fileSystem)
         {
             _restClient = restClient;
             _secureStorage = secureStorage;
             _photosService = photosService;
+            _fileSystem = fileSystem;
         }
 
         public async Task<ServerResponce<HotelDto>> GetAsync(long id)
@@ -142,14 +144,22 @@ namespace Pokatun.Core.Services
             TimeSpan checkOutTime,
             string withinTerritoryDescription,
             string hotelDescription,
-            string photoFilePath)
+            string photoFileName)
         {
-            ServerResponce<string> fileResponce = await _photosService.UploadAsync(photoFilePath);
+            string nameForSave;
 
-            if (!fileResponce.Success)
+            if (_fileSystem.File.Exists(photoFileName))
             {
-                return new ServerResponce { ErrorCodes = fileResponce.ErrorCodes };
+                ServerResponce<string> fileResponce = await _photosService.UploadAsync(photoFileName);
+
+                if (!fileResponce.Success)
+                {
+                    return new ServerResponce { ErrorCodes = fileResponce.ErrorCodes };
+                }
+
+                nameForSave = fileResponce.Data;
             }
+            else nameForSave = photoFileName;
 
             return await PostAsync<object>("hotels", new HotelDto
             {
@@ -167,7 +177,7 @@ namespace Pokatun.Core.Services
                 CheckOutTime = checkOutTime,
                 WithinTerritoryDescription = withinTerritoryDescription,
                 HotelDescription = hotelDescription,
-                PhotoUrl = fileResponce.Data
+                PhotoUrl = nameForSave
             });
         }
 

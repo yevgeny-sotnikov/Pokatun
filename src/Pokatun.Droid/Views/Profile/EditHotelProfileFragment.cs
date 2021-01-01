@@ -105,7 +105,7 @@ namespace Pokatun.Droid.Views.Profile
 
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand).OneTime();
             set.Bind(ToolbarAddPhotoButton).For(ToolbarAddPhotoButton.BindClick()).To(vm => vm.AddPhotoCommand).OneTime();
-            set.Bind(ToolbarPhotoView).For(v => v.ImagePath).To(vm => vm.PhotoFilePath).OneWay();
+            set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
 
             set.Bind(_hotelNameEditText).To(vm => vm.HotelName).TwoWay();
             set.Bind(_fullCompanyNameTextField).To(vm => vm.FullCompanyName).TwoWay();

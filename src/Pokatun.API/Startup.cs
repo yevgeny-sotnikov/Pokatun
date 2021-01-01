@@ -1,4 +1,5 @@
 using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,6 +94,7 @@ namespace Pokatun.API
 
             services.AddScoped<IHotelsApiService, HotelsApiService>();
             services.AddScoped<IEmailApiService, EmailApiService>();
+            services.AddScoped<IFileSystem, FileSystem>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

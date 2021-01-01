@@ -1,4 +1,7 @@
 using System;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using Foundation;
 using ObjCRuntime;
 using Pokatun.iOS.Styles;
@@ -21,6 +24,12 @@ namespace Pokatun.iOS.Controls
         {
             get { return _imageView.ImagePath; }
             set { _imageView.ImagePath = value; }
+        }
+
+        public Func<CancellationToken, Task<Stream>> ImageStream
+        {
+            get { return _imageView.ImageStream; }
+            set { _imageView.ImageStream = value; }
         }
 
         public event EventHandler Clicked;

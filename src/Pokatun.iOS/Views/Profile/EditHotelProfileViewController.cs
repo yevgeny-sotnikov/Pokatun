@@ -95,7 +95,7 @@ namespace Pokatun.iOS.Views.Profile
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.CloseCommand).OneTime();
-            set.Bind(_titlePhotoView).For(v => v.ImagePath).To(vm => vm.PhotoFilePath).OneWay();
+            set.Bind(_titlePhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
             set.Bind(_titlePhotoView).For(nameof(TitlePhotoView.Clicked)).To(vm => vm.AddPhotoCommand).OneTime();
 
             set.Bind(_hotelNameEditText).For(v => v.Text).To(vm => vm.HotelName).TwoWay();

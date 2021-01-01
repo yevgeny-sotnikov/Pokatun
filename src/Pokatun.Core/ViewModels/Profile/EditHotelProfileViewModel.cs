@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
@@ -24,20 +26,22 @@ namespace Pokatun.Core.ViewModels.Profile
         private readonly IUserDialogs _userDialogs;
         private readonly IMediaPicker _mediaPicker;
         private readonly IHotelsService _hotelsService;
+        private readonly IPhotosService _photosService;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
         private long _currentHotelId;
+        private string _photoFileName;
 
         private string _title;
         public override string Title => _title;
 
-        private string _photoFilePath;
-        public string PhotoFilePath
+        private Func<CancellationToken, Task<Stream>> _photoStream;
+        public Func<CancellationToken, Task<Stream>> PhotoStream
         {
-            get { return _photoFilePath; }
-            set { SetProperty(ref _photoFilePath, value); }
+            get { return _photoStream; }
+            set { SetProperty(ref _photoStream, value); }
         }
 
         private string _hotelName = string.Empty;
@@ -300,12 +304,14 @@ namespace Pokatun.Core.ViewModels.Profile
             IUserDialogs userDialogs,
             IMediaPicker mediaPicker,
             IHotelsService hotelsService,
+            IPhotosService photosService,
             INetworkRequestExecutor networkRequestExecutor)
         {
             _navigationService = navigationService;
             _userDialogs = userDialogs;
             _mediaPicker = mediaPicker;
             _hotelsService = hotelsService;
+            _photosService = photosService;
             _networkRequestExecutor = networkRequestExecutor;
 
             _validator = new ValidationHelper();
@@ -326,7 +332,7 @@ namespace Pokatun.Core.ViewModels.Profile
             _validator.AddRule(nameof(USREOU), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(USREOU.Trim(), DataPatterns.USREOU), Strings.InvalidUSREOU));
             _validator.AddRule(nameof(CheckInTime), () => RuleResult.Assert(_viewInEditMode || CheckInTime != null, Strings.CheckInTimeDidntSetted));
             _validator.AddRule(nameof(CheckOutTime), () => RuleResult.Assert(_viewInEditMode || CheckOutTime != null, Strings.CheckOutTimeDidntSetted));
-            _validator.AddRule(nameof(PhotoFilePath), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(PhotoFilePath), Strings.HotelPhotoDidntChoosen));
+            _validator.AddRule(nameof(PhotoStream), () => RuleResult.Assert(_viewInEditMode || PhotoStream != null, Strings.HotelPhotoDidntChoosen));
             _validator.AddRule(nameof(WithinTerritoryDescription), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(WithinTerritoryDescription), Strings.WithinTerritoryDescriptionDidntAdded));
             _validator.AddRule(nameof(HotelDescription), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelDescription), Strings.HotelDescriptionDidntAdded));
 
@@ -340,6 +346,9 @@ namespace Pokatun.Core.ViewModels.Profile
             _title = parameter.HotelName;
             RaisePropertyChanged(nameof(Title));
 
+            _photoFileName = parameter.PhotoUrl;
+            LoadPhoto(parameter);
+
             HotelName = parameter.HotelName;
             FullCompanyName = parameter.FullCompanyName;
             Email = parameter.Email;
@@ -350,10 +359,14 @@ namespace Pokatun.Core.ViewModels.Profile
             CheckOutTime = parameter.CheckOutTime;
             HotelDescription = parameter.HotelDescription;
             WithinTerritoryDescription = parameter.WithinTerritoryDescription;
-            PhotoFilePath = parameter.PhotoUrl;
             
             PhoneNumbers.AddRange(parameter.Phones.Select(p => new EntryItemViewModel(p.Id, p.Number, DeletePhoneCommand)));
             SocialResources.AddRange(parameter.SocialResources.Select(sr => new EntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand)));
+        }
+
+        private async void LoadPhoto(HotelDto parameter)
+        {
+            PhotoStream = ct => _photosService.GetAsync(parameter.PhotoUrl);
         }
 
         private void DoAddPhoneCommand()
@@ -400,7 +413,8 @@ namespace Pokatun.Core.ViewModels.Profile
 
             if (result == null) return;
 
-            PhotoFilePath = result.FullPath;
+            _photoFileName = result.FullPath;
+            PhotoStream = ct => result.OpenReadAsync();
         }
 
         private Task DoCloseCommandAsync()
@@ -461,7 +475,7 @@ namespace Pokatun.Core.ViewModels.Profile
                     CheckOutTime.Value,
                     WithinTerritoryDescription,
                     HotelDescription,
-                    PhotoFilePath
+                    _photoFileName
                 ),
                 new HashSet<string>()
             );

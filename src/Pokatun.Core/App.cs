@@ -1,11 +1,12 @@
 ﻿using System.Net;
+using System.Net.Http;
 using Acr.UserDialogs;
 using FFImageLoading;
+using FFImageLoading.Config;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using Pokatun.Core.Executors;
-using Pokatun.Core.ViewModels.ChoiseUserRole;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
 using Xamarin.Essentials;
@@ -30,13 +31,15 @@ namespace Pokatun.Core
                 .RegisterAsLazySingleton();
 
             Mvx.IoCProvider.RegisterSingleton(() => UserDialogs.Instance);
-
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<System.IO.Abstractions.IFileSystem, System.IO.Abstractions.FileSystem>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISecureStorage, SecureStorageImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDeviceInfo, DeviceInfoImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPickerImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<INetworkRequestExecutor, NetworkRequestExecutor>();
-            
+
             #if DEBUG
+
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
             Mvx.IoCProvider.RegisterSingleton<IRestClient>(
                 () =>
@@ -46,7 +49,6 @@ namespace Pokatun.Core
                         ? Constants.iOSDebugIP
                         : Constants.AndroidDebugIP
                     ));
-
                     client.UseNewtonsoftJson();
 
                     return client;
@@ -65,6 +67,8 @@ namespace Pokatun.Core
             });
 
             #endif
+
+            ImageService.Instance.Initialize(new Configuration { HttpClient = new HttpClient() });
 
             RegisterCustomAppStart<AppStart>();
         }
