@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Pokatun.Data;
 using RestSharp;
-using Xamarin.Essentials;
 using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.Services
@@ -14,11 +13,13 @@ namespace Pokatun.Core.Services
     {
         private readonly IRestClient _restClient;
         private readonly ISecureStorage _secureStorage;
+        private readonly System.IO.Abstractions.IFileSystem _fileSystem;
 
-        public PhotosService(IRestClient restClient, ISecureStorage secureStorage)
+        public PhotosService(IRestClient restClient, ISecureStorage secureStorage, System.IO.Abstractions.IFileSystem fileSystem)
         {
             _restClient = restClient;
             _secureStorage = secureStorage;
+            _fileSystem = fileSystem;
         }
 
         public async Task<Stream> GetAsync(string photoName)
@@ -43,9 +44,9 @@ namespace Pokatun.Core.Services
 
         public async Task<ServerResponce<string>> UploadAsync(string photofilePath)
         {
-            if (Uri.IsWellFormedUriString(photofilePath, UriKind.Absolute))
+            if (!_fileSystem.File.Exists(photofilePath))
             {
-                return new ServerResponce<string> { Data = photofilePath };
+                throw new InvalidOperationException("We can upload only local image files");
             }    
 
             RestRequest request = new RestRequest("photos", Method.POST);
