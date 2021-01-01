@@ -1,10 +1,14 @@
 ﻿using System.Net;
+using System.Net.Http;
 using Acr.UserDialogs;
+using FFImageLoading;
+using FFImageLoading.Config;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
-using Pokatun.Core.ViewModels.ChoiseUserRole;
+using Pokatun.Core.Executors;
 using RestSharp;
+using RestSharp.Serializers.NewtonsoftJson;
 using Xamarin.Essentials;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
@@ -27,24 +31,44 @@ namespace Pokatun.Core
                 .RegisterAsLazySingleton();
 
             Mvx.IoCProvider.RegisterSingleton(() => UserDialogs.Instance);
-            Mvx.IoCProvider.RegisterSingleton<ISecureStorage>(() => new SecureStorageImplementation());
-            Mvx.IoCProvider.RegisterSingleton<IDeviceInfo>(() => new DeviceInfoImplementation());
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<System.IO.Abstractions.IFileSystem, System.IO.Abstractions.FileSystem>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISecureStorage, SecureStorageImplementation>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDeviceInfo, DeviceInfoImplementation>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPickerImplementation>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<INetworkRequestExecutor, NetworkRequestExecutor>();
 
             #if DEBUG
 
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
             Mvx.IoCProvider.RegisterSingleton<IRestClient>(
-                () => new RestClient(string.Format(Constants.BaseUrl,
-                    Mvx.IoCProvider.Resolve<IDeviceInfo>().Platform == DevicePlatform.iOS
-                    ? Constants.iOSDebugIP
-                    : Constants.AndroidDebugIP
-                )
-            ));
+                () =>
+                {
+                    RestClient client = new RestClient(string.Format(Constants.BaseUrl,
+                        Mvx.IoCProvider.Resolve<IDeviceInfo>().Platform == DevicePlatform.iOS
+                        ? Constants.iOSDebugIP
+                        : Constants.AndroidDebugIP
+                    ));
+                    client.UseNewtonsoftJson();
+
+                    return client;
+                }
+            );
 
             #else
 
-            Mvx.IoCProvider.RegisterSingleton<IRestClient>(() => new RestClient(Constants.BaseUrl));
+            Mvx.IoCProvider.RegisterSingleton<IRestClient>(() =>
+            {
+                RestClient client = new RestClient(Constants.BaseUrl);
+
+                client.UseNewtonsoftJson();
+
+                return client;
+            });
 
             #endif
+
+            ImageService.Instance.Initialize(new Configuration { HttpClient = new HttpClient() });
 
             RegisterCustomAppStart<AppStart>();
         }

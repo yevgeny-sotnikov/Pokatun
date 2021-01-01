@@ -19,7 +19,7 @@ namespace Pokatun.iOS.Views.ForgotPassword
 		UIKit.UILabel _descriptionLabel { get; set; }
 
 		[Outlet]
-		UIKit.UITextField _textField { get; set; }
+		Pokatun.iOS.Controls.BorderedTextField _textField { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

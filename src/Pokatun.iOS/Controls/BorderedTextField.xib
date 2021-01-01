@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BorderedTextField">
+            <connections>
+                <outlet property="_borderView" destination="1" id="CWH-0M-A6c"/>
+                <outlet property="_leftImageView" destination="9Y2-QM-iWg" id="nRX-0P-7Q7"/>
+                <outlet property="_rightButton" destination="Jyi-aX-GkJ" id="amA-5t-rKM"/>
+                <outlet property="_textField" destination="SDs-SP-dks" id="igo-GQ-0Vj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" customClass="BorderView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-ZZ-Kyy">
+                    <rect key="frame" x="8" y="0.0" width="398" height="40"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Y2-QM-iWg">
+                            <rect key="frame" x="0.0" y="0.0" width="15" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="15" id="4VB-FZ-dlZ"/>
+                            </constraints>
+                        </imageView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SDs-SP-dks">
+                            <rect key="frame" x="20" y="0.0" width="378" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="b8f-Yu-CwD"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyi-aX-GkJ">
+                            <rect key="frame" x="398" y="9" width="20" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="vyF-TW-hHX"/>
+                            </constraints>
+                            <state key="normal" image="applic"/>
+                            <connections>
+                                <action selector="OnRightButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="Xxy-I8-2cD"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="hAe-ZZ-Kyy" firstAttribute="top" secondItem="1" secondAttribute="top" id="3yV-k3-J1Q"/>
+                <constraint firstAttribute="bottom" secondItem="hAe-ZZ-Kyy" secondAttribute="bottom" id="YIk-tF-IxV"/>
+                <constraint firstItem="hAe-ZZ-Kyy" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="f8C-y8-Uw4"/>
+                <constraint firstAttribute="trailing" secondItem="hAe-ZZ-Kyy" secondAttribute="trailing" constant="8" id="hEF-Jm-j7o"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="109" y="2"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="applic" width="16.5" height="16.5"/>
+    </resources>
+</document>

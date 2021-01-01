@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -65,23 +65,23 @@
                             <rect key="frame" x="0.0" y="341" width="414" height="264"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTM-hR-owr">
-                                    <rect key="frame" x="48" y="0.0" width="318" height="120"/>
+                                    <rect key="frame" x="38" y="0.0" width="338" height="120"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="REGISTRATION"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I HAVE NO ACC  TEXT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n01-3m-vpC">
-                                    <rect key="frame" x="48" y="137" width="318" height="20.5"/>
+                                    <rect key="frame" x="38" y="137" width="338" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2K-kh-Ss2">
-                                    <rect key="frame" x="48" y="196.5" width="318" height="30"/>
+                                    <rect key="frame" x="38" y="196.5" width="338" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="ENTRANCE"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I HAVE ACC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYm-c8-M3d">
-                                    <rect key="frame" x="48" y="243.5" width="318" height="20.5"/>
+                                    <rect key="frame" x="38" y="243.5" width="338" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -89,18 +89,18 @@
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="uYm-c8-M3d" secondAttribute="bottom" id="4pO-12-hOe"/>
-                                <constraint firstAttribute="trailing" secondItem="n01-3m-vpC" secondAttribute="trailing" constant="48" id="6rx-Y2-zhn"/>
+                                <constraint firstAttribute="trailing" secondItem="n01-3m-vpC" secondAttribute="trailing" constant="38" id="6rx-Y2-zhn"/>
                                 <constraint firstItem="n01-3m-vpC" firstAttribute="top" secondItem="gTM-hR-owr" secondAttribute="bottom" constant="17" id="Ccr-US-zns"/>
-                                <constraint firstItem="uYm-c8-M3d" firstAttribute="leading" secondItem="h1V-LM-lLm" secondAttribute="leading" constant="48" id="DqR-fG-87Q"/>
+                                <constraint firstItem="uYm-c8-M3d" firstAttribute="leading" secondItem="h1V-LM-lLm" secondAttribute="leading" constant="38" id="DqR-fG-87Q"/>
                                 <constraint firstItem="gTM-hR-owr" firstAttribute="top" secondItem="h1V-LM-lLm" secondAttribute="top" id="FLt-cb-tVc"/>
-                                <constraint firstAttribute="trailing" secondItem="gTM-hR-owr" secondAttribute="trailing" constant="48" id="JE7-ue-TWc"/>
+                                <constraint firstAttribute="trailing" secondItem="gTM-hR-owr" secondAttribute="trailing" constant="38" id="JE7-ue-TWc"/>
                                 <constraint firstItem="S2K-kh-Ss2" firstAttribute="top" secondItem="n01-3m-vpC" secondAttribute="bottom" constant="39" id="LlA-pN-oQf"/>
-                                <constraint firstItem="n01-3m-vpC" firstAttribute="leading" secondItem="h1V-LM-lLm" secondAttribute="leading" constant="48" id="O8u-uU-blw"/>
-                                <constraint firstAttribute="trailing" secondItem="uYm-c8-M3d" secondAttribute="trailing" constant="48" id="TgA-1G-WbI"/>
-                                <constraint firstItem="S2K-kh-Ss2" firstAttribute="leading" secondItem="h1V-LM-lLm" secondAttribute="leading" constant="48" id="cpi-gr-LuA"/>
+                                <constraint firstItem="n01-3m-vpC" firstAttribute="leading" secondItem="h1V-LM-lLm" secondAttribute="leading" constant="38" id="O8u-uU-blw"/>
+                                <constraint firstAttribute="trailing" secondItem="uYm-c8-M3d" secondAttribute="trailing" constant="38" id="TgA-1G-WbI"/>
+                                <constraint firstItem="S2K-kh-Ss2" firstAttribute="leading" secondItem="h1V-LM-lLm" secondAttribute="leading" constant="38" id="cpi-gr-LuA"/>
                                 <constraint firstItem="uYm-c8-M3d" firstAttribute="top" secondItem="S2K-kh-Ss2" secondAttribute="bottom" constant="17" id="wJK-Oo-Sv5"/>
-                                <constraint firstItem="gTM-hR-owr" firstAttribute="leading" secondItem="h1V-LM-lLm" secondAttribute="leading" constant="48" id="yrY-Ru-h44"/>
-                                <constraint firstAttribute="trailing" secondItem="S2K-kh-Ss2" secondAttribute="trailing" constant="48" id="zD3-ST-O1e"/>
+                                <constraint firstItem="gTM-hR-owr" firstAttribute="leading" secondItem="h1V-LM-lLm" secondAttribute="leading" constant="38" id="yrY-Ru-h44"/>
+                                <constraint firstAttribute="trailing" secondItem="S2K-kh-Ss2" secondAttribute="trailing" constant="38" id="zD3-ST-O1e"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaw-2Z-VYp">

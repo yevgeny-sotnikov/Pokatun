@@ -1,6 +1,7 @@
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.ForgotPassword;
+using Pokatun.iOS.Controls;
 using UIKit;
 
 namespace Pokatun.iOS.Views.ForgotPassword
@@ -30,7 +31,8 @@ namespace Pokatun.iOS.Views.ForgotPassword
 
             _controller.TextField.Placeholder = Strings.Email;
             _controller.TextField.KeyboardType = UIKeyboardType.EmailAddress;
-            _controller.MaxTextFieldLenght = MaxEmailLength;
+            _controller.TextField.MaxLenght = MaxEmailLength;
+            _controller.TextField.KeyboardType = UIKeyboardType.EmailAddress;
             _controller.DescriptionLabel.Text = Strings.WriteRegistrationEmailMessage;
             _controller.Button.SetTitle(Strings.GetCode, UIControlState.Normal);
 
@@ -42,7 +44,7 @@ namespace Pokatun.iOS.Views.ForgotPassword
 
             set.Bind(_controller.Button).To(vm => vm.RequestCodeCommand);
             set.Bind(_controller.Button).For(b => b.Enabled).To(vm => vm.IsRequestCodeButtonEnabled);
-            set.Bind(_controller.TextField).To(vm => vm.Email).OneWayToSource();
+            set.Bind(_controller.TextField).For(v => v.Text).To(vm => vm.Email).OneWayToSource();
 
             set.Apply();
         }

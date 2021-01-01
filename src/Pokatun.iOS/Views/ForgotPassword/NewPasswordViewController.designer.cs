@@ -13,10 +13,10 @@ namespace Pokatun.iOS.Views.ForgotPassword
 	partial class NewPasswordViewController
 	{
 		[Outlet]
-		UIKit.UITextField _confirmPasswordEditText { get; set; }
+		Pokatun.iOS.Controls.BorderedTextField _confirmPasswordEditText { get; set; }
 
 		[Outlet]
-		UIKit.UITextField _passwordEditText { get; set; }
+		Pokatun.iOS.Controls.BorderedTextField _passwordEditText { get; set; }
 
 		[Outlet]
 		UIKit.UIButton _saveButton { get; set; }

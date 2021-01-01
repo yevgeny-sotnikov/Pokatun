@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TabWidget
+                android:id="@android:id/tabs" 
+                android:layout_marginLeft="@dimen/common_left_right_distanse"
+                android:layout_marginRight="@dimen/common_left_right_distanse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <View
+                android:layout_marginLeft="@dimen/common_left_right_distanse"
+                android:layout_marginRight="@dimen/common_left_right_distanse"
+                android:background="#f1c40f"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                />
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ScrollView
+                    android:id="@+id/personalDataTab"
+            		android:overScrollMode="never"
+		            android:requiresFadingEdge="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:animateLayoutChanges="true"
+                    	android:paddingLeft="@dimen/common_left_right_distanse"
+    	                android:paddingRight="@dimen/common_left_right_distanse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/fullCompanyNameTextField"
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="17dp"
+                            android:drawableLeft="@drawable/name"
+    				        android:maxLength="128"
+	    			        android:singleLine="true"
+                            android:hint="full name"
+                            />
+
+                        <MvvmCross.Platforms.Android.Binding.Views.MvxLinearLayout
+                            android:id="@+id/phonesTable"
+                            android:animateLayoutChanges="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp"
+                            />
+
+                        <Button
+                            android:id="@+id/addPhoneButton"
+                            style="@style/BorderedButton"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="8dp"
+                            android:drawableLeft="@drawable/phone"
+                            />
+
+                        <EditText
+                            android:id="@+id/emailTextField"
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/mail"
+				            android:maxLength="64"
+				            android:inputType="textEmailAddress"
+                            android:hint="email"
+                            />
+
+                        <EditText
+				            android:id="@+id/bankCardOrIbanTextField"
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/i"
+				            android:maxLength="34"
+				            android:inputType="textPostalAddress"
+                            android:hint="IBAN"
+                            />
+                        <EditText
+				            android:id="@+id/bankNameTextField"
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/bank"
+	    		            android:singleLine="true"
+				            android:maxLength="64"
+                            android:hint="bank name"
+                            />
+                        <EditText
+    				        android:id="@+id/usreouTextField"
+                            style="@style/BorderedEditTextWithLeftImage"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+            				android:layout_marginBottom="17dp"
+                            android:drawableLeft="@drawable/i"
+				            android:maxLength="8"
+				            android:inputType="number"
+                            android:hint="USREOU"
+                            />
+                    </LinearLayout>
+                </ScrollView>
+
+                <ScrollView
+                    android:id="@+id/hotelInfoTab"
+            		android:overScrollMode="never"
+		            android:requiresFadingEdge="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:animateLayoutChanges="true"
+                    	android:paddingLeft="@dimen/common_left_right_distanse"
+    	                android:paddingRight="@dimen/common_left_right_distanse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+			            <EditText
+				            style="@style/BorderedEditTextWithLeftImage"
+            				android:layout_marginTop="17dp"
+				            android:maxLength="64"
+				            android:singleLine="true"
+				            android:layout_width="match_parent"
+				            android:id="@+id/hotelNameEditText"
+				            />
+
+                        <Button
+                            android:id="@+id/hotelLocationButton"
+                            style="@style/BorderedButton"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/pin"
+                            />
+
+                        <Button
+                            android:id="@+id/checkInTimeButton"
+                            style="@style/BorderedButton"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/clock"
+                            />
+                        <Button
+                            android:id="@+id/checkOutTimeButton"
+                            style="@style/BorderedButton"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/clock"
+                            />
+
+                        <MvvmCross.Platforms.Android.Binding.Views.MvxLinearLayout
+                            android:id="@+id/linksTable"
+                            android:animateLayoutChanges="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp"
+                            />
+
+                        <Button
+                            android:id="@+id/addLinkButton"
+                            style="@style/BorderedButton"
+                            android:layout_width="match_parent"
+            				android:layout_marginTop="8dp"
+                            android:drawableLeft="@drawable/web"
+                            />
+
+                        <Pokatun.Droid.Controls.MultilineCountableEditor
+                            android:id="@+id/withinTerritoryEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+            				android:layout_marginTop="16dp"
+                            />
+
+                        <Pokatun.Droid.Controls.MultilineCountableEditor
+                            android:id="@+id/hotelDescriptionEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="17dp"
+                            />
+                    </LinearLayout>
+                </ScrollView>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+    
+    <Button
+		style="@style/BigButton"
+		android:text="SAVE"
+		android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/common_left_right_distanse"
+        android:layout_marginRight="@dimen/common_left_right_distanse"
+		android:id="@+id/saveChangesButton"
+        android:layout_marginBottom="43dp"
+        />
+</LinearLayout>

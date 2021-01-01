@@ -28,6 +28,8 @@ namespace Pokatun.Droid.Views.Menu
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_hotel_menu;
 
+        protected override bool IsHeaderBackButtonVisible => false;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -61,7 +63,8 @@ namespace Pokatun.Droid.Views.Menu
             var set = CreateBindingSet();
 
             #pragma warning restore IDE0008 // Use explicit type
-            
+
+            set.Bind(_profileItem).For(_profileItem.BindClick()).To(vm => vm.ProfileCommand);
             set.Bind(_exitItem).For(_exitItem.BindClick()).To(vm => vm.ExitCommand);
 
             set.Apply();

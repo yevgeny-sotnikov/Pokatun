@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using Pokatun.API.Entities;
 using Pokatun.API.Models;
 using Pokatun.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Pokatun.API.Services
 {
@@ -21,10 +21,100 @@ namespace Pokatun.API.Services
             _emailService = emailService;
         }
 
-        public Hotel GetById(long userId)
+        public Hotel GetById(long hotelId)
         {
-            return _context.Hotels.Find(userId);
+            if (hotelId <= 0)
+            {
+                throw new ApiException(ErrorCodes.IncorrectIdError);
+            }
+            Hotel hotel = _context.Hotels
+                .Include(h => h.Phones)
+                .Include(h => h.SocialResources)
+                .FirstOrDefault(h => h.Id == hotelId);
+
+            if (hotel == null)
+            {
+                throw new ApiException(ErrorCodes.AccountDoesNotExistError);
+            }
+
+            return hotel;
         }
+
+        public void Update(HotelDto hotelDto)
+        {
+            Hotel hotel = _context.Hotels
+                .Include(h => h.Phones)
+                .Include(h => h.SocialResources)
+                .FirstOrDefault(h => h.Id == hotelDto.Id);
+
+            if (hotel == null)
+            {
+                throw new ApiException(ErrorCodes.AccountDoesNotExistError);
+            }
+
+            hotel.BankCard = hotelDto.BankCard;
+            hotel.BankName = hotelDto.BankName;
+            hotel.CheckInTime = hotelDto.CheckInTime;
+            hotel.CheckOutTime = hotelDto.CheckOutTime;
+            hotel.Email = hotelDto.Email;
+            hotel.FullCompanyName = hotelDto.FullCompanyName;
+            hotel.HotelDescription = hotelDto.HotelDescription;
+            hotel.HotelName = hotelDto.HotelName;
+            hotel.IBAN = hotelDto.IBAN;
+            hotel.USREOU = hotelDto.USREOU;
+            hotel.PhotoUrl = hotelDto.PhotoUrl;
+            hotel.WithinTerritoryDescription = hotelDto.WithinTerritoryDescription;
+
+            IDictionary<long, Phone> dbPhones = hotel.Phones.ToDictionary(phone => phone.Id);
+            IDictionary<long, PhoneDto> dtoPhones = hotelDto.Phones.ToDictionary(phone => phone.Id);
+            
+            foreach (PhoneDto phoneDto in dtoPhones.Values)
+            {
+                if (dbPhones.ContainsKey(phoneDto.Id))
+                {
+                    dbPhones[phoneDto.Id].Number = phoneDto.Number;
+                }
+                else
+                {
+                    hotel.Phones.Add(new Phone { Number = phoneDto.Number });
+                }
+            }
+
+
+            foreach (Phone phone in dbPhones.Values)
+            {
+                if (!dtoPhones.ContainsKey(phone.Id))
+                {
+                    hotel.Phones.Remove(phone);
+                }
+            }
+
+            IDictionary<long, SocialResource> dbSocialResources = hotel.SocialResources.ToDictionary(sr => sr.Id);
+            IDictionary<long, SocialResourceDto> dtoSocialResources = hotelDto.SocialResources.ToDictionary(sr => sr.Id);
+
+            foreach (SocialResourceDto srDto in dtoSocialResources.Values)
+            {
+                if (dbSocialResources.ContainsKey(srDto.Id))
+                {
+                    dbSocialResources[srDto.Id].Link = srDto.Link;
+                }
+                else
+                {
+                    hotel.SocialResources.Add(new SocialResource { Link = srDto.Link });
+                }
+            }
+
+            foreach (SocialResource sr in dbSocialResources.Values)
+            {
+                if (!dtoSocialResources.ContainsKey(sr.Id))
+                {
+                    hotel.SocialResources.Remove(sr);
+                }
+            }
+
+            _context.SaveChanges();
+        }
+
 
         public long Login(string email, string password)
         {
@@ -52,7 +142,7 @@ namespace Pokatun.API.Services
             return hotel.Id;
         }
 
-        public long Register(HotelDto value)
+        public long Register(HotelRegistrationDto value)
         {
             if (value == null)
             {
@@ -86,7 +176,7 @@ namespace Pokatun.API.Services
             Hotel hotel = new Hotel
             {
                 HotelName = value.HotelName,
-                PhoneNumber = value.PhoneNumber,
+                Phones = new List<Phone>(value.Phones.Select(p => new Phone { Id = p.Id, Number = p.Number })),
                 Email = value.Email,
                 FullCompanyName = value.FullCompanyName,
                 BankCard = value.BankCard,

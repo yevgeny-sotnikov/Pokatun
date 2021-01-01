@@ -10,12 +10,14 @@
 
     <color name="primaryTextColor">#56595e</color>
     <color name="secondaryTextColor">#ffffff</color>
+    <color name="selectedTabTextColor">#7b7c7f</color>
+    <color name="unselectedTabTextColor">#e5e8ee</color>
 
     <color name="enabledButtonColor">#edcf2b</color>
     <color name="disabledButtonColor">#e5e8ef</color>
     <color name="pressedButtonColor">@color/primaryLightColor</color>
 
-    <color name="borderColor">#7b7c7f</color>
+    <color name="borderColor">@color/selectedTabTextColor</color>
     <color name="separatorColor">#bdc3c7</color>
     <color name="faileValidationColor">#e9848d</color>
 </resources>

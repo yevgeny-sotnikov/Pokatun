@@ -44,7 +44,7 @@ namespace Pokatun.Droid.Views.Registration
 
             var set = CreateBindingSet();
 
-#pragma warning restore IDE0008 // Use explicit type
+            #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(_fullCompanyNameTextField).To(vm => vm.FullCompanyName).OneWayToSource();
             set.Bind(_bankCardOrIbanTextField).To(vm => vm.BankCardOrIban).OneWayToSource();

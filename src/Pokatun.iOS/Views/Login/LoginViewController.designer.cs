@@ -13,7 +13,7 @@ namespace Pokatun.iOS.Views.Login
 	partial class LoginViewController
 	{
 		[Outlet]
-		UIKit.UITextField _emailTextField { get; set; }
+		Pokatun.iOS.Controls.BorderedTextField _emailTextField { get; set; }
 
 		[Outlet]
 		UIKit.UIButton _forgotPasswordButton { get; set; }
@@ -22,7 +22,7 @@ namespace Pokatun.iOS.Views.Login
 		UIKit.UIButton _loginButton { get; set; }
 
 		[Outlet]
-		UIKit.UITextField _passwordTextField { get; set; }
+		Pokatun.iOS.Controls.BorderedTextField _passwordTextField { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -31,9 +31,9 @@ namespace Pokatun.iOS.Views.Login
 				_emailTextField = null;
 			}
 
-			if (_passwordTextField != null) {
-				_passwordTextField.Dispose ();
-				_passwordTextField = null;
+			if (_forgotPasswordButton != null) {
+				_forgotPasswordButton.Dispose ();
+				_forgotPasswordButton = null;
 			}
 
 			if (_loginButton != null) {
@@ -41,9 +41,9 @@ namespace Pokatun.iOS.Views.Login
 				_loginButton = null;
 			}
 
-			if (_forgotPasswordButton != null) {
-				_forgotPasswordButton.Dispose ();
-				_forgotPasswordButton = null;
+			if (_passwordTextField != null) {
+				_passwordTextField.Dispose ();
+				_passwordTextField = null;
 			}
 		}
 	}

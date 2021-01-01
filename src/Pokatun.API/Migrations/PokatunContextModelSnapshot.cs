@@ -34,6 +34,12 @@ namespace Pokatun.API.Migrations
                         .HasColumnType("nvarchar(32)")
                         .HasMaxLength(32);
 
+                    b.Property<TimeSpan?>("CheckInTime")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan?>("CheckOutTime")
+                        .HasColumnType("time");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(64)")
@@ -43,6 +49,10 @@ namespace Pokatun.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
+
+                    b.Property<string>("HotelDescription")
+                        .HasColumnType("nvarchar(600)")
+                        .HasMaxLength(600);
 
                     b.Property<string>("HotelName")
                         .IsRequired()
@@ -63,10 +73,9 @@ namespace Pokatun.API.Migrations
                         .HasColumnType("varbinary(128)")
                         .HasMaxLength(128);
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(16)")
-                        .HasMaxLength(16);
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("ResetToken")
                         .HasColumnType("nvarchar(8)")
@@ -78,6 +87,10 @@ namespace Pokatun.API.Migrations
                     b.Property<int>("USREOU")
                         .HasColumnType("int");
 
+                    b.Property<string>("WithinTerritoryDescription")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
@@ -87,6 +100,10 @@ namespace Pokatun.API.Migrations
                         .IsUnique()
                         .HasFilter("[IBAN] IS NOT NULL");
 
+                    b.HasIndex("PhotoUrl")
+                        .IsUnique()
+                        .HasFilter("[PhotoUrl] IS NOT NULL");
+
                     b.HasIndex("ResetToken")
                         .IsUnique()
                         .HasFilter("[ResetToken] IS NOT NULL");
@@ -95,6 +112,71 @@ namespace Pokatun.API.Migrations
                         .IsUnique();
 
                     b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("Pokatun.API.Entities.Phone", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("HotelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(16)")
+                        .HasMaxLength(16);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("Phones");
+                });
+
+            modelBuilder.Entity("Pokatun.API.Entities.SocialResource", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("HotelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(64)")
+                        .HasMaxLength(64);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
+
+                    b.HasIndex("Link")
+                        .IsUnique();
+
+                    b.ToTable("SocialResources");
+                });
+
+            modelBuilder.Entity("Pokatun.API.Entities.Phone", b =>
+                {
+                    b.HasOne("Pokatun.API.Entities.Hotel", "Hotel")
+                        .WithMany("Phones")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Pokatun.API.Entities.SocialResource", b =>
+                {
+                    b.HasOne("Pokatun.API.Entities.Hotel", "Hotel")
+                        .WithMany("SocialResources")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

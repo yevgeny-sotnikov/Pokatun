@@ -39,9 +39,10 @@ namespace Pokatun.iOS.Views.Menu
 
             #pragma warning restore IDE0008 // Use explicit type
 
-            
-            set.Bind(_exitItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ExitCommand);
 
+            set.Bind(_profileItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ProfileCommand);
+            set.Bind(_exitItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ExitCommand);
+            
             set.Apply();
         }
     }

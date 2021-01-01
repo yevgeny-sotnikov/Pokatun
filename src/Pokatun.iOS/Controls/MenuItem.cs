@@ -18,7 +18,7 @@ namespace Pokatun.iOS.Controls
         private UIImage _image;
         private string _text;
 
-        [DisplayName("Text"), Export("text"), Browsable(true)]
+        [DisplayName(nameof(Text)), Export("text"), Browsable(true)]
         public string Text
         {
             get { return _menuTextView?.Text; }
@@ -32,7 +32,7 @@ namespace Pokatun.iOS.Controls
             }
         }
 
-        [DisplayName("Image"), Export("image"), Browsable(true)]
+        [DisplayName(nameof(Image)), Export("image"), Browsable(true)]
         public UIImage Image
         {
             get { return _menuItemIcon?.Image; }
@@ -72,12 +72,12 @@ namespace Pokatun.iOS.Controls
 
             _menuTextView.ApplyLargeLabelStyle();
 
-            AddGestureRecognizer(new UITapGestureRecognizer(ClickAnimationAsync));
+            AddGestureRecognizer(new UITapGestureRecognizer(OnItemTapped));
         }
 
-        private async void ClickAnimationAsync()
+        private async void OnItemTapped()
         {
-            await AnimateAsync(ClickAnimationDuration, () => { Alpha = 0.5f; BackgroundColor = UIColor.SystemFillColor; });
+            await AnimateAsync(ClickAnimationDuration, () => { Alpha = 0.5f; BackgroundColor = UIColor.LightGray; });
             await AnimateAsync(ClickAnimationDuration, () => { Alpha = 1f; BackgroundColor = UIColor.Clear; });
             Clicked?.Invoke(this, new EventArgs());
         }

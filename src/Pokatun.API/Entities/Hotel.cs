@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Pokatun.Data;
@@ -6,7 +7,7 @@ using Pokatun.Data;
 namespace Pokatun.API.Entities
 {
     [Table(nameof(Hotel))]
-    public class Hotel
+    public sealed class Hotel
     {
         [Key]
         public long Id { get; set; }
@@ -15,11 +16,6 @@ namespace Pokatun.API.Entities
         [MaxLength(64)]
         [MinLength(1)]
         public string HotelName { get; set; }
-
-        [Required]
-        [Phone]
-        [MaxLength(16)]
-        public string PhoneNumber { get; set; }
 
         [Required]
         [MaxLength(64)]
@@ -53,9 +49,26 @@ namespace Pokatun.API.Entities
         [Required]
         public int USREOU { get; set; }
 
+        public TimeSpan? CheckInTime { get; set; }
+
+        public TimeSpan? CheckOutTime { get; set; }
+
+        [MaxLength(200)]
+        public string WithinTerritoryDescription { get; set; }
+
+        [MaxLength(600)]
+        public string HotelDescription { get; set; }
+
+        [MaxLength(256)]
+        public string PhotoUrl { get; set; }
+
         [MaxLength(DataPatterns.VerificationCodeLenght)]
         public string ResetToken { get; set; }
 
         public DateTime? ResetTokenExpires { get; set; }
+
+        public ICollection<Phone> Phones { get; set; }
+
+        public ICollection<SocialResource> SocialResources { get; set; }
     }
 }

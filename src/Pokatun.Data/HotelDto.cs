@@ -1,10 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pokatun.Data
 {
-    public sealed class HotelDto
+    public class HotelDto
     {
         [Key]
         public long Id { get; set; }
@@ -15,20 +15,9 @@ namespace Pokatun.Data
         public string HotelName { get; set; }
 
         [Required]
-        [Phone]
-        [MaxLength(16)]
-        public string PhoneNumber { get; set; }
-
-        [Required]
         [MaxLength(64)]
         [EmailAddress]
         public string Email { get; set; }
-
-        [Required]
-        [MinLength(8)]
-        [MaxLength(32)]
-        [RegularExpression(DataPatterns.Password)]
-        public string Password { get; set; }
 
         [Required]
         [MaxLength(128)]
@@ -48,5 +37,22 @@ namespace Pokatun.Data
 
         [Required]
         public int USREOU { get; set; }
+
+        public TimeSpan? CheckInTime { get; set; }
+
+        public TimeSpan? CheckOutTime { get; set; }
+
+        [MaxLength(200)]
+        public string WithinTerritoryDescription { get; set; }
+
+        [MaxLength(600)]
+        public string HotelDescription { get; set; }
+
+        [MaxLength(256)]
+        public string PhotoUrl { get; set; }
+
+        public List<PhoneDto> Phones { get; set; }
+
+        public List<SocialResourceDto> SocialResources { get; set; }
     }
 }

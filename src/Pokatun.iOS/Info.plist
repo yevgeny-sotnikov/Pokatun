@@ -41,5 +41,7 @@
 		<string>Fonts/helveticaneuecyr-light.ttf</string>
 		<string>Fonts/helveticaneuecyr-bold.ttf</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

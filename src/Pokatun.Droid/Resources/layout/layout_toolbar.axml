@@ -10,6 +10,30 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary">
+        <FrameLayout
+            android:layout_marginLeft="26dp"
+            android:layout_width="49dp"
+            android:layout_height="49dp">
+            <FFImageLoading.Cross.MvxCachedImageView
+                android:id="@+id/toolbarPhotoView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:padding="1dp"
+                android:background="@drawable/toolbar_image_view"
+                />
+            <ImageButton
+                android:id="@+id/toolbarAddPhotoButton"
+                android:background="@drawable/toolbar_image_button"
+                android:src="@drawable/plus_photo"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
+                android:scaleType="fitCenter"
+                android:padding="12dp"
+                android:layout_gravity="center"
+                />
+        </FrameLayout>
         <ImageView
             android:id="@+id/toolbarLogo"
             android:layout_width="wrap_content"
@@ -25,6 +49,16 @@
             android:layout_gravity="center"
             android:textStyle="bold"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            />
+        <ImageButton
+            android:id="@+id/toolbarRightButton"
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:layout_marginRight="26dp"
+            android:layout_gravity="center_vertical|right"
             />
     </androidx.appcompat.widget.Toolbar>
 </com.google.android.material.appbar.AppBarLayout>

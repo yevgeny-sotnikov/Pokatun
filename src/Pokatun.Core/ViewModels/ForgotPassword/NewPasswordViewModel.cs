@@ -8,6 +8,7 @@ using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmValidation;
+using Pokatun.Core.Executors;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.Menu;
@@ -21,6 +22,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
         private readonly IUserDialogs _userDialogs;
         private readonly IHotelsService _hotelsService;
         private readonly ISecureStorage _secureStorage;
+        private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly IMvxNavigationService _navigationService;
 
         private readonly ValidationHelper _validator;
@@ -74,12 +76,18 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
             }
         }
 
-        public NewPasswordViewModel(IMvxNavigationService navigationService, IUserDialogs userDialogs, IHotelsService hotelsService, ISecureStorage secureStorage)
+        public NewPasswordViewModel(
+            IMvxNavigationService navigationService,
+            IUserDialogs userDialogs,
+            IHotelsService hotelsService,
+            INetworkRequestExecutor networkRequestExecutor,
+            ISecureStorage secureStorage)
         {
             _navigationService = navigationService;
             _userDialogs = userDialogs;
             _hotelsService = hotelsService;
             _secureStorage = secureStorage;
+            _networkRequestExecutor = networkRequestExecutor;
 
             _validator = new ValidationHelper();
 
@@ -121,42 +129,26 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
                 return;
             }
 
-            ServerResponce<TokenInfoDto> responce = null;
-
-            using (_userDialogs.Loading(Strings.ProcessingRequest))
-            {
-                responce = await _hotelsService.ResetPassword(_token, Password);
-
-                if (responce.Success)
+            ServerResponce<TokenInfoDto> responce = await _networkRequestExecutor.MakeRequestAsync(
+                () => _hotelsService.ResetPassword(_token, Password),
+                new HashSet<string>
                 {
-                    await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
-                    await _secureStorage.SetAsync(
-                        Constants.Keys.TokenExpirationTime,
-                        responce.Data.ExpirationTime.ToUniversalTime().ToString(CultureInfo.InvariantCulture)
-                    );
-
-                    await _navigationService.Close(this);
-                    await _navigationService.Navigate<HotelMenuViewModel>();
-
-                    return;
+                    ErrorCodes.InvalidTokenError,
+                    ErrorCodes.ExpiredTokenError
                 }
-            }
+            );
 
-            ISet<string> knownErrorCodes = new HashSet<string>
-            {
-                ErrorCodes.InvalidTokenError,
-                ErrorCodes.ExpiredTokenError
-            };
+            if (responce == null) return;
 
-            knownErrorCodes.IntersectWith(responce.ErrorCodes);
+            await _secureStorage.SetAsync(Constants.Keys.AccountId, responce.Data.AccountId.ToString(CultureInfo.InvariantCulture));
+            await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
+            await _secureStorage.SetAsync(
+                Constants.Keys.TokenExpirationTime,
+                responce.Data.ExpirationTime.ToUniversalTime().ToString(CultureInfo.InvariantCulture)
+            );
 
-            if (knownErrorCodes.Count > 0)
-            {
-                _userDialogs.Toast(Strings.ResourceManager.GetString(knownErrorCodes.First()));
-                return;
-            }
-
-            _userDialogs.Toast(Strings.UnexpectedError);
+            await _navigationService.Close(this);
+            await _navigationService.Navigate<HotelMenuViewModel>();
         }
     }
 }

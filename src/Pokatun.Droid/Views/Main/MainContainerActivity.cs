@@ -1,9 +1,13 @@
-﻿using Acr.UserDialogs;
+﻿using System.Collections.Generic;
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using FFImageLoading.Cross;
+using FFImageLoading.Transformations;
+using FFImageLoading.Work;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -28,6 +32,12 @@ namespace Pokatun.Droid.Views.Main
 
         public TextView ToolbarTitleLabel { get; private set; }
 
+        public ImageButton ToolbarAddPhotoButton { get; private set; }
+
+        public ImageButton ToolbarRightButton { get; private set; }
+
+        public MvxCachedImageView ToolbarPhotoView { get; private set; }
+
         protected override int ActivityLayoutId => Resource.Layout.activity_main_container;
 
         protected override void OnCreate(Bundle bundle)
@@ -37,15 +47,17 @@ namespace Pokatun.Droid.Views.Main
             AppCenter.Start("c79dad39-68a6-4d34-b71a-c242aafe1193", typeof(Analytics), typeof(Crashes));
 
             Platform.Init(this, bundle); // add this line to your code, it may also be called: bundle
-            UserDialogs.Init(this);
 
             Toolbar = FindViewById<ToolbarX>(Resource.Id.toolbar);
             ToolbarLogo = FindViewById<ImageView>(Resource.Id.toolbarLogo);
             ToolbarTitleLabel = FindViewById<TextView>(Resource.Id.toolbarTitleLabel);
+            ToolbarAddPhotoButton = FindViewById<ImageButton>(Resource.Id.toolbarAddPhotoButton);
+            ToolbarRightButton = FindViewById<ImageButton>(Resource.Id.toolbarRightButton);
+            ToolbarPhotoView = FindViewById<MvxCachedImageView>(Resource.Id.toolbarPhotoView);
+
             SetSupportActionBar(Toolbar);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            SupportActionBar.SetDisplayShowHomeEnabled(true);
             SupportActionBar.SetDisplayShowTitleEnabled(false);
+            ToolbarPhotoView.Transformations = new List<ITransformation> { new CircleTransformation() };
         }
 
         public override bool OnSupportNavigateUp()

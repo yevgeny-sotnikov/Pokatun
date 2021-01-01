@@ -1,5 +1,6 @@
 using System;
 using CoreGraphics;
+using Pokatun.iOS.Controls;
 using UIKit;
 
 namespace Pokatun.iOS.Styles
@@ -13,18 +14,28 @@ namespace Pokatun.iOS.Styles
             view.Layer.MasksToBounds = true;
         }
 
-        public static void ApplyBorderedEditTextStyle(this UITextField textField)
+        public static void ApplyBorderViewStyle(this BorderView borderView)
         {
-            textField.SetHeight(40);
-            textField.BorderStyle = UITextBorderStyle.None;
-            textField.Cornerize(19);
-            textField.Layer.BorderWidth = 1;
-            textField.Layer.BorderColor = ColorPalette.BorderColor.CGColor;
-            textField.TextAlignment = UITextAlignment.Center;
-            textField.EditingDidBegin += OnEditingDidBegin;
-            textField.EditingDidEnd += OnEditingDidEnd;
-            textField.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
+            borderView.BorderColor = ColorPalette.BorderColor;
+            borderView.HighlightedColor = ColorPalette.FailValidationColor;
+            borderView.SelectionColor = ColorPalette.PrimaryLight;
+        }
+
+        public static void ApplyBorderedEditTextStyle(this BorderedTextField textField)
+        {
+            textField.HighlightedColor = ColorPalette.FailValidationColor;
             textField.TextColor = ColorPalette.PrimaryText;
+        }
+
+        public static void ApplyBorderedButtonStyle(this BorderedButton button)
+        {
+            button.TextColor = ColorPalette.PrimaryText;
+            button.HighlightedColor = ColorPalette.FailValidationColor;
+        }
+
+        public static void ApplyShadowedButtonStyle(this UIButton button)
+        {
+            button.SetBackgroundImage(CreateBackgroundImage(ColorPalette.ShadowButtonColor), UIControlState.Normal);
         }
 
         public static void ApplyBigButtonStyle(this UIButton button)
@@ -55,10 +66,10 @@ namespace Pokatun.iOS.Styles
             label.TextColor = ColorPalette.PrimaryText;
         }
 
-        public static void ResetStyles(this UITextField textField)
+        public static void ApplyInfoTabLabelStyle(this UILabel label)
         {
-            textField.EditingDidBegin -= OnEditingDidBegin;
-            textField.EditingDidEnd -= OnEditingDidEnd;
+            label.Font = Fonts.HelveticaNeueCyrBoldLarge;
+            label.TextColor = ColorPalette.TabText;
         }
 
         // https://stackoverflow.com/questions/14523348/how-to-change-the-background-color-of-a-uibutton-while-its-highlighted
@@ -80,23 +91,6 @@ namespace Pokatun.iOS.Styles
         private static void SetHeight(this UIView view, int height)
         {
             view.AddConstraint(NSLayoutConstraint.Create(view, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1, height));
-        }
-
-        private static void OnEditingDidBegin(object sender, EventArgs e)
-        {
-            UITextField textField = (UITextField)sender;
-
-            textField.TextColor = ColorPalette.PrimaryText;
-            textField.Layer.BorderWidth = 2;
-            textField.Layer.BorderColor = ColorPalette.PrimaryLight.CGColor;
-        }
-
-        private static void OnEditingDidEnd(object sender, EventArgs e)
-        {
-            UITextField textField = (UITextField)sender;
-
-            textField.Layer.BorderWidth = 1;
-            textField.Layer.BorderColor = ColorPalette.BorderColor.CGColor;
         }
     }
 }

@@ -329,6 +329,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string SaveChanges {
+            get {
+                return ResourceManager.GetString("SaveChanges", resourceCulture);
+            }
+        }
+        
         public static string NewPassword {
             get {
                 return ResourceManager.GetString("NewPassword", resourceCulture);
@@ -398,6 +404,132 @@ namespace Pokatun.Core.Resources {
         public static string Exit {
             get {
                 return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        public static string PersonalData {
+            get {
+                return ResourceManager.GetString("PersonalData", resourceCulture);
+            }
+        }
+        
+        public static string HotelInfo {
+            get {
+                return ResourceManager.GetString("HotelInfo", resourceCulture);
+            }
+        }
+        
+        public static string AddPhone {
+            get {
+                return ResourceManager.GetString("AddPhone", resourceCulture);
+            }
+        }
+        
+        public static string AddLink {
+            get {
+                return ResourceManager.GetString("AddLink", resourceCulture);
+            }
+        }
+        
+        public static string EnterPhone {
+            get {
+                return ResourceManager.GetString("EnterPhone", resourceCulture);
+            }
+        }
+        
+        public static string HotelLocationAddress {
+            get {
+                return ResourceManager.GetString("HotelLocationAddress", resourceCulture);
+            }
+        }
+        
+        public static string CheckInTime {
+            get {
+                return ResourceManager.GetString("CheckInTime", resourceCulture);
+            }
+        }
+        
+        public static string CheckInTimeDidntSetted {
+            get {
+                return ResourceManager.GetString("CheckInTimeDidntSetted", resourceCulture);
+            }
+        }
+        
+        public static string CheckOutTime {
+            get {
+                return ResourceManager.GetString("CheckOutTime", resourceCulture);
+            }
+        }
+        
+        public static string CheckOutTimeDidntSetted {
+            get {
+                return ResourceManager.GetString("CheckOutTimeDidntSetted", resourceCulture);
+            }
+        }
+        
+        public static string SiteOrSocialNetworkLink {
+            get {
+                return ResourceManager.GetString("SiteOrSocialNetworkLink", resourceCulture);
+            }
+        }
+        
+        public static string SymbolsLeftFormat {
+            get {
+                return ResourceManager.GetString("SymbolsLeftFormat", resourceCulture);
+            }
+        }
+        
+        public static string WithinTerritory {
+            get {
+                return ResourceManager.GetString("WithinTerritory", resourceCulture);
+            }
+        }
+        
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        public static string WithinTerritoryFillingInstruction {
+            get {
+                return ResourceManager.GetString("WithinTerritoryFillingInstruction", resourceCulture);
+            }
+        }
+        
+        public static string DescriptionFillingInstruction {
+            get {
+                return ResourceManager.GetString("DescriptionFillingInstruction", resourceCulture);
+            }
+        }
+        
+        public static string HotelPhotoDidntChoosen {
+            get {
+                return ResourceManager.GetString("HotelPhotoDidntChoosen", resourceCulture);
+            }
+        }
+        
+        public static string WithinTerritoryDescriptionDidntAdded {
+            get {
+                return ResourceManager.GetString("WithinTerritoryDescriptionDidntAdded", resourceCulture);
+            }
+        }
+        
+        public static string HotelDescriptionDidntAdded {
+            get {
+                return ResourceManager.GetString("HotelDescriptionDidntAdded", resourceCulture);
+            }
+        }
+        
+        public static string PhoneNumbersDuplication {
+            get {
+                return ResourceManager.GetString("PhoneNumbersDuplication", resourceCulture);
+            }
+        }
+        
+        public static string SocialResourcesDuplication {
+            get {
+                return ResourceManager.GetString("SocialResourcesDuplication", resourceCulture);
             }
         }
     }

@@ -140,7 +140,7 @@
         <value>Такой ЕДРПОУ уже был зарегистрирован в системе</value>
     </data>
     <data name="UnexpectedError" xml:space="preserve">
-        <value>Произошла непредвиденная ошбика. Повторите ошибу позже</value>
+        <value>Произошла непредвиденная ошибка. Повторите попытку позже</value>
     </data>
     <data name="InvalidTokenError" xml:space="preserve">
         <value>Неверный код верификации</value>
@@ -153,6 +153,9 @@
     </data>
     <data name="SavePassword" xml:space="preserve">
         <value>Сохранить пароль</value>
+    </data>
+    <data name="SaveChanges" xml:space="preserve">
+        <value>Сохранить изменения</value>
     </data>
     <data name="NewPassword" xml:space="preserve">
         <value>Новый пароль</value>
@@ -192,5 +195,68 @@
     </data>
     <data name="Exit" xml:space="preserve">
         <value>Выход</value>
+    </data>
+    <data name="PersonalData" xml:space="preserve">
+        <value>Личные данные</value>
+    </data>
+    <data name="HotelInfo" xml:space="preserve">
+        <value>Инфо об отеле</value>
+    </data>
+    <data name="AddPhone" xml:space="preserve">
+        <value>Добавить телефон</value>
+    </data>
+    <data name="AddLink" xml:space="preserve">
+        <value>Добавить ссылку</value>
+    </data>
+    <data name="EnterPhone" xml:space="preserve">
+        <value>Введите телефон</value>
+    </data>
+    <data name="HotelLocationAddress" xml:space="preserve">
+        <value>Адрес расположения отеля</value>
+    </data>
+    <data name="CheckInTime" xml:space="preserve">
+        <value>Время заселения</value>
+    </data>
+    <data name="CheckInTimeDidntSetted" xml:space="preserve">
+        <value>Не задано время заселения</value>
+    </data>
+    <data name="CheckOutTime" xml:space="preserve">
+        <value>Время выселения</value>
+    </data>
+    <data name="CheckOutTimeDidntSetted" xml:space="preserve">
+        <value>Не задано время выселения</value>
+    </data>
+    <data name="SiteOrSocialNetworkLink" xml:space="preserve">
+        <value>Ссылка на сайт или соц сеть</value>
+    </data>
+    <data name="SymbolsLeftFormat" xml:space="preserve">
+        <value>Осталось {0} символов</value>
+    </data>
+    <data name="WithinTerritory" xml:space="preserve">
+        <value>На территории:</value>
+    </data>
+    <data name="Description" xml:space="preserve">
+        <value>Описание:</value>
+    </data>
+    <data name="WithinTerritoryFillingInstruction" xml:space="preserve">
+        <value>Перечисляйте через запятую особенности вашего отеля, не более трех слов подряд (напр.: парковка, бассейн, бар, мангальная зона и т.п.)</value>
+    </data>
+    <data name="DescriptionFillingInstruction" xml:space="preserve">
+        <value>Напишите самое главное о вашем отеле в свободной форме</value>
+    </data>
+    <data name="HotelPhotoDidntChoosen" xml:space="preserve">
+        <value>Фото отеля не выбрано</value>
+    </data>
+    <data name="WithinTerritoryDescriptionDidntAdded" xml:space="preserve">
+        <value>Описание территории отеля не добавлено</value>
+    </data>
+    <data name="HotelDescriptionDidntAdded" xml:space="preserve">
+        <value>Описание отеля не добавлено</value>
+    </data>
+    <data name="PhoneNumbersDuplication" xml:space="preserve">
+        <value>Повторение телефонных номеров</value>
+    </data>
+    <data name="SocialResourcesDuplication" xml:space="preserve">
+        <value>Повторение ссылок</value>
     </data>
 </root>

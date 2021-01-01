@@ -10,12 +10,12 @@ namespace Pokatun.iOS
     {
         protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
         {
-            base.FillTargetFactories(registry);
-
             registry.RegisterCustomBindingFactory<MenuItem>(
                 nameof(MenuItem.Clicked),
                 view => new MvxEventNameTargetBinding<MenuItem>(view, nameof(MenuItem.Clicked))
             );
+
+            base.FillTargetFactories(registry);
         }
     }
 }
