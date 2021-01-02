@@ -24,6 +24,8 @@ namespace Pokatun.Core
             public const string Token = "Token";
             public const string TokenExpirationTime = "ExpirationTime";
             public const string AccountId = "AccountId";
+
+            public const string ShortHotelInfo = "ShortHotelInfo";
         }
     }
 }

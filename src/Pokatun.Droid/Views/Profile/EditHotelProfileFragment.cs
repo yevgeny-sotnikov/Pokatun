@@ -1,7 +1,6 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using FFImageLoading.Cross;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Pokatun.Data;
-using Xamarin.Essentials;
 
 namespace Pokatun.Core.Services
 {
@@ -10,10 +9,13 @@ namespace Pokatun.Core.Services
     {
         Task<ServerResponce<HotelDto>> GetAsync(long id);
 
+        Task<ServerResponce<ShortInfoDto>> GetShortInfoAsync(long id);
+
         Task<ServerResponce<TokenInfoDto>> RegisterAsync(
             string hotelName,
             string fullCompanyName,
             string email,
+            string password,
             string phoneNumber,
             string bankName,
             string IBAN,

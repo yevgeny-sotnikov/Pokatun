@@ -14,6 +14,7 @@
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="106.11.7" />
     <PackageReference Include="System.IO.Abstractions" Version="13.2.8" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\ChoiseUserRole\" />

@@ -1,7 +1,6 @@
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Registration;
-using Pokatun.iOS.Controls;
 using Pokatun.iOS.Styles;
 using UIKit;
 

@@ -291,6 +291,11 @@
     <ImageAsset Include="Resources\Media.xcassets\plus_photo.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\plus_photo.imageset\plus_photo%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\plus_photo.imageset\plus_photo%403x.png" />
+    <InterfaceDefinition Include="Views\Profile\ShowHotelProfileViewController.xib" />
+    <Compile Include="Views\Profile\ShowHotelProfileViewController.cs" />
+    <Compile Include="Views\Profile\ShowHotelProfileViewController.designer.cs">
+      <DependentUpon>ShowHotelProfileViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

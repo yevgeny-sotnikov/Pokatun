@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Pokatun.Core.Executors;
-using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
 using Pokatun.Core.ViewModels.Profile;
@@ -14,12 +11,14 @@ using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.ViewModels.Menu
 {
-    public sealed class HotelMenuViewModel : BaseViewModel
+    public sealed class HotelMenuViewModel : BaseViewModel<ShortInfoDto>
     {
         private readonly  IMvxNavigationService _navigationService;
         private readonly ISecureStorage _secureStorage;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly IHotelsService _hotelsService;
+
+        private ShortInfoDto _parameter;
 
         private MvxAsyncCommand _profileCommand;
         public IMvxAsyncCommand ProfileCommand
@@ -47,6 +46,11 @@ namespace Pokatun.Core.ViewModels.Menu
             _hotelsService = hotelsService;
         }
 
+        public override void Prepare(ShortInfoDto parameter)
+        {
+            _parameter = parameter;
+        }
+
         private async Task DoProfileCommandAsync()
         {
             long hotelId = long.Parse(await _secureStorage.GetAsync(Constants.Keys.AccountId));
@@ -58,7 +62,14 @@ namespace Pokatun.Core.ViewModels.Menu
 
             if (responce == null) return;
 
-            await _navigationService.Navigate<EditHotelProfileViewModel, HotelDto, bool>(responce.Data);
+            if (_parameter == null || _parameter.ProfileNotCompleted)
+            {
+                await _navigationService.Navigate<EditHotelProfileViewModel, HotelDto, bool>(responce.Data);
+            }
+            else
+            {
+                await _navigationService.Navigate<ShowHotelProfileViewModel, HotelDto>(responce.Data);
+            }
         }
 
         private Task DoExitCommandAsync()

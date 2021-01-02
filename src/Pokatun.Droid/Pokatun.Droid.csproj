@@ -82,6 +82,7 @@
     <Compile Include="Utils.cs" />
     <Compile Include="Views\Profile\EditHotelProfileFragment.cs" />
     <Compile Include="Controls\MultilineCountableEditor.cs" />
+    <Compile Include="Views\Profile\ShowHotelProfileFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -116,6 +117,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Transformations">
       <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory">
+      <Version>5.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -714,6 +718,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\toolbar_image_view.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_show_hotel_profile.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

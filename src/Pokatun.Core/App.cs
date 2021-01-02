@@ -3,6 +3,7 @@ using System.Net.Http;
 using Acr.UserDialogs;
 using FFImageLoading;
 using FFImageLoading.Config;
+using Microsoft.Extensions.Caching.Memory;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
@@ -29,17 +30,17 @@ namespace Pokatun.Core
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-
+            
             Mvx.IoCProvider.RegisterSingleton(() => UserDialogs.Instance);
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<System.IO.Abstractions.IFileSystem, System.IO.Abstractions.FileSystem>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISecureStorage, SecureStorageImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDeviceInfo, DeviceInfoImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPickerImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<INetworkRequestExecutor, NetworkRequestExecutor>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAuthExecutor, AuthExecutor>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMemoryCache>(() => new MemoryCache(new MemoryCacheOptions()));
 
             #if DEBUG
-
-            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
             Mvx.IoCProvider.RegisterSingleton<IRestClient>(
                 () =>
