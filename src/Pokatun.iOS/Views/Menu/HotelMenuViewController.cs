@@ -1,4 +1,5 @@
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using MvvmCross.Plugin.Visibility;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Menu;
 using Pokatun.iOS.Controls;
@@ -37,6 +38,7 @@ namespace Pokatun.iOS.Views.Menu
             _myHotelNumbersItem.Text = Strings.MyHotelNumbers;
             _hotelRatingItem.Text = Strings.HotelRating;
             _profileItem.Text = Strings.Profile;
+            _profileItem.AdditionalInfo = Strings.CompleteYourProfile + "  ⬤";
             _conditionsAndLoyaltyProgramItem.Text = Strings.ConditionsAndLoyaltyProgram;
             _securityItem.Text = Strings.Security;
             _exitItem.Text = Strings.Exit;
@@ -49,7 +51,9 @@ namespace Pokatun.iOS.Views.Menu
 
             set.Bind(_titlePhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
             set.Bind(ViewTitle).For(v => v.Subtitle).To(vm => vm.Subtitle).OneWay();
-            set.Bind(ViewTitle).For(v => v.SubtitleHightlighted).To(vm => vm.SubtitleHightlighted).OneWay();
+            set.Bind(ViewTitle).For(v => v.SubtitleHightlighted).To(vm => vm.ProfileNotCompleted).OneWay();
+            set.Bind(_profileItem).For(v => v.AdditionalInfoVisibility).To(vm => vm.ProfileNotCompleted)
+                .WithConversion<MvxVisibilityValueConverter>().OneWay();
 
             set.Bind(_profileItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ProfileCommand);
             set.Bind(_exitItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ExitCommand);

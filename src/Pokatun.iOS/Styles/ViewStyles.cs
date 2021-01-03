@@ -54,10 +54,17 @@ namespace Pokatun.iOS.Styles
             button.BackgroundColor = ColorPalette.PrimaryLight;
         }
 
+        public static void ApplyAdditionalInfoLabelStyle(this UILabel label)
+        {
+            label.Font = Fonts.HelveticaNeueCyrLightMedium;
+            label.TextColor = ColorPalette.BorderColor;
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+        }
+
         public static void ApplyTitleLabelStyle(this UILabel label)
         {
             label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
-            label.Font = Fonts.HelveticaNeueCyrBoldSubGigantic;
+            label.Font = Fonts.HelveticaNeueCyrBoldLarge;
             label.TextColor = ColorPalette.SecondaryText;
         }
 

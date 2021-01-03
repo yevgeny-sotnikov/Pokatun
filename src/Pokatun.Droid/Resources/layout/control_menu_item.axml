@@ -18,10 +18,22 @@
 		style="@style/LargeLabel"
 		android:id="@+id/menuTextView"
 		android:text="TEXT"
+		android:layout_marginRight="8dp"
 		android:layout_gravity="center_vertical"
-		android:layout_width="match_parent"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:layout_weight="1"
 		android:gravity="start"
 		android:maxLines="2"
+		/>
+	<TextView
+		android:id="@+id/additionalInfoLabel"
+		android:text="ADD"
+		android:visibility="gone"
+		android:layout_gravity="center_vertical"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textSize="@dimen/font_medium"
+		android:textColor="@color/selectedTabTextColor"
 		/>
 </LinearLayout>

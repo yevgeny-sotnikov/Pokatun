@@ -338,6 +338,9 @@
     <PackageReference Include="Xamarin.FFImageLoading.Transformations">
       <Version>2.4.11.982</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.Visibility">
+      <Version>7.1.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Contents.json">

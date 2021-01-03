@@ -6,6 +6,8 @@ using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Droid.Controls;
 using MvvmCross.Platforms.Android.Binding;
+using MvvmCross.Plugin.Visibility;
+
 namespace Pokatun.Droid.Views.Menu
 {
     [MvxFragmentPresentation(
@@ -47,6 +49,7 @@ namespace Pokatun.Droid.Views.Menu
             _myHotelNumbersItem.Text = Strings.MyHotelNumbers;
             _hotelRatingItem.Text = Strings.HotelRating;
             _profileItem.Text = Strings.Profile;
+            _profileItem.AdditionalInfo = Strings.CompleteYourProfile + "  ⬤";
             _conditionsAndLoyaltyProgramItem.Text = Strings.ConditionsAndLoyaltyProgram;
             _securityItem.Text = Strings.Security;
             _exitItem.Text = Strings.Exit;
@@ -67,7 +70,9 @@ namespace Pokatun.Droid.Views.Menu
 
             set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
             set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
-            set.Bind(ToolbarSubtitleLabel).For(v => v.Activated).To(vm => vm.SubtitleHightlighted).OneWay();
+            set.Bind(ToolbarSubtitleLabel).For(v => v.Activated).To(vm => vm.ProfileNotCompleted).OneWay();
+            set.Bind(_profileItem).For(v => v.AdditionalInfoVisibility).To(vm => vm.ProfileNotCompleted)
+                .WithConversion<MvxVisibilityValueConverter>().OneWay();
 
             set.Bind(_profileItem).For(_profileItem.BindClick()).To(vm => vm.ProfileCommand);
             set.Bind(_exitItem).For(_exitItem.BindClick()).To(vm => vm.ExitCommand);

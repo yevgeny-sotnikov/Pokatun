@@ -13,19 +13,19 @@ namespace Pokatun.iOS.Controls
 	partial class MenuItem
 	{
 		[Outlet]
+		UIKit.UILabel _additionalInfoLabel { get; set; }
+
+		[Outlet]
 		UIKit.UIImageView _menuItemIcon { get; set; }
 
 		[Outlet]
 		UIKit.UILabel _menuTextView { get; set; }
-
-		[Outlet]
-		UIKit.UIView _rootView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (_rootView != null) {
-				_rootView.Dispose ();
-				_rootView = null;
+			if (_additionalInfoLabel != null) {
+				_additionalInfoLabel.Dispose ();
+				_additionalInfoLabel = null;
 			}
 
 			if (_menuItemIcon != null) {

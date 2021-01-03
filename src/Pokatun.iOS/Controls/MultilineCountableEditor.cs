@@ -121,11 +121,8 @@ namespace Pokatun.iOS.Controls
             _dataTextField.Font = Fonts.HelveticaNeueCyrLightMedium;
             _dataTextField.TextColor = ColorPalette.PrimaryText;
 
-            _hintLabel.Font = Fonts.HelveticaNeueCyrLightMedium;
-            _hintLabel.TextColor = ColorPalette.BorderColor;
-
-            _counterLabel.Font = Fonts.HelveticaNeueCyrLightMedium;
-            _hintLabel.TextColor = ColorPalette.PrimaryText;
+            _hintLabel.ApplyAdditionalInfoLabelStyle();
+            _counterLabel.ApplyAdditionalInfoLabelStyle();
 
             TextColor = _textColor;
             HighlightedColor = ColorPalette.FailValidationColor;

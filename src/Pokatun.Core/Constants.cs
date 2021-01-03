@@ -19,6 +19,8 @@ namespace Pokatun.Core
 
         public const string InvalidValueExceptionMessage = "Invalid value";
 
+        public const string CirclePattern = "[⬤]+?";
+
         public static class Keys
         {
             public const string Token = "Token";

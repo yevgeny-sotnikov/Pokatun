@@ -65,6 +65,7 @@ namespace Pokatun.iOS.Controls
 
             _subtitleLabel.Font = Fonts.HelveticaNeueCyrLightMedium;
             _subtitleLabel.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+            _subtitleLabel.TextColor = ColorPalette.SecondaryText;
             _subtitleLabel.HighlightedTextColor = ColorPalette.FailValidationColor;
         }
     }

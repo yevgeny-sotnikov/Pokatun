@@ -349,7 +349,12 @@ namespace Pokatun.Core.ViewModels.Profile
             RaisePropertyChanged(nameof(Title));
 
             _photoFileName = parameter.PhotoUrl;
-            PhotoStream = ct => _photosService.GetAsync(parameter.PhotoUrl);
+
+            if (parameter.PhotoUrl != null)
+            {
+                PhotoStream = ct => _photosService.GetAsync(parameter.PhotoUrl);
+            }
+            else PhotoStream = null;
 
             HotelName = parameter.HotelName;
             FullCompanyName = parameter.FullCompanyName;

@@ -67,14 +67,13 @@ namespace Pokatun.Core
 
             Task.Run(async () =>
             {
-                //TODO: add fail case handling            
+                #if DEBUG //This code needed for debug mobile and backed on local machine. We offer to back 1000ms for initialization
 
-                #if DEBUG //This code needed for debug mobile and backed on local machine. We offer to back 300ms for initialization
-
-                await Task.Delay(300);
+                await Task.Delay(1000);
 
                 #endif
 
+                //TODO: add fail case handling            
                 ServerResponce<ShortInfoDto> serverResponce = await _hotelsService.GetShortInfoAsync(
                     long.Parse(await _secureStorage.GetAsync(Constants.Keys.AccountId))
                 );

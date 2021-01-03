@@ -27,11 +27,11 @@ namespace Pokatun.Core.ViewModels.Menu
 
         public override string Title => _parameter?.HotelName;
 
-        public string Placeholder => Title[0].ToString();
+        public string Placeholder => Title == null ? null : Title[0].ToString();
 
         public string Subtitle => _parameter == null || _parameter.ProfileNotCompleted ? Strings.CompleteYourProfile : "{location}";
 
-        public bool SubtitleHightlighted => _parameter == null || _parameter.ProfileNotCompleted;
+        public bool ProfileNotCompleted => _parameter == null || _parameter.ProfileNotCompleted;
 
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
@@ -39,7 +39,6 @@ namespace Pokatun.Core.ViewModels.Menu
             get { return _photoStream; }
             set { SetProperty(ref _photoStream, value); }
         }
-
 
         private MvxAsyncCommand _profileCommand;
         public IMvxAsyncCommand ProfileCommand
@@ -79,8 +78,13 @@ namespace Pokatun.Core.ViewModels.Menu
 
             RaisePropertyChanged(nameof(Title));
             RaisePropertyChanged(nameof(Subtitle));
+            RaisePropertyChanged(nameof(ProfileNotCompleted));
 
-            PhotoStream = ct => _photosService.GetAsync(parameter.PhotoName);
+            if (parameter != null && parameter.PhotoName != null)
+            {
+                PhotoStream = ct => _photosService.GetAsync(parameter.PhotoName);
+            }
+            else PhotoStream = null;
         }
 
         private async Task DoProfileCommandAsync()

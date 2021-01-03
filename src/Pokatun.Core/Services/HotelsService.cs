@@ -71,10 +71,12 @@ namespace Pokatun.Core.Services
             if (response.ErrorException != null)
             {
                 Crashes.TrackError(response.ErrorException);
+                Console.WriteLine(response.ErrorException);
             }
             else if (response.Content.Contains("Exception"))
             {
                 Crashes.TrackError(new Exception(response.Content));
+                Console.WriteLine(response.Content);
             }
 
             if (string.IsNullOrWhiteSpace(response.Content) || response.ErrorException != null || response.Content.Contains("Exception"))
