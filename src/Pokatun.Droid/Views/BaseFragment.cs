@@ -19,6 +19,8 @@ namespace Pokatun.Droid.Views
 
         private TextView ToolbarTitleLabel => CompatActivity.ToolbarTitleLabel;
 
+        public TextView ToolbarSubtitleLabel => CompatActivity.ToolbarSubtitleLabel;
+
         protected ImageButton ToolbarAddPhotoButton => CompatActivity.ToolbarAddPhotoButton;
 
         protected ImageButton ToolbarRightButton => CompatActivity.ToolbarRightButton;
@@ -52,6 +54,7 @@ namespace Pokatun.Droid.Views
             
             ToolbarLogo.Visibility = titleNotExists ? ViewStates.Visible : ViewStates.Gone;
             ToolbarTitleLabel.Visibility = titleNotExists ? ViewStates.Gone : ViewStates.Visible;
+            ToolbarSubtitleLabel.Visibility = ViewStates.Gone;
             ToolbarLeftSpaceView.Visibility = ViewStates.Gone;
             ToolbarRightButton.Visibility = ViewStates.Gone;
             ToolbarPhotoPlaceholderLabel.Visibility = ViewStates.Gone;

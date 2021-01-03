@@ -66,6 +66,8 @@ namespace Pokatun.Droid.Views.Menu
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
+            set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
+            set.Bind(ToolbarSubtitleLabel).For(v => v.Activated).To(vm => vm.SubtitleHightlighted).OneWay();
 
             set.Bind(_profileItem).For(_profileItem.BindClick()).To(vm => vm.ProfileCommand);
             set.Bind(_exitItem).For(_exitItem.BindClick()).To(vm => vm.ExitCommand);
@@ -82,6 +84,7 @@ namespace Pokatun.Droid.Views.Menu
             ToolbarLeftSpaceView.Visibility = ViewStates.Visible;
             ToolbarPhotoPlaceholderLabel.Visibility = ViewStates.Visible;
             ToolbarPhotoContainer.Visibility = ViewStates.Visible;
+            ToolbarSubtitleLabel.Visibility = ViewStates.Visible;
         }
     }
 }

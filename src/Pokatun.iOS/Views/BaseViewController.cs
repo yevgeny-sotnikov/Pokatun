@@ -13,7 +13,7 @@ namespace Pokatun.iOS.Views
     public abstract class BaseViewController<TViewModel> : MvxViewController<TViewModel>
         where TViewModel : BaseViewModel
     {
-        private static readonly TitleView TitleView = TitleView.Create();
+        protected static readonly TitleView ViewTitle = TitleView.Create();
 
         protected BaseViewController(IntPtr handle)
         {
@@ -39,14 +39,15 @@ namespace Pokatun.iOS.Views
 
             NavigationItem.BackButtonTitle = string.Empty;
             
-            NavigationItem.TitleView = TitleView;
+            NavigationItem.TitleView = ViewTitle;
 
             string title = ViewModel.Title;
             bool titleNotExists = string.IsNullOrWhiteSpace(title);
 
-            TitleView.IsLogoHidden = !titleNotExists;
-            TitleView.IsTitleHidden = titleNotExists;
-            TitleView.Title = title;
+            ViewTitle.IsLogoHidden = !titleNotExists;
+            ViewTitle.IsTitleHidden = titleNotExists;
+            ViewTitle.IsSubtitleHidden = true;
+            ViewTitle.Title = title;
 
             CreateView();
 

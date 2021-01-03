@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Pokatun.Core.Executors;
+using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
 using Pokatun.Core.ViewModels.Profile;
@@ -27,6 +28,10 @@ namespace Pokatun.Core.ViewModels.Menu
         public override string Title => _parameter?.HotelName;
 
         public string Placeholder => Title[0].ToString();
+
+        public string Subtitle => _parameter == null || _parameter.ProfileNotCompleted ? Strings.CompleteYourProfile : "{location}";
+
+        public bool SubtitleHightlighted => _parameter == null || _parameter.ProfileNotCompleted;
 
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
@@ -73,6 +78,8 @@ namespace Pokatun.Core.ViewModels.Menu
             _parameter = parameter;
 
             RaisePropertyChanged(nameof(Title));
+            RaisePropertyChanged(nameof(Subtitle));
+
             PhotoStream = ct => _photosService.GetAsync(parameter.PhotoName);
         }
 

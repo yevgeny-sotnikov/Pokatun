@@ -52,9 +52,7 @@ namespace Pokatun.iOS.Controls
         {
             base.AwakeFromNib();
 
-            _placeholderLabel.Font = Fonts.HelveticaNeueCyrBoldSubGigantic;
-            _placeholderLabel.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
-
+            _placeholderLabel.ApplyTitleLabelStyle();
             _addPhotoButton.ApplyShadowedButtonStyle();
             _addPhotoButton.TouchUpInside += OnTouchUpInside;
         }

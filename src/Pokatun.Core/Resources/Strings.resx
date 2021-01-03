@@ -259,4 +259,7 @@
     <data name="SocialResourcesDuplication" xml:space="preserve">
         <value>Повторение ссылок</value>
     </data>
+    <data name="CompleteYourProfile" xml:space="preserve">
+        <value>дополните ваш профиль</value>
+    </data>
 </root>

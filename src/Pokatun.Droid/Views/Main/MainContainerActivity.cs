@@ -32,6 +32,8 @@ namespace Pokatun.Droid.Views.Main
 
         public TextView ToolbarTitleLabel { get; private set; }
 
+        public TextView ToolbarSubtitleLabel { get; private set; }
+
         public ImageButton ToolbarAddPhotoButton { get; private set; }
 
         public ImageButton ToolbarRightButton { get; private set; }
@@ -57,6 +59,7 @@ namespace Pokatun.Droid.Views.Main
             Toolbar = FindViewById<ToolbarX>(Resource.Id.toolbar);
             ToolbarLogo = FindViewById<ImageView>(Resource.Id.toolbarLogo);
             ToolbarTitleLabel = FindViewById<TextView>(Resource.Id.toolbarTitleLabel);
+            ToolbarSubtitleLabel = FindViewById<TextView>(Resource.Id.toolbarSubtitleLabel);
             ToolbarAddPhotoButton = FindViewById<ImageButton>(Resource.Id.toolbarAddPhotoButton);
             ToolbarRightButton = FindViewById<ImageButton>(Resource.Id.toolbarRightButton);
             ToolbarPhotoView = FindViewById<MvxCachedImageView>(Resource.Id.toolbarPhotoView);

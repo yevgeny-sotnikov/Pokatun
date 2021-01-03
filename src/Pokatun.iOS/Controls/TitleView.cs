@@ -1,6 +1,7 @@
 using System;
 using Foundation;
 using ObjCRuntime;
+using Pokatun.iOS.Styles;
 using UIKit;
 
 namespace Pokatun.iOS.Controls
@@ -28,10 +29,28 @@ namespace Pokatun.iOS.Controls
             set { _titleLabel.Hidden = value; }
         }
 
+        public bool IsSubtitleHidden
+        {
+            get { return _subtitleLabel.Hidden; }
+            set { _subtitleLabel.Hidden = value; }
+        }
+
         public string Title
         {
             get { return _titleLabel.Text; }
             set { _titleLabel.Text = value; }
+        }
+
+        public string Subtitle
+        {
+            get { return _subtitleLabel.Text; }
+            set { _subtitleLabel.Text = value; }
+        }
+
+        public bool SubtitleHightlighted
+        {
+            get { return _subtitleLabel.Highlighted; }
+            set { _subtitleLabel.Highlighted = value; }
         }
 
         public TitleView(IntPtr handle) : base(handle)
@@ -42,8 +61,11 @@ namespace Pokatun.iOS.Controls
         {
             base.AwakeFromNib();
 
-            _titleLabel.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+            _titleLabel.ApplyTitleLabelStyle();
+
+            _subtitleLabel.Font = Fonts.HelveticaNeueCyrLightMedium;
             _subtitleLabel.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+            _subtitleLabel.HighlightedTextColor = ColorPalette.FailValidationColor;
         }
     }
 }

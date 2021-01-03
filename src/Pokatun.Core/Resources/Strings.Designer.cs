@@ -532,5 +532,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("SocialResourcesDuplication", resourceCulture);
             }
         }
+        
+        public static string CompleteYourProfile {
+            get {
+                return ResourceManager.GetString("CompleteYourProfile", resourceCulture);
+            }
+        }
     }
 }
