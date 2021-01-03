@@ -32,7 +32,7 @@ namespace Pokatun.iOS.Views.Profile
 
             UIBarButtonItem rightBarButtonItem = new UIBarButtonItem { Image = UIImage.FromBundle("close") };
 
-            _titlePhotoView = TitlePhotoView.Create();
+            _titlePhotoView = TitlePhotoView.Create(true);
 
             NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_titlePhotoView), true);
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, false);

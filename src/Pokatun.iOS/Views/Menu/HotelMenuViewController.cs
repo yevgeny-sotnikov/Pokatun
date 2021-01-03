@@ -10,6 +10,8 @@ namespace Pokatun.iOS.Views.Menu
     [MvxRootPresentation(WrapInNavigationController = true)]
     public partial class HotelMenuViewController : BaseViewController<HotelMenuViewModel>
     {
+        private TitlePhotoView _titlePhotoView;
+
         public HotelMenuViewController() : base(nameof(HotelMenuViewController), null)
         {
         }
@@ -18,6 +20,10 @@ namespace Pokatun.iOS.Views.Menu
         {
             base.ViewDidLoad();
 
+            _titlePhotoView = TitlePhotoView.Create();
+
+            NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_titlePhotoView), true);
+
             _cardView.ClipsToBounds = true;
             _cardView.ShadowOpacity = 1;
             _cardView.CornerRadius = 4;
@@ -25,6 +31,7 @@ namespace Pokatun.iOS.Views.Menu
             
             _menuContainer.Cornerize(4);
 
+            _titlePhotoView.Placeholder = ViewModel.Placeholder;
             _myBidsItem.Text = Strings.MyBids;
             _myHotelNumbersItem.Text = Strings.MyHotelNumbers;
             _hotelRatingItem.Text = Strings.HotelRating;
@@ -39,6 +46,7 @@ namespace Pokatun.iOS.Views.Menu
 
             #pragma warning restore IDE0008 // Use explicit type
 
+            set.Bind(_titlePhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
 
             set.Bind(_profileItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ProfileCommand);
             set.Bind(_exitItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ExitCommand);

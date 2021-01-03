@@ -56,18 +56,21 @@ namespace Pokatun.iOS.Styles
 
         public static void ApplySubGiganticLabelStyle(this UILabel label)
         {
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
             label.Font = Fonts.HelveticaNeueCyrLightSubGigantic;
             label.TextColor = ColorPalette.PrimaryText;
         }
 
         public static void ApplyLargeLabelStyle(this UILabel label)
         {
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
             label.Font = Fonts.HelveticaNeueCyrLightLarge;
             label.TextColor = ColorPalette.PrimaryText;
         }
 
         public static void ApplyInfoTabLabelStyle(this UILabel label)
         {
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
             label.Font = Fonts.HelveticaNeueCyrBoldLarge;
             label.TextColor = ColorPalette.TabText;
         }

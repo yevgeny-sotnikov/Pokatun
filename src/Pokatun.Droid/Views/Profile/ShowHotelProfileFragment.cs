@@ -37,5 +37,19 @@ namespace Pokatun.Droid.Views.Profile
 
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
+
+        public override void OnStart()
+        {
+            base.OnStart();
+
+            ToolbarLeftSpaceView.Visibility = ViewStates.Gone;
+
+            ToolbarRightButton.SetImageResource(Resource.Drawable.close);
+            ToolbarRightButton.Visibility = ViewStates.Visible;
+            ToolbarAddPhotoButton.Visibility = ViewStates.Invisible;
+            ToolbarPhotoContainer.Visibility = ViewStates.Visible;
+            ToolbarPhotoPlaceholderLabel.Visibility = ViewStates.Visible;
+        }
+
     }
 }

@@ -25,6 +25,12 @@ namespace Pokatun.Droid.Views
 
         protected MvxCachedImageView ToolbarPhotoView => CompatActivity.ToolbarPhotoView;
 
+        protected TextView ToolbarPhotoPlaceholderLabel => CompatActivity.ToolbarPhotoPlaceholderLabel;
+
+        protected FrameLayout ToolbarPhotoContainer => CompatActivity.ToolbarPhotoContainer;
+
+        protected View ToolbarLeftSpaceView => CompatActivity.ToolbarLeftSpaceView;
+
         protected virtual bool IsHeaderBackButtonVisible => true;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -46,9 +52,11 @@ namespace Pokatun.Droid.Views
             
             ToolbarLogo.Visibility = titleNotExists ? ViewStates.Visible : ViewStates.Gone;
             ToolbarTitleLabel.Visibility = titleNotExists ? ViewStates.Gone : ViewStates.Visible;
+            ToolbarLeftSpaceView.Visibility = ViewStates.Gone;
             ToolbarRightButton.Visibility = ViewStates.Gone;
+            ToolbarPhotoPlaceholderLabel.Visibility = ViewStates.Gone;
             ToolbarAddPhotoButton.Visibility = ViewStates.Gone;
-            ToolbarPhotoView.Visibility = ViewStates.Gone;
+            ToolbarPhotoContainer.Visibility = ViewStates.Gone;
 
             ToolbarTitleLabel.Text = title;
         }

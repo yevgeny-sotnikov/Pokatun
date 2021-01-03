@@ -17,6 +17,9 @@ namespace Pokatun.iOS.Controls
 
 		[Outlet]
 		FFImageLoading.Cross.MvxCachedImageView _imageView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel _placeholderLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -28,6 +31,11 @@ namespace Pokatun.iOS.Controls
 			if (_imageView != null) {
 				_imageView.Dispose ();
 				_imageView = null;
+			}
+
+			if (_placeholderLabel != null) {
+				_placeholderLabel.Dispose ();
+				_placeholderLabel = null;
 			}
 		}
 	}

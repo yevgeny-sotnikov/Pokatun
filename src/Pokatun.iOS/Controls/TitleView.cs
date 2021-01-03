@@ -37,6 +37,14 @@ namespace Pokatun.iOS.Controls
         public TitleView(IntPtr handle) : base(handle)
         {
         }
+
+        public override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+
+            _titleLabel.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+            _subtitleLabel.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+        }
     }
 }
 

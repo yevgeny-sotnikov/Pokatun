@@ -114,6 +114,7 @@ namespace Pokatun.iOS.Controls
 
             _borderView.ApplyBorderViewStyle();
 
+            _titleLabel.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
             _titleLabel.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
             _titleLabel.TextColor = ColorPalette.PrimaryText;
 

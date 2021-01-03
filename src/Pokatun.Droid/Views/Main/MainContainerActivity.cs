@@ -38,6 +38,12 @@ namespace Pokatun.Droid.Views.Main
 
         public MvxCachedImageView ToolbarPhotoView { get; private set; }
 
+        public TextView ToolbarPhotoPlaceholderLabel { get; private set; }
+
+        public FrameLayout ToolbarPhotoContainer { get; private set; }
+
+        public View ToolbarLeftSpaceView { get; private set; }
+
         protected override int ActivityLayoutId => Resource.Layout.activity_main_container;
 
         protected override void OnCreate(Bundle bundle)
@@ -54,6 +60,9 @@ namespace Pokatun.Droid.Views.Main
             ToolbarAddPhotoButton = FindViewById<ImageButton>(Resource.Id.toolbarAddPhotoButton);
             ToolbarRightButton = FindViewById<ImageButton>(Resource.Id.toolbarRightButton);
             ToolbarPhotoView = FindViewById<MvxCachedImageView>(Resource.Id.toolbarPhotoView);
+            ToolbarPhotoPlaceholderLabel = FindViewById<TextView>(Resource.Id.toolbarPhotoPlaceholderLabel);
+            ToolbarPhotoContainer = FindViewById<FrameLayout>(Resource.Id.toolbarPhotoContainer);
+            ToolbarLeftSpaceView = FindViewById<View>(Resource.Id.toolbarLeftSpaceView);
 
             SetSupportActionBar(Toolbar);
             SupportActionBar.SetDisplayShowTitleEnabled(false);

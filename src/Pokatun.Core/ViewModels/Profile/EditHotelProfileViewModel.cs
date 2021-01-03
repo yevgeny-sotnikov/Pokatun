@@ -349,7 +349,7 @@ namespace Pokatun.Core.ViewModels.Profile
             RaisePropertyChanged(nameof(Title));
 
             _photoFileName = parameter.PhotoUrl;
-            LoadPhoto(parameter);
+            PhotoStream = ct => _photosService.GetAsync(parameter.PhotoUrl);
 
             HotelName = parameter.HotelName;
             FullCompanyName = parameter.FullCompanyName;
@@ -383,11 +383,6 @@ namespace Pokatun.Core.ViewModels.Profile
         private string[] GetDuplications(IEnumerable<EntryItemViewModel> collection)
         {
             return collection.GroupBy(x => x.Text).Where(g => g.Count() > 1).Select(g => g.Key).ToArray();
-        }
-
-        private async void LoadPhoto(HotelDto parameter)
-        {
-            PhotoStream = ct => _photosService.GetAsync(parameter.PhotoUrl);
         }
 
         private void DoAddPhoneCommand()

@@ -8,12 +8,38 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        app:contentInsetStartWithNavigation="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetStart="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetEnd="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetEnd="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary">
+        <Space
+            android:id="@+id/toolbarLeftSpaceView"
+            android:layout_gravity="center_vertical|left"
+            android:layout_width="26dp"
+            android:layout_height="1dp"
+            />
         <FrameLayout
-            android:layout_marginLeft="26dp"
+            android:id="@+id/toolbarPhotoContainer"
+            android:background="@drawable/toolbar_image_view"
+            android:layout_gravity="center_vertical|left"
             android:layout_width="49dp"
             android:layout_height="49dp">
+            <TextView
+                android:id="@+id/toolbarPhotoPlaceholderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_subgigantic"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
             <FFImageLoading.Cross.MvxCachedImageView
                 android:id="@+id/toolbarPhotoView"
                 android:layout_width="match_parent"
@@ -21,7 +47,6 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:padding="1dp"
-                android:background="@drawable/toolbar_image_view"
                 />
             <ImageButton
                 android:id="@+id/toolbarAddPhotoButton"

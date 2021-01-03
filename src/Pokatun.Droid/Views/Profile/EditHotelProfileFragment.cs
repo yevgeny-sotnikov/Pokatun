@@ -45,7 +45,6 @@ namespace Pokatun.Droid.Views.Profile
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_profile;
 
         protected override bool IsHeaderBackButtonVisible => false;
-        
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -163,9 +162,10 @@ namespace Pokatun.Droid.Views.Profile
             base.OnStart();
 
             ToolbarRightButton.SetImageResource(Resource.Drawable.close);
+            ToolbarLeftSpaceView.Visibility = ViewStates.Visible;
             ToolbarRightButton.Visibility = ViewStates.Visible;
             ToolbarAddPhotoButton.Visibility = ViewStates.Visible;
-            ToolbarPhotoView.Visibility = ViewStates.Visible;
+            ToolbarPhotoContainer.Visibility = ViewStates.Visible;
         }
     }
 }

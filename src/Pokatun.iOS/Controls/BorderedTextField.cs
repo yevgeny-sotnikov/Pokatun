@@ -174,6 +174,7 @@ namespace Pokatun.iOS.Controls
             rootView.BottomAnchor.ConstraintEqualTo(BottomAnchor, 0).Active = true;
 
             _borderView.ApplyBorderViewStyle();
+            _textField.VerticalAlignment = UIControlContentVerticalAlignment.Center;
 
             _textField.TextAlignment = UITextAlignment.Center;
             _textField.Font = Fonts.HelveticaNeueCyrLightExtraLarge;

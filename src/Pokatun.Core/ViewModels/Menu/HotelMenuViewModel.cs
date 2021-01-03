@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -13,12 +16,25 @@ namespace Pokatun.Core.ViewModels.Menu
 {
     public sealed class HotelMenuViewModel : BaseViewModel<ShortInfoDto>
     {
+        private readonly IPhotosService _photosService;
         private readonly  IMvxNavigationService _navigationService;
         private readonly ISecureStorage _secureStorage;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly IHotelsService _hotelsService;
 
         private ShortInfoDto _parameter;
+
+        public override string Title => _parameter?.HotelName;
+
+        public string Placeholder => Title[0].ToString();
+
+        private Func<CancellationToken, Task<Stream>> _photoStream;
+        public Func<CancellationToken, Task<Stream>> PhotoStream
+        {
+            get { return _photoStream; }
+            set { SetProperty(ref _photoStream, value); }
+        }
+
 
         private MvxAsyncCommand _profileCommand;
         public IMvxAsyncCommand ProfileCommand
@@ -38,8 +54,14 @@ namespace Pokatun.Core.ViewModels.Menu
             }
         }
 
-        public HotelMenuViewModel(IMvxNavigationService navigationService, ISecureStorage secureStorage, INetworkRequestExecutor networkRequestExecutor, IHotelsService hotelsService)
+        public HotelMenuViewModel(
+            IPhotosService photosService,
+            IMvxNavigationService navigationService,
+            ISecureStorage secureStorage,
+            INetworkRequestExecutor networkRequestExecutor,
+            IHotelsService hotelsService)
         {
+            _photosService = photosService;
             _navigationService = navigationService;
             _secureStorage = secureStorage;
             _networkRequestExecutor = networkRequestExecutor;
@@ -49,6 +71,9 @@ namespace Pokatun.Core.ViewModels.Menu
         public override void Prepare(ShortInfoDto parameter)
         {
             _parameter = parameter;
+
+            RaisePropertyChanged(nameof(Title));
+            PhotoStream = ct => _photosService.GetAsync(parameter.PhotoName);
         }
 
         private async Task DoProfileCommandAsync()
