@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShowHotelProfileViewController">
             <connections>
+                <outlet property="_hotelInfoTab" destination="hcj-x9-NVb" id="Ew6-8o-iSG"/>
+                <outlet property="_personalDataTab" destination="HHU-Yk-5hd" id="b41-a7-F9m"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -16,8 +20,137 @@
         <view contentMode="scaleToFill" id="2">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSv-AZ-kQD" customClass="TabHost">
+                    <rect key="frame" x="0.0" y="83" width="414" height="779"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-3L-8tf">
+                            <rect key="frame" x="38" y="0.0" width="338" height="30"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HHU-Yk-5hd" customClass="HotelProfileTab">
+                                    <rect key="frame" x="0.0" y="0.0" width="169" height="30"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="PersonalDataTab"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="tabContentViewTag">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="selected" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcj-x9-NVb" customClass="HotelProfileTab">
+                                    <rect key="frame" x="169" y="0.0" width="169" height="30"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="HotelInfoTab"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="tabContentViewTag">
+                                            <integer key="value" value="2"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="kIg-h2-m8p"/>
+                            </constraints>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHx-b3-nNU" userLabel="separator">
+                            <rect key="frame" x="38" y="30" width="338" height="3"/>
+                            <color key="backgroundColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="3" id="qay-xB-R8b"/>
+                            </constraints>
+                        </view>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrk-kh-TJ2">
+                            <rect key="frame" x="0.0" y="33" width="414" height="746"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wrs-ev-h1V">
+                                    <rect key="frame" x="38" y="23" width="338" height="40"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="1SP-vb-fuj" userLabel="email" customClass="BorderedTextField">
+                                            <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                                    <integer key="value" value="64"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="mail"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="wrs-ev-h1V" firstAttribute="width" secondItem="0eS-lG-vxu" secondAttribute="width" constant="-76" id="13f-Dl-lEh"/>
+                                <constraint firstItem="vZT-yH-x9A" firstAttribute="top" secondItem="wrs-ev-h1V" secondAttribute="top" constant="-23" id="QyJ-5R-irs"/>
+                                <constraint firstItem="wrs-ev-h1V" firstAttribute="leading" secondItem="vZT-yH-x9A" secondAttribute="leading" constant="38" id="aQu-yT-ipE"/>
+                                <constraint firstItem="wrs-ev-h1V" firstAttribute="bottom" secondItem="vZT-yH-x9A" secondAttribute="bottom" constant="-23" id="lTz-Ir-SDQ"/>
+                                <constraint firstItem="wrs-ev-h1V" firstAttribute="trailing" secondItem="vZT-yH-x9A" secondAttribute="trailing" constant="38" id="wBg-IH-CQy"/>
+                            </constraints>
+                            <viewLayoutGuide key="contentLayoutGuide" id="vZT-yH-x9A"/>
+                            <viewLayoutGuide key="frameLayoutGuide" id="0eS-lG-vxu"/>
+                        </scrollView>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CkR-lp-DTR">
+                            <rect key="frame" x="0.0" y="33" width="414" height="746"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="1Yt-Z2-POG">
+                                    <rect key="frame" x="38" y="23" width="338" height="40"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="hvf-kZ-Nbv" userLabel="hotel name" customClass="BorderedTextField">
+                                            <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                                    <integer key="value" value="64"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="name"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="1Yt-Z2-POG" firstAttribute="trailing" secondItem="emQ-zA-EOI" secondAttribute="trailing" constant="38" id="Cmt-lI-iN6"/>
+                                <constraint firstItem="emQ-zA-EOI" firstAttribute="top" secondItem="1Yt-Z2-POG" secondAttribute="top" constant="-23" id="N10-Qi-LF1"/>
+                                <constraint firstItem="1Yt-Z2-POG" firstAttribute="width" secondItem="Gxi-E3-7bD" secondAttribute="width" constant="-76" id="QTg-Cu-NHy"/>
+                                <constraint firstItem="1Yt-Z2-POG" firstAttribute="leading" secondItem="emQ-zA-EOI" secondAttribute="leading" constant="38" id="hPZ-IO-Arq"/>
+                                <constraint firstItem="1Yt-Z2-POG" firstAttribute="bottom" secondItem="emQ-zA-EOI" secondAttribute="bottom" constant="-23" id="zCf-wO-DWb"/>
+                            </constraints>
+                            <viewLayoutGuide key="contentLayoutGuide" id="emQ-zA-EOI"/>
+                            <viewLayoutGuide key="frameLayoutGuide" id="Gxi-E3-7bD"/>
+                        </scrollView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="zrk-kh-TJ2" firstAttribute="leading" secondItem="PSv-AZ-kQD" secondAttribute="leading" id="7tQ-YW-jNS"/>
+                        <constraint firstAttribute="trailing" secondItem="SHx-b3-nNU" secondAttribute="trailing" constant="38" id="8iC-bJ-xzN"/>
+                        <constraint firstItem="CkR-lp-DTR" firstAttribute="top" secondItem="SHx-b3-nNU" secondAttribute="bottom" id="8mh-N8-htX"/>
+                        <constraint firstItem="zrk-kh-TJ2" firstAttribute="top" secondItem="SHx-b3-nNU" secondAttribute="bottom" id="BfV-Gv-jIL"/>
+                        <constraint firstItem="Kjp-3L-8tf" firstAttribute="leading" secondItem="PSv-AZ-kQD" secondAttribute="leading" constant="38" id="DKP-JC-Ig8"/>
+                        <constraint firstAttribute="bottom" secondItem="CkR-lp-DTR" secondAttribute="bottom" id="N3T-SX-aPn"/>
+                        <constraint firstItem="SHx-b3-nNU" firstAttribute="leading" secondItem="PSv-AZ-kQD" secondAttribute="leading" constant="38" id="dcD-p0-eQJ"/>
+                        <constraint firstItem="Kjp-3L-8tf" firstAttribute="top" secondItem="PSv-AZ-kQD" secondAttribute="top" id="gKb-e1-r8J"/>
+                        <constraint firstItem="SHx-b3-nNU" firstAttribute="top" secondItem="Kjp-3L-8tf" secondAttribute="bottom" id="gWq-s5-ALP"/>
+                        <constraint firstAttribute="bottom" secondItem="zrk-kh-TJ2" secondAttribute="bottom" id="hIg-2J-Lur"/>
+                        <constraint firstItem="CkR-lp-DTR" firstAttribute="leading" secondItem="PSv-AZ-kQD" secondAttribute="leading" id="lR2-zh-Ijp"/>
+                        <constraint firstAttribute="trailing" secondItem="Kjp-3L-8tf" secondAttribute="trailing" constant="38" id="od7-PG-PVK"/>
+                        <constraint firstAttribute="trailing" secondItem="zrk-kh-TJ2" secondAttribute="trailing" id="qFj-sy-dXF"/>
+                        <constraint firstAttribute="trailing" secondItem="CkR-lp-DTR" secondAttribute="trailing" id="qIC-GA-cza"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="dVP-lz-sHo"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="PSv-AZ-kQD" firstAttribute="top" secondItem="dVP-lz-sHo" secondAttribute="top" constant="39" id="4z8-iB-LL4"/>
+                <constraint firstItem="dVP-lz-sHo" firstAttribute="leading" secondItem="PSv-AZ-kQD" secondAttribute="leading" id="Gha-Gv-IkN"/>
+                <constraint firstItem="dVP-lz-sHo" firstAttribute="bottom" secondItem="PSv-AZ-kQD" secondAttribute="bottom" id="H4L-uj-Cgh"/>
+                <constraint firstItem="dVP-lz-sHo" firstAttribute="trailing" secondItem="PSv-AZ-kQD" secondAttribute="trailing" id="dbD-Nn-loa"/>
+            </constraints>
             <point key="canvasLocation" x="72" y="3"/>
         </view>
     </objects>
+    <resources>
+        <image name="mail" width="11.5" height="9.5"/>
+        <image name="name" width="10.5" height="10.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

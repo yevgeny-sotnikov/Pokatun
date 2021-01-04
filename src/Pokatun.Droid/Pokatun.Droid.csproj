@@ -83,6 +83,7 @@
     <Compile Include="Views\Profile\EditHotelProfileFragment.cs" />
     <Compile Include="Controls\MultilineCountableEditor.cs" />
     <Compile Include="Views\Profile\ShowHotelProfileFragment.cs" />
+    <Compile Include="Views\TabFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">

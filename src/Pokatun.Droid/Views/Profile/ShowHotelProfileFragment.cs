@@ -12,6 +12,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Profile;
 
@@ -26,16 +27,22 @@ namespace Pokatun.Droid.Views.Profile
         ExitAnimation = Android.Resource.Animation.SlideOutRight,
         PopExitAnimation = Android.Resource.Animation.SlideOutRight
     )]
-    public class ShowHotelProfileFragment : BaseFragment<ShowHotelProfileViewModel>
+    public class ShowHotelProfileFragment : TabFragment<ShowHotelProfileViewModel>
     {
         protected override int FragmentLayoutId => Resource.Layout.fragment_show_hotel_profile;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+            View view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            return base.OnCreateView(inflater, container, savedInstanceState);
+            TabHost = view.FindViewById<TabHost>(Android.Resource.Id.TabHost);
+
+            TabHost.Setup();
+
+            TabHost.AddTab(CreateTab("personalData", Resource.Id.personalDataTab, Resource.Layout.personal_data_tab, Strings.PersonalData));
+            TabHost.AddTab(CreateTab("hotelInfo", Resource.Id.hotelInfoTab, Resource.Layout.hotel_info_tab, Strings.HotelInfo));
+
+            return view;
         }
 
         public override void OnStart()
