@@ -81,6 +81,26 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private string _withinTerritoryDescription;
+        public string WithinTerritoryDescription
+        {
+            get { return _withinTerritoryDescription; }
+            set
+            {
+                SetProperty(ref _withinTerritoryDescription, value);
+            }
+        }
+
+        private string _hotelDescription;
+        public string HotelDescription
+        {
+            get { return _hotelDescription; }
+            set
+            {
+                SetProperty(ref _hotelDescription, value);
+            }
+        }
+
         private MvxAsyncCommand _editCommand;
         private HotelDto _parameter;
 
@@ -117,6 +137,8 @@ namespace Pokatun.Core.ViewModels.Profile
             BankCardOrIban = parameter.BankCard == null ? parameter.IBAN : parameter.BankCard.ToString();
             BankName = parameter.BankName;
             USREOU = parameter.USREOU.ToString();
+            HotelDescription = parameter.HotelDescription;
+            WithinTerritoryDescription = parameter.WithinTerritoryDescription;
 
             _parameter = parameter;
         }

@@ -36,6 +36,10 @@ namespace Pokatun.Droid.Views.Profile
         private TextView _bankCardOrIbanLabel;
         private TextView _bankNameLabel;
         private TextView _usreouLabel;
+        private TextView _infrastructureLabel;
+        private TextView _infrastructureDecsriptionLabel;
+        private TextView _aboutUsLabel;
+        private TextView _hotelDecsriptionLabel;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_show_hotel_profile;
 
@@ -51,11 +55,18 @@ namespace Pokatun.Droid.Views.Profile
             _bankCardOrIbanLabel = view.FindViewById<TextView>(Resource.Id.bankCardOrIbanLabel);
             _bankNameLabel = view.FindViewById<TextView>(Resource.Id.bankNameLabel);
             _usreouLabel = view.FindViewById<TextView>(Resource.Id.usreouLabel);
+            _infrastructureLabel = view.FindViewById<TextView>(Resource.Id.infrastructureLabel);
+            _infrastructureDecsriptionLabel = view.FindViewById<TextView>(Resource.Id.infrastructureDecsriptionLabel);
+            _aboutUsLabel = view.FindViewById<TextView>(Resource.Id.aboutUsLabel);
+            _hotelDecsriptionLabel = view.FindViewById<TextView>(Resource.Id.hotelDecsriptionLabel);
 
             TabHost.Setup();
 
             TabHost.AddTab(CreateTab("personalData", Resource.Id.personalDataTab, Resource.Layout.personal_data_tab, Strings.PersonalData));
             TabHost.AddTab(CreateTab("hotelInfo", Resource.Id.hotelInfoTab, Resource.Layout.hotel_info_tab, Strings.HotelInfo));
+
+            _infrastructureLabel.Text = Strings.Infrastructure;
+            _aboutUsLabel.Text = Strings.AboutUs;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -66,12 +77,14 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.EditCommand).OneTime();
 
-            set.Bind(_hotelNameLabel).To(vm => vm.HotelName).TwoWay();
-            set.Bind(_fullCompanyNameLabel).To(vm => vm.FullCompanyName).TwoWay();
-            set.Bind(_emailLabel).To(vm => vm.Email).TwoWay();
-            set.Bind(_bankCardOrIbanLabel).To(vm => vm.BankCardOrIban).TwoWay();
-            set.Bind(_bankNameLabel).To(vm => vm.BankName).TwoWay();
-            set.Bind(_usreouLabel).To(vm => vm.USREOU).TwoWay();
+            set.Bind(_hotelNameLabel).To(vm => vm.HotelName).OneWay();
+            set.Bind(_fullCompanyNameLabel).To(vm => vm.FullCompanyName).OneWay();
+            set.Bind(_emailLabel).To(vm => vm.Email).OneWay();
+            set.Bind(_bankCardOrIbanLabel).To(vm => vm.BankCardOrIban).OneWay();
+            set.Bind(_bankNameLabel).To(vm => vm.BankName).OneWay();
+            set.Bind(_usreouLabel).To(vm => vm.USREOU).OneWay();
+            set.Bind(_infrastructureDecsriptionLabel).To(vm => vm.WithinTerritoryDescription).OneWay();
+            set.Bind(_hotelDecsriptionLabel).To(vm => vm.HotelDescription).OneWay();
 
             set.Apply();
 

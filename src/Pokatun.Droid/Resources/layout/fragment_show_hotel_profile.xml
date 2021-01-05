@@ -26,7 +26,7 @@
             <View
                 android:layout_marginLeft="@dimen/common_left_right_distanse"
                 android:layout_marginRight="@dimen/common_left_right_distanse"
-                android:background="#f1c40f"
+                android:background="@color/lightSeparatorColor"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 />
@@ -217,6 +217,80 @@
 		                        android:layout_height="wrap_content"
 		                        android:id="@+id/hotelLocationLabel"
 		                        />
+                        </LinearLayout>
+			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
+                        <LinearLayout
+                            android:orientation="horizontal"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/i"
+                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp">
+	                            <TextView
+		                            style="@style/AdditionalInfoLabel"
+		                            android:text="title"
+                                    android:gravity="start"
+		                            android:layout_width="match_parent"
+		                            android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+		                            android:id="@+id/infrastructureLabel"
+		                            />
+	                            <TextView
+		                            style="@style/InfoLabel"
+		                            android:text="DESCRIPTION"
+                                    android:gravity="start"
+		                            android:layout_width="match_parent"
+		                            android:layout_height="wrap_content"
+		                            android:id="@+id/infrastructureDecsriptionLabel"
+		                            />
+                            </LinearLayout>
+                        </LinearLayout>
+			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
+                        <LinearLayout
+                            android:orientation="horizontal"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/i"
+                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp">
+	                            <TextView
+		                            style="@style/AdditionalInfoLabel"
+		                            android:text="title"
+                                    android:gravity="start"
+		                            android:layout_width="match_parent"
+		                            android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+		                            android:id="@+id/aboutUsLabel"
+		                            />
+	                            <TextView
+		                            style="@style/InfoLabel"
+		                            android:text="DESCRIPTION"
+                                    android:gravity="start"
+		                            android:layout_width="match_parent"
+		                            android:layout_height="wrap_content"
+		                            android:id="@+id/hotelDecsriptionLabel"
+		                            />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </ScrollView>

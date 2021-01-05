@@ -13,6 +13,9 @@ namespace Pokatun.iOS.Views.Profile
 	partial class ShowHotelProfileViewController
 	{
 		[Outlet]
+		UIKit.UILabel _aboutUsLabel { get; set; }
+
+		[Outlet]
 		UIKit.UILabel _bankCardOrIbanLabel { get; set; }
 
 		[Outlet]
@@ -25,6 +28,9 @@ namespace Pokatun.iOS.Views.Profile
 		UIKit.UILabel _fullCompanyNameLabel { get; set; }
 
 		[Outlet]
+		UIKit.UILabel _hotelDecsriptionLabel { get; set; }
+
+		[Outlet]
 		Pokatun.iOS.Controls.Tabs.HotelProfileTab _hotelInfoTab { get; set; }
 
 		[Outlet]
@@ -34,6 +40,12 @@ namespace Pokatun.iOS.Views.Profile
 		UIKit.UILabel _hotelNameLabel { get; set; }
 
 		[Outlet]
+		UIKit.UILabel _infrastructureDecsriptionLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel _infrastructureLabel { get; set; }
+
+		[Outlet]
 		Pokatun.iOS.Controls.Tabs.HotelProfileTab _personalDataTab { get; set; }
 
 		[Outlet]
@@ -41,6 +53,11 @@ namespace Pokatun.iOS.Views.Profile
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (_aboutUsLabel != null) {
+				_aboutUsLabel.Dispose ();
+				_aboutUsLabel = null;
+			}
+
 			if (_bankCardOrIbanLabel != null) {
 				_bankCardOrIbanLabel.Dispose ();
 				_bankCardOrIbanLabel = null;
@@ -54,6 +71,11 @@ namespace Pokatun.iOS.Views.Profile
 			if (_emailLabel != null) {
 				_emailLabel.Dispose ();
 				_emailLabel = null;
+			}
+
+			if (_hotelDecsriptionLabel != null) {
+				_hotelDecsriptionLabel.Dispose ();
+				_hotelDecsriptionLabel = null;
 			}
 
 			if (_fullCompanyNameLabel != null) {
@@ -74,6 +96,16 @@ namespace Pokatun.iOS.Views.Profile
 			if (_hotelNameLabel != null) {
 				_hotelNameLabel.Dispose ();
 				_hotelNameLabel = null;
+			}
+
+			if (_infrastructureDecsriptionLabel != null) {
+				_infrastructureDecsriptionLabel.Dispose ();
+				_infrastructureDecsriptionLabel = null;
+			}
+
+			if (_infrastructureLabel != null) {
+				_infrastructureLabel.Dispose ();
+				_infrastructureLabel = null;
 			}
 
 			if (_personalDataTab != null) {

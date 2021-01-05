@@ -27,7 +27,7 @@
             <View
                 android:layout_marginLeft="@dimen/common_left_right_distanse"
                 android:layout_marginRight="@dimen/common_left_right_distanse"
-                android:background="#f1c40f"
+                android:background="@color/lightSeparatorColor"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 />

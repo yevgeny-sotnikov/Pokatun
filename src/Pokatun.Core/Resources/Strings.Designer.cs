@@ -538,5 +538,17 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("CompleteYourProfile", resourceCulture);
             }
         }
+        
+        public static string Infrastructure {
+            get {
+                return ResourceManager.GetString("Infrastructure", resourceCulture);
+            }
+        }
+        
+        public static string AboutUs {
+            get {
+                return ResourceManager.GetString("AboutUs", resourceCulture);
+            }
+        }
     }
 }

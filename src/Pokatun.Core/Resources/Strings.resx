@@ -262,4 +262,10 @@
     <data name="CompleteYourProfile" xml:space="preserve">
         <value>дополните ваш профиль</value>
     </data>
+    <data name="Infrastructure" xml:space="preserve">
+        <value>Инфраструктура:</value>
+    </data>
+    <data name="AboutUs" xml:space="preserve">
+        <value>О нас:</value>
+    </data>
 </root>

@@ -38,9 +38,15 @@ namespace Pokatun.iOS.Views.Profile
             _emailLabel.ApplyLargeLabelStyle();
             _hotelLocationLabel.ApplyLargeLabelStyle();
             _usreouLabel.ApplyLargeLabelStyle();
+            _infrastructureLabel.ApplyAdditionalInfoLabelStyle();
+            _infrastructureDecsriptionLabel.ApplyLargeLabelStyle();
+            _aboutUsLabel.ApplyAdditionalInfoLabelStyle();
+            _hotelDecsriptionLabel.ApplyLargeLabelStyle();
 
             _personalDataTab.Text = Strings.PersonalData;
             _hotelInfoTab.Text = Strings.HotelInfo;
+            _infrastructureLabel.Text = Strings.Infrastructure;
+            _aboutUsLabel.Text = Strings.AboutUs;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -57,6 +63,8 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_bankCardOrIbanLabel).To(vm => vm.BankCardOrIban).TwoWay();
             set.Bind(_bankNameLabel).To(vm => vm.BankName).TwoWay();
             set.Bind(_usreouLabel).To(vm => vm.USREOU).TwoWay();
+            set.Bind(_infrastructureDecsriptionLabel).To(vm => vm.WithinTerritoryDescription).OneWay();
+            set.Bind(_hotelDecsriptionLabel).To(vm => vm.HotelDescription).OneWay();
 
             set.Apply();
 
