@@ -296,6 +296,9 @@
     <Compile Include="Views\Profile\ShowHotelProfileViewController.designer.cs">
       <DependentUpon>ShowHotelProfileViewController.cs</DependentUpon>
     </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\edit.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\edit.imageset\edit%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\edit.imageset\edit%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -423,6 +426,7 @@
     <Folder Include="Resources\Media.xcassets\clock.imageset\" />
     <Folder Include="Resources\Media.xcassets\web.imageset\" />
     <Folder Include="Resources\Media.xcassets\plus_photo.imageset\" />
+    <Folder Include="Resources\Media.xcassets\edit.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

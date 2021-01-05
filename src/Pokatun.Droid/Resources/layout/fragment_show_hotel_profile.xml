@@ -49,7 +49,116 @@
     	                android:paddingRight="@dimen/common_left_right_distanse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/name"
+                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+	                        <TextView
+		                        style="@style/InfoLabel"
+                                android:layout_marginLeft="16dp"
+		                        android:text="COMPANY NAME"
+                                android:gravity="start"
+		                        android:layout_width="match_parent"
+		                        android:layout_height="wrap_content"
+		                        android:id="@+id/fullCompanyNameLabel"
+		                        />
+                        </LinearLayout>
+			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
+                        <LinearLayout
+                            android:orientation="horizontal"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/mail"
+                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+	                        <TextView
+		                        style="@style/InfoLabel"
+                                android:layout_marginLeft="16dp"
+		                        android:text="EMAIL"
+                                android:gravity="start"
+		                        android:layout_width="match_parent"
+		                        android:layout_height="wrap_content"
+		                        android:id="@+id/emailLabel"
+		                        />
+                        </LinearLayout>
+			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
 
+                        <LinearLayout
+                            android:orientation="horizontal"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/i"
+                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+	                        <TextView
+		                        style="@style/InfoLabel"
+                                android:layout_marginLeft="16dp"
+		                        android:text="BANK CARD"
+                                android:gravity="start"
+		                        android:layout_width="match_parent"
+		                        android:layout_height="wrap_content"
+		                        android:id="@+id/bankCardOrIbanLabel"
+		                        />
+                        </LinearLayout>
+			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
+                        <LinearLayout
+                            android:orientation="horizontal"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/bank"
+                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+	                        <TextView
+		                        style="@style/InfoLabel"
+                                android:layout_marginLeft="16dp"
+		                        android:text="BANK NAME"
+                                android:gravity="start"
+		                        android:layout_width="match_parent"
+		                        android:layout_height="wrap_content"
+		                        android:id="@+id/bankNameLabel"
+		                        />
+                        </LinearLayout>
+			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
+                        <LinearLayout
+                            android:orientation="horizontal"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/i"
+                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+	                        <TextView
+		                        style="@style/InfoLabel"
+                                android:layout_marginLeft="16dp"
+		                        android:text="USREOU"
+                                android:gravity="start"
+		                        android:layout_width="match_parent"
+		                        android:layout_height="wrap_content"
+		                        android:id="@+id/usreouLabel"
+		                        />
+                        </LinearLayout>
                     </LinearLayout>
                 </ScrollView>
 
@@ -66,6 +175,49 @@
     	                android:paddingRight="@dimen/common_left_right_distanse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/name"
+                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+	                        <TextView
+		                        style="@style/InfoLabel"
+                                android:layout_marginLeft="16dp"
+		                        android:text="NAME"
+                                android:gravity="start"
+		                        android:layout_width="match_parent"
+		                        android:layout_height="wrap_content"
+		                        android:id="@+id/hotelNameLabel"
+		                        />
+                        </LinearLayout>
+			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
+                        <LinearLayout
+                            android:orientation="horizontal"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/pin"
+                                android:layout_gravity="top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+	                        <TextView
+		                        style="@style/InfoLabel"
+                                android:layout_marginLeft="16dp"
+		                        android:text="{location}"
+                                android:gravity="start"
+		                        android:layout_width="match_parent"
+		                        android:layout_height="wrap_content"
+		                        android:id="@+id/hotelLocationLabel"
+		                        />
+                        </LinearLayout>
                     </LinearLayout>
                 </ScrollView>
             </FrameLayout>
