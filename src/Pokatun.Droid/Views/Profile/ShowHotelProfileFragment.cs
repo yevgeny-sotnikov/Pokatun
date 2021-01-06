@@ -1,17 +1,8 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Binding;
+using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
@@ -40,6 +31,8 @@ namespace Pokatun.Droid.Views.Profile
         private TextView _infrastructureDecsriptionLabel;
         private TextView _aboutUsLabel;
         private TextView _hotelDecsriptionLabel;
+        private MvxLinearLayout _phonesTable;
+        private MvxLinearLayout _linksTable;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_show_hotel_profile;
 
@@ -59,11 +52,16 @@ namespace Pokatun.Droid.Views.Profile
             _infrastructureDecsriptionLabel = view.FindViewById<TextView>(Resource.Id.infrastructureDecsriptionLabel);
             _aboutUsLabel = view.FindViewById<TextView>(Resource.Id.aboutUsLabel);
             _hotelDecsriptionLabel = view.FindViewById<TextView>(Resource.Id.hotelDecsriptionLabel);
+            _phonesTable = view.FindViewById<MvxLinearLayout>(Resource.Id.phonesTable);
+            _linksTable = view.FindViewById<MvxLinearLayout>(Resource.Id.linksTable);
 
             TabHost.Setup();
 
             TabHost.AddTab(CreateTab("personalData", Resource.Id.personalDataTab, Resource.Layout.personal_data_tab, Strings.PersonalData));
             TabHost.AddTab(CreateTab("hotelInfo", Resource.Id.hotelInfoTab, Resource.Layout.hotel_info_tab, Strings.HotelInfo));
+
+            _phonesTable.ItemTemplateId = Resource.Layout.show_item_template;
+            _linksTable.ItemTemplateId = Resource.Layout.show_item_template;
 
             _infrastructureLabel.Text = Strings.Infrastructure;
             _aboutUsLabel.Text = Strings.AboutUs;
@@ -85,6 +83,9 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_usreouLabel).To(vm => vm.USREOU).OneWay();
             set.Bind(_infrastructureDecsriptionLabel).To(vm => vm.WithinTerritoryDescription).OneWay();
             set.Bind(_hotelDecsriptionLabel).To(vm => vm.HotelDescription).OneWay();
+
+            set.Bind(_phonesTable).For(v => v.ItemsSource).To(vm => vm.PhoneNumbers).OneTime();
+            set.Bind(_linksTable).For(v => v.ItemsSource).To(vm => vm.SocialResources).OneTime();
 
             set.Apply();
 

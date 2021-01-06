@@ -28,6 +28,7 @@
     <Folder Include="Executors\" />
     <Folder Include="Converters\" />
     <Folder Include="ViewModels\Collections\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">

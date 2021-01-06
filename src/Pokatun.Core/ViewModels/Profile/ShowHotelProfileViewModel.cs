@@ -1,10 +1,14 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
+using Pokatun.Core.Enums;
 using Pokatun.Core.Services;
+using Pokatun.Core.ViewModels.Collections;
 using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Profile
@@ -13,6 +17,8 @@ namespace Pokatun.Core.ViewModels.Profile
     {
         private readonly IPhotosService _photosService;
         private readonly IMvxNavigationService _navigationService;
+
+        private HotelDto _parameter;
 
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
@@ -101,9 +107,11 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        private MvxAsyncCommand _editCommand;
-        private HotelDto _parameter;
+        public MvxObservableCollection<EntryItemViewModel> PhoneNumbers { get; private set; }
 
+        public MvxObservableCollection<EntryItemViewModel> SocialResources { get; private set; }
+
+        private MvxAsyncCommand _editCommand;
         public IMvxAsyncCommand EditCommand
         {
             get
@@ -116,6 +124,9 @@ namespace Pokatun.Core.ViewModels.Profile
         {
             _photosService = photosService;
             _navigationService = navigationService;
+
+            PhoneNumbers = new MvxObservableCollection<EntryItemViewModel>();
+            SocialResources = new MvxObservableCollection<EntryItemViewModel>();
         }
 
         public override void Prepare(HotelDto parameter)
@@ -139,6 +150,9 @@ namespace Pokatun.Core.ViewModels.Profile
             USREOU = parameter.USREOU.ToString();
             HotelDescription = parameter.HotelDescription;
             WithinTerritoryDescription = parameter.WithinTerritoryDescription;
+
+            PhoneNumbers.AddRange(parameter.Phones.Select(p => new EntryItemViewModel { Type = EntryType.Phone, Text = p.Number }));
+            SocialResources.AddRange(parameter.SocialResources.Select(sr => new EntryItemViewModel { Type = EntryType.Link, Text = sr.Link }));
 
             _parameter = parameter;
         }

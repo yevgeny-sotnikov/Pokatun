@@ -1,7 +1,9 @@
 using System;
+using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Profile;
+using Pokatun.iOS.Cells;
 using Pokatun.iOS.Controls;
 using Pokatun.iOS.Styles;
 using UIKit;
@@ -9,9 +11,11 @@ using UIKit;
 namespace Pokatun.iOS.Views.Profile
 {
     [MvxChildPresentation]
-    public partial class ShowHotelProfileViewController : BaseViewController<ShowHotelProfileViewModel>
+    public partial class ShowHotelProfileViewController : TablesViewController<ShowHotelProfileViewModel>
     {
         private TitlePhotoView _titlePhotoView;
+        private MvxSimpleTableViewSource _phonesTableViewSource;
+        private MvxSimpleTableViewSource _linksTableViewSource;
 
         public ShowHotelProfileViewController() : base(nameof(ShowHotelProfileViewController), null)
         {
@@ -30,6 +34,12 @@ namespace Pokatun.iOS.Views.Profile
             NavigationItem.LeftItemsSupplementBackButton = true;
             base.NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_titlePhotoView), true);
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, false);
+
+            _phonesTableViewSource = CreateTableViewSource(_phonesTable, ShowItemViewCell.Key);
+            _linksTableViewSource = CreateTableViewSource(_linksTable, ShowItemViewCell.Key);
+
+            _phonesTable.Source = _phonesTableViewSource;
+            _linksTable.Source = _linksTableViewSource;
 
             _fullCompanyNameLabel.ApplyLargeLabelStyle();
             _hotelNameLabel.ApplyLargeLabelStyle();
@@ -65,6 +75,9 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_usreouLabel).To(vm => vm.USREOU).TwoWay();
             set.Bind(_infrastructureDecsriptionLabel).To(vm => vm.WithinTerritoryDescription).OneWay();
             set.Bind(_hotelDecsriptionLabel).To(vm => vm.HotelDescription).OneWay();
+
+            set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
+            set.Bind(_linksTableViewSource).To(vm => vm.SocialResources).OneTime();
 
             set.Apply();
 

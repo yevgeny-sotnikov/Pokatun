@@ -9,7 +9,6 @@ using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Profile;
 using Pokatun.Droid.Controls;
-using static Android.Widget.TabHost;
 
 namespace Pokatun.Droid.Views.Profile
 {

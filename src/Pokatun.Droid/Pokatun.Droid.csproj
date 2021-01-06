@@ -84,6 +84,7 @@
     <Compile Include="Controls\MultilineCountableEditor.cs" />
     <Compile Include="Views\Profile\ShowHotelProfileFragment.cs" />
     <Compile Include="Views\TabFragment.cs" />
+    <Compile Include="Converters\EntityTypeToImageConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -753,6 +754,10 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\show_item_template.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -804,6 +809,7 @@
     <Folder Include="Views\ForgotPassword\" />
     <Folder Include="Controls\" />
     <Folder Include="Views\Profile\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

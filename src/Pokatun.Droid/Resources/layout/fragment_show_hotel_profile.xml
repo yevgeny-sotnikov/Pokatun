@@ -47,6 +47,8 @@
                         android:animateLayoutChanges="true"
                     	android:paddingLeft="@dimen/common_left_right_distanse"
     	                android:paddingRight="@dimen/common_left_right_distanse"
+                        android:showDividers="middle"
+                        android:divider="?android:listDivider"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
@@ -70,7 +72,14 @@
 		                        android:id="@+id/fullCompanyNameLabel"
 		                        />
                         </LinearLayout>
-			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
+                        <MvvmCross.Platforms.Android.Binding.Views.MvxLinearLayout
+                            android:id="@+id/phonesTable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:showDividers="middle"
+                            android:divider="?android:listDivider"
+                            />
                         <LinearLayout
                             android:orientation="horizontal"
             				android:layout_marginTop="16dp"
@@ -87,12 +96,12 @@
                                 android:layout_marginLeft="16dp"
 		                        android:text="EMAIL"
                                 android:gravity="start"
+		                        android:singleLine="true"
 		                        android:layout_width="match_parent"
 		                        android:layout_height="wrap_content"
 		                        android:id="@+id/emailLabel"
 		                        />
                         </LinearLayout>
-			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -110,12 +119,12 @@
                                 android:layout_marginLeft="16dp"
 		                        android:text="BANK CARD"
                                 android:gravity="start"
+                                android:singleLine="true"
 		                        android:layout_width="match_parent"
 		                        android:layout_height="wrap_content"
 		                        android:id="@+id/bankCardOrIbanLabel"
 		                        />
                         </LinearLayout>
-			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
                         <LinearLayout
                             android:orientation="horizontal"
             				android:layout_marginTop="16dp"
@@ -137,7 +146,6 @@
 		                        android:id="@+id/bankNameLabel"
 		                        />
                         </LinearLayout>
-			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
                         <LinearLayout
                             android:orientation="horizontal"
             				android:layout_marginTop="16dp"
@@ -153,6 +161,7 @@
 		                        style="@style/InfoLabel"
                                 android:layout_marginLeft="16dp"
 		                        android:text="USREOU"
+                                android:singleLine="true"
                                 android:gravity="start"
 		                        android:layout_width="match_parent"
 		                        android:layout_height="wrap_content"
@@ -173,6 +182,8 @@
                         android:animateLayoutChanges="true"
                     	android:paddingLeft="@dimen/common_left_right_distanse"
     	                android:paddingRight="@dimen/common_left_right_distanse"
+                        android:showDividers="middle"
+                        android:divider="?android:listDivider"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
@@ -196,7 +207,6 @@
 		                        android:id="@+id/hotelNameLabel"
 		                        />
                         </LinearLayout>
-			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
                         <LinearLayout
                             android:orientation="horizontal"
             				android:layout_marginTop="16dp"
@@ -218,7 +228,15 @@
 		                        android:id="@+id/hotelLocationLabel"
 		                        />
                         </LinearLayout>
-			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
+                        <MvvmCross.Platforms.Android.Binding.Views.MvxLinearLayout
+                            android:id="@+id/linksTable"
+                            android:animateLayoutChanges="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:showDividers="middle"
+                            android:divider="?android:listDivider"
+                            />
                         <LinearLayout
                             android:orientation="horizontal"
             				android:layout_marginTop="16dp"
@@ -255,7 +273,6 @@
 		                            />
                             </LinearLayout>
                         </LinearLayout>
-			            <View android:background="@color/separatorColor" android:layout_width="match_parent" android:layout_height="1dp"/>
                         <LinearLayout
                             android:orientation="horizontal"
             				android:layout_marginTop="16dp"

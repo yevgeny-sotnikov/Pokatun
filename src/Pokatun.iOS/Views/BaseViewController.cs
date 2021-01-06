@@ -10,14 +10,9 @@ using UIKit;
 
 namespace Pokatun.iOS.Views
 {
-    public abstract class BaseViewController<TViewModel> : MvxViewController<TViewModel>
-        where TViewModel : BaseViewModel
+    public abstract class BaseViewController<TViewModel> : MvxViewController<TViewModel> where TViewModel : BaseViewModel
     {
         protected static readonly TitleView ViewTitle = TitleView.Create();
-
-        protected BaseViewController(IntPtr handle)
-        {
-        }
 
         protected BaseViewController(string name, NSBundle bundle) : base(name, bundle)
         {

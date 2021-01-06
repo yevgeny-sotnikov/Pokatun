@@ -194,9 +194,9 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        public MvxObservableCollection<EntryItemViewModel> PhoneNumbers { get; private set; }
+        public MvxObservableCollection<ValidatableEntryItemViewModel> PhoneNumbers { get; private set; }
 
-        public MvxObservableCollection<EntryItemViewModel> SocialResources { get; private set; }
+        public MvxObservableCollection<ValidatableEntryItemViewModel> SocialResources { get; private set; }
 
         public bool IsHotelNameInvalid => CheckInvalid(nameof(HotelName));
 
@@ -245,12 +245,12 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        private MvxCommand<EntryItemViewModel> _deletePhoneCommand;
-        public IMvxCommand<EntryItemViewModel> DeletePhoneCommand
+        private MvxCommand<ValidatableEntryItemViewModel> _deletePhoneCommand;
+        public IMvxCommand<ValidatableEntryItemViewModel> DeletePhoneCommand
         {
             get
             {
-                return _deletePhoneCommand ?? (_deletePhoneCommand = new MvxCommand<EntryItemViewModel>(DoDeletePhoneCommand));
+                return _deletePhoneCommand ?? (_deletePhoneCommand = new MvxCommand<ValidatableEntryItemViewModel>(DoDeletePhoneCommand));
             }
         }
 
@@ -263,12 +263,12 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        private MvxCommand<EntryItemViewModel> _removeSocialResourceCommand;
-        public IMvxCommand<EntryItemViewModel> RemoveSocialResourceCommand
+        private MvxCommand<ValidatableEntryItemViewModel> _removeSocialResourceCommand;
+        public IMvxCommand<ValidatableEntryItemViewModel> RemoveSocialResourceCommand
         {
             get
             {
-                return _removeSocialResourceCommand ?? (_removeSocialResourceCommand = new MvxCommand<EntryItemViewModel>(DoRemoveSocialResourceCommand));
+                return _removeSocialResourceCommand ?? (_removeSocialResourceCommand = new MvxCommand<ValidatableEntryItemViewModel>(DoRemoveSocialResourceCommand));
             }
         }
 
@@ -338,8 +338,8 @@ namespace Pokatun.Core.ViewModels.Profile
             _validator.AddRule(nameof(PhoneNumbers), () => RuleResult.Assert(_viewInEditMode || !DuplicatedPhones.Any(), Strings.PhoneNumbersDuplication));
             _validator.AddRule(nameof(SocialResources), () => RuleResult.Assert(_viewInEditMode || !DuplicatedSocialResources.Any(), Strings.SocialResourcesDuplication));
 
-            PhoneNumbers = new MvxObservableCollection<EntryItemViewModel>();
-            SocialResources = new MvxObservableCollection<EntryItemViewModel>();
+            PhoneNumbers = new MvxObservableCollection<ValidatableEntryItemViewModel>();
+            SocialResources = new MvxObservableCollection<ValidatableEntryItemViewModel>();
         }
 
         public override void Prepare(HotelDto parameter)
@@ -367,8 +367,8 @@ namespace Pokatun.Core.ViewModels.Profile
             HotelDescription = parameter.HotelDescription;
             WithinTerritoryDescription = parameter.WithinTerritoryDescription;
             
-            PhoneNumbers.AddRange(parameter.Phones.Select(p => new EntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneDuplicated)));
-            SocialResources.AddRange(parameter.SocialResources.Select(sr => new EntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand, IsLinkDuplicated)));
+            PhoneNumbers.AddRange(parameter.Phones.Select(p => new ValidatableEntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneDuplicated)));
+            SocialResources.AddRange(parameter.SocialResources.Select(sr => new ValidatableEntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand, IsLinkDuplicated)));
         }
 
         private bool IsLinkDuplicated(string str)
@@ -385,27 +385,27 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private string[] DuplicatedSocialResources => GetDuplications(SocialResources);
 
-        private string[] GetDuplications(IEnumerable<EntryItemViewModel> collection)
+        private string[] GetDuplications(IEnumerable<ValidatableEntryItemViewModel> collection)
         {
             return collection.GroupBy(x => x.Text).Where(g => g.Count() > 1).Select(g => g.Key).ToArray();
         }
 
         private void DoAddPhoneCommand()
         {
-            PhoneNumbers.Add(new EntryItemViewModel(0, null, DeletePhoneCommand, IsPhoneDuplicated));
+            PhoneNumbers.Add(new ValidatableEntryItemViewModel(0, null, DeletePhoneCommand, IsPhoneDuplicated));
         }
 
-        private void DoDeletePhoneCommand(EntryItemViewModel phoneVM)
+        private void DoDeletePhoneCommand(ValidatableEntryItemViewModel phoneVM)
         {
             PhoneNumbers.Remove(phoneVM);
         }
 
         private void DoAddSocialResourceCommand()
         {
-            SocialResources.Add(new EntryItemViewModel(0, null, RemoveSocialResourceCommand, IsLinkDuplicated));
+            SocialResources.Add(new ValidatableEntryItemViewModel(0, null, RemoveSocialResourceCommand, IsLinkDuplicated));
         }
 
-        private void DoRemoveSocialResourceCommand(EntryItemViewModel srVM)
+        private void DoRemoveSocialResourceCommand(ValidatableEntryItemViewModel srVM)
         {
             SocialResources.Remove(srVM);
         }
@@ -461,12 +461,12 @@ namespace Pokatun.Core.ViewModels.Profile
                 RaisePropertyChanged(nameof(IsWithinTerritoryDescriptionInvalid))
             );
 
-            foreach (EntryItemViewModel vm in PhoneNumbers)
+            foreach (ValidatableEntryItemViewModel vm in PhoneNumbers)
             {
                 vm.Validate();
             }
 
-            foreach (EntryItemViewModel vm in SocialResources)
+            foreach (ValidatableEntryItemViewModel vm in SocialResources)
             {
                 vm.Validate();
             }

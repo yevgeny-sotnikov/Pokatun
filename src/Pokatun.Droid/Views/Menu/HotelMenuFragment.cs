@@ -7,6 +7,7 @@ using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Droid.Controls;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Plugin.Visibility;
+using MvvmCross.Platforms.Android.Binding.Target;
 
 namespace Pokatun.Droid.Views.Menu
 {
@@ -73,7 +74,7 @@ namespace Pokatun.Droid.Views.Menu
             set.Bind(ToolbarSubtitleLabel).For(v => v.Activated).To(vm => vm.ProfileNotCompleted).OneWay();
             set.Bind(_profileItem).For(v => v.AdditionalInfoVisibility).To(vm => vm.ProfileNotCompleted)
                 .WithConversion<MvxVisibilityValueConverter>().OneWay();
-
+            
             set.Bind(_profileItem).For(_profileItem.BindClick()).To(vm => vm.ProfileCommand);
             set.Bind(_exitItem).For(_exitItem.BindClick()).To(vm => vm.ExitCommand);
 

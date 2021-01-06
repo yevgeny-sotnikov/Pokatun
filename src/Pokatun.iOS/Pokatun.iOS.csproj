@@ -299,6 +299,13 @@
     <ImageAsset Include="Resources\Media.xcassets\edit.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\edit.imageset\edit%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\edit.imageset\edit%403x.png" />
+    <InterfaceDefinition Include="Cells\ShowItemViewCell.xib" />
+    <Compile Include="Cells\ShowItemViewCell.cs" />
+    <Compile Include="Cells\ShowItemViewCell.designer.cs">
+      <DependentUpon>ShowItemViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TablesViewController.cs" />
+    <Compile Include="Converters\EntityTypeToImageConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -427,6 +434,7 @@
     <Folder Include="Resources\Media.xcassets\web.imageset\" />
     <Folder Include="Resources\Media.xcassets\plus_photo.imageset\" />
     <Folder Include="Resources\Media.xcassets\edit.imageset\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
