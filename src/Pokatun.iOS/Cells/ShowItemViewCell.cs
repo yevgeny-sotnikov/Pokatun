@@ -3,7 +3,6 @@ using System;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
-using Pokatun.Core.Converters;
 using Pokatun.Core.ViewModels.Collections;
 using Pokatun.iOS.Converters;
 using Pokatun.iOS.Styles;
@@ -46,17 +45,6 @@ namespace Pokatun.iOS.Cells
                 set.Apply();
             });
         }
-
-        //partial void OnTextLongPressed(NSObject sender)
-        //{
-        //    UIMenuController menuController = UIMenuController.SharedMenuController;
-
-        //    if (!menuController.MenuVisible)
-        //    {
-        //        menuController.SetTargetRect(_textLabel.Bounds, this);
-        //        menuController.SetMenuVisible(true, true);
-        //    }
-        //}
     }
 }
 
