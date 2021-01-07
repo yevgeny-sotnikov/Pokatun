@@ -13,13 +13,11 @@ namespace Pokatun.Core.Services
     {
         private readonly IRestClient _restClient;
         private readonly ISecureStorage _secureStorage;
-        private readonly System.IO.Abstractions.IFileSystem _fileSystem;
 
-        public PhotosService(IRestClient restClient, ISecureStorage secureStorage, System.IO.Abstractions.IFileSystem fileSystem)
+        public PhotosService(IRestClient restClient, ISecureStorage secureStorage)
         {
             _restClient = restClient;
             _secureStorage = secureStorage;
-            _fileSystem = fileSystem;
         }
 
         public async Task<Stream> GetAsync(string photoName)
@@ -44,7 +42,7 @@ namespace Pokatun.Core.Services
 
         public async Task<ServerResponce<string>> UploadAsync(string photofilePath)
         {
-            if (!_fileSystem.File.Exists(photofilePath))
+            if (!File.Exists(photofilePath))
             {
                 throw new InvalidOperationException("We can upload only local image files");
             }    

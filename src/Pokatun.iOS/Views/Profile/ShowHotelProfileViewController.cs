@@ -1,6 +1,7 @@
 using System;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Profile;
 using Pokatun.iOS.Cells;
@@ -52,11 +53,17 @@ namespace Pokatun.iOS.Views.Profile
             _infrastructureDecsriptionLabel.ApplyLargeLabelStyle();
             _aboutUsLabel.ApplyAdditionalInfoLabelStyle();
             _hotelDecsriptionLabel.ApplyLargeLabelStyle();
+            _checkinLabel.ApplyLargeLabelStyle();
+            _checkoutLabel.ApplyLargeLabelStyle();
+            _checkinTimeLabel.ApplyAdditionalInfoLabelStyle();
+            _checkoutTimeLabel.ApplyAdditionalInfoLabelStyle();
 
             _personalDataTab.Text = Strings.PersonalData;
             _hotelInfoTab.Text = Strings.HotelInfo;
             _infrastructureLabel.Text = Strings.Infrastructure;
             _aboutUsLabel.Text = Strings.AboutUs;
+            _checkinLabel.Text = Strings.CheckIn;
+            _checkoutLabel.Text = Strings.CheckOut;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -75,6 +82,8 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_usreouLabel).To(vm => vm.USREOU).TwoWay();
             set.Bind(_infrastructureDecsriptionLabel).To(vm => vm.WithinTerritoryDescription).OneWay();
             set.Bind(_hotelDecsriptionLabel).To(vm => vm.HotelDescription).OneWay();
+            set.Bind(_checkinTimeLabel).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
+            set.Bind(_checkoutTimeLabel).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
 
             set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTableViewSource).To(vm => vm.SocialResources).OneTime();

@@ -47,6 +47,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string NA {
+            get {
+                return ResourceManager.GetString("NA", resourceCulture);
+            }
+        }
+        
         public static string ChooseRoleText {
             get {
                 return ResourceManager.GetString("ChooseRoleText", resourceCulture);
@@ -449,6 +455,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string CheckIn {
+            get {
+                return ResourceManager.GetString("CheckIn", resourceCulture);
+            }
+        }
+        
         public static string CheckInTimeDidntSetted {
             get {
                 return ResourceManager.GetString("CheckInTimeDidntSetted", resourceCulture);
@@ -458,6 +470,12 @@ namespace Pokatun.Core.Resources {
         public static string CheckOutTime {
             get {
                 return ResourceManager.GetString("CheckOutTime", resourceCulture);
+            }
+        }
+        
+        public static string CheckOut {
+            get {
+                return ResourceManager.GetString("CheckOut", resourceCulture);
             }
         }
         

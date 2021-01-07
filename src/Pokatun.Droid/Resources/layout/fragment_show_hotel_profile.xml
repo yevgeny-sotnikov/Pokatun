@@ -64,7 +64,7 @@
                                 android:layout_height="wrap_content"/>
 	                        <TextView
 		                        style="@style/InfoLabel"
-                                android:layout_marginLeft="16dp"
+                                android:layout_marginLeft="12dp"
 		                        android:text="COMPANY NAME"
                                 android:gravity="start"
 		                        android:layout_width="match_parent"
@@ -80,51 +80,34 @@
                             android:showDividers="middle"
                             android:divider="?android:listDivider"
                             />
-                        <LinearLayout
-                            android:orientation="horizontal"
-            				android:layout_marginTop="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                android:src="@drawable/mail"
-                                android:layout_gravity="top"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-	                        <TextView
-		                        style="@style/InfoLabel"
-                                android:layout_marginLeft="16dp"
-		                        android:text="EMAIL"
-                                android:gravity="start"
-		                        android:singleLine="true"
-		                        android:layout_width="match_parent"
-		                        android:layout_height="wrap_content"
-		                        android:id="@+id/emailLabel"
-		                        />
-                        </LinearLayout>
 
-                        <LinearLayout
-                            android:orientation="horizontal"
+                        <TextView
+		                    style="@style/InfoLabel"
             				android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                android:src="@drawable/i"
-                                android:layout_gravity="top"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-	                        <TextView
-		                        style="@style/InfoLabel"
-                                android:layout_marginLeft="16dp"
-		                        android:text="BANK CARD"
-                                android:gravity="start"
-                                android:singleLine="true"
-		                        android:layout_width="match_parent"
-		                        android:layout_height="wrap_content"
-		                        android:id="@+id/bankCardOrIbanLabel"
-		                        />
-                        </LinearLayout>
+                            android:drawableLeft="@drawable/mail"
+                            android:drawablePadding="16dp"
+		                    android:text="EMAIL"
+                            android:gravity="start"
+		                    android:singleLine="true"
+		                    android:layout_width="match_parent"
+		                    android:layout_height="wrap_content"
+		                    android:id="@+id/emailLabel"
+		                    />
+                        <TextView
+		                    style="@style/InfoLabel"
+            				android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:drawableLeft="@drawable/i"
+                            android:drawablePadding="16dp"
+		                    android:text="BANK CARD"
+                            android:gravity="start"
+                            android:singleLine="true"
+		                    android:layout_width="match_parent"
+		                    android:layout_height="wrap_content"
+		                    android:id="@+id/bankCardOrIbanLabel"
+		                    />
+
                         <LinearLayout
                             android:orientation="horizontal"
             				android:layout_marginTop="16dp"
@@ -138,7 +121,7 @@
                                 android:layout_height="wrap_content"/>
 	                        <TextView
 		                        style="@style/InfoLabel"
-                                android:layout_marginLeft="16dp"
+                                android:layout_marginLeft="12dp"
 		                        android:text="BANK NAME"
                                 android:gravity="start"
 		                        android:layout_width="match_parent"
@@ -146,28 +129,19 @@
 		                        android:id="@+id/bankNameLabel"
 		                        />
                         </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
+	                    <TextView
+		                    style="@style/InfoLabel"
             				android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                android:src="@drawable/i"
-                                android:layout_gravity="top"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-	                        <TextView
-		                        style="@style/InfoLabel"
-                                android:layout_marginLeft="16dp"
-		                        android:text="USREOU"
-                                android:singleLine="true"
-                                android:gravity="start"
-		                        android:layout_width="match_parent"
-		                        android:layout_height="wrap_content"
-		                        android:id="@+id/usreouLabel"
-		                        />
-                        </LinearLayout>
+                            android:drawableLeft="@drawable/i"
+                            android:drawablePadding="16dp"
+		                    android:text="USREOU"
+                            android:singleLine="true"
+                            android:gravity="start"
+		                    android:layout_width="match_parent"
+		                    android:layout_height="wrap_content"
+		                    android:id="@+id/usreouLabel"
+		                    />
                     </LinearLayout>
                 </ScrollView>
 
@@ -199,7 +173,7 @@
                                 android:layout_height="wrap_content"/>
 	                        <TextView
 		                        style="@style/InfoLabel"
-                                android:layout_marginLeft="16dp"
+                                android:layout_marginLeft="12dp"
 		                        android:text="NAME"
                                 android:gravity="start"
 		                        android:layout_width="match_parent"
@@ -220,7 +194,7 @@
                                 android:layout_height="wrap_content"/>
 	                        <TextView
 		                        style="@style/InfoLabel"
-                                android:layout_marginLeft="16dp"
+                                android:layout_marginLeft="12dp"
 		                        android:text="{location}"
                                 android:gravity="start"
 		                        android:layout_width="match_parent"
@@ -239,6 +213,78 @@
                             />
                         <LinearLayout
                             android:orientation="horizontal"
+                            android:showDividers="middle"
+                            android:divider="?android:attr/dividerVertical"
+			                android:dividerPadding="6dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="horizontal"
+            				    android:layout_marginTop="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="1">
+                                <ImageView
+                                    android:src="@drawable/clock"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+	                            <TextView
+		                            style="@style/InfoLabel"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="12dp"
+		                            android:layout_width="wrap_content"
+		                            android:layout_height="wrap_content"
+		                            android:id="@+id/checkinLabel"
+		                            />
+	                            <TextView
+		                            style="@style/AdditionalInfoLabel"
+                                    android:layout_marginLeft="6dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="start"
+		                            android:layout_width="match_parent"
+		                            android:layout_height="wrap_content"
+		                            android:id="@+id/checkinTimeLabel"
+		                            />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+            				    android:layout_marginTop="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="10dp">
+                                <ImageView
+                                    android:src="@drawable/clock"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+	                            <TextView
+		                            style="@style/InfoLabel"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_gravity="center_vertical"
+		                            android:layout_width="wrap_content"
+		                            android:layout_height="wrap_content"
+		                            android:id="@+id/checkoutLabel"
+		                            />
+	                            <TextView
+		                            style="@style/AdditionalInfoLabel"
+                                    android:layout_marginLeft="6dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="start"
+		                            android:layout_width="match_parent"
+		                            android:layout_height="wrap_content"
+		                            android:id="@+id/checkoutTimeLabel"
+		                            />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
             				android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
                             android:layout_width="match_parent"
@@ -253,7 +299,7 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="16dp">
+                                android:layout_marginLeft="12dp">
 	                            <TextView
 		                            style="@style/AdditionalInfoLabel"
 		                            android:text="title"
@@ -289,7 +335,7 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="16dp">
+                                android:layout_marginLeft="12dp">
 	                            <TextView
 		                            style="@style/AdditionalInfoLabel"
 		                            android:text="title"

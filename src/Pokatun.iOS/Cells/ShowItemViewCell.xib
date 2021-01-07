@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="289" placeholderIntrinsicHeight="20" text="COMPANY NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvd-PH-ISQ">
-                        <rect key="frame" x="31" y="18" width="289" height="20"/>
+                        <rect key="frame" x="25" y="18" width="295" height="20"/>
                         <gestureRecognizers/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -33,7 +33,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="cvd-PH-ISQ" secondAttribute="trailing" id="7L1-IM-unY"/>
                     <constraint firstItem="Krz-Gu-wcA" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="8YH-4L-LqQ"/>
-                    <constraint firstItem="cvd-PH-ISQ" firstAttribute="leading" secondItem="Krz-Gu-wcA" secondAttribute="trailing" constant="16" id="JHB-Wk-gpT"/>
+                    <constraint firstItem="cvd-PH-ISQ" firstAttribute="leading" secondItem="Krz-Gu-wcA" secondAttribute="trailing" constant="10" id="JHB-Wk-gpT"/>
                     <constraint firstItem="Krz-Gu-wcA" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading" id="LAN-if-qV4"/>
                     <constraint firstItem="cvd-PH-ISQ" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="txI-F5-I7X"/>
                 </constraints>

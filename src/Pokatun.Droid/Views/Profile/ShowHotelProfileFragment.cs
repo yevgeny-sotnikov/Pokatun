@@ -4,6 +4,7 @@ using Android.Widget;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Profile;
@@ -31,6 +32,10 @@ namespace Pokatun.Droid.Views.Profile
         private TextView _infrastructureDecsriptionLabel;
         private TextView _aboutUsLabel;
         private TextView _hotelDecsriptionLabel;
+        private TextView _checkinLabel;
+        private TextView _checkinTimeLabel;
+        private TextView _checkoutLabel;
+        private TextView _checkoutTimeLabel;
         private MvxLinearLayout _phonesTable;
         private MvxLinearLayout _linksTable;
 
@@ -52,6 +57,10 @@ namespace Pokatun.Droid.Views.Profile
             _infrastructureDecsriptionLabel = view.FindViewById<TextView>(Resource.Id.infrastructureDecsriptionLabel);
             _aboutUsLabel = view.FindViewById<TextView>(Resource.Id.aboutUsLabel);
             _hotelDecsriptionLabel = view.FindViewById<TextView>(Resource.Id.hotelDecsriptionLabel);
+            _checkinLabel = view.FindViewById<TextView>(Resource.Id.checkinLabel);
+            _checkinTimeLabel = view.FindViewById<TextView>(Resource.Id.checkinTimeLabel);
+            _checkoutLabel = view.FindViewById<TextView>(Resource.Id.checkoutLabel);
+            _checkoutTimeLabel = view.FindViewById<TextView>(Resource.Id.checkoutTimeLabel);
             _phonesTable = view.FindViewById<MvxLinearLayout>(Resource.Id.phonesTable);
             _linksTable = view.FindViewById<MvxLinearLayout>(Resource.Id.linksTable);
 
@@ -65,6 +74,8 @@ namespace Pokatun.Droid.Views.Profile
 
             _infrastructureLabel.Text = Strings.Infrastructure;
             _aboutUsLabel.Text = Strings.AboutUs;
+            _checkinLabel.Text = Strings.CheckIn;
+            _checkoutLabel.Text = Strings.CheckOut;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -83,6 +94,8 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_usreouLabel).To(vm => vm.USREOU).OneWay();
             set.Bind(_infrastructureDecsriptionLabel).To(vm => vm.WithinTerritoryDescription).OneWay();
             set.Bind(_hotelDecsriptionLabel).To(vm => vm.HotelDescription).OneWay();
+            set.Bind(_checkinTimeLabel).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
+            set.Bind(_checkoutTimeLabel).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
 
             set.Bind(_phonesTable).For(v => v.ItemsSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTable).For(v => v.ItemsSource).To(vm => vm.SocialResources).OneTime();

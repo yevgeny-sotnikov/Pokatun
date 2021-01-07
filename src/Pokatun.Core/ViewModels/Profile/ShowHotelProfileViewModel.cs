@@ -107,6 +107,27 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private TimeSpan? _checkInTime;
+        public TimeSpan? CheckInTime
+        {
+            get { return _checkInTime; }
+            set
+            {
+                SetProperty(ref _checkInTime, value);
+            }
+        }
+
+        private TimeSpan? _checkOutTime;
+        public TimeSpan? CheckOutTime
+        {
+            get { return _checkOutTime; }
+            set
+            {
+                SetProperty(ref _checkOutTime, value);
+            }
+        }
+
+
         public MvxObservableCollection<EntryItemViewModel> PhoneNumbers { get; private set; }
 
         public MvxObservableCollection<EntryItemViewModel> SocialResources { get; private set; }
@@ -150,6 +171,8 @@ namespace Pokatun.Core.ViewModels.Profile
             USREOU = parameter.USREOU.ToString();
             HotelDescription = parameter.HotelDescription;
             WithinTerritoryDescription = parameter.WithinTerritoryDescription;
+            CheckInTime = parameter.CheckInTime;
+            CheckOutTime = parameter.CheckOutTime;
 
             PhoneNumbers.AddRange(parameter.Phones.Select(p => new EntryItemViewModel { Type = EntryType.Phone, Text = p.Number }));
             SocialResources.AddRange(parameter.SocialResources.Select(sr => new EntryItemViewModel { Type = EntryType.Link, Text = sr.Link }));
