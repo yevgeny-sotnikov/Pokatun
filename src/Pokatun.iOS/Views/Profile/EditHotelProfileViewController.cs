@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-using Foundation;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using Pokatun.Core.Converters;
@@ -14,7 +11,7 @@ using UIKit;
 namespace Pokatun.iOS.Views.Profile
 {
     [MvxModalPresentation(WrapInNavigationController = true, ModalPresentationStyle = UIModalPresentationStyle.BlurOverFullScreen)]
-    public partial class EditHotelProfileViewController : BaseViewController<EditHotelProfileViewModel>
+    public partial class EditHotelProfileViewController : TablesViewController<EditHotelProfileViewModel>
     {
         private MvxSimpleTableViewSource _phonesTableViewSource;
         private MvxSimpleTableViewSource _linksTableViewSource;
@@ -32,7 +29,7 @@ namespace Pokatun.iOS.Views.Profile
 
             UIBarButtonItem rightBarButtonItem = new UIBarButtonItem { Image = UIImage.FromBundle("close") };
 
-            _titlePhotoView = TitlePhotoView.Create();
+            _titlePhotoView = TitlePhotoView.Create(true);
 
             NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_titlePhotoView), true);
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, false);
@@ -112,7 +109,7 @@ namespace Pokatun.iOS.Views.Profile
 
             set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTableViewSource).To(vm => vm.SocialResources).OneTime();
-
+            
             set.Bind(_hotelNameEditText).For(v => v.Highlighted).To(vm => vm.IsHotelNameInvalid).OneWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Highlighted).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
             set.Bind(_usreouTextField).For(v => v.Highlighted).To(vm => vm.IsUsreouInvalid).OneWay();
@@ -131,16 +128,6 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_saveChangesButton).To(vm => vm.SaveChangesCommand).OneTime();
 
             set.Apply();
-        }
-
-        private MvxSimpleTableViewSource CreateTableViewSource(UITableView tableView, string nibName)
-        {
-            return new MvxSimpleTableViewSource(tableView, nibName)
-            {
-                UseAnimations = true,
-                RemoveAnimation = UITableViewRowAnimation.Right,
-                AddAnimation = UITableViewRowAnimation.Fade
-            };
         }
     }
 }

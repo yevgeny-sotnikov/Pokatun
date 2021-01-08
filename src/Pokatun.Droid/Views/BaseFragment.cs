@@ -15,15 +15,23 @@ namespace Pokatun.Droid.Views
 
         private MainContainerActivity CompatActivity => (MainContainerActivity)Activity;
 
-        private ImageView ToolbarLogo => CompatActivity.ToolbarLogo;
+        protected ImageView ToolbarLogo => CompatActivity.ToolbarLogo;
 
-        private TextView ToolbarTitleLabel => CompatActivity.ToolbarTitleLabel;
+        protected TextView ToolbarTitleLabel => CompatActivity.ToolbarTitleLabel;
+
+        protected TextView ToolbarSubtitleLabel => CompatActivity.ToolbarSubtitleLabel;
 
         protected ImageButton ToolbarAddPhotoButton => CompatActivity.ToolbarAddPhotoButton;
 
         protected ImageButton ToolbarRightButton => CompatActivity.ToolbarRightButton;
 
         protected MvxCachedImageView ToolbarPhotoView => CompatActivity.ToolbarPhotoView;
+
+        protected TextView ToolbarPhotoPlaceholderLabel => CompatActivity.ToolbarPhotoPlaceholderLabel;
+
+        protected FrameLayout ToolbarPhotoContainer => CompatActivity.ToolbarPhotoContainer;
+
+        protected View ToolbarLeftSpaceView => CompatActivity.ToolbarLeftSpaceView;
 
         protected virtual bool IsHeaderBackButtonVisible => true;
 
@@ -46,9 +54,12 @@ namespace Pokatun.Droid.Views
             
             ToolbarLogo.Visibility = titleNotExists ? ViewStates.Visible : ViewStates.Gone;
             ToolbarTitleLabel.Visibility = titleNotExists ? ViewStates.Gone : ViewStates.Visible;
+            ToolbarSubtitleLabel.Visibility = ViewStates.Gone;
+            ToolbarLeftSpaceView.Visibility = ViewStates.Gone;
             ToolbarRightButton.Visibility = ViewStates.Gone;
+            ToolbarPhotoPlaceholderLabel.Visibility = ViewStates.Gone;
             ToolbarAddPhotoButton.Visibility = ViewStates.Gone;
-            ToolbarPhotoView.Visibility = ViewStates.Gone;
+            ToolbarPhotoContainer.Visibility = ViewStates.Gone;
 
             ToolbarTitleLabel.Text = title;
         }

@@ -23,9 +23,6 @@ namespace Pokatun.iOS
 
             if (result)
             {
-                UILabel.AppearanceWhenContainedIn(typeof(UINavigationBar)).TextColor = ColorPalette.SecondaryText;
-                UILabel.AppearanceWhenContainedIn(typeof(UINavigationBar)).Font = Fonts.HelveticaNeueCyrBoldLarge;
-
                 UIButton.AppearanceWhenContainedIn(typeof(UINavigationBar)).SetBackgroundImage(null, UIControlState.Normal);
                 UIButton.AppearanceWhenContainedIn(typeof(UINavigationBar)).BackgroundColor = null;
             }

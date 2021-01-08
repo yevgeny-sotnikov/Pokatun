@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Pokatun.Data;
@@ -13,14 +14,12 @@ namespace Pokatun.Core.Services
         private readonly IRestClient _restClient;
         private readonly ISecureStorage _secureStorage;
         private readonly IPhotosService _photosService;
-        private readonly System.IO.Abstractions.IFileSystem _fileSystem;
 
-        public HotelsService(IRestClient restClient, ISecureStorage secureStorage, IPhotosService photosService, System.IO.Abstractions.IFileSystem fileSystem)
+        public HotelsService(IRestClient restClient, ISecureStorage secureStorage, IPhotosService photosService)
         {
             _restClient = restClient;
             _secureStorage = secureStorage;
             _photosService = photosService;
-            _fileSystem = fileSystem;
         }
 
         public async Task<ServerResponce<HotelDto>> GetAsync(long id)
@@ -54,6 +53,39 @@ namespace Pokatun.Core.Services
             return response.Data;
         }
 
+        public async Task<ServerResponce<ShortInfoDto>> GetShortInfoAsync(long id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(id));
+            }
+
+            RestRequest request = new RestRequest("hotels/shortinfo/" + id, Method.GET);
+
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("Authorization", string.Format("Bearer {0}", await _secureStorage.GetAsync(Constants.Keys.Token)));
+
+            IRestResponse<ServerResponce<ShortInfoDto>> response = await _restClient.ExecuteAsync<ServerResponce<ShortInfoDto>>(request);
+
+            if (response.ErrorException != null)
+            {
+                Crashes.TrackError(response.ErrorException);
+                Console.WriteLine(response.ErrorException);
+            }
+            else if (response.Content.Contains("Exception"))
+            {
+                Crashes.TrackError(new Exception(response.Content));
+                Console.WriteLine(response.Content);
+            }
+
+            if (string.IsNullOrWhiteSpace(response.Content) || response.ErrorException != null || response.Content.Contains("Exception"))
+            {
+                return new ServerResponce<ShortInfoDto> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
+            }
+
+            return response.Data;
+        }
+
         public Task<ServerResponce<TokenInfoDto>> LoginAsync(string email, string password)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -69,9 +101,11 @@ namespace Pokatun.Core.Services
             return PostAsync<TokenInfoDto>("hotels/login", new LoginDto { Email = email, Password = password }, false);
         }
 
-        public Task<ServerResponce<TokenInfoDto>> RegisterAsync(string hotelName,
+        public Task<ServerResponce<TokenInfoDto>> RegisterAsync(
+            string hotelName,
             string fullCompanyName,
             string email,
+            string password,
             string phoneNumber,
             string bankName,
             string IBAN,
@@ -80,10 +114,12 @@ namespace Pokatun.Core.Services
         {
 
             return PostAsync<TokenInfoDto>("hotels/register",
-                new HotelDto
+                new HotelRegistrationDto
                 {
+                    HotelName = hotelName,
                     FullCompanyName = fullCompanyName,
                     Email = email,
+                    Password = password,
                     Phones = new List<PhoneDto> { new PhoneDto { Number = phoneNumber } },
                     BankName = bankName,
                     IBAN = IBAN,
@@ -148,7 +184,7 @@ namespace Pokatun.Core.Services
         {
             string nameForSave;
 
-            if (_fileSystem.File.Exists(photoFileName))
+            if (File.Exists(photoFileName))
             {
                 ServerResponce<string> fileResponce = await _photosService.UploadAsync(photoFileName);
 

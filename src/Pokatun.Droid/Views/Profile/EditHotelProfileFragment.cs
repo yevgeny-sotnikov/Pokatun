@@ -1,7 +1,6 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using FFImageLoading.Cross;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -10,7 +9,6 @@ using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Profile;
 using Pokatun.Droid.Controls;
-using static Android.Widget.TabHost;
 
 namespace Pokatun.Droid.Views.Profile
 {
@@ -23,9 +21,8 @@ namespace Pokatun.Droid.Views.Profile
         ExitAnimation = Android.Resource.Animation.FadeOut,
         PopExitAnimation = Android.Resource.Animation.FadeOut
     )]
-    public sealed class EditHotelProfileFragment : BaseFragment<EditHotelProfileViewModel>
+    public sealed class EditHotelProfileFragment : TabFragment<EditHotelProfileViewModel>
     {
-        private TabHost _tabHost;
         private Button _saveChangesButton;
         private EditText _hotelNameEditText;
         private EditText _fullCompanyNameTextField;
@@ -46,13 +43,12 @@ namespace Pokatun.Droid.Views.Profile
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_profile;
 
         protected override bool IsHeaderBackButtonVisible => false;
-        
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = base.OnCreateView(inflater, container, savedInstanceState);
             
-            _tabHost = view.FindViewById<TabHost>(Android.Resource.Id.TabHost);
+            TabHost = view.FindViewById<TabHost>(Android.Resource.Id.TabHost);
             _saveChangesButton = view.FindViewById<Button>(Resource.Id.saveChangesButton);
             _hotelNameEditText = view.FindViewById<EditText>(Resource.Id.hotelNameEditText);
             _fullCompanyNameTextField = view.FindViewById<EditText>(Resource.Id.fullCompanyNameTextField);
@@ -70,10 +66,10 @@ namespace Pokatun.Droid.Views.Profile
             _withinTerritoryEditText = view.FindViewById<MultilineCountableEditor>(Resource.Id.withinTerritoryEditText);
             _hotelDescriptionEditText = view.FindViewById<MultilineCountableEditor>(Resource.Id.hotelDescriptionEditText);
 
-            _tabHost.Setup();
+            TabHost.Setup();
 
-            _tabHost.AddTab(CreateTab("personalData", Resource.Id.personalDataTab, Resource.Layout.personal_data_tab, Strings.PersonalData));
-            _tabHost.AddTab(CreateTab("hotelInfo", Resource.Id.hotelInfoTab, Resource.Layout.hotel_info_tab, Strings.HotelInfo));
+            TabHost.AddTab(CreateTab("personalData", Resource.Id.personalDataTab, Resource.Layout.personal_data_tab, Strings.PersonalData));
+            TabHost.AddTab(CreateTab("hotelInfo", Resource.Id.hotelInfoTab, Resource.Layout.hotel_info_tab, Strings.HotelInfo));
 
             _phonesTable.ItemTemplateId = Resource.Layout.phone_item_template;
             _linksTable.ItemTemplateId = Resource.Layout.link_item_template;
@@ -144,29 +140,15 @@ namespace Pokatun.Droid.Views.Profile
             return view;
         }
 
-        private TabSpec CreateTab(string tag, int contentId, int tabLayoutId, string title)
-        {
-            TabSpec tabSpec = _tabHost.NewTabSpec(tag);
-            tabSpec.SetContent(contentId);
-
-            View view = LayoutInflater.Inflate(tabLayoutId, null);
-
-            TextView tabLabel = view.FindViewById<TextView>(Resource.Id.tabLabel);
-            tabLabel.Text = title;
-
-            tabSpec.SetIndicator(view);
-
-            return tabSpec;
-        }
-
         public override void OnStart()
         {
             base.OnStart();
 
             ToolbarRightButton.SetImageResource(Resource.Drawable.close);
+            ToolbarLeftSpaceView.Visibility = ViewStates.Visible;
             ToolbarRightButton.Visibility = ViewStates.Visible;
             ToolbarAddPhotoButton.Visibility = ViewStates.Visible;
-            ToolbarPhotoView.Visibility = ViewStates.Visible;
+            ToolbarPhotoContainer.Visibility = ViewStates.Visible;
         }
     }
 }

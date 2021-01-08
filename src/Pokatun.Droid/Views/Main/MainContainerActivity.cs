@@ -32,11 +32,19 @@ namespace Pokatun.Droid.Views.Main
 
         public TextView ToolbarTitleLabel { get; private set; }
 
+        public TextView ToolbarSubtitleLabel { get; private set; }
+
         public ImageButton ToolbarAddPhotoButton { get; private set; }
 
         public ImageButton ToolbarRightButton { get; private set; }
 
         public MvxCachedImageView ToolbarPhotoView { get; private set; }
+
+        public TextView ToolbarPhotoPlaceholderLabel { get; private set; }
+
+        public FrameLayout ToolbarPhotoContainer { get; private set; }
+
+        public View ToolbarLeftSpaceView { get; private set; }
 
         protected override int ActivityLayoutId => Resource.Layout.activity_main_container;
 
@@ -51,9 +59,13 @@ namespace Pokatun.Droid.Views.Main
             Toolbar = FindViewById<ToolbarX>(Resource.Id.toolbar);
             ToolbarLogo = FindViewById<ImageView>(Resource.Id.toolbarLogo);
             ToolbarTitleLabel = FindViewById<TextView>(Resource.Id.toolbarTitleLabel);
+            ToolbarSubtitleLabel = FindViewById<TextView>(Resource.Id.toolbarSubtitleLabel);
             ToolbarAddPhotoButton = FindViewById<ImageButton>(Resource.Id.toolbarAddPhotoButton);
             ToolbarRightButton = FindViewById<ImageButton>(Resource.Id.toolbarRightButton);
             ToolbarPhotoView = FindViewById<MvxCachedImageView>(Resource.Id.toolbarPhotoView);
+            ToolbarPhotoPlaceholderLabel = FindViewById<TextView>(Resource.Id.toolbarPhotoPlaceholderLabel);
+            ToolbarPhotoContainer = FindViewById<FrameLayout>(Resource.Id.toolbarPhotoContainer);
+            ToolbarLeftSpaceView = FindViewById<View>(Resource.Id.toolbarLeftSpaceView);
 
             SetSupportActionBar(Toolbar);
             SupportActionBar.SetDisplayShowTitleEnabled(false);

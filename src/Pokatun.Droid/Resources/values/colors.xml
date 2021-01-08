@@ -18,6 +18,7 @@
     <color name="pressedButtonColor">@color/primaryLightColor</color>
 
     <color name="borderColor">@color/selectedTabTextColor</color>
+    <color name="lightSeparatorColor">#f1c40f</color>
     <color name="separatorColor">#bdc3c7</color>
     <color name="faileValidationColor">#e9848d</color>
 </resources>

@@ -17,13 +17,20 @@ namespace Pokatun.Core
 
         #endif
 
+
         public const string InvalidValueExceptionMessage = "Invalid value";
+
+        public const string CirclePattern = "[⬤]+?";
+
+        public const string PhonePattern = @"^(\+)\d{12,}$";
 
         public static class Keys
         {
             public const string Token = "Token";
             public const string TokenExpirationTime = "ExpirationTime";
             public const string AccountId = "AccountId";
+
+            public const string ShortHotelInfo = "ShortHotelInfo";
         }
     }
 }

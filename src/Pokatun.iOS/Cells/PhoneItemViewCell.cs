@@ -39,7 +39,7 @@ namespace Pokatun.iOS.Cells
             {
                 #pragma warning disable IDE0008 // Use explicit type
 
-                var set = this.CreateBindingSet<PhoneItemViewCell, EntryItemViewModel>();
+                var set = this.CreateBindingSet<PhoneItemViewCell, ValidatableEntryItemViewModel>();
 
                 #pragma warning restore IDE0008 // Use explicit type
 

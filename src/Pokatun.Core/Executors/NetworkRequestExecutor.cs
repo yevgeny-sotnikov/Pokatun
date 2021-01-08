@@ -17,18 +17,15 @@ namespace Pokatun.Core.Executors
             _userDialogs = userDialogs;
         }
 
-        public async Task<T> MakeRequestAsync<T>(Func<Task<T>> func, ISet<string> knownErrorCodes) where T : ServerResponce
+        public async Task<T> MakeRequestAsync<T>(Func<Task<T>> func, ISet<string> knownErrorCodes, bool withLoading = true) where T : ServerResponce
         {
-            T responce = null;
+            Task<T> task = withLoading ? CallFuncWithLoadingAsync(func) : func();
 
-            using (_userDialogs.Loading(Strings.ProcessingRequest))
+            T responce = await task;
+
+            if (responce.Success)
             {
-                responce = await func();
-
-                if (responce.Success)
-                {
-                    return responce;
-                }
+                return responce;
             }
 
             knownErrorCodes.IntersectWith(responce.ErrorCodes);
@@ -40,7 +37,16 @@ namespace Pokatun.Core.Executors
             }
 
             _userDialogs.Toast(Strings.UnexpectedError);
+
             return null;
+        }
+
+        private async Task<T> CallFuncWithLoadingAsync<T>(Func<Task<T>> func) where T : ServerResponce
+        {
+            using (_userDialogs.Loading(Strings.ProcessingRequest))
+            {
+                return await func();
+            }
         }
     }
 }

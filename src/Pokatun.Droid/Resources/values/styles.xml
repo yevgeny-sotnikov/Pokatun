@@ -51,6 +51,11 @@
         <item name="android:textSize">@dimen/font_large</item>
     </style>
 
+    <style name="AdditionalInfoLabel" parent="LabelBase">
+        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:textColor">@color/selectedTabTextColor</item>
+    </style>
+
     <style name="TitleLabel" parent="InfoLabel">
         <item name="android:textSize">@dimen/font_subgigantic</item>
     </style>

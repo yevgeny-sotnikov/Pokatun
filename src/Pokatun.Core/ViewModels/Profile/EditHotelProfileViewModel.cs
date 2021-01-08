@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using Microsoft.Extensions.Caching.Memory;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -20,13 +21,14 @@ using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.ViewModels.Profile
 {
-    public sealed class EditHotelProfileViewModel : BaseViewModel<HotelDto, bool>
+    public sealed class EditHotelProfileViewModel : BaseViewModel<HotelDto, HotelDto>
     {
         private readonly IMvxNavigationService _navigationService;
         private readonly IUserDialogs _userDialogs;
         private readonly IMediaPicker _mediaPicker;
         private readonly IHotelsService _hotelsService;
         private readonly IPhotosService _photosService;
+        private readonly IMemoryCache _memoryCache;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly ValidationHelper _validator;
 
@@ -34,8 +36,7 @@ namespace Pokatun.Core.ViewModels.Profile
         private long _currentHotelId;
         private string _photoFileName;
 
-        private string _title;
-        public override string Title => _title;
+        public override string Title => Strings.ProfileChanging;
 
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
@@ -194,9 +195,9 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        public MvxObservableCollection<EntryItemViewModel> PhoneNumbers { get; private set; }
+        public MvxObservableCollection<ValidatableEntryItemViewModel> PhoneNumbers { get; private set; }
 
-        public MvxObservableCollection<EntryItemViewModel> SocialResources { get; private set; }
+        public MvxObservableCollection<ValidatableEntryItemViewModel> SocialResources { get; private set; }
 
         public bool IsHotelNameInvalid => CheckInvalid(nameof(HotelName));
 
@@ -245,12 +246,12 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        private MvxCommand<EntryItemViewModel> _deletePhoneCommand;
-        public IMvxCommand<EntryItemViewModel> DeletePhoneCommand
+        private MvxCommand<ValidatableEntryItemViewModel> _deletePhoneCommand;
+        public IMvxCommand<ValidatableEntryItemViewModel> DeletePhoneCommand
         {
             get
             {
-                return _deletePhoneCommand ?? (_deletePhoneCommand = new MvxCommand<EntryItemViewModel>(DoDeletePhoneCommand));
+                return _deletePhoneCommand ?? (_deletePhoneCommand = new MvxCommand<ValidatableEntryItemViewModel>(DoDeletePhoneCommand));
             }
         }
 
@@ -263,12 +264,12 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
-        private MvxCommand<EntryItemViewModel> _removeSocialResourceCommand;
-        public IMvxCommand<EntryItemViewModel> RemoveSocialResourceCommand
+        private MvxCommand<ValidatableEntryItemViewModel> _removeSocialResourceCommand;
+        public IMvxCommand<ValidatableEntryItemViewModel> RemoveSocialResourceCommand
         {
             get
             {
-                return _removeSocialResourceCommand ?? (_removeSocialResourceCommand = new MvxCommand<EntryItemViewModel>(DoRemoveSocialResourceCommand));
+                return _removeSocialResourceCommand ?? (_removeSocialResourceCommand = new MvxCommand<ValidatableEntryItemViewModel>(DoRemoveSocialResourceCommand));
             }
         }
 
@@ -305,6 +306,7 @@ namespace Pokatun.Core.ViewModels.Profile
             IMediaPicker mediaPicker,
             IHotelsService hotelsService,
             IPhotosService photosService,
+            IMemoryCache memoryCache,
             INetworkRequestExecutor networkRequestExecutor)
         {
             _navigationService = navigationService;
@@ -312,6 +314,7 @@ namespace Pokatun.Core.ViewModels.Profile
             _mediaPicker = mediaPicker;
             _hotelsService = hotelsService;
             _photosService = photosService;
+            _memoryCache = memoryCache;
             _networkRequestExecutor = networkRequestExecutor;
 
             _validator = new ValidationHelper();
@@ -335,21 +338,27 @@ namespace Pokatun.Core.ViewModels.Profile
             _validator.AddRule(nameof(PhotoStream), () => RuleResult.Assert(_viewInEditMode || PhotoStream != null, Strings.HotelPhotoDidntChoosen));
             _validator.AddRule(nameof(WithinTerritoryDescription), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(WithinTerritoryDescription), Strings.WithinTerritoryDescriptionDidntAdded));
             _validator.AddRule(nameof(HotelDescription), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelDescription), Strings.HotelDescriptionDidntAdded));
-            _validator.AddRule(nameof(PhoneNumbers), () => RuleResult.Assert(_viewInEditMode || !DuplicatedPhones.Any(), Strings.PhoneNumbersDuplication));
-            _validator.AddRule(nameof(SocialResources), () => RuleResult.Assert(_viewInEditMode || !DuplicatedSocialResources.Any(), Strings.SocialResourcesDuplication));
+            _validator.AddRule(nameof(PhoneNumbers), () => RuleResult.Assert(_viewInEditMode || PhoneNumbers.Any(), Strings.PhoneNumbersArentSetted));
+            _validator.AddRule(nameof(SocialResources), () => RuleResult.Assert(_viewInEditMode || SocialResources.Any(), Strings.LinksArentSetted));
+            _validator.AddRule(nameof(InvalidPhones), () => RuleResult.Assert(_viewInEditMode || !InvalidPhones.Any(), Strings.InvalidPhones));
+            _validator.AddRule(nameof(DuplicatedPhones), () => RuleResult.Assert(_viewInEditMode || !DuplicatedPhones.Any(), Strings.PhonesDuplication));
+            _validator.AddRule(nameof(DuplicatedSocialResources), () => RuleResult.Assert(_viewInEditMode || !DuplicatedSocialResources.Any(), Strings.LinksDuplication));
 
-            PhoneNumbers = new MvxObservableCollection<EntryItemViewModel>();
-            SocialResources = new MvxObservableCollection<EntryItemViewModel>();
+            PhoneNumbers = new MvxObservableCollection<ValidatableEntryItemViewModel>();
+            SocialResources = new MvxObservableCollection<ValidatableEntryItemViewModel>();
         }
 
         public override void Prepare(HotelDto parameter)
         {
             _currentHotelId = parameter.Id;
-            _title = parameter.HotelName;
-            RaisePropertyChanged(nameof(Title));
 
             _photoFileName = parameter.PhotoUrl;
-            LoadPhoto(parameter);
+
+            if (parameter.PhotoUrl != null)
+            {
+                PhotoStream = ct => _photosService.GetAsync(parameter.PhotoUrl);
+            }
+            else PhotoStream = null;
 
             HotelName = parameter.HotelName;
             FullCompanyName = parameter.FullCompanyName;
@@ -362,8 +371,8 @@ namespace Pokatun.Core.ViewModels.Profile
             HotelDescription = parameter.HotelDescription;
             WithinTerritoryDescription = parameter.WithinTerritoryDescription;
             
-            PhoneNumbers.AddRange(parameter.Phones.Select(p => new EntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneDuplicated)));
-            SocialResources.AddRange(parameter.SocialResources.Select(sr => new EntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand, IsLinkDuplicated)));
+            PhoneNumbers.AddRange(parameter.Phones.Select(p => new ValidatableEntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneInvalid)));
+            SocialResources.AddRange(parameter.SocialResources.Select(sr => new ValidatableEntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand, IsLinkDuplicated)));
         }
 
         private bool IsLinkDuplicated(string str)
@@ -371,41 +380,43 @@ namespace Pokatun.Core.ViewModels.Profile
             return DuplicatedSocialResources.Contains(str);
         }
 
-        private bool IsPhoneDuplicated(string str)
+        private bool IsPhoneInvalid(string phone)
         {
-            return DuplicatedPhones.Contains(str);
+            return DuplicatedPhones.Contains(phone) || IsPhoneDoesntMatchPattern(phone);
+        }
+
+        private bool IsPhoneDoesntMatchPattern(string phone)
+        {
+            return !Regex.IsMatch(phone, Constants.PhonePattern);
         }
 
         private string[] DuplicatedPhones => GetDuplications(PhoneNumbers);
 
+        private ValidatableEntryItemViewModel[] InvalidPhones => PhoneNumbers.Where(p => IsPhoneDoesntMatchPattern(p.Text)).ToArray();
+
         private string[] DuplicatedSocialResources => GetDuplications(SocialResources);
 
-        private string[] GetDuplications(IEnumerable<EntryItemViewModel> collection)
+        private string[] GetDuplications(IEnumerable<ValidatableEntryItemViewModel> collection)
         {
             return collection.GroupBy(x => x.Text).Where(g => g.Count() > 1).Select(g => g.Key).ToArray();
         }
 
-        private async void LoadPhoto(HotelDto parameter)
-        {
-            PhotoStream = ct => _photosService.GetAsync(parameter.PhotoUrl);
-        }
-
         private void DoAddPhoneCommand()
         {
-            PhoneNumbers.Add(new EntryItemViewModel(0, null, DeletePhoneCommand, IsPhoneDuplicated));
+            PhoneNumbers.Add(new ValidatableEntryItemViewModel(0, null, DeletePhoneCommand, IsPhoneInvalid));
         }
 
-        private void DoDeletePhoneCommand(EntryItemViewModel phoneVM)
+        private void DoDeletePhoneCommand(ValidatableEntryItemViewModel phoneVM)
         {
             PhoneNumbers.Remove(phoneVM);
         }
 
         private void DoAddSocialResourceCommand()
         {
-            SocialResources.Add(new EntryItemViewModel(0, null, RemoveSocialResourceCommand, IsLinkDuplicated));
+            SocialResources.Add(new ValidatableEntryItemViewModel(0, null, RemoveSocialResourceCommand, IsLinkDuplicated));
         }
 
-        private void DoRemoveSocialResourceCommand(EntryItemViewModel srVM)
+        private void DoRemoveSocialResourceCommand(ValidatableEntryItemViewModel srVM)
         {
             SocialResources.Remove(srVM);
         }
@@ -440,7 +451,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private Task DoCloseCommandAsync()
         {
-            return _navigationService.Close(this, false);
+            return _navigationService.Close(this);
         }
 
         private async Task DoSaveChangesCommandAsync()
@@ -461,12 +472,12 @@ namespace Pokatun.Core.ViewModels.Profile
                 RaisePropertyChanged(nameof(IsWithinTerritoryDescriptionInvalid))
             );
 
-            foreach (EntryItemViewModel vm in PhoneNumbers)
+            foreach (ValidatableEntryItemViewModel vm in PhoneNumbers)
             {
                 vm.Validate();
             }
 
-            foreach (EntryItemViewModel vm in SocialResources)
+            foreach (ValidatableEntryItemViewModel vm in SocialResources)
             {
                 vm.Validate();
             }
@@ -514,7 +525,28 @@ namespace Pokatun.Core.ViewModels.Profile
             if (responce == null)
                 return;
 
-            await _navigationService.Close(this);
+            _memoryCache.Set(
+                Constants.Keys.ShortHotelInfo,
+                new ShortInfoDto { HotelName = HotelName, PhotoName = _photoFileName, ProfileNotCompleted = false }
+            );
+
+            await _navigationService.Close(this, new HotelDto
+            {
+                HotelName = HotelName,
+                Email = Email,
+                FullCompanyName = FullCompanyName,
+                BankCard = bankCard,
+                IBAN = IBAN,
+                BankName = BankName,
+                USREOU = int.Parse(USREOU),
+                CheckInTime = CheckInTime,
+                CheckOutTime = CheckOutTime,
+                WithinTerritoryDescription = WithinTerritoryDescription,
+                HotelDescription = HotelDescription,
+                PhotoUrl = _photoFileName,
+                Phones = PhoneNumbers.Select(p => new PhoneDto { Id = p.Id, Number = p.Text }).ToList(),
+                SocialResources = SocialResources.Select(sr => new SocialResourceDto { Id = sr.Id, Link = sr.Text }).ToList()
+            });
         }
 
         private Task<TimePromptResult> ShowTimePromptAsync(string titleText, TimeSpan? startTime)

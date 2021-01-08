@@ -47,6 +47,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string NA {
+            get {
+                return ResourceManager.GetString("NA", resourceCulture);
+            }
+        }
+        
         public static string ChooseRoleText {
             get {
                 return ResourceManager.GetString("ChooseRoleText", resourceCulture);
@@ -449,6 +455,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string CheckIn {
+            get {
+                return ResourceManager.GetString("CheckIn", resourceCulture);
+            }
+        }
+        
         public static string CheckInTimeDidntSetted {
             get {
                 return ResourceManager.GetString("CheckInTimeDidntSetted", resourceCulture);
@@ -458,6 +470,12 @@ namespace Pokatun.Core.Resources {
         public static string CheckOutTime {
             get {
                 return ResourceManager.GetString("CheckOutTime", resourceCulture);
+            }
+        }
+        
+        public static string CheckOut {
+            get {
+                return ResourceManager.GetString("CheckOut", resourceCulture);
             }
         }
         
@@ -521,15 +539,57 @@ namespace Pokatun.Core.Resources {
             }
         }
         
-        public static string PhoneNumbersDuplication {
+        public static string PhoneNumbersArentSetted {
             get {
-                return ResourceManager.GetString("PhoneNumbersDuplication", resourceCulture);
+                return ResourceManager.GetString("PhoneNumbersArentSetted", resourceCulture);
             }
         }
         
-        public static string SocialResourcesDuplication {
+        public static string LinksArentSetted {
             get {
-                return ResourceManager.GetString("SocialResourcesDuplication", resourceCulture);
+                return ResourceManager.GetString("LinksArentSetted", resourceCulture);
+            }
+        }
+        
+        public static string InvalidPhones {
+            get {
+                return ResourceManager.GetString("InvalidPhones", resourceCulture);
+            }
+        }
+        
+        public static string PhonesDuplication {
+            get {
+                return ResourceManager.GetString("PhonesDuplication", resourceCulture);
+            }
+        }
+        
+        public static string LinksDuplication {
+            get {
+                return ResourceManager.GetString("LinksDuplication", resourceCulture);
+            }
+        }
+        
+        public static string CompleteYourProfile {
+            get {
+                return ResourceManager.GetString("CompleteYourProfile", resourceCulture);
+            }
+        }
+        
+        public static string Infrastructure {
+            get {
+                return ResourceManager.GetString("Infrastructure", resourceCulture);
+            }
+        }
+        
+        public static string AboutUs {
+            get {
+                return ResourceManager.GetString("AboutUs", resourceCulture);
+            }
+        }
+        
+        public static string ProfileChanging {
+            get {
+                return ResourceManager.GetString("ProfileChanging", resourceCulture);
             }
         }
     }

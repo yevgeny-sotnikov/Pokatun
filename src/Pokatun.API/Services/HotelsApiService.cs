@@ -27,6 +27,7 @@ namespace Pokatun.API.Services
             {
                 throw new ApiException(ErrorCodes.IncorrectIdError);
             }
+
             Hotel hotel = _context.Hotels
                 .Include(h => h.Phones)
                 .Include(h => h.SocialResources)
@@ -38,6 +39,44 @@ namespace Pokatun.API.Services
             }
 
             return hotel;
+        }
+
+        public ShortInfoDto GetShortInfo(long id)
+        {
+            if (id <= 0)
+            {
+                throw new ApiException(ErrorCodes.IncorrectIdError);
+            }
+
+            Hotel hotel = _context.Hotels
+                .FirstOrDefault(h => h.Id == id);
+
+            if (hotel == null)
+            {
+                throw new ApiException(ErrorCodes.AccountDoesNotExistError);
+            }
+
+            bool anyPhones = _context.Phones.Any(phone => phone.HotelId == hotel.Id);
+            bool anySocialResources = _context.SocialResources.Any(sr => sr.HotelId == hotel.Id);
+
+            return new ShortInfoDto
+            {
+                HotelName = hotel.HotelName,
+                PhotoName = hotel.PhotoUrl,
+                ProfileNotCompleted = (hotel.BankCard == null && hotel.IBAN == null)
+                    || hotel.BankName == null
+                    || hotel.CheckInTime == null
+                    || hotel.CheckOutTime == null
+                    || hotel.Email == null
+                    || hotel.FullCompanyName == null
+                    || hotel.HotelDescription == null
+                    || hotel.HotelName == null
+                    || hotel.PhotoUrl == null
+                    || hotel.USREOU == 0
+                    || hotel.WithinTerritoryDescription == null
+                    || !anyPhones
+                    || !anySocialResources
+            };
         }
 
         public void Update(HotelDto hotelDto)
@@ -66,9 +105,9 @@ namespace Pokatun.API.Services
             hotel.WithinTerritoryDescription = hotelDto.WithinTerritoryDescription;
 
             IDictionary<long, Phone> dbPhones = hotel.Phones.ToDictionary(phone => phone.Id);
-            IDictionary<long, PhoneDto> dtoPhones = hotelDto.Phones.ToDictionary(phone => phone.Id);
+            IDictionary<long, PhoneDto> dtoPhones = hotelDto.Phones.Where(p => p.Id != 0).ToDictionary(phone => phone.Id);
             
-            foreach (PhoneDto phoneDto in dtoPhones.Values)
+            foreach (PhoneDto phoneDto in hotelDto.Phones)
             {
                 if (dbPhones.ContainsKey(phoneDto.Id))
                 {
@@ -90,9 +129,9 @@ namespace Pokatun.API.Services
             }
 
             IDictionary<long, SocialResource> dbSocialResources = hotel.SocialResources.ToDictionary(sr => sr.Id);
-            IDictionary<long, SocialResourceDto> dtoSocialResources = hotelDto.SocialResources.ToDictionary(sr => sr.Id);
+            IDictionary<long, SocialResourceDto> dtoSocialResources = hotelDto.SocialResources.Where(sr => sr.Id != 0).ToDictionary(sr => sr.Id);
 
-            foreach (SocialResourceDto srDto in dtoSocialResources.Values)
+            foreach (SocialResourceDto srDto in hotelDto.SocialResources)
             {
                 if (dbSocialResources.ContainsKey(srDto.Id))
                 {

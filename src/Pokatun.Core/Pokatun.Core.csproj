@@ -13,7 +13,7 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.4.3" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="106.11.7" />
-    <PackageReference Include="System.IO.Abstractions" Version="13.2.8" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\ChoiseUserRole\" />
@@ -27,6 +27,7 @@
     <Folder Include="Executors\" />
     <Folder Include="Converters\" />
     <Folder Include="ViewModels\Collections\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">

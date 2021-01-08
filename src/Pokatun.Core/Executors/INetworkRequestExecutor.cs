@@ -7,6 +7,6 @@ namespace Pokatun.Core.Executors
 {
     public interface INetworkRequestExecutor
     {
-        Task<T> MakeRequestAsync<T>(Func<Task<T>> func, ISet<string> knownErrorCodes) where T : ServerResponce;
+        Task<T> MakeRequestAsync<T>(Func<Task<T>> func, ISet<string> knownErrorCodes, bool withLoading = true) where T : ServerResponce;
     }
 }

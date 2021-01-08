@@ -11,11 +11,14 @@ namespace Pokatun.iOS.Controls
 {
     public sealed partial class TitlePhotoView : UIView
     {
-        public static TitlePhotoView Create()
+        public static TitlePhotoView Create(bool clickable = false)
         {
             NSArray nib = NSBundle.MainBundle.LoadNib(nameof(TitlePhotoView), null, null);
 
             TitlePhotoView view = Runtime.GetNSObject<TitlePhotoView>(nib.ValueAt(0));
+
+            view._addPhotoButton.Hidden = !clickable;
+            view._placeholderLabel.Hidden = clickable;
 
             return view;
         }
@@ -32,6 +35,12 @@ namespace Pokatun.iOS.Controls
             set { _imageView.ImageStream = value; }
         }
 
+        public string Placeholder
+        {
+            get { return _placeholderLabel.Text; }
+            set { _placeholderLabel.Text = value; }
+        }
+
         public event EventHandler Clicked;
 
 
@@ -43,6 +52,7 @@ namespace Pokatun.iOS.Controls
         {
             base.AwakeFromNib();
 
+            _placeholderLabel.ApplyTitleLabelStyle();
             _addPhotoButton.ApplyShadowedButtonStyle();
             _addPhotoButton.TouchUpInside += OnTouchUpInside;
         }

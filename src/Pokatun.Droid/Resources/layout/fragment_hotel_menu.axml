@@ -17,6 +17,9 @@
         android:layout_height="wrap_content">
 		<LinearLayout
 			android:orientation="vertical"
+            android:showDividers="middle"
+            android:divider="?android:listDivider"
+			android:dividerPadding="13dp"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content">
 			<Pokatun.Droid.Controls.MenuItem
@@ -24,72 +27,30 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				/>
-			<View
-				android:background="@color/separatorColor"
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:layout_marginLeft="13dp"
-				android:layout_marginRight="13dp"
-				/>
 			<Pokatun.Droid.Controls.MenuItem
 				android:id="@+id/myHotelNumbersItem"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				/>
-			<View
-				android:background="@color/separatorColor"
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:layout_marginLeft="13dp"
-				android:layout_marginRight="13dp"
 				/>
 			<Pokatun.Droid.Controls.MenuItem
 				android:id="@+id/hotelRatingItem"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				/>
-			<View
-				android:background="@color/separatorColor"
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:layout_marginLeft="13dp"
-				android:layout_marginRight="13dp"
-				/>
 			<Pokatun.Droid.Controls.MenuItem
 				android:id="@+id/profileItem"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				/>
-			<View
-				android:background="@color/separatorColor"
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:layout_marginLeft="13dp"
-				android:layout_marginRight="13dp"
 				/>
 			<Pokatun.Droid.Controls.MenuItem
 				android:id="@+id/conditionsAndLoyaltyProgramItem"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				/>
-			<View
-				android:background="@color/separatorColor"
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:layout_marginLeft="13dp"
-				android:layout_marginRight="13dp"
-				/>
 			<Pokatun.Droid.Controls.MenuItem
 				android:id="@+id/securityItem"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				/>
-			<View
-				android:background="@color/separatorColor"
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:layout_marginLeft="13dp"
-				android:layout_marginRight="13dp"
 				/>
 			<Pokatun.Droid.Controls.MenuItem
 				android:id="@+id/exitItem"

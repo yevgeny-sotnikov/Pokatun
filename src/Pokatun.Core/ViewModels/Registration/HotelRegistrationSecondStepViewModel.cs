@@ -1,30 +1,23 @@
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
-using MvvmCross.Navigation;
 using MvvmValidation;
 using Pokatun.Core.Executors;
 using Pokatun.Core.Models;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
-using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Data;
-using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.ViewModels.Registration
 {
     public sealed class HotelRegistrationSecondStepViewModel : BaseViewModel<HotelRegistrationFirstData>
     {
+        private readonly IAuthExecutor _authExecutor;
         private readonly IUserDialogs _userDialogs;
-        private readonly IMvxNavigationService _navigationService;
         private readonly ValidationHelper _validator;
         private readonly IHotelsService _hotelsService;
-        private readonly INetworkRequestExecutor _networkRequestExecutor;
-        private readonly ISecureStorage _secureStorage;
         private bool _viewInEditMode = true;
 
         private HotelRegistrationFirstData _firstData;
@@ -114,18 +107,11 @@ namespace Pokatun.Core.ViewModels.Registration
             _firstData = parameter;
         }
 
-        public HotelRegistrationSecondStepViewModel(
-            IUserDialogs userDialogs,
-            IMvxNavigationService navigationService,
-            IHotelsService hotelsService,
-            INetworkRequestExecutor networkRequestExecutor,
-            ISecureStorage secureStorage)
+        public HotelRegistrationSecondStepViewModel(IAuthExecutor authExecutor, IUserDialogs userDialogs, IHotelsService hotelsService)
         {
+            _authExecutor = authExecutor;
             _userDialogs = userDialogs;
-            _navigationService = navigationService;
             _hotelsService = hotelsService;
-            _networkRequestExecutor = networkRequestExecutor;
-            _secureStorage = secureStorage;
 
             _validator = new ValidationHelper();
 
@@ -177,11 +163,12 @@ namespace Pokatun.Core.ViewModels.Registration
                 bankCard = long.Parse(BankCardOrIban);
             }
 
-            ServerResponce<TokenInfoDto> responce = await _networkRequestExecutor.MakeRequestAsync(
+            await _authExecutor.MakeAuthAsync(
                 () => _hotelsService.RegisterAsync(
                     _firstData.HotelName,
                     FullCompanyName,
                     _firstData.Email,
+                    _firstData.Password,
                     _firstData.PhoneNumber,
                     BankName, IBAN,
                     bankCard,
@@ -192,20 +179,9 @@ namespace Pokatun.Core.ViewModels.Registration
                     ErrorCodes.AccountAllreadyExistsError,
                     ErrorCodes.IbanAllreadyRegisteredError,
                     ErrorCodes.UsreouAllreadyRegisteredError
-                }
+                },
+                this, false 
             );
-
-            if (responce == null) return;
-
-            await _secureStorage.SetAsync(Constants.Keys.AccountId, responce.Data.AccountId.ToString(CultureInfo.InvariantCulture));
-            await _secureStorage.SetAsync(Constants.Keys.Token, responce.Data.Token);
-            await _secureStorage.SetAsync(
-                Constants.Keys.TokenExpirationTime,
-                responce.Data.ExpirationTime.ToUniversalTime().ToString(CultureInfo.InvariantCulture)
-            );
-
-            await _navigationService.Close(this);
-            await _navigationService.Navigate<HotelMenuViewModel>();
         }
 
         private bool CheckInvalid(string name)

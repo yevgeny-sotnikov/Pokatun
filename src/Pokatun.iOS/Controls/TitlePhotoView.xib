@@ -16,6 +16,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfl-ah-65f" customClass="BorderView">
                     <rect key="frame" x="3" y="3" width="38" height="38"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z04-s4-8Tv">
+                            <rect key="frame" x="13" y="8.5" width="12" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDo-Mo-Sbe" customClass="MvxCachedImageView">
                             <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
                         </view>
@@ -24,9 +30,11 @@
                             <state key="normal" image="plus_photo"/>
                         </button>
                     </subviews>
+                    <color key="backgroundColor" red="0.23921568627450979" green="0.28627450980392155" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Bl2-Qq-hgj" secondAttribute="bottom" id="EKU-us-qrB"/>
                         <constraint firstAttribute="width" constant="38" id="Ptx-tu-zb2"/>
+                        <constraint firstItem="z04-s4-8Tv" firstAttribute="centerX" secondItem="Rfl-ah-65f" secondAttribute="centerX" id="Rr9-8N-s9m"/>
                         <constraint firstAttribute="height" constant="38" id="S0l-Wy-Sxp"/>
                         <constraint firstItem="oDo-Mo-Sbe" firstAttribute="top" secondItem="Rfl-ah-65f" secondAttribute="top" id="Teo-EX-8zS"/>
                         <constraint firstItem="Bl2-Qq-hgj" firstAttribute="leading" secondItem="Rfl-ah-65f" secondAttribute="leading" id="VC6-tE-5F1"/>
@@ -35,6 +43,7 @@
                         <constraint firstAttribute="trailing" secondItem="Bl2-Qq-hgj" secondAttribute="trailing" id="cbu-n7-CCQ"/>
                         <constraint firstItem="oDo-Mo-Sbe" firstAttribute="leading" secondItem="Rfl-ah-65f" secondAttribute="leading" id="etf-fv-dra"/>
                         <constraint firstAttribute="trailing" secondItem="oDo-Mo-Sbe" secondAttribute="trailing" id="mkv-70-z7H"/>
+                        <constraint firstItem="z04-s4-8Tv" firstAttribute="centerY" secondItem="Rfl-ah-65f" secondAttribute="centerY" id="xY8-FH-sJR"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -56,6 +65,7 @@
             <connections>
                 <outlet property="_addPhotoButton" destination="Bl2-Qq-hgj" id="xNQ-5I-fEc"/>
                 <outlet property="_imageView" destination="oDo-Mo-Sbe" id="UnK-Jy-kWt"/>
+                <outlet property="_placeholderLabel" destination="z04-s4-8Tv" id="oIZ-8E-zft"/>
             </connections>
             <point key="canvasLocation" x="108.69565217391305" y="2.6785714285714284"/>
         </view>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+	android:orientation="horizontal"
+	android:paddingTop="16dp"
+	android:paddingBottom="16dp"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+    <ImageView
+		android:id="@+id/imageView"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		local:MvxBind="ResourceName Type, Converter=EntityTypeToImage"
+		/>
+	<TextView
+		style="@style/InfoLabel"
+        android:layout_marginLeft="16dp"
+		android:text="TEXT"
+        android:layout_gravity="center_vertical"
+		android:gravity="start"
+		android:singleLine="true"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/textLabel"
+		local:MvxBind="Text Text"
+	/>
+</LinearLayout>

@@ -12,7 +12,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-  
+
+    <data name="NA" xml:space="preserve">
+        <value>--</value>
+    </data>
     <data name="ChooseRoleText" xml:space="preserve">
         <value>Выберите как вы хотите использовать приложение</value>
     </data>
@@ -217,11 +220,17 @@
     <data name="CheckInTime" xml:space="preserve">
         <value>Время заселения</value>
     </data>
+    <data name="CheckIn" xml:space="preserve">
+        <value>Заселение:</value>
+    </data>
     <data name="CheckInTimeDidntSetted" xml:space="preserve">
         <value>Не задано время заселения</value>
     </data>
     <data name="CheckOutTime" xml:space="preserve">
         <value>Время выселения</value>
+    </data>
+    <data name="CheckOut" xml:space="preserve">
+        <value>Выселение:</value>
     </data>
     <data name="CheckOutTimeDidntSetted" xml:space="preserve">
         <value>Не задано время выселения</value>
@@ -253,10 +262,31 @@
     <data name="HotelDescriptionDidntAdded" xml:space="preserve">
         <value>Описание отеля не добавлено</value>
     </data>
-    <data name="PhoneNumbersDuplication" xml:space="preserve">
+    <data name="PhoneNumbersArentSetted" xml:space="preserve">
+        <value>Телефонные номера не заданы</value>
+    </data>
+    <data name="LinksArentSetted" xml:space="preserve">
+        <value>Ни одной ссылки не указано</value>
+    </data>
+    <data name="InvalidPhones" xml:space="preserve">
+        <value>Введены некоректные телефонные номера</value>
+    </data>
+    <data name="PhonesDuplication" xml:space="preserve">
         <value>Повторение телефонных номеров</value>
     </data>
-    <data name="SocialResourcesDuplication" xml:space="preserve">
+    <data name="LinksDuplication" xml:space="preserve">
         <value>Повторение ссылок</value>
+    </data>
+    <data name="CompleteYourProfile" xml:space="preserve">
+        <value>дополните ваш профиль</value>
+    </data>
+    <data name="Infrastructure" xml:space="preserve">
+        <value>Инфраструктура:</value>
+    </data>
+    <data name="AboutUs" xml:space="preserve">
+        <value>О нас:</value>
+    </data>
+    <data name="ProfileChanging" xml:space="preserve">
+        <value>Изменение профиля</value>
     </data>
 </root>

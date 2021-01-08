@@ -6,6 +6,9 @@ using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Droid.Controls;
 using MvvmCross.Platforms.Android.Binding;
+using MvvmCross.Plugin.Visibility;
+using MvvmCross.Platforms.Android.Binding.Target;
+
 namespace Pokatun.Droid.Views.Menu
 {
     [MvxFragmentPresentation(
@@ -42,10 +45,12 @@ namespace Pokatun.Droid.Views.Menu
             _securityItem = view.FindViewById<MenuItem>(Resource.Id.securityItem);
             _exitItem = view.FindViewById<MenuItem>(Resource.Id.exitItem);
 
+            ToolbarPhotoPlaceholderLabel.Text = ViewModel.Placeholder;
             _myBidsItem.Text = Strings.MyBids;
             _myHotelNumbersItem.Text = Strings.MyHotelNumbers;
             _hotelRatingItem.Text = Strings.HotelRating;
             _profileItem.Text = Strings.Profile;
+            _profileItem.AdditionalInfo = Strings.CompleteYourProfile + "  ⬤";
             _conditionsAndLoyaltyProgramItem.Text = Strings.ConditionsAndLoyaltyProgram;
             _securityItem.Text = Strings.Security;
             _exitItem.Text = Strings.Exit;
@@ -64,12 +69,28 @@ namespace Pokatun.Droid.Views.Menu
 
             #pragma warning restore IDE0008 // Use explicit type
 
+            set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
+            set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
+            set.Bind(ToolbarSubtitleLabel).For(v => v.Activated).To(vm => vm.ProfileNotCompleted).OneWay();
+            set.Bind(_profileItem).For(v => v.AdditionalInfoVisibility).To(vm => vm.ProfileNotCompleted)
+                .WithConversion<MvxVisibilityValueConverter>().OneWay();
+            
             set.Bind(_profileItem).For(_profileItem.BindClick()).To(vm => vm.ProfileCommand);
             set.Bind(_exitItem).For(_exitItem.BindClick()).To(vm => vm.ExitCommand);
 
             set.Apply();
 
             return view;
+        }
+
+        public override void OnStart()
+        {
+            base.OnStart();
+
+            ToolbarLeftSpaceView.Visibility = ViewStates.Visible;
+            ToolbarPhotoPlaceholderLabel.Visibility = ViewStates.Visible;
+            ToolbarPhotoContainer.Visibility = ViewStates.Visible;
+            ToolbarSubtitleLabel.Visibility = ViewStates.Visible;
         }
     }
 }

@@ -65,6 +65,22 @@ namespace Pokatun.API.Controllers
             }
         }
 
+        [HttpGet("[action]/{id}")]
+        public ActionResult<ServerResponce<ShortInfoDto>> ShortInfo(long id)
+        {
+            try
+            {
+                return Ok(new ServerResponce<ShortInfoDto>
+                {
+                    Data = _hotelsService.GetShortInfo(id)
+                });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
         [HttpPost]
         public ActionResult<ServerResponce> Post([FromBody] HotelDto hotel)
         {
