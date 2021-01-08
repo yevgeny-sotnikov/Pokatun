@@ -20,7 +20,7 @@ using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.ViewModels.Profile
 {
-    public sealed class EditHotelProfileViewModel : BaseViewModel<HotelDto, bool>
+    public sealed class EditHotelProfileViewModel : BaseViewModel<HotelDto, HotelDto>
     {
         private readonly IMvxNavigationService _navigationService;
         private readonly IUserDialogs _userDialogs;
@@ -335,8 +335,11 @@ namespace Pokatun.Core.ViewModels.Profile
             _validator.AddRule(nameof(PhotoStream), () => RuleResult.Assert(_viewInEditMode || PhotoStream != null, Strings.HotelPhotoDidntChoosen));
             _validator.AddRule(nameof(WithinTerritoryDescription), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(WithinTerritoryDescription), Strings.WithinTerritoryDescriptionDidntAdded));
             _validator.AddRule(nameof(HotelDescription), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelDescription), Strings.HotelDescriptionDidntAdded));
-            _validator.AddRule(nameof(PhoneNumbers), () => RuleResult.Assert(_viewInEditMode || !DuplicatedPhones.Any(), Strings.PhoneNumbersDuplication));
-            _validator.AddRule(nameof(SocialResources), () => RuleResult.Assert(_viewInEditMode || !DuplicatedSocialResources.Any(), Strings.SocialResourcesDuplication));
+            _validator.AddRule(nameof(PhoneNumbers), () => RuleResult.Assert(_viewInEditMode || PhoneNumbers.Any(), Strings.PhoneNumbersArentSetted));
+            _validator.AddRule(nameof(SocialResources), () => RuleResult.Assert(_viewInEditMode || SocialResources.Any(), Strings.LinksArentSetted));
+            _validator.AddRule(nameof(InvalidPhones), () => RuleResult.Assert(_viewInEditMode || !InvalidPhones.Any(), Strings.InvalidPhones));
+            _validator.AddRule(nameof(DuplicatedPhones), () => RuleResult.Assert(_viewInEditMode || !DuplicatedPhones.Any(), Strings.PhonesDuplication));
+            _validator.AddRule(nameof(DuplicatedSocialResources), () => RuleResult.Assert(_viewInEditMode || !DuplicatedSocialResources.Any(), Strings.LinksDuplication));
 
             PhoneNumbers = new MvxObservableCollection<ValidatableEntryItemViewModel>();
             SocialResources = new MvxObservableCollection<ValidatableEntryItemViewModel>();
@@ -367,7 +370,7 @@ namespace Pokatun.Core.ViewModels.Profile
             HotelDescription = parameter.HotelDescription;
             WithinTerritoryDescription = parameter.WithinTerritoryDescription;
             
-            PhoneNumbers.AddRange(parameter.Phones.Select(p => new ValidatableEntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneDuplicated)));
+            PhoneNumbers.AddRange(parameter.Phones.Select(p => new ValidatableEntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneInvalid)));
             SocialResources.AddRange(parameter.SocialResources.Select(sr => new ValidatableEntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand, IsLinkDuplicated)));
         }
 
@@ -376,12 +379,19 @@ namespace Pokatun.Core.ViewModels.Profile
             return DuplicatedSocialResources.Contains(str);
         }
 
-        private bool IsPhoneDuplicated(string str)
+        private bool IsPhoneInvalid(string phone)
         {
-            return DuplicatedPhones.Contains(str);
+            return DuplicatedPhones.Contains(phone) || IsPhoneDoesntMatchPattern(phone);
+        }
+
+        private bool IsPhoneDoesntMatchPattern(string phone)
+        {
+            return !Regex.IsMatch(phone, Constants.PhonePattern);
         }
 
         private string[] DuplicatedPhones => GetDuplications(PhoneNumbers);
+
+        private ValidatableEntryItemViewModel[] InvalidPhones => PhoneNumbers.Where(p => IsPhoneDoesntMatchPattern(p.Text)).ToArray();
 
         private string[] DuplicatedSocialResources => GetDuplications(SocialResources);
 
@@ -392,7 +402,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private void DoAddPhoneCommand()
         {
-            PhoneNumbers.Add(new ValidatableEntryItemViewModel(0, null, DeletePhoneCommand, IsPhoneDuplicated));
+            PhoneNumbers.Add(new ValidatableEntryItemViewModel(0, null, DeletePhoneCommand, IsPhoneInvalid));
         }
 
         private void DoDeletePhoneCommand(ValidatableEntryItemViewModel phoneVM)
@@ -440,7 +450,20 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private Task DoCloseCommandAsync()
         {
-            return _navigationService.Close(this, false);
+            string IBAN = null;
+            long? bankCard = null;
+
+            if (Regex.IsMatch(BankCardOrIban, DataPatterns.IBAN))
+            {
+                IBAN = BankCardOrIban;
+            }
+            else
+            {
+                bankCard = long.Parse(BankCardOrIban);
+            }
+
+
+            return _navigationService.Close(this);
         }
 
         private async Task DoSaveChangesCommandAsync()
@@ -514,7 +537,23 @@ namespace Pokatun.Core.ViewModels.Profile
             if (responce == null)
                 return;
 
-            await _navigationService.Close(this);
+            await _navigationService.Close(this, new HotelDto
+            {
+                HotelName = HotelName,
+                Email = Email,
+                FullCompanyName = FullCompanyName,
+                BankCard = bankCard,
+                IBAN = IBAN,
+                BankName = BankName,
+                USREOU = int.Parse(USREOU),
+                CheckInTime = CheckInTime,
+                CheckOutTime = CheckOutTime,
+                WithinTerritoryDescription = WithinTerritoryDescription,
+                HotelDescription = HotelDescription,
+                PhotoUrl = _photoFileName,
+                Phones = PhoneNumbers.Select(p => new PhoneDto { Id = p.Id, Number = p.Text }).ToList(),
+                SocialResources = SocialResources.Select(sr => new SocialResourceDto { Id = sr.Id, Link = sr.Text }).ToList()
+            });
         }
 
         private Task<TimePromptResult> ShowTimePromptAsync(string titleText, TimeSpan? startTime)

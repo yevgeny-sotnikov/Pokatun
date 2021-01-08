@@ -539,15 +539,33 @@ namespace Pokatun.Core.Resources {
             }
         }
         
-        public static string PhoneNumbersDuplication {
+        public static string PhoneNumbersArentSetted {
             get {
-                return ResourceManager.GetString("PhoneNumbersDuplication", resourceCulture);
+                return ResourceManager.GetString("PhoneNumbersArentSetted", resourceCulture);
             }
         }
         
-        public static string SocialResourcesDuplication {
+        public static string LinksArentSetted {
             get {
-                return ResourceManager.GetString("SocialResourcesDuplication", resourceCulture);
+                return ResourceManager.GetString("LinksArentSetted", resourceCulture);
+            }
+        }
+        
+        public static string InvalidPhones {
+            get {
+                return ResourceManager.GetString("InvalidPhones", resourceCulture);
+            }
+        }
+        
+        public static string PhonesDuplication {
+            get {
+                return ResourceManager.GetString("PhonesDuplication", resourceCulture);
+            }
+        }
+        
+        public static string LinksDuplication {
+            get {
+                return ResourceManager.GetString("LinksDuplication", resourceCulture);
             }
         }
         

@@ -180,9 +180,47 @@ namespace Pokatun.Core.ViewModels.Profile
             _parameter = parameter;
         }
 
-        private Task DoEditCommandAsync()
+        private async Task DoEditCommandAsync()
         {
-            return _navigationService.Navigate<EditHotelProfileViewModel, HotelDto>(_parameter);
+            HotelDto result = await _navigationService.Navigate<EditHotelProfileViewModel, HotelDto, HotelDto>(_parameter);
+
+            if (result == null)
+            {
+                return;
+            }
+
+            PhotoStream = ct => Task.FromResult<Stream>(File.OpenRead(result.PhotoUrl));
+
+            _parameter.HotelName = result.HotelName;
+            _parameter.FullCompanyName = result.FullCompanyName;
+            _parameter.Email = result.Email;
+            _parameter.BankCard = result.BankCard;
+            _parameter.IBAN = result.IBAN;
+            _parameter.BankName = result.BankName;
+            _parameter.USREOU = result.USREOU;
+            _parameter.HotelDescription = result.HotelDescription;
+            _parameter.WithinTerritoryDescription = result.WithinTerritoryDescription;
+            _parameter.CheckInTime = result.CheckInTime;
+            _parameter.CheckOutTime = result.CheckOutTime;
+            _parameter.Phones = result.Phones;
+            _parameter.SocialResources = result.SocialResources;
+
+            HotelName = result.HotelName;
+            FullCompanyName = result.FullCompanyName;
+            Email = result.Email;
+            BankCardOrIban = result.IBAN ?? result.BankCard.ToString();
+            BankName = result.BankName;
+            USREOU = result.USREOU.ToString();
+            HotelDescription = result.HotelDescription;
+            WithinTerritoryDescription = result.WithinTerritoryDescription;
+            CheckInTime = result.CheckInTime;
+            CheckOutTime = result.CheckOutTime;
+
+            PhoneNumbers.Clear();
+            SocialResources.Clear();
+
+            PhoneNumbers.AddRange(result.Phones.Select(p => new EntryItemViewModel { Type = EntryType.Phone, Text = p.Number }));
+            SocialResources.AddRange(result.SocialResources.Select(sr => new EntryItemViewModel { Type = EntryType.Link, Text = sr.Link }));
         }
     }
 }

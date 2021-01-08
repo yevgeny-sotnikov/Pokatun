@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
@@ -80,9 +81,9 @@ namespace Pokatun.Core.ViewModels.Menu
             RaisePropertyChanged(nameof(Subtitle));
             RaisePropertyChanged(nameof(ProfileNotCompleted));
 
-            if (parameter != null && parameter.PhotoName != null)
+            if (parameter != null && _parameter.PhotoName != null)
             {
-                PhotoStream = ct => _photosService.GetAsync(parameter.PhotoName);
+                PhotoStream = ct => _photosService.GetAsync(_parameter.PhotoName);
             }
             else PhotoStream = null;
         }
@@ -100,7 +101,38 @@ namespace Pokatun.Core.ViewModels.Menu
 
             if (_parameter == null || _parameter.ProfileNotCompleted)
             {
-                await _navigationService.Navigate<EditHotelProfileViewModel, HotelDto, bool>(responce.Data);
+                HotelDto hotel = await _navigationService.Navigate<EditHotelProfileViewModel, HotelDto, HotelDto>(responce.Data);
+
+                _parameter = new ShortInfoDto
+                {
+                    HotelName = hotel.HotelName,
+                    PhotoName = hotel.PhotoUrl,
+                    ProfileNotCompleted = (hotel.BankCard == null && hotel.IBAN == null)
+                        || hotel.BankName == null
+                        || hotel.CheckInTime == null
+                        || hotel.CheckOutTime == null
+                        || hotel.Email == null
+                        || hotel.FullCompanyName == null
+                        || hotel.HotelDescription == null
+                        || hotel.HotelName == null
+                        || hotel.PhotoUrl == null
+                        || hotel.USREOU == 0
+                        || hotel.WithinTerritoryDescription == null
+                        || !hotel.Phones.Any()
+                        || !hotel.SocialResources.Any()
+                };
+
+                if (_parameter.PhotoName != null)
+                {
+                    PhotoStream = ct => _photosService.GetAsync(_parameter.PhotoName);
+                }
+                else PhotoStream = null;
+
+                await Task.WhenAll(
+                    RaisePropertyChanged(nameof(Title)),
+                    RaisePropertyChanged(nameof(Subtitle)),
+                    RaisePropertyChanged(nameof(ProfileNotCompleted))
+                );
             }
             else
             {

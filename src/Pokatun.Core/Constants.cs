@@ -17,9 +17,12 @@ namespace Pokatun.Core
 
         #endif
 
+
         public const string InvalidValueExceptionMessage = "Invalid value";
 
         public const string CirclePattern = "[⬤]+?";
+
+        public const string PhonePattern = @"^(\+)\d{12,}$";
 
         public static class Keys
         {

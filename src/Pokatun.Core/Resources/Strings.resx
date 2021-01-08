@@ -262,10 +262,19 @@
     <data name="HotelDescriptionDidntAdded" xml:space="preserve">
         <value>Описание отеля не добавлено</value>
     </data>
-    <data name="PhoneNumbersDuplication" xml:space="preserve">
+    <data name="PhoneNumbersArentSetted" xml:space="preserve">
+        <value>Телефонные номера не заданы</value>
+    </data>
+    <data name="LinksArentSetted" xml:space="preserve">
+        <value>Ни одной ссылки не указано</value>
+    </data>
+    <data name="InvalidPhones" xml:space="preserve">
+        <value>Введены некоректные телефонные номера</value>
+    </data>
+    <data name="PhonesDuplication" xml:space="preserve">
         <value>Повторение телефонных номеров</value>
     </data>
-    <data name="SocialResourcesDuplication" xml:space="preserve">
+    <data name="LinksDuplication" xml:space="preserve">
         <value>Повторение ссылок</value>
     </data>
     <data name="CompleteYourProfile" xml:space="preserve">
