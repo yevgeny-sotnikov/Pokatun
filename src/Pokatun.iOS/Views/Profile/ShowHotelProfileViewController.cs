@@ -25,9 +25,11 @@ namespace Pokatun.iOS.Views.Profile
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            
+
             // Perform any additional setup after loading the view, typically from a nib.
-            
+
+            ViewTitle.IsSubtitleHidden = false;
+
             UIBarButtonItem rightBarButtonItem = new UIBarButtonItem { Image = UIImage.FromBundle("edit") };
 
             _titlePhotoView = TitlePhotoView.Create();
@@ -71,6 +73,8 @@ namespace Pokatun.iOS.Views.Profile
 
             #pragma warning restore IDE0008 // Use explicit type
 
+            set.Bind(ViewTitle).For(v => v.Title).To(vm => vm.Title).OneWay();
+            set.Bind(ViewTitle).For(v => v.Subtitle).To(vm => vm.Subtitle).OneWay();
             set.Bind(_titlePhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
             set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.EditCommand).OneTime();
 

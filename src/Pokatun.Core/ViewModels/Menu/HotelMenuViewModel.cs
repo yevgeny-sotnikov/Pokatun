@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Pokatun.Core.Executors;
@@ -22,6 +23,7 @@ namespace Pokatun.Core.ViewModels.Menu
         private readonly  IMvxNavigationService _navigationService;
         private readonly ISecureStorage _secureStorage;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
+        private readonly IMemoryCache _memoryCache;
         private readonly IHotelsService _hotelsService;
 
         private ShortInfoDto _parameter;
@@ -64,12 +66,14 @@ namespace Pokatun.Core.ViewModels.Menu
             IMvxNavigationService navigationService,
             ISecureStorage secureStorage,
             INetworkRequestExecutor networkRequestExecutor,
+            IMemoryCache memoryCache,
             IHotelsService hotelsService)
         {
             _photosService = photosService;
             _navigationService = navigationService;
             _secureStorage = secureStorage;
             _networkRequestExecutor = networkRequestExecutor;
+            _memoryCache = memoryCache;
             _hotelsService = hotelsService;
         }
 
@@ -136,7 +140,16 @@ namespace Pokatun.Core.ViewModels.Menu
             }
             else
             {
-                await _navigationService.Navigate<ShowHotelProfileViewModel, HotelDto>(responce.Data);
+                await _navigationService.Navigate<ShowHotelProfileViewModel, HotelDto, object>(responce.Data);
+
+                _parameter = _memoryCache.Get<ShortInfoDto>(Constants.Keys.ShortHotelInfo);
+                if (_parameter.PhotoName != null)
+                {
+                    PhotoStream = ct => _photosService.GetAsync(_parameter.PhotoName);
+                }
+                else PhotoStream = null;
+
+                await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Subtitle)));
             }
         }
 

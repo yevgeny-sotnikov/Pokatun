@@ -50,6 +50,7 @@ namespace Pokatun.iOS.Views.Menu
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(_titlePhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
+            set.Bind(ViewTitle).For(v => v.Title).To(vm => vm.Title).OneWay();
             set.Bind(ViewTitle).For(v => v.Subtitle).To(vm => vm.Subtitle).OneWay();
             set.Bind(ViewTitle).For(v => v.SubtitleHightlighted).To(vm => vm.ProfileNotCompleted).OneWay();
             set.Bind(_profileItem).For(v => v.AdditionalInfoVisibility).To(vm => vm.ProfileNotCompleted)

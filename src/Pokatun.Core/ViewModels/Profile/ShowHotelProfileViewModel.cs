@@ -13,12 +13,16 @@ using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Profile
 {
-    public class ShowHotelProfileViewModel : BaseViewModel<HotelDto>
+    public class ShowHotelProfileViewModel : BaseViewModel<HotelDto, object>
     {
         private readonly IPhotosService _photosService;
         private readonly IMvxNavigationService _navigationService;
 
         private HotelDto _parameter;
+
+        public override string Title => _parameter?.HotelName;
+
+        public string Subtitle => "{location}";
 
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
@@ -204,6 +208,8 @@ namespace Pokatun.Core.ViewModels.Profile
             _parameter.CheckOutTime = result.CheckOutTime;
             _parameter.Phones = result.Phones;
             _parameter.SocialResources = result.SocialResources;
+
+            await RaisePropertyChanged(nameof(Title));
 
             HotelName = result.HotelName;
             FullCompanyName = result.FullCompanyName;

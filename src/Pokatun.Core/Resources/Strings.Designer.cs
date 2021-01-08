@@ -586,5 +586,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("AboutUs", resourceCulture);
             }
         }
+        
+        public static string ProfileChanging {
+            get {
+                return ResourceManager.GetString("ProfileChanging", resourceCulture);
+            }
+        }
     }
 }

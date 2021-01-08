@@ -15,11 +15,11 @@ namespace Pokatun.Droid.Views
 
         private MainContainerActivity CompatActivity => (MainContainerActivity)Activity;
 
-        private ImageView ToolbarLogo => CompatActivity.ToolbarLogo;
+        protected ImageView ToolbarLogo => CompatActivity.ToolbarLogo;
 
-        private TextView ToolbarTitleLabel => CompatActivity.ToolbarTitleLabel;
+        protected TextView ToolbarTitleLabel => CompatActivity.ToolbarTitleLabel;
 
-        public TextView ToolbarSubtitleLabel => CompatActivity.ToolbarSubtitleLabel;
+        protected TextView ToolbarSubtitleLabel => CompatActivity.ToolbarSubtitleLabel;
 
         protected ImageButton ToolbarAddPhotoButton => CompatActivity.ToolbarAddPhotoButton;
 

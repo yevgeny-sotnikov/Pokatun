@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using Microsoft.Extensions.Caching.Memory;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -27,6 +28,7 @@ namespace Pokatun.Core.ViewModels.Profile
         private readonly IMediaPicker _mediaPicker;
         private readonly IHotelsService _hotelsService;
         private readonly IPhotosService _photosService;
+        private readonly IMemoryCache _memoryCache;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly ValidationHelper _validator;
 
@@ -34,8 +36,7 @@ namespace Pokatun.Core.ViewModels.Profile
         private long _currentHotelId;
         private string _photoFileName;
 
-        private string _title;
-        public override string Title => _title;
+        public override string Title => Strings.ProfileChanging;
 
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
@@ -305,6 +306,7 @@ namespace Pokatun.Core.ViewModels.Profile
             IMediaPicker mediaPicker,
             IHotelsService hotelsService,
             IPhotosService photosService,
+            IMemoryCache memoryCache,
             INetworkRequestExecutor networkRequestExecutor)
         {
             _navigationService = navigationService;
@@ -312,6 +314,7 @@ namespace Pokatun.Core.ViewModels.Profile
             _mediaPicker = mediaPicker;
             _hotelsService = hotelsService;
             _photosService = photosService;
+            _memoryCache = memoryCache;
             _networkRequestExecutor = networkRequestExecutor;
 
             _validator = new ValidationHelper();
@@ -348,8 +351,6 @@ namespace Pokatun.Core.ViewModels.Profile
         public override void Prepare(HotelDto parameter)
         {
             _currentHotelId = parameter.Id;
-            _title = parameter.HotelName;
-            RaisePropertyChanged(nameof(Title));
 
             _photoFileName = parameter.PhotoUrl;
 
@@ -450,19 +451,6 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private Task DoCloseCommandAsync()
         {
-            string IBAN = null;
-            long? bankCard = null;
-
-            if (Regex.IsMatch(BankCardOrIban, DataPatterns.IBAN))
-            {
-                IBAN = BankCardOrIban;
-            }
-            else
-            {
-                bankCard = long.Parse(BankCardOrIban);
-            }
-
-
             return _navigationService.Close(this);
         }
 
@@ -536,6 +524,11 @@ namespace Pokatun.Core.ViewModels.Profile
 
             if (responce == null)
                 return;
+
+            _memoryCache.Set(
+                Constants.Keys.ShortHotelInfo,
+                new ShortInfoDto { HotelName = HotelName, PhotoName = _photoFileName, ProfileNotCompleted = false }
+            );
 
             await _navigationService.Close(this, new HotelDto
             {

@@ -286,4 +286,7 @@
     <data name="AboutUs" xml:space="preserve">
         <value>О нас:</value>
     </data>
+    <data name="ProfileChanging" xml:space="preserve">
+        <value>Изменение профиля</value>
+    </data>
 </root>

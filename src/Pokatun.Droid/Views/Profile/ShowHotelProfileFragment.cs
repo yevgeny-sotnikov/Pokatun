@@ -83,6 +83,8 @@ namespace Pokatun.Droid.Views.Profile
 
             #pragma warning restore IDE0008 // Use explicit type
 
+            set.Bind(ToolbarTitleLabel).For(v => v.Text).To(vm => vm.Title).OneWay();
+            set.Bind(ToolbarSubtitleLabel).For(v => v.Text).To(vm => vm.Subtitle).OneWay();
             set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.EditCommand).OneTime();
 
@@ -112,6 +114,7 @@ namespace Pokatun.Droid.Views.Profile
             ToolbarLeftSpaceView.Visibility = ViewStates.Gone;
             ToolbarRightButton.SetImageResource(Resource.Drawable.edit);
 
+            ToolbarSubtitleLabel.Visibility = ViewStates.Visible;
             ToolbarRightButton.Visibility = ViewStates.Visible;
             ToolbarAddPhotoButton.Visibility = ViewStates.Invisible;
             ToolbarPhotoContainer.Visibility = ViewStates.Visible;
