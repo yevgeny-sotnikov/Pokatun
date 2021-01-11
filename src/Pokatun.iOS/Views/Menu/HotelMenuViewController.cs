@@ -56,6 +56,7 @@ namespace Pokatun.iOS.Views.Menu
             set.Bind(_profileItem).For(v => v.AdditionalInfoVisibility).To(vm => vm.ProfileNotCompleted)
                 .WithConversion<MvxVisibilityValueConverter>().OneWay();
 
+            set.Bind(_myHotelNumbersItem).For(nameof(MenuItem.Clicked)).To(vm => vm.HotelNumbersCommand);
             set.Bind(_profileItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ProfileCommand);
             set.Bind(_exitItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ExitCommand);
             

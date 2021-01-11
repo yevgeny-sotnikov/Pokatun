@@ -27,7 +27,8 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bl2-Qq-hgj">
                             <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
-                            <state key="normal" image="plus_photo"/>
+                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                            <state key="normal" image="plus"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.23921568627450979" green="0.28627450980392155" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,6 +72,6 @@
         </view>
     </objects>
     <resources>
-        <image name="plus_photo" width="22.5" height="22.5"/>
+        <image name="plus" width="32.5" height="33"/>
     </resources>
 </document>

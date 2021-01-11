@@ -11,6 +11,7 @@ using Pokatun.Core.Executors;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
+using Pokatun.Core.ViewModels.Numbers;
 using Pokatun.Core.ViewModels.Profile;
 using Pokatun.Data;
 using Xamarin.Essentials.Interfaces;
@@ -49,6 +50,16 @@ namespace Pokatun.Core.ViewModels.Menu
             get
             {
                 return _profileCommand ?? (_profileCommand = new MvxAsyncCommand(DoProfileCommandAsync));
+            }
+        }
+
+        private MvxAsyncCommand _hotelNumbersCommand;
+
+        public IMvxAsyncCommand HotelNumbersCommand
+        {
+            get
+            {
+                return _hotelNumbersCommand ?? (_hotelNumbersCommand = new MvxAsyncCommand(DoHotelNumbersCommandAsync));
             }
         }
 
@@ -152,6 +163,12 @@ namespace Pokatun.Core.ViewModels.Menu
                 await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Subtitle)));
             }
         }
+
+        private Task DoHotelNumbersCommandAsync()
+        {
+            return _navigationService.Navigate<HotelNumbersListViewModel>();
+        }
+
 
         private Task DoExitCommandAsync()
         {

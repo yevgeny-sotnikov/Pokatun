@@ -36,7 +36,7 @@ namespace Pokatun.iOS.Views.Profile
 
             NavigationItem.LeftItemsSupplementBackButton = true;
             base.NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_titlePhotoView), true);
-            NavigationItem.SetRightBarButtonItem(rightBarButtonItem, false);
+            NavigationItem.SetRightBarButtonItem(rightBarButtonItem, true);
 
             _phonesTableViewSource = CreateTableViewSource(_phonesTable, ShowItemViewCell.Key);
             _linksTableViewSource = CreateTableViewSource(_linksTable, ShowItemViewCell.Key);

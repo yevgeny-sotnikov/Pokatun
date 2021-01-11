@@ -28,6 +28,7 @@
     <Folder Include="Converters\" />
     <Folder Include="ViewModels\Collections\" />
     <Folder Include="Enums\" />
+    <Folder Include="ViewModels\Numbers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">

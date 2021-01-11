@@ -51,7 +51,7 @@
             <ImageButton
                 android:id="@+id/toolbarAddPhotoButton"
                 android:background="@drawable/toolbar_image_button"
-                android:src="@drawable/plus_photo"
+                android:src="@drawable/plus"
                 android:layout_width="47dp"
                 android:layout_height="47dp"
                 android:scaleType="fitCenter"

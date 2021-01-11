@@ -12,7 +12,7 @@ namespace Pokatun.iOS.Views
 {
     public abstract class BaseViewController<TViewModel> : MvxViewController<TViewModel> where TViewModel : BaseViewModel
     {
-        protected static readonly TitleView ViewTitle = TitleView.Create();
+        protected readonly TitleView ViewTitle = TitleView.Create();
 
         protected BaseViewController(string name, NSBundle bundle) : base(name, bundle)
         {
@@ -43,24 +43,6 @@ namespace Pokatun.iOS.Views
             ViewTitle.IsTitleHidden = titleNotExists;
             ViewTitle.IsSubtitleHidden = true;
             ViewTitle.Title = title;
-
-            CreateView();
-
-            LayoutView();
-
-            BindView();
-        }
-
-        protected virtual void CreateView()
-        {
-        }
-
-        protected virtual void LayoutView()
-        {
-        }
-
-        protected virtual void BindView()
-        {
         }
     }
 }

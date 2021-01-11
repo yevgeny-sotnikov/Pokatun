@@ -288,9 +288,6 @@
     <Compile Include="Controls\TitlePhotoView.designer.cs">
       <DependentUpon>TitlePhotoView.cs</DependentUpon>
     </Compile>
-    <ImageAsset Include="Resources\Media.xcassets\plus_photo.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Media.xcassets\plus_photo.imageset\plus_photo%402x.png" />
-    <ImageAsset Include="Resources\Media.xcassets\plus_photo.imageset\plus_photo%403x.png" />
     <InterfaceDefinition Include="Views\Profile\ShowHotelProfileViewController.xib" />
     <Compile Include="Views\Profile\ShowHotelProfileViewController.cs" />
     <Compile Include="Views\Profile\ShowHotelProfileViewController.designer.cs">
@@ -306,6 +303,14 @@
     </Compile>
     <Compile Include="Views\TablesViewController.cs" />
     <Compile Include="Converters\EntityTypeToImageConverter.cs" />
+    <InterfaceDefinition Include="Views\Numbers\HotelNumbersListViewController.xib" />
+    <Compile Include="Views\Numbers\HotelNumbersListViewController.cs" />
+    <Compile Include="Views\Numbers\HotelNumbersListViewController.designer.cs">
+      <DependentUpon>HotelNumbersListViewController.cs</DependentUpon>
+    </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\plus.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\plus.imageset\plus%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\plus.imageset\plus%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -441,6 +446,8 @@
     <Folder Include="Resources\Media.xcassets\plus_photo.imageset\" />
     <Folder Include="Resources\Media.xcassets\edit.imageset\" />
     <Folder Include="Converters\" />
+    <Folder Include="Views\Numbers\" />
+    <Folder Include="Resources\Media.xcassets\plus.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
