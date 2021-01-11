@@ -1,16 +1,6 @@
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
-using Android.Widget;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Pokatun.Core.ViewModels.Main;
@@ -22,14 +12,16 @@ namespace Pokatun.Droid.Views.Numbers
         typeof(MainContainerViewModel),
         Resource.Id.content_frame,
         AddToBackStack = true,
-        EnterAnimation = Android.Resource.Animation.SlideInLeft,
-        PopEnterAnimation = Android.Resource.Animation.SlideInLeft,
-        ExitAnimation = Android.Resource.Animation.SlideOutRight,
-        PopExitAnimation = Android.Resource.Animation.SlideOutRight
+        EnterAnimation = Android.Resource.Animation.FadeIn,
+        PopEnterAnimation = Android.Resource.Animation.FadeIn,
+        ExitAnimation = Android.Resource.Animation.FadeOut,
+        PopExitAnimation = Android.Resource.Animation.FadeOut
     )]
-    public sealed class HotelNumbersListFragment : BaseFragment<HotelNumbersListViewModel>
+    public class EditHotelNumberFragment : BaseFragment<EditHotelNumberViewModel>
     {
-        protected override int FragmentLayoutId => Resource.Layout.fragment_hotel_numbers_list;
+        protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_number;
+
+        protected override bool IsHeaderBackButtonVisible => false;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -38,11 +30,10 @@ namespace Pokatun.Droid.Views.Numbers
             #pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
-    
+
             #pragma warning restore IDE0008 // Use explicit type
 
-            set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.AddCommand).OneTime();
-
+            set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand).OneTime();
 
             set.Apply();
 
@@ -53,9 +44,9 @@ namespace Pokatun.Droid.Views.Numbers
         {
             base.OnStart();
 
-            ToolbarRightButton.SetImageResource(Resource.Drawable.plus);
-
+            ToolbarRightButton.SetImageResource(Resource.Drawable.close);
             ToolbarRightButton.Visibility = ViewStates.Visible;
         }
+
     }
 }

@@ -21,7 +21,7 @@ namespace Pokatun.Core.ViewModels.Menu
     public sealed class HotelMenuViewModel : BaseViewModel<ShortInfoDto>
     {
         private readonly IPhotosService _photosService;
-        private readonly  IMvxNavigationService _navigationService;
+        private readonly IMvxNavigationService _navigationService;
         private readonly ISecureStorage _secureStorage;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly IMemoryCache _memoryCache;

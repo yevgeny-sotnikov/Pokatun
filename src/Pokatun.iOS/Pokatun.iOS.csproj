@@ -311,6 +311,11 @@
     <ImageAsset Include="Resources\Media.xcassets\plus.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\plus.imageset\plus%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\plus.imageset\plus%403x.png" />
+    <InterfaceDefinition Include="Views\Numbers\EditHotelNumberViewController.xib" />
+    <Compile Include="Views\Numbers\EditHotelNumberViewController.cs" />
+    <Compile Include="Views\Numbers\EditHotelNumberViewController.designer.cs">
+      <DependentUpon>EditHotelNumberViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

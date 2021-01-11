@@ -1,16 +1,14 @@
 using System;
-using Foundation;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
-using MvvmCross.Platforms.Ios.Views;
 using Pokatun.Core.ViewModels.Numbers;
 using UIKit;
 
 namespace Pokatun.iOS.Views.Numbers
 {
-    [MvxChildPresentation]
-    public sealed partial class HotelNumbersListViewController : TablesViewController<HotelNumbersListViewModel>
+    [MvxModalPresentation(WrapInNavigationController = true, ModalPresentationStyle = UIModalPresentationStyle.BlurOverFullScreen)]
+    public sealed partial class EditHotelNumberViewController : BaseViewController<EditHotelNumberViewModel>
     {
-        public HotelNumbersListViewController() : base(nameof(HotelNumbersListViewController), null)
+        public EditHotelNumberViewController() : base(nameof(EditHotelNumberViewController), null)
         {
         }
 
@@ -20,8 +18,7 @@ namespace Pokatun.iOS.Views.Numbers
 
             // Perform any additional setup after loading the view, typically from a nib.
 
-            UIBarButtonItem rightBarButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Add);
-
+            UIBarButtonItem rightBarButtonItem = new UIBarButtonItem { Image = UIImage.FromBundle("close") };
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, true);
 
             #pragma warning disable IDE0008 // Use explicit type
@@ -30,7 +27,7 @@ namespace Pokatun.iOS.Views.Numbers
 
             #pragma warning restore IDE0008 // Use explicit type
 
-            set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.AddCommand).OneTime();
+            set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.CloseCommand).OneTime();
 
             set.Apply();
         }
