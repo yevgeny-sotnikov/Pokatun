@@ -4,6 +4,7 @@ using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Numbers;
@@ -22,6 +23,7 @@ namespace Pokatun.Droid.Views.Numbers
     public class EditHotelNumberFragment : BaseFragment<EditHotelNumberViewModel>
     {
         private EditText _roomNumberTextField;
+        private Button _selectRoomLevelButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_number;
 
@@ -32,6 +34,7 @@ namespace Pokatun.Droid.Views.Numbers
             View view = base.OnCreateView(inflater, container, savedInstanceState);
 
             _roomNumberTextField = view.FindViewById<EditText>(Resource.Id.roomNumberTextField);
+            _selectRoomLevelButton = view.FindViewById<Button>(Resource.Id.selectRoomLevelButton);
 
             _roomNumberTextField.Hint = Strings.RoomNumber;
 
@@ -44,6 +47,10 @@ namespace Pokatun.Droid.Views.Numbers
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand).OneTime();
 
             set.Bind(_roomNumberTextField).To(vm => vm.RoomNumber).TwoWay();
+
+            set.Bind(_selectRoomLevelButton).For(v => v.Text).To(vm => vm.Level).WithConversion<RoomLevelToStringConverter>().OneWay();
+
+            set.Bind(_selectRoomLevelButton).To(vm => vm.SelectRoomLevelCommand).OneTime();
 
             set.Apply();
 

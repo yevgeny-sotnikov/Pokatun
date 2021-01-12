@@ -295,4 +295,19 @@
     <data name="RoomNumber" xml:space="preserve">
         <value>Номер комнаты</value>
     </data>
+    <data name="Econom" xml:space="preserve">
+        <value>Эконом</value>
+    </data>
+    <data name="Standart" xml:space="preserve">
+        <value>Стандарт</value>
+    </data>
+    <data name="Lux" xml:space="preserve">
+        <value>Люкс</value>
+    </data>
+    <data name="SelectRoomCategory" xml:space="preserve">
+        <value>Выберите категорию номера</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Отмена</value>
+    </data>
 </root>

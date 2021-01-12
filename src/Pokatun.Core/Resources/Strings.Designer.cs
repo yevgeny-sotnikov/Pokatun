@@ -604,5 +604,35 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("RoomNumber", resourceCulture);
             }
         }
+        
+        public static string Econom {
+            get {
+                return ResourceManager.GetString("Econom", resourceCulture);
+            }
+        }
+        
+        public static string Standart {
+            get {
+                return ResourceManager.GetString("Standart", resourceCulture);
+            }
+        }
+        
+        public static string Lux {
+            get {
+                return ResourceManager.GetString("Lux", resourceCulture);
+            }
+        }
+        
+        public static string SelectRoomCategory {
+            get {
+                return ResourceManager.GetString("SelectRoomCategory", resourceCulture);
+            }
+        }
+        
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
     }
 }
