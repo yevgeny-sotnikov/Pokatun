@@ -1,8 +1,10 @@
 using System;
 using Android.OS;
 using Android.Views;
+using Android.Widget;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Numbers;
 
@@ -19,6 +21,8 @@ namespace Pokatun.Droid.Views.Numbers
     )]
     public class EditHotelNumberFragment : BaseFragment<EditHotelNumberViewModel>
     {
+        private EditText _roomNumberTextField;
+
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_number;
 
         protected override bool IsHeaderBackButtonVisible => false;
@@ -27,6 +31,10 @@ namespace Pokatun.Droid.Views.Numbers
         {
             View view = base.OnCreateView(inflater, container, savedInstanceState);
 
+            _roomNumberTextField = view.FindViewById<EditText>(Resource.Id.roomNumberTextField);
+
+            _roomNumberTextField.Hint = Strings.RoomNumber;
+
             #pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
@@ -34,6 +42,8 @@ namespace Pokatun.Droid.Views.Numbers
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand).OneTime();
+
+            set.Bind(_roomNumberTextField).To(vm => vm.RoomNumber).TwoWay();
 
             set.Apply();
 

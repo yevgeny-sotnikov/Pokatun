@@ -4,5 +4,30 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+	<ScrollView
+		android:overScrollMode="never"
+		android:requiresFadingEdge="vertical"
+        android:layout_width="match_parent"
+		android:layout_marginTop="0dp"
+        android:layout_height="0dp"
+		android:layout_weight="1">
+		<LinearLayout
+			android:layout_marginLeft="@dimen/common_left_right_distanse"
+			android:layout_marginRight="@dimen/common_left_right_distanse"
+			android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+			<EditText
+                style="@style/BorderedEditTextWithLeftImage"
+                android:drawableLeft="@drawable/num"
+				android:layout_marginTop="43dp"
+				android:maxLength="4"
+				android:inputType="number"
+				android:layout_width="match_parent"
+				android:id="@+id/roomNumberTextField"
+				/>
+
+		</LinearLayout>
+	</ScrollView>
 
 </LinearLayout>

@@ -292,4 +292,7 @@
     <data name="NewHotelNumber" xml:space="preserve">
         <value>Новый номер</value>
     </data>
+    <data name="RoomNumber" xml:space="preserve">
+        <value>Номер комнаты</value>
+    </data>
 </root>

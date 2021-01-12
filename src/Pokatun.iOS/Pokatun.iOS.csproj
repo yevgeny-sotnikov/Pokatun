@@ -316,6 +316,9 @@
     <Compile Include="Views\Numbers\EditHotelNumberViewController.designer.cs">
       <DependentUpon>EditHotelNumberViewController.cs</DependentUpon>
     </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\num.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\num.imageset\num%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\num.imageset\num%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -453,6 +456,7 @@
     <Folder Include="Converters\" />
     <Folder Include="Views\Numbers\" />
     <Folder Include="Resources\Media.xcassets\plus.imageset\" />
+    <Folder Include="Resources\Media.xcassets\num.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

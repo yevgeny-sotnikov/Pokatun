@@ -1,5 +1,6 @@
 using System;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Numbers;
 using UIKit;
 
@@ -21,6 +22,9 @@ namespace Pokatun.iOS.Views.Numbers
             UIBarButtonItem rightBarButtonItem = new UIBarButtonItem { Image = UIImage.FromBundle("close") };
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, true);
 
+            _roomNumberTextField.KeyboardType = UIKeyboardType.NumberPad;
+            _roomNumberTextField.Placeholder = Strings.RoomNumber;
+
             #pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
@@ -29,6 +33,8 @@ namespace Pokatun.iOS.Views.Numbers
 
             set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.CloseCommand).OneTime();
 
+            set.Bind(_roomNumberTextField).For(v => v.Text).To(vm => vm.RoomNumber).TwoWay();
+            
             set.Apply();
         }
     }
