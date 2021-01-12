@@ -592,5 +592,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("ProfileChanging", resourceCulture);
             }
         }
+        
+        public static string NewHotelNumber {
+            get {
+                return ResourceManager.GetString("NewHotelNumber", resourceCulture);
+            }
+        }
     }
 }

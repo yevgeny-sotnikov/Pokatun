@@ -289,4 +289,7 @@
     <data name="ProfileChanging" xml:space="preserve">
         <value>Изменение профиля</value>
     </data>
+    <data name="NewHotelNumber" xml:space="preserve">
+        <value>Новый номер</value>
+    </data>
 </root>

@@ -2,12 +2,15 @@ using System;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Pokatun.Core.Resources;
 
 namespace Pokatun.Core.ViewModels.Numbers
 {
     public sealed class EditHotelNumberViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService _navigationService;
+
+        public override string Title => Strings.NewHotelNumber; 
 
         private MvxAsyncCommand _closeCommand;
         public IMvxAsyncCommand CloseCommand
