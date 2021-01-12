@@ -13,7 +13,7 @@ namespace Pokatun.Droid.Controls
     {
         private TextView _titleLabel;
         private TextView _counterLabel;
-        private TextView _dataTextField;
+        private EditText _dataTextField;
 
         private int _maxLenght;
 
@@ -77,7 +77,7 @@ namespace Pokatun.Droid.Controls
 
             _titleLabel = view.FindViewById<TextView>(Resource.Id.titleLabel);
             _counterLabel = view.FindViewById<TextView>(Resource.Id.counterLabel);
-            _dataTextField = view.FindViewById<TextView>(Resource.Id.dataTextField);
+            _dataTextField = view.FindViewById<EditText>(Resource.Id.dataTextField);
 
             _dataTextField.TextChanged += OnDataTextChanged;
         }

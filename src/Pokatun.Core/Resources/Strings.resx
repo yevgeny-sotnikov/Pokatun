@@ -325,4 +325,7 @@
     <data name="IncorrectInput" xml:space="preserve">
         <value>Некорректный ввод</value>
     </data>
+    <data name="HotelNumberDescription" xml:space="preserve">
+        <value>Описание номера</value>
+    </data>
 </root>

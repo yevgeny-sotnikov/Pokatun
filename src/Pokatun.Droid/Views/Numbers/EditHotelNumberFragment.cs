@@ -27,6 +27,7 @@ namespace Pokatun.Droid.Views.Numbers
         private Button _selectRoomLevelButton;
         private Button _amountOfRoomsButton;
         private Button _amountOfVisitorsButton;
+        private EditText _numberDescriptionTextField;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_number;
 
@@ -40,8 +41,10 @@ namespace Pokatun.Droid.Views.Numbers
             _selectRoomLevelButton = view.FindViewById<Button>(Resource.Id.selectRoomLevelButton);
             _amountOfRoomsButton = view.FindViewById<Button>(Resource.Id.amountOfRoomsButton);
             _amountOfVisitorsButton = view.FindViewById<Button>(Resource.Id.amountOfVisitorsButton);
+            _numberDescriptionTextField = view.FindViewById<EditText>(Resource.Id.numberDescriptionTextField);
 
             _roomNumberTextField.Hint = Strings.RoomNumber;
+            _numberDescriptionTextField.Hint = Strings.HotelNumberDescription;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -52,6 +55,7 @@ namespace Pokatun.Droid.Views.Numbers
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand).OneTime();
 
             set.Bind(_roomNumberTextField).To(vm => vm.Number).TwoWay();
+            set.Bind(_numberDescriptionTextField).To(vm => vm.Description).TwoWay();
 
             set.Bind(_selectRoomLevelButton).For(v => v.Text).To(vm => vm.Level).WithConversion<RoomLevelToStringConverter>().OneWay();
             set.Bind(_amountOfRoomsButton).For(v => v.Text).To(vm => vm.RoomsAmount)

@@ -52,6 +52,13 @@ namespace Pokatun.Core.ViewModels.Numbers
             set { SetProperty(ref _visitorsAmount, value); }
         }
 
+        private string _description;
+        public string Description
+        {
+            get { return _description; }
+            set { SetProperty(ref _description, value); }
+        }
+
         private MvxAsyncCommand _selectRoomLevelCommand;
         public IMvxAsyncCommand SelectRoomLevelCommand
         {
@@ -117,7 +124,7 @@ namespace Pokatun.Core.ViewModels.Numbers
             if (amount == 0)
             {
                 return;
-            }
+               }
 
             RoomsAmount = amount;
         }

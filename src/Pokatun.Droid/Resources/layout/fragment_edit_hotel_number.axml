@@ -58,6 +58,20 @@
                     android:drawableLeft="@drawable/people_editroom"
                     />
             </LinearLayout>
+
+			<EditText
+				android:id="@+id/numberDescriptionTextField"
+                style="@style/BorderedEditText"
+				android:layout_marginTop="16dp"
+                android:paddingTop="32dp"
+                android:paddingLeft="13dp"
+                android:paddingRight="13dp"
+                android:paddingBottom="32dp"
+				android:maxLength="200"
+				android:inputType="textMultiLine"
+				android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+				/>
 		</LinearLayout>
 	</ScrollView>
 

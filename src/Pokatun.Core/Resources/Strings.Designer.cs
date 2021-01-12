@@ -664,5 +664,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("IncorrectInput", resourceCulture);
             }
         }
+        
+        public static string HotelNumberDescription {
+            get {
+                return ResourceManager.GetString("HotelNumberDescription", resourceCulture);
+            }
+        }
     }
 }
