@@ -310,4 +310,19 @@
     <data name="Cancel" xml:space="preserve">
         <value>Отмена</value>
     </data>
+    <data name="RoomsNumFormat" xml:space="preserve">
+        <value>{0} комн</value>
+    </data>
+    <data name="PeopleNumFormat" xml:space="preserve">
+        <value>{0} чел</value>
+    </data>
+    <data name="PromptAmoutOfRoms" xml:space="preserve">
+        <value>Введите количество комнат</value>
+    </data>
+    <data name="PromptAmoutOfVisitors" xml:space="preserve">
+        <value>Введите количество посетителей</value>
+    </data>
+    <data name="IncorrectInput" xml:space="preserve">
+        <value>Некорректный ввод</value>
+    </data>
 </root>

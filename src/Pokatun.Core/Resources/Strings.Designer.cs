@@ -634,5 +634,35 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
+        
+        public static string RoomsNumFormat {
+            get {
+                return ResourceManager.GetString("RoomsNumFormat", resourceCulture);
+            }
+        }
+        
+        public static string PeopleNumFormat {
+            get {
+                return ResourceManager.GetString("PeopleNumFormat", resourceCulture);
+            }
+        }
+        
+        public static string PromptAmoutOfRoms {
+            get {
+                return ResourceManager.GetString("PromptAmoutOfRoms", resourceCulture);
+            }
+        }
+        
+        public static string PromptAmoutOfVisitors {
+            get {
+                return ResourceManager.GetString("PromptAmoutOfVisitors", resourceCulture);
+            }
+        }
+        
+        public static string IncorrectInput {
+            get {
+                return ResourceManager.GetString("IncorrectInput", resourceCulture);
+            }
+        }
     }
 }

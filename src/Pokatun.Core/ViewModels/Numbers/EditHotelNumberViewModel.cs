@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
@@ -23,11 +24,11 @@ namespace Pokatun.Core.ViewModels.Numbers
 
         public override string Title => Strings.NewHotelNumber;
 
-        private short? _roomNumber;
-        public short? RoomNumber
+        private short? _number;
+        public short? Number
         {
-            get { return _roomNumber; }
-            set { SetProperty(ref _roomNumber, value); }
+            get { return _number; }
+            set { SetProperty(ref _number, value); }
         }
 
         private RoomLevel _level = RoomLevel.Standart;
@@ -37,12 +38,44 @@ namespace Pokatun.Core.ViewModels.Numbers
             set { SetProperty(ref _level, value); }
         }
 
+        private byte _roomsAmount = 1;
+        public byte RoomsAmount
+        {
+            get { return _roomsAmount; }
+            set { SetProperty(ref _roomsAmount, value); }
+        }
+
+        private byte _visitorsAmount = 1;
+        public byte VisitorsAmount
+        {
+            get { return _visitorsAmount; }
+            set { SetProperty(ref _visitorsAmount, value); }
+        }
+
         private MvxAsyncCommand _selectRoomLevelCommand;
         public IMvxAsyncCommand SelectRoomLevelCommand
         {
             get
             {
                 return _selectRoomLevelCommand ?? (_selectRoomLevelCommand = new MvxAsyncCommand(DoSelectRoomLevelCommandAsync));
+            }
+        }
+
+        private MvxAsyncCommand _promptRoomsAmountCommand;
+        public IMvxAsyncCommand PromptRoomsAmountCommand
+        {
+            get
+            {
+                return _promptRoomsAmountCommand ?? (_promptRoomsAmountCommand = new MvxAsyncCommand(DoPromptRoomsAmountCommandAsync));
+            }
+        }
+
+        private MvxAsyncCommand _promptVisitorsAmountCommand;
+        public IMvxAsyncCommand PromptVisitorsAmountCommand
+        {
+            get
+            {
+                return _promptVisitorsAmountCommand ?? (_promptVisitorsAmountCommand = new MvxAsyncCommand(DoPromptVisitorsAmountCommandAsync));
             }
         }
 
@@ -75,6 +108,51 @@ namespace Pokatun.Core.ViewModels.Numbers
             }
 
             Level = RoomLevelsConversions[result];
+        }
+
+        private async Task DoPromptRoomsAmountCommandAsync()
+        {
+            byte amount = await CalculateAmountAsync(Strings.PromptAmoutOfRoms);
+
+            if (amount == 0)
+            {
+                return;
+            }
+
+            RoomsAmount = amount;
+        }
+
+        private async Task DoPromptVisitorsAmountCommandAsync()
+        {
+            byte amount = await CalculateAmountAsync(Strings.PromptAmoutOfVisitors);
+
+            if (amount == 0)
+            {
+                return;
+            }
+
+            VisitorsAmount = amount;
+        }
+
+        private async Task<byte> CalculateAmountAsync(string message)
+        {
+            PromptResult result = await _userDialogs.PromptAsync(message, cancelText: Strings.Cancel, inputType: InputType.DecimalNumber);
+
+            if (!result.Ok)
+            {
+                return 0;
+            }
+
+            byte amount;
+            bool success = byte.TryParse(result.Text, out amount);
+
+            if (!success || amount == 0)
+            {
+                _userDialogs.Toast(Strings.IncorrectInput);
+                return 0;
+            }
+
+            return amount;
         }
 
         private Task DoCloseCommandAsync()

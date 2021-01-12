@@ -31,9 +31,33 @@
                 android:id="@+id/selectRoomLevelButton"
                 style="@style/BorderedButton"
                 android:layout_width="match_parent"
-            	android:layout_marginTop="8dp"
+            	android:layout_marginTop="16dp"
+                android:drawablePadding="0dp"
                 android:drawableLeft="@drawable/category_editroom"
                 />
+			<LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/amountOfRoomsButton"
+                    style="@style/BorderedButton"
+                    android:drawablePadding="0dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/key_editroom"
+                    />
+                <Button
+                    android:id="@+id/amountOfVisitorsButton"
+                    style="@style/BorderedButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:drawablePadding="0dp"
+                    android:layout_marginLeft="14dp"
+                    android:drawableLeft="@drawable/people_editroom"
+                    />
+            </LinearLayout>
 		</LinearLayout>
 	</ScrollView>
 

@@ -33,7 +33,7 @@ namespace Pokatun.iOS.Views.Numbers
 
             set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.CloseCommand).OneTime();
 
-            set.Bind(_roomNumberTextField).For(v => v.Text).To(vm => vm.RoomNumber).TwoWay();
+            set.Bind(_roomNumberTextField).For(v => v.Text).To(vm => vm.Number).TwoWay();
             
             set.Apply();
         }
