@@ -331,4 +331,16 @@
     <data name="NumbersCleaning" xml:space="preserve">
         <value>Уборка номеров</value>
     </data>
+    <data name="Nutrition" xml:space="preserve">
+        <value>Питание</value>
+    </data>
+    <data name="Breakfast" xml:space="preserve">
+        <value>Завтрак</value>
+    </data>
+    <data name="Dinner" xml:space="preserve">
+        <value>Обед</value>
+    </data>
+    <data name="Supper" xml:space="preserve">
+        <value>Ужин</value>
+    </data>
 </root>

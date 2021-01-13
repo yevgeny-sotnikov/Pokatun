@@ -1,9 +1,8 @@
-using System;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.Widget;
-using MvvmCross.Binding.BindingContext;
+using Google.Android.Material.SwitchMaterial;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Pokatun.Core.Converters;
@@ -30,7 +29,12 @@ namespace Pokatun.Droid.Views.Numbers
         private Button _amountOfVisitorsButton;
         private EditText _numberDescriptionTextField;
         private TextView _cleaningLabel;
-        private SwitchCompat _cleaningNeededSwitch;
+        private TextView _nutritionLabel;
+        private SwitchMaterial _cleaningNeededSwitch;
+        private SwitchMaterial _nutritionNeededSwitch;
+        private CheckBox _breakfastCheckbox;
+        private CheckBox _dinnerCheckbox;
+        private CheckBox _supperCheckbox;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_number;
 
@@ -46,11 +50,20 @@ namespace Pokatun.Droid.Views.Numbers
             _amountOfVisitorsButton = view.FindViewById<Button>(Resource.Id.amountOfVisitorsButton);
             _numberDescriptionTextField = view.FindViewById<EditText>(Resource.Id.numberDescriptionTextField);
             _cleaningLabel = view.FindViewById<TextView>(Resource.Id.cleaningLabel);
-            _cleaningNeededSwitch = view.FindViewById<SwitchCompat>(Resource.Id.cleaningNeededSwitch);
+            _nutritionLabel = view.FindViewById<TextView>(Resource.Id.nutritionLabel);
+            _cleaningNeededSwitch = view.FindViewById<SwitchMaterial>(Resource.Id.cleaningNeededSwitch);
+            _nutritionNeededSwitch = view.FindViewById<SwitchMaterial>(Resource.Id.nutritionNeededSwitch);
+            _breakfastCheckbox = view.FindViewById<CheckBox>(Resource.Id.breakfastCheckbox);
+            _dinnerCheckbox = view.FindViewById<CheckBox>(Resource.Id.dinnerCheckbox);
+            _supperCheckbox = view.FindViewById<CheckBox>(Resource.Id.supperCheckbox);
 
             _roomNumberTextField.Hint = Strings.RoomNumber;
             _numberDescriptionTextField.Hint = Strings.HotelNumberDescription;
             _cleaningLabel.Text = Strings.NumbersCleaning;
+            _nutritionLabel.Text = Strings.Nutrition;
+            _breakfastCheckbox.Text = Strings.Breakfast;
+            _dinnerCheckbox.Text = Strings.Dinner;
+            _supperCheckbox.Text = Strings.Supper;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -69,7 +82,15 @@ namespace Pokatun.Droid.Views.Numbers
             set.Bind(_amountOfVisitorsButton).For(v => v.Text).To(vm => vm.VisitorsAmount)
                 .WithConversion<StringFormatValueConverter>(Strings.PeopleNumFormat).OneWay();
 
-            set.Bind(_cleaningNeededSwitch).For(_cleaningNeededSwitch.BindChecked()).To(vm => vm.CleaningNeeded).TwoWay();
+            set.Bind(_cleaningNeededSwitch).For(v => v.Checked).To(vm => vm.CleaningNeeded).TwoWay();
+            set.Bind(_nutritionNeededSwitch).For(v => v.Checked).To(vm => vm.NutritionNeeded).TwoWay();
+            set.Bind(_breakfastCheckbox).For(v => v.Checked).To(vm => vm.BreakfastIncluded).TwoWay();
+            set.Bind(_dinnerCheckbox).For(v => v.Checked).To(vm => vm.DinnerIncluded).TwoWay();
+            set.Bind(_supperCheckbox).For(v => v.Checked).To(vm => vm.SupperIncluded).TwoWay();
+
+            set.Bind(_breakfastCheckbox).For(v => v.Enabled).To(vm => vm.NutritionNeeded).OneWay();
+            set.Bind(_dinnerCheckbox).For(v => v.Enabled).To(vm => vm.NutritionNeeded).OneWay();
+            set.Bind(_supperCheckbox).For(v => v.Enabled).To(vm => vm.NutritionNeeded).OneWay();
 
             set.Bind(_selectRoomLevelButton).To(vm => vm.SelectRoomLevelCommand).OneTime();
             set.Bind(_amountOfRoomsButton).To(vm => vm.PromptRoomsAmountCommand).OneTime();
@@ -83,7 +104,7 @@ namespace Pokatun.Droid.Views.Numbers
         public override void OnStart()
         {
             base.OnStart();
-
+            
             ToolbarRightButton.SetImageResource(Resource.Drawable.close);
             ToolbarRightButton.Visibility = ViewStates.Visible;
         }

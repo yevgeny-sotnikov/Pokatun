@@ -66,6 +66,34 @@ namespace Pokatun.Core.ViewModels.Numbers
             set { SetProperty(ref _cleaningNeeded, value); }
         }
 
+        private bool _nutritionNeeded;
+        public bool NutritionNeeded
+        {
+            get { return _nutritionNeeded; }
+            set { SetProperty(ref _nutritionNeeded, value); }
+        }
+
+        private bool _breakfastIncluded;
+        public bool BreakfastIncluded
+        {
+            get { return _breakfastIncluded; }
+            set { SetProperty(ref _breakfastIncluded, value); }
+        }
+
+        private bool _dinnerIncluded;
+        public bool DinnerIncluded
+        {
+            get { return _dinnerIncluded; }
+            set { SetProperty(ref _dinnerIncluded, value); }
+        }
+
+        private bool _supperIncluded;
+        public bool SupperIncluded
+        {
+            get { return _supperIncluded; }
+            set { SetProperty(ref _supperIncluded, value); }
+        }
+
         private MvxAsyncCommand _selectRoomLevelCommand;
         public IMvxAsyncCommand SelectRoomLevelCommand
         {

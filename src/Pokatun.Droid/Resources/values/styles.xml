@@ -97,4 +97,10 @@
         <item name="android:drawablePadding">10dp</item>
     </style>
 
+    <style name="CheckBox" parent="AdditionalInfoLabel">
+        <item name="android:button">@drawable/check_box</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:textColor">@color/checkbox_text_color</item>
+    </style>
+
 </resources>

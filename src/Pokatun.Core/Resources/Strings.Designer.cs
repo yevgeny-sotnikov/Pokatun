@@ -676,5 +676,29 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("NumbersCleaning", resourceCulture);
             }
         }
+        
+        public static string Nutrition {
+            get {
+                return ResourceManager.GetString("Nutrition", resourceCulture);
+            }
+        }
+        
+        public static string Breakfast {
+            get {
+                return ResourceManager.GetString("Breakfast", resourceCulture);
+            }
+        }
+        
+        public static string Dinner {
+            get {
+                return ResourceManager.GetString("Dinner", resourceCulture);
+            }
+        }
+        
+        public static string Supper {
+            get {
+                return ResourceManager.GetString("Supper", resourceCulture);
+            }
+        }
     }
 }
