@@ -670,5 +670,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("HotelNumberDescription", resourceCulture);
             }
         }
+        
+        public static string NumbersCleaning {
+            get {
+                return ResourceManager.GetString("NumbersCleaning", resourceCulture);
+            }
+        }
     }
 }

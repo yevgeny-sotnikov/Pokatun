@@ -2,6 +2,7 @@ using System;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using AndroidX.AppCompat.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -28,6 +29,8 @@ namespace Pokatun.Droid.Views.Numbers
         private Button _amountOfRoomsButton;
         private Button _amountOfVisitorsButton;
         private EditText _numberDescriptionTextField;
+        private TextView _cleaningLabel;
+        private SwitchCompat _cleaningNeededSwitch;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_number;
 
@@ -42,9 +45,12 @@ namespace Pokatun.Droid.Views.Numbers
             _amountOfRoomsButton = view.FindViewById<Button>(Resource.Id.amountOfRoomsButton);
             _amountOfVisitorsButton = view.FindViewById<Button>(Resource.Id.amountOfVisitorsButton);
             _numberDescriptionTextField = view.FindViewById<EditText>(Resource.Id.numberDescriptionTextField);
+            _cleaningLabel = view.FindViewById<TextView>(Resource.Id.cleaningLabel);
+            _cleaningNeededSwitch = view.FindViewById<SwitchCompat>(Resource.Id.cleaningNeededSwitch);
 
             _roomNumberTextField.Hint = Strings.RoomNumber;
             _numberDescriptionTextField.Hint = Strings.HotelNumberDescription;
+            _cleaningLabel.Text = Strings.NumbersCleaning;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -62,6 +68,8 @@ namespace Pokatun.Droid.Views.Numbers
                 .WithConversion<StringFormatValueConverter>(Strings.RoomsNumFormat).OneWay();
             set.Bind(_amountOfVisitorsButton).For(v => v.Text).To(vm => vm.VisitorsAmount)
                 .WithConversion<StringFormatValueConverter>(Strings.PeopleNumFormat).OneWay();
+
+            set.Bind(_cleaningNeededSwitch).For(_cleaningNeededSwitch.BindChecked()).To(vm => vm.CleaningNeeded).TwoWay();
 
             set.Bind(_selectRoomLevelButton).To(vm => vm.SelectRoomLevelCommand).OneTime();
             set.Bind(_amountOfRoomsButton).To(vm => vm.PromptRoomsAmountCommand).OneTime();

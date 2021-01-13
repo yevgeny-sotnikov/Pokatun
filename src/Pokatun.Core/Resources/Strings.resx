@@ -328,4 +328,7 @@
     <data name="HotelNumberDescription" xml:space="preserve">
         <value>Описание номера</value>
     </data>
+    <data name="NumbersCleaning" xml:space="preserve">
+        <value>Уборка номеров</value>
+    </data>
 </root>

@@ -59,6 +59,13 @@ namespace Pokatun.Core.ViewModels.Numbers
             set { SetProperty(ref _description, value); }
         }
 
+        private bool _cleaningNeeded;
+        public bool CleaningNeeded
+        {
+            get { return _cleaningNeeded; }
+            set { SetProperty(ref _cleaningNeeded, value); }
+        }
+
         private MvxAsyncCommand _selectRoomLevelCommand;
         public IMvxAsyncCommand SelectRoomLevelCommand
         {
