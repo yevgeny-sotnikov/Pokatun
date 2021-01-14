@@ -5,7 +5,9 @@ using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmValidation;
+using Pokatun.Core.Executors;
 using Pokatun.Core.Resources;
+using Pokatun.Core.Services;
 using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Numbers
@@ -21,6 +23,9 @@ namespace Pokatun.Core.ViewModels.Numbers
 
         private readonly IUserDialogs _userDialogs;
         private readonly IMvxNavigationService _navigationService;
+        private readonly IHotelNumbersService _hotelNumbersService;
+        private readonly INetworkRequestExecutor _networkRequestExecutor;
+
         private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
@@ -179,10 +184,12 @@ namespace Pokatun.Core.ViewModels.Numbers
             }
         }
 
-        public EditHotelNumberViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService)
+        public EditHotelNumberViewModel(IUserDialogs userDialogs, IMvxNavigationService navigationService, IHotelNumbersService hotelNumbersService, INetworkRequestExecutor networkRequestExecutor)
         {
             _userDialogs = userDialogs;
             _navigationService = navigationService;
+            _hotelNumbersService = hotelNumbersService;
+            _networkRequestExecutor = networkRequestExecutor;
 
             _validator = new ValidationHelper();
 
@@ -269,6 +276,28 @@ namespace Pokatun.Core.ViewModels.Numbers
 
                 return;
             }
+
+            ServerResponce responce = await _networkRequestExecutor.MakeRequestAsync(() =>
+                _hotelNumbersService.AddNewAsync(
+                    Number.Value,
+                    Level,
+                    RoomsAmount,
+                    VisitorsAmount,
+                    Description,
+                    CleaningNeeded,
+                    NutritionNeeded,
+                    BreakfastIncluded = NutritionNeeded && BreakfastIncluded,
+                    DinnerIncluded = NutritionNeeded && DinnerIncluded,
+                    SupperIncluded = NutritionNeeded && SupperIncluded,
+                    Price.Value
+                ),
+                new HashSet<string> { ErrorCodes.HotelNumberAllreadyExistsError }
+            );
+
+            if (responce == null)
+                return;
+
+            await _navigationService.Close(this);
         }
 
         private Task DoCloseCommandAsync()

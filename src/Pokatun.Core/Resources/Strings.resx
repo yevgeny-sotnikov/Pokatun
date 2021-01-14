@@ -130,6 +130,9 @@
     <data name="IncorrectPasswordError" xml:space="preserve">
         <value>Неверный пароль</value>
     </data>
+    <data name="HotelNumberAllreadyExistsError" xml:space="preserve">
+        <value>В вашем отеле уже существуют аппартаменты под таким номером</value>
+    </data>
     <data name="AccountAllreadyExistsError" xml:space="preserve">
         <value>Аккаунт с указанным почтовым адресом уже существует</value>
     </data>

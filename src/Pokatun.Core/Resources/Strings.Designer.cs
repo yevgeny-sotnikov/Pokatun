@@ -281,6 +281,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string HotelNumberAllreadyExistsError {
+            get {
+                return ResourceManager.GetString("HotelNumberAllreadyExistsError", resourceCulture);
+            }
+        }
+        
         public static string AccountAllreadyExistsError {
             get {
                 return ResourceManager.GetString("AccountAllreadyExistsError", resourceCulture);
