@@ -93,6 +93,7 @@ namespace Pokatun.API
             });
 
             services.AddScoped<IHotelsApiService, HotelsApiService>();
+            services.AddScoped<IHotelNumbersApiService, HotelNumbersApiService>();
             services.AddScoped<IEmailApiService, EmailApiService>();
             services.AddScoped<IFileSystem, FileSystem>();
         }

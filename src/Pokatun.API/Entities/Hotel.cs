@@ -70,5 +70,7 @@ namespace Pokatun.API.Entities
         public ICollection<Phone> Phones { get; set; }
 
         public ICollection<SocialResource> SocialResources { get; set; }
+
+        public ICollection<HotelNumber> HotelNumbers { get; set; }
     }
 }
