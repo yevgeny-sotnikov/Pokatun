@@ -1,5 +1,6 @@
 using System;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Numbers;
 using UIKit;
@@ -33,7 +34,7 @@ namespace Pokatun.iOS.Views.Numbers
 
             set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.CloseCommand).OneTime();
 
-            set.Bind(_roomNumberTextField).For(v => v.Text).To(vm => vm.Number).TwoWay();
+            set.Bind(_roomNumberTextField).For(v => v.Text).To(vm => vm.Number).WithConversion<NullableValueConverter>().TwoWay();
             
             set.Apply();
         }

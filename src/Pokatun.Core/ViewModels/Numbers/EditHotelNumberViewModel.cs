@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
@@ -94,6 +92,13 @@ namespace Pokatun.Core.ViewModels.Numbers
             set { SetProperty(ref _supperIncluded, value); }
         }
 
+        private long? _price;
+        public long? Price
+        {
+            get { return _price; }
+            set { SetProperty(ref _price, value); }
+        }
+
         private MvxAsyncCommand _selectRoomLevelCommand;
         public IMvxAsyncCommand SelectRoomLevelCommand
         {
@@ -148,7 +153,6 @@ namespace Pokatun.Core.ViewModels.Numbers
             {
                 return;
             }
-
             Level = RoomLevelsConversions[result];
         }
 
@@ -159,7 +163,7 @@ namespace Pokatun.Core.ViewModels.Numbers
             if (amount == 0)
             {
                 return;
-               }
+            }
 
             RoomsAmount = amount;
         }

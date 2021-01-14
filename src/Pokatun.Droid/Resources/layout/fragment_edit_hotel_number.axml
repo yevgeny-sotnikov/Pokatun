@@ -34,6 +34,7 @@
             	android:layout_marginTop="16dp"
                 android:drawablePadding="0dp"
                 android:drawableLeft="@drawable/category_editroom"
+                android:drawableRight="@drawable/drop"
                 />
 			<LinearLayout
                 android:orientation="horizontal"
@@ -47,6 +48,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/key_editroom"
+                    android:drawableRight="@drawable/drop"
                     />
                 <Button
                     android:id="@+id/amountOfVisitorsButton"
@@ -56,6 +58,7 @@
                     android:drawablePadding="0dp"
                     android:layout_marginLeft="14dp"
                     android:drawableLeft="@drawable/people_editroom"
+                    android:drawableRight="@drawable/drop"
                     />
             </LinearLayout>
 
@@ -152,6 +155,14 @@
                     android:layout_gravity="center_vertical"
                     />
             </LinearLayout>
+			<EditText
+				android:id="@+id/hotelNumberPriceTextField"
+                style="@style/BorderedEditTextWithLeftImage"
+                android:drawableLeft="@drawable/price_editroom"
+				android:layout_marginBottom="43dp"
+				android:inputType="number"
+				android:layout_width="match_parent"
+				/>
 		</LinearLayout>
 	</ScrollView>
 

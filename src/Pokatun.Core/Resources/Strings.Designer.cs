@@ -700,5 +700,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("Supper", resourceCulture);
             }
         }
+        
+        public static string HotelNumberPriceHint {
+            get {
+                return ResourceManager.GetString("HotelNumberPriceHint", resourceCulture);
+            }
+        }
     }
 }

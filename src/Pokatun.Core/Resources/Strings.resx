@@ -343,4 +343,7 @@
     <data name="Supper" xml:space="preserve">
         <value>Ужин</value>
     </data>
+    <data name="HotelNumberPriceHint" xml:space="preserve">
+        <value>Цена номера (грн/сутки)</value>
+    </data>
 </root>
