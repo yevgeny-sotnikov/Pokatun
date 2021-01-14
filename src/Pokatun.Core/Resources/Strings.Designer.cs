@@ -706,5 +706,23 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("HotelNumberPriceHint", resourceCulture);
             }
         }
+        
+        public static string RoomNumberDidntSetted {
+            get {
+                return ResourceManager.GetString("RoomNumberDidntSetted", resourceCulture);
+            }
+        }
+        
+        public static string PriceDidntSetted {
+            get {
+                return ResourceManager.GetString("PriceDidntSetted", resourceCulture);
+            }
+        }
+        
+        public static string NeedSetupNumberDescription {
+            get {
+                return ResourceManager.GetString("NeedSetupNumberDescription", resourceCulture);
+            }
+        }
     }
 }

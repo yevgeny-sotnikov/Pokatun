@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmValidation;
 using Pokatun.Core.Resources;
 using Pokatun.Data;
 
@@ -19,6 +21,9 @@ namespace Pokatun.Core.ViewModels.Numbers
 
         private readonly IUserDialogs _userDialogs;
         private readonly IMvxNavigationService _navigationService;
+        private readonly ValidationHelper _validator;
+
+        private bool _viewInEditMode = true;
 
         public override string Title => Strings.NewHotelNumber;
 
@@ -26,7 +31,15 @@ namespace Pokatun.Core.ViewModels.Numbers
         public short? Number
         {
             get { return _number; }
-            set { SetProperty(ref _number, value); }
+            set
+            {
+                if (!SetProperty(ref _number, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsNumberInvalid));
+            }
         }
 
         private RoomLevel _level = RoomLevel.Standart;
@@ -54,7 +67,15 @@ namespace Pokatun.Core.ViewModels.Numbers
         public string Description
         {
             get { return _description; }
-            set { SetProperty(ref _description, value); }
+            set
+            {
+                if (!SetProperty(ref _description, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsDescriptionInvalid));
+            }
         }
 
         private bool _cleaningNeeded;
@@ -96,8 +117,22 @@ namespace Pokatun.Core.ViewModels.Numbers
         public long? Price
         {
             get { return _price; }
-            set { SetProperty(ref _price, value); }
+            set
+            {
+                if (!SetProperty(ref _price, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsPriceInvalid));
+            }
         }
+
+        public bool IsNumberInvalid => CheckInvalid(nameof(Number));
+
+        public bool IsPriceInvalid => CheckInvalid(nameof(Price));
+
+        public bool IsDescriptionInvalid => CheckInvalid(nameof(Description));
 
         private MvxAsyncCommand _selectRoomLevelCommand;
         public IMvxAsyncCommand SelectRoomLevelCommand
@@ -126,6 +161,15 @@ namespace Pokatun.Core.ViewModels.Numbers
             }
         }
 
+        private MvxAsyncCommand _saveChangesCommand;
+        public IMvxAsyncCommand SaveChangesCommand
+        {
+            get
+            {
+                return _saveChangesCommand ?? (_saveChangesCommand = new MvxAsyncCommand(DoSaveChangesCommandAsync));
+            }
+        }
+
         private MvxAsyncCommand _closeCommand;
         public IMvxAsyncCommand CloseCommand
         {
@@ -139,6 +183,12 @@ namespace Pokatun.Core.ViewModels.Numbers
         {
             _userDialogs = userDialogs;
             _navigationService = navigationService;
+
+            _validator = new ValidationHelper();
+
+            _validator.AddRule(nameof(Number), () => RuleResult.Assert(_viewInEditMode || Number != null, Strings.RoomNumberDidntSetted));
+            _validator.AddRule(nameof(Price), () => RuleResult.Assert(_viewInEditMode || Price != null, Strings.PriceDidntSetted));
+            _validator.AddRule(nameof(Description), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(Description), Strings.NeedSetupNumberDescription));
         }
 
         private async Task DoSelectRoomLevelCommandAsync()
@@ -201,9 +251,34 @@ namespace Pokatun.Core.ViewModels.Numbers
             return amount;
         }
 
+        private async Task DoSaveChangesCommandAsync()
+        {
+            _viewInEditMode = false;
+
+            ValidationResult validationResult = _validator.ValidateAll();
+
+            await Task.WhenAll(
+                RaisePropertyChanged(nameof(IsDescriptionInvalid)),
+                RaisePropertyChanged(nameof(IsNumberInvalid)),
+                RaisePropertyChanged(nameof(IsPriceInvalid))
+            );
+
+            if (!validationResult.IsValid)
+            {
+                _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
+
+                return;
+            }
+        }
+
         private Task DoCloseCommandAsync()
         {
             return _navigationService.Close(this);
+        }
+
+        private bool CheckInvalid(string name)
+        {
+            return !_validator.Validate(name).IsValid;
         }
     }
 }

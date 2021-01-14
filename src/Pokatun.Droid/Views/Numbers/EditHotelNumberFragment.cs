@@ -36,6 +36,7 @@ namespace Pokatun.Droid.Views.Numbers
         private CheckBox _dinnerCheckbox;
         private CheckBox _supperCheckbox;
         private EditText _hotelNumberPriceTextField;
+        private Button _saveChangesButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_number;
 
@@ -58,6 +59,7 @@ namespace Pokatun.Droid.Views.Numbers
             _dinnerCheckbox = view.FindViewById<CheckBox>(Resource.Id.dinnerCheckbox);
             _supperCheckbox = view.FindViewById<CheckBox>(Resource.Id.supperCheckbox);
             _hotelNumberPriceTextField = view.FindViewById<EditText>(Resource.Id.hotelNumberPriceTextField);
+            _saveChangesButton = view.FindViewById<Button>(Resource.Id.saveChangesButton);
 
             _roomNumberTextField.Hint = Strings.RoomNumber;
             _numberDescriptionTextField.Hint = Strings.HotelNumberDescription;
@@ -67,6 +69,7 @@ namespace Pokatun.Droid.Views.Numbers
             _dinnerCheckbox.Text = Strings.Dinner;
             _supperCheckbox.Text = Strings.Supper;
             _hotelNumberPriceTextField.Hint = Strings.HotelNumberPriceHint;
+            _saveChangesButton.Text = Strings.SaveChanges;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -96,9 +99,15 @@ namespace Pokatun.Droid.Views.Numbers
             set.Bind(_dinnerCheckbox).For(v => v.Enabled).To(vm => vm.NutritionNeeded).OneWay();
             set.Bind(_supperCheckbox).For(v => v.Enabled).To(vm => vm.NutritionNeeded).OneWay();
 
+            set.Bind(_hotelNumberPriceTextField).For(v => v.Activated).To(vm => vm.IsPriceInvalid).OneWay();
+            set.Bind(_roomNumberTextField).For(v => v.Activated).To(vm => vm.IsNumberInvalid).OneWay();
+            set.Bind(_numberDescriptionTextField).For(v => v.Activated).To(vm => vm.IsDescriptionInvalid).OneWay();
+
+
             set.Bind(_selectRoomLevelButton).To(vm => vm.SelectRoomLevelCommand).OneTime();
             set.Bind(_amountOfRoomsButton).To(vm => vm.PromptRoomsAmountCommand).OneTime();
             set.Bind(_amountOfVisitorsButton).To(vm => vm.PromptVisitorsAmountCommand).OneTime();
+            set.Bind(_saveChangesButton).To(vm => vm.SaveChangesCommand).OneTime();
 
             set.Apply();
             

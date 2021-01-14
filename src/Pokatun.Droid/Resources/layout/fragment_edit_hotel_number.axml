@@ -159,11 +159,21 @@
 				android:id="@+id/hotelNumberPriceTextField"
                 style="@style/BorderedEditTextWithLeftImage"
                 android:drawableLeft="@drawable/price_editroom"
-				android:layout_marginBottom="43dp"
+				android:layout_marginBottom="24dp"
 				android:inputType="number"
 				android:layout_width="match_parent"
 				/>
 		</LinearLayout>
 	</ScrollView>
+
+	<Button
+		android:id="@+id/saveChangesButton"
+		style="@style/BigButton"
+		android:text="NEXT"
+		android:layout_marginLeft="@dimen/common_left_right_distanse"
+		android:layout_marginRight="@dimen/common_left_right_distanse"
+		android:layout_marginBottom="43dp"
+		android:layout_width="match_parent"
+		/>
 
 </LinearLayout>
