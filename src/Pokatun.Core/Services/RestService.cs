@@ -19,6 +19,38 @@ namespace Pokatun.Core.Services
             _secureStorage = secureStorage;
         }
 
+        public async Task<ServerResponce<T>> GetAsync<T>(string path, bool needAuth = true)
+        {
+            RestRequest request = new RestRequest(path, Method.GET);
+
+            if (needAuth)
+            {
+                request.AddHeader("Authorization", string.Format("Bearer {0}", await _secureStorage.GetAsync(Constants.Keys.Token)));
+            }
+
+            request.AddHeader("Content-Type", "application/json");
+
+            IRestResponse<ServerResponce<T>> response = await _restClient.ExecuteAsync<ServerResponce<T>>(request);
+
+            if (response.ErrorException != null)
+            {
+                Crashes.TrackError(response.ErrorException);
+                Console.WriteLine(response.ErrorException);
+            }
+            else if (response.Content.Contains("Exception"))
+            {
+                Crashes.TrackError(new Exception(response.Content));
+                Console.WriteLine(response.Content);
+            }
+
+            if (string.IsNullOrWhiteSpace(response.Content) || response.ErrorException != null || response.Content.Contains("Exception"))
+            {
+                return new ServerResponce<T> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
+            }
+
+            return response.Data;
+        }
+
         public async Task<ServerResponce<T>> PostAsync<T>(string path, object body, bool needAuth = true)
         {
             RestRequest request = new RestRequest(path, Method.POST);

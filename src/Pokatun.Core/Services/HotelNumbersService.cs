@@ -1,8 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Pokatun.Data;
-using RestSharp;
-using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.Services
 {
@@ -46,6 +45,11 @@ namespace Pokatun.Core.Services
                     Price = price
                 }
             );
+        }
+
+        public Task<ServerResponce<List<HotelNumberDto>>> GetAllAsync()
+        {
+            return _restService.GetAsync<List<HotelNumberDto>>("hotelnumbers");
         }
     }
 }

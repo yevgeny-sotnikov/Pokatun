@@ -26,7 +26,7 @@ namespace Pokatun.Core.ViewModels.Menu
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly IMemoryCache _memoryCache;
         private readonly IHotelsService _hotelsService;
-
+        private readonly IHotelNumbersService _hotelNumbersService;
         private ShortInfoDto _parameter;
 
         public override string Title => _parameter?.HotelName;
@@ -54,7 +54,6 @@ namespace Pokatun.Core.ViewModels.Menu
         }
 
         private MvxAsyncCommand _hotelNumbersCommand;
-
         public IMvxAsyncCommand HotelNumbersCommand
         {
             get
@@ -78,7 +77,8 @@ namespace Pokatun.Core.ViewModels.Menu
             ISecureStorage secureStorage,
             INetworkRequestExecutor networkRequestExecutor,
             IMemoryCache memoryCache,
-            IHotelsService hotelsService)
+            IHotelsService hotelsService,
+            IHotelNumbersService hotelNumbersService)
         {
             _photosService = photosService;
             _navigationService = navigationService;
@@ -86,6 +86,7 @@ namespace Pokatun.Core.ViewModels.Menu
             _networkRequestExecutor = networkRequestExecutor;
             _memoryCache = memoryCache;
             _hotelsService = hotelsService;
+            _hotelNumbersService = hotelNumbersService;
         }
 
         public override void Prepare(ShortInfoDto parameter)
@@ -164,9 +165,17 @@ namespace Pokatun.Core.ViewModels.Menu
             }
         }
 
-        private Task DoHotelNumbersCommandAsync()
+        private async Task DoHotelNumbersCommandAsync()
         {
-            return _navigationService.Navigate<HotelNumbersListViewModel>();
+            ServerResponce<List<HotelNumberDto>> responce = await _networkRequestExecutor.MakeRequestAsync(
+                () => _hotelNumbersService.GetAllAsync(),
+                new HashSet<string>()
+            );
+
+            if (responce == null)
+                return;
+
+            await _navigationService.Navigate<HotelNumbersListViewModel, List<HotelNumberDto>>(responce.Data);
         }
 
 

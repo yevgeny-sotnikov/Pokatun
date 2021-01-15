@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Pokatun.Data;
 
@@ -19,5 +20,7 @@ namespace Pokatun.Core.Services
             bool supperIncluded,
             long price
         );
+
+        Task<ServerResponce<List<HotelNumberDto>>> GetAllAsync();
     }
 }

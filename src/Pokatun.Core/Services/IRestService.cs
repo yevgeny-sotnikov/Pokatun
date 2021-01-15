@@ -6,6 +6,8 @@ namespace Pokatun.Core.Services
 {
     public interface IRestService
     {
+        Task<ServerResponce<T>> GetAsync<T>(string path, bool needAuth = true);
+
         Task<ServerResponce<T>> PostAsync<T>(string path, object body, bool needAuth = true);
     }
 }

@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using MvvmCross.DroidX.RecyclerView;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Pokatun.Core.ViewModels.Main;
@@ -29,11 +30,13 @@ namespace Pokatun.Droid.Views.Numbers
     )]
     public sealed class HotelNumbersListFragment : BaseFragment<HotelNumbersListViewModel>
     {
+        private MvxRecyclerView _recyclerView;
+
         protected override int FragmentLayoutId => Resource.Layout.fragment_hotel_numbers_list;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            View view = base.OnCreateView(inflater, container, savedInstanceState);
+            _recyclerView = (MvxRecyclerView)base.OnCreateView(inflater, container, savedInstanceState);
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -42,11 +45,11 @@ namespace Pokatun.Droid.Views.Numbers
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.AddCommand).OneTime();
-
+            set.Bind(_recyclerView).For(v => v.ItemsSource).To(vm => vm.HotelNumbers).OneTime();
 
             set.Apply();
 
-            return view;
+            return _recyclerView;
         }
 
         public override void OnStart()

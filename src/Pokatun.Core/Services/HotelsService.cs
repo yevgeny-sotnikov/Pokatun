@@ -2,90 +2,39 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AppCenter.Crashes;
 using Pokatun.Data;
-using RestSharp;
-using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.Services
 {
     public class HotelsService : IHotelsService
     {
         private readonly IRestService _restService;
-        private readonly IRestClient _restClient;
-        private readonly ISecureStorage _secureStorage;
         private readonly IPhotosService _photosService;
 
-        public HotelsService(IRestService restService, IRestClient restClient, ISecureStorage secureStorage, IPhotosService photosService)
+        public HotelsService(IRestService restService, IPhotosService photosService)
         {
             _restService = restService;
-            _restClient = restClient;
-            _secureStorage = secureStorage;
             _photosService = photosService;
         }
 
-        public async Task<ServerResponce<HotelDto>> GetAsync(long id)
+        public Task<ServerResponce<HotelDto>> GetAsync(long id)
         {
             if (id <= 0)
             {
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(id));
             }
 
-            RestRequest request = new RestRequest("hotels/" + id, Method.GET);
-
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Authorization", string.Format("Bearer {0}", await _secureStorage.GetAsync(Constants.Keys.Token)));
-
-            IRestResponse<ServerResponce<HotelDto>> response = await _restClient.ExecuteAsync<ServerResponce<HotelDto>>(request);
-
-            if (response.ErrorException != null)
-            {
-                Crashes.TrackError(response.ErrorException);
-            }
-            else if (response.Content.Contains("Exception"))
-            {
-                Crashes.TrackError(new Exception(response.Content));
-            }
-
-            if (string.IsNullOrWhiteSpace(response.Content) || response.ErrorException != null || response.Content.Contains("Exception"))
-            {
-                return new ServerResponce<HotelDto> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
-            }
-
-            return response.Data;
+            return _restService.GetAsync<HotelDto>("hotels/" + id);
         }
 
-        public async Task<ServerResponce<ShortInfoDto>> GetShortInfoAsync(long id)
+        public Task<ServerResponce<ShortInfoDto>> GetShortInfoAsync(long id)
         {
             if (id <= 0)
             {
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(id));
             }
 
-            RestRequest request = new RestRequest("hotels/shortinfo/" + id, Method.GET);
-
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Authorization", string.Format("Bearer {0}", await _secureStorage.GetAsync(Constants.Keys.Token)));
-
-            IRestResponse<ServerResponce<ShortInfoDto>> response = await _restClient.ExecuteAsync<ServerResponce<ShortInfoDto>>(request);
-
-            if (response.ErrorException != null)
-            {
-                Crashes.TrackError(response.ErrorException);
-                Console.WriteLine(response.ErrorException);
-            }
-            else if (response.Content.Contains("Exception"))
-            {
-                Crashes.TrackError(new Exception(response.Content));
-                Console.WriteLine(response.Content);
-            }
-
-            if (string.IsNullOrWhiteSpace(response.Content) || response.ErrorException != null || response.Content.Contains("Exception"))
-            {
-                return new ServerResponce<ShortInfoDto> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
-            }
-
-            return response.Data;
+            return _restService.GetAsync<ShortInfoDto>("hotels/shortinfo/" + id);
         }
 
         public Task<ServerResponce<TokenInfoDto>> LoginAsync(string email, string password)

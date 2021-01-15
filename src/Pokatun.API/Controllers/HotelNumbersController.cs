@@ -24,11 +24,18 @@ namespace Pokatun.API.Controllers
             _hotelNumbersService = hotelNumbersService;
         }
 
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        [HttpGet]
+        public ActionResult<ServerResponce<List<HotelDto>>> Get()
+        {
+            try
+            {
+                return Ok(new ServerResponce<List<HotelNumberDto>> { Data = _hotelNumbersService.GetAll(GetHotelId()) });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
 
         //[HttpGet("{id}")]
         //public string Get(int id)
@@ -42,14 +49,7 @@ namespace Pokatun.API.Controllers
         {
             try
             {
-                StringValues tokenStr = Request.Headers[HeaderNames.Authorization];
-
-                var handler = new JwtSecurityTokenHandler();
-                var token = handler.ReadJwtToken(((string)tokenStr).Replace("Bearer ", string.Empty));
-
-                var id = token.Claims.First(c => c.Type == "unique_name").Value;
-
-                _hotelNumbersService.AddNew(long.Parse(id), value);
+                _hotelNumbersService.AddNew(GetHotelId(), value);
 
                 return Ok(new ServerResponce<string> { Data = "OK" });
             }
@@ -64,5 +64,15 @@ namespace Pokatun.API.Controllers
         //public void Put(int id, [FromBody] string value)
         //{
         //}
+
+        private long GetHotelId()
+        {
+            StringValues tokenStr = Request.Headers[HeaderNames.Authorization];
+
+            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+            JwtSecurityToken token = handler.ReadJwtToken(((string)tokenStr).Replace("Bearer ", string.Empty));
+
+            return long.Parse(token.Claims.First(c => c.Type == "unique_name").Value);
+        }
     }
 }

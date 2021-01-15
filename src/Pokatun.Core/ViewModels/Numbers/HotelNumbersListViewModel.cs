@@ -1,16 +1,24 @@
-using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
+using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Numbers
 {
-    public sealed class HotelNumbersListViewModel : BaseViewModel
+    public sealed class HotelNumbersListViewModel : BaseViewModel<List<HotelNumberDto>>
     {
         private readonly IMvxNavigationService _navigationService;
 
-        private MvxAsyncCommand _addCommand;
+        private MvxObservableCollection<HotelNumberDto> _hotelNumbers = new MvxObservableCollection<HotelNumberDto>();
+        public MvxObservableCollection<HotelNumberDto> HotelNumbers
+        {
+            get { return _hotelNumbers; }
+            set { SetProperty(ref _hotelNumbers, value); }
+        }
 
+        private MvxAsyncCommand _addCommand;
         public IMvxAsyncCommand AddCommand
         {
             get
@@ -22,6 +30,11 @@ namespace Pokatun.Core.ViewModels.Numbers
         public HotelNumbersListViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
+        }
+
+        public override void Prepare(List<HotelNumberDto> parameter)
+        {
+            HotelNumbers.AddRange(parameter);
         }
 
         private Task DoAddCommandAsync()

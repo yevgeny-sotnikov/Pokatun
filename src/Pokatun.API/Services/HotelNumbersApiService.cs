@@ -53,5 +53,23 @@ namespace Pokatun.API.Services
             _context.SaveChanges();
 
         }
+
+        public List<HotelNumberDto> GetAll(long hotelId)
+        {
+            return _context.HotelNumbers.Where(number => number.HotelId == hotelId).Select(value => new HotelNumberDto
+            {
+                Number = value.Number,
+                Level = value.Level,
+                RoomsAmount = value.RoomsAmount,
+                VisitorsAmount = value.VisitorsAmount,
+                Description = value.Description,
+                CleaningNeeded = value.CleaningNeeded,
+                NutritionNeeded = value.NutritionNeeded,
+                BreakfastIncluded = value.BreakfastIncluded,
+                DinnerIncluded = value.DinnerIncluded,
+                SupperIncluded = value.SupperIncluded,
+                Price = value.Price,
+            }).ToList();
+        }
     }
 }
