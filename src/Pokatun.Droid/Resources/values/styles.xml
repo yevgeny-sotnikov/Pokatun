@@ -56,6 +56,12 @@
         <item name="android:textColor">@color/selectedTabTextColor</item>
     </style>
 
+    <style name="ListLabel">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
+
     <style name="TitleLabel" parent="InfoLabel">
         <item name="android:textSize">@dimen/font_subgigantic</item>
     </style>

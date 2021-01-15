@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
@@ -27,6 +28,15 @@ namespace Pokatun.Core.ViewModels.Numbers
             }
         }
 
+        private MvxCommand<HotelNumberDto> _deleteCommand;
+        public IMvxCommand<HotelNumberDto> DeleteCommand
+        {
+            get
+            {
+                return _deleteCommand ?? (_deleteCommand = new MvxCommand<HotelNumberDto>(DoDeleteHotelNumberCommand));
+            }
+        }
+
         public HotelNumbersListViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -40,6 +50,11 @@ namespace Pokatun.Core.ViewModels.Numbers
         private Task DoAddCommandAsync()
         {
             return _navigationService.Navigate<EditHotelNumberViewModel>();
+        }
+
+        private void DoDeleteHotelNumberCommand(HotelNumberDto obj)
+        {
+            HotelNumbers.Remove(obj);
         }
     }
 }
