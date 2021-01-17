@@ -18,6 +18,7 @@ using Pokatun.API.Helpers;
 using Pokatun.API.Models;
 using Pokatun.API.Services;
 using Pokatun.Data;
+using Exceptionless;
 
 namespace Pokatun.API
 {
@@ -33,6 +34,8 @@ namespace Pokatun.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddExceptionless("Wpst0D5qIweH4HGZY34gu0R3f9z6E6YEZvkRmxAP");
+
             services.AddDbContext<PokatunContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // configure strongly typed settings objects
@@ -101,6 +104,8 @@ namespace Pokatun.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseExceptionless();
+
             UpdateDatabase(app);
 
             if (string.IsNullOrWhiteSpace(env.WebRootPath))

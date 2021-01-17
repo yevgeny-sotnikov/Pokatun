@@ -29,11 +29,13 @@ namespace Pokatun.API.Services
             email.Body = new TextPart(TextFormat.Plain) { Text = text };
 
             // send email
-            using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.SmtpHost, _mailSettings.SmtpPort, SecureSocketOptions.StartTls);
-            smtp.Authenticate(from, _mailSettings.SmtpPass);
-            smtp.Send(email);
-            smtp.Disconnect(true);
+            using (var smtp = new SmtpClient())
+            {
+                smtp.Connect(_mailSettings.SmtpHost, _mailSettings.SmtpPort, SecureSocketOptions.StartTls);
+                smtp.Authenticate(from, _mailSettings.SmtpPass);
+                smtp.Send(email);
+                smtp.Disconnect(true);
+            }
         }
     }
 }
