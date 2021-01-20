@@ -11,7 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditHotelNumberViewController">
             <connections>
+                <outlet property="_amountOfRoomsButton" destination="AIZ-rE-t7y" id="Cdo-uM-36V"/>
+                <outlet property="_amountOfVisitorsButton" destination="APk-v2-HUh" id="h57-a6-Dae"/>
                 <outlet property="_roomNumberTextField" destination="VG9-z2-icP" id="uSR-S0-gcj"/>
+                <outlet property="_selectRoomLevelButton" destination="CcO-pJ-MiY" id="yby-AY-bTf"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -24,7 +27,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="595"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="JDp-nI-dzF">
-                            <rect key="frame" x="38" y="43" width="338" height="101"/>
+                            <rect key="frame" x="38" y="43" width="338" height="162"/>
                             <subviews>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="VG9-z2-icP" userLabel="room number" customClass="BorderedTextField">
                                     <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
@@ -40,8 +43,28 @@
                                     <rect key="frame" x="0.0" y="61" width="338" height="40"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="category_editroom"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="rightImage" value="drop"/>
                                     </userDefinedRuntimeAttributes>
                                 </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="tPJ-gC-4oE">
+                                    <rect key="frame" x="0.0" y="122" width="338" height="40"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="AIZ-rE-t7y" userLabel="rooms amount" customClass="BorderedButton">
+                                            <rect key="frame" x="0.0" y="0.0" width="159.5" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="key_editroom"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="rightImage" value="drop"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="338" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="APk-v2-HUh" userLabel="visitors amount" customClass="BorderedButton">
+                                            <rect key="frame" x="178.5" y="0.0" width="159.5" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="people_editroom"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="rightImage" value="drop"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -74,7 +97,10 @@
     </objects>
     <resources>
         <image name="category_editroom" width="10.5" height="10.5"/>
+        <image name="drop" width="5" height="4.5"/>
+        <image name="key_editroom" width="10.5" height="10.5"/>
         <image name="num" width="10.5" height="10.5"/>
+        <image name="people_editroom" width="10.5" height="10.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

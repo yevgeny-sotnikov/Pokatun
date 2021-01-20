@@ -103,7 +103,6 @@ namespace Pokatun.Droid.Views.Numbers
             set.Bind(_roomNumberTextField).For(v => v.Activated).To(vm => vm.IsNumberInvalid).OneWay();
             set.Bind(_numberDescriptionTextField).For(v => v.Activated).To(vm => vm.IsDescriptionInvalid).OneWay();
 
-
             set.Bind(_selectRoomLevelButton).To(vm => vm.SelectRoomLevelCommand).OneTime();
             set.Bind(_amountOfRoomsButton).To(vm => vm.PromptRoomsAmountCommand).OneTime();
             set.Bind(_amountOfVisitorsButton).To(vm => vm.PromptVisitorsAmountCommand).OneTime();
