@@ -319,6 +319,45 @@
     <ImageAsset Include="Resources\Media.xcassets\num.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\num.imageset\num%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\num.imageset\num%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\category_editroom.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\category_editroom.imageset\category_editroom%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\ch_active.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\ch_active.imageset\ch_active%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\ch_blank.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\ch_blank.imageset\ch_blank%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\ch_dsbld.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\ch_dsbld.imageset\ch_dsbld%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\del_list.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\del_list.imageset\del_list%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\drop.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\drop.imageset\drop%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\key_editroom.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\key_editroom.imageset\key_editroom%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\key.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\key.imageset\key%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\people_editroom.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\people_editroom.imageset\people_editroom%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\people_number.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\people_number.imageset\people_number%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\price_editroom.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\price_editroom.imageset\price_editroom%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\price.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\price.imageset\price%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\room_category.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\room_category.imageset\room_category%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\room_category.imageset\room_category%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\price.imageset\price%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\price_editroom.imageset\price_editroom%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\people_number.imageset\people_number%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\people_editroom.imageset\people_editroom%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\key.imageset\key%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\key_editroom.imageset\key_editroom%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\drop.imageset\drop%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\del_list.imageset\del_list%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\ch_dsbld.imageset\ch_dsbld%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\ch_blank.imageset\ch_blank%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\ch_active.imageset\ch_active%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\category_editroom.imageset\category_editroom%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -457,6 +496,20 @@
     <Folder Include="Views\Numbers\" />
     <Folder Include="Resources\Media.xcassets\plus.imageset\" />
     <Folder Include="Resources\Media.xcassets\num.imageset\" />
+    <Folder Include="Resources\Media.xcassets\category_editroom.imageset\" />
+    <Folder Include="Resources\Media.xcassets\ch_active.imageset\" />
+    <Folder Include="Resources\Media.xcassets\ch_blank.imageset\" />
+    <Folder Include="Resources\Media.xcassets\ch_dsbld%403x.imageset\" />
+    <Folder Include="Resources\Media.xcassets\ch_dsbld.imageset\" />
+    <Folder Include="Resources\Media.xcassets\del_list.imageset\" />
+    <Folder Include="Resources\Media.xcassets\drop.imageset\" />
+    <Folder Include="Resources\Media.xcassets\key_editroom.imageset\" />
+    <Folder Include="Resources\Media.xcassets\key.imageset\" />
+    <Folder Include="Resources\Media.xcassets\people_editroom.imageset\" />
+    <Folder Include="Resources\Media.xcassets\people_number.imageset\" />
+    <Folder Include="Resources\Media.xcassets\price_editroom.imageset\" />
+    <Folder Include="Resources\Media.xcassets\price.imageset\" />
+    <Folder Include="Resources\Media.xcassets\room_category.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">
