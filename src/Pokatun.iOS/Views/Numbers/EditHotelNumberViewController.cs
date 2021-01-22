@@ -32,9 +32,13 @@ namespace Pokatun.iOS.Views.Numbers
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, true);
 
             _saveChangesButton.ApplyBigButtonStyle();
+            _amountOfRoomsButton.ApplyBorderedButtonStyle();
+            _amountOfVisitorsButton.ApplyBorderedButtonStyle();
             _borderView.ApplyBorderViewStyle();
             _hintLabel.ApplyAdditionalInfoLabelStyle();
             _hintLabel.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
+            _cleaningLabel.ApplyExtraLargeLabelStyle();
+            _cleaningNeededSwitch.ApplySwitchStyle();
 
             _numberDescriptionTextField.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
             _numberDescriptionTextField.TextColor = ColorPalette.PrimaryText;
@@ -46,7 +50,7 @@ namespace Pokatun.iOS.Views.Numbers
             _roomNumberTextField.KeyboardType = UIKeyboardType.NumberPad;
             _roomNumberTextField.Placeholder = Strings.RoomNumber;
             _hintLabel.Text = Strings.HotelNumberDescription;
-            //_cleaningLabel.Text = Strings.NumbersCleaning;
+            _cleaningLabel.Text = Strings.NumbersCleaning;
             //_nutritionLabel.Text = Strings.Nutrition;
             //_breakfastCheckbox.Text = Strings.Breakfast;
             //_dinnerCheckbox.Text = Strings.Dinner;
@@ -71,6 +75,7 @@ namespace Pokatun.iOS.Views.Numbers
             set.Bind(_amountOfVisitorsButton).For(v => v.Text).To(vm => vm.VisitorsAmount)
                 .WithConversion<StringFormatValueConverter>(Strings.PeopleNumFormat).OneWay();
 
+            set.Bind(_cleaningNeededSwitch).For(v => v.On).To(vm => vm.CleaningNeeded).TwoWay();
 
             set.Bind(_roomNumberTextField).For(v => v.Highlighted).To(vm => vm.IsNumberInvalid).OneWay();
 

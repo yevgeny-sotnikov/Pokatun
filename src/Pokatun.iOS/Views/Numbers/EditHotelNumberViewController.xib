@@ -14,6 +14,8 @@
                 <outlet property="_amountOfRoomsButton" destination="AIZ-rE-t7y" id="Cdo-uM-36V"/>
                 <outlet property="_amountOfVisitorsButton" destination="APk-v2-HUh" id="h57-a6-Dae"/>
                 <outlet property="_borderView" destination="yVR-48-Ulm" id="s1d-lu-kmm"/>
+                <outlet property="_cleaningLabel" destination="BjD-xR-yMt" id="ffF-oe-jE8"/>
+                <outlet property="_cleaningNeededSwitch" destination="tXK-zk-EYE" id="1Fs-Ui-ej4"/>
                 <outlet property="_hintLabel" destination="10l-4O-NNF" id="aqK-0f-20v"/>
                 <outlet property="_numberDescriptionTextField" destination="isM-RS-1Mf" id="OGf-hu-2Sf"/>
                 <outlet property="_roomNumberTextField" destination="VG9-z2-icP" id="uSR-S0-gcj"/>
@@ -31,7 +33,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="699"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="JDp-nI-dzF">
-                            <rect key="frame" x="38" y="43" width="338" height="276"/>
+                            <rect key="frame" x="38" y="43" width="338" height="328"/>
                             <subviews>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="VG9-z2-icP" userLabel="room number" customClass="BorderedTextField">
                                     <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
@@ -102,6 +104,20 @@
                                         <constraint firstAttribute="trailing" secondItem="isM-RS-1Mf" secondAttribute="trailing" id="ueu-yv-mdO"/>
                                     </constraints>
                                 </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="U9q-cY-XMx">
+                                    <rect key="frame" x="0.0" y="297" width="338" height="31"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjD-xR-yMt">
+                                            <rect key="frame" x="0.0" y="5.5" width="289" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXK-zk-EYE">
+                                            <rect key="frame" x="289" y="0.0" width="51" height="31"/>
+                                        </switch>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                         </stackView>
                     </subviews>

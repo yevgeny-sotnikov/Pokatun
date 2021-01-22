@@ -54,6 +54,11 @@ namespace Pokatun.iOS.Styles
             button.BackgroundColor = ColorPalette.PrimaryLight;
         }
 
+        public static void ApplySwitchStyle(this UISwitch uiswitch)
+        {
+            uiswitch.OnTintColor = ColorPalette.PrimaryText;
+        }
+
         public static void ApplyAdditionalInfoLabelStyle(this UILabel label)
         {
             label.Font = Fonts.HelveticaNeueCyrLightMedium;
@@ -79,6 +84,13 @@ namespace Pokatun.iOS.Styles
         {
             label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
             label.Font = Fonts.HelveticaNeueCyrLightLarge;
+            label.TextColor = ColorPalette.PrimaryText;
+        }
+
+        public static void ApplyExtraLargeLabelStyle(this UILabel label)
+        {
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+            label.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
             label.TextColor = ColorPalette.PrimaryText;
         }
 
