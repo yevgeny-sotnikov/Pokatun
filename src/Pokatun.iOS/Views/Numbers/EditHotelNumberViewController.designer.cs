@@ -37,6 +37,9 @@ namespace Pokatun.iOS.Views.Numbers
 		UIKit.UILabel _hintLabel { get; set; }
 
 		[Outlet]
+		Pokatun.iOS.Controls.BorderedTextField _hotelNumberPriceTextField { get; set; }
+
+		[Outlet]
 		UIKit.UITextView _numberDescriptionTextField { get; set; }
 
 		[Outlet]
@@ -74,6 +77,11 @@ namespace Pokatun.iOS.Views.Numbers
 				_borderView = null;
 			}
 
+			if (_hotelNumberPriceTextField != null) {
+				_hotelNumberPriceTextField.Dispose ();
+				_hotelNumberPriceTextField = null;
+			}
+
 			if (_breakfastCheckbox != null) {
 				_breakfastCheckbox.Dispose ();
 				_breakfastCheckbox = null;
@@ -87,11 +95,6 @@ namespace Pokatun.iOS.Views.Numbers
 			if (_cleaningNeededSwitch != null) {
 				_cleaningNeededSwitch.Dispose ();
 				_cleaningNeededSwitch = null;
-			}
-
-			if (_supperCheckbox != null) {
-				_supperCheckbox.Dispose ();
-				_supperCheckbox = null;
 			}
 
 			if (_dinnerCheckbox != null) {
@@ -132,6 +135,11 @@ namespace Pokatun.iOS.Views.Numbers
 			if (_selectRoomLevelButton != null) {
 				_selectRoomLevelButton.Dispose ();
 				_selectRoomLevelButton = null;
+			}
+
+			if (_supperCheckbox != null) {
+				_supperCheckbox.Dispose ();
+				_supperCheckbox = null;
 			}
 		}
 	}

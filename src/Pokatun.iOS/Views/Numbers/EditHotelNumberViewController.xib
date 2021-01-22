@@ -19,6 +19,7 @@
                 <outlet property="_cleaningNeededSwitch" destination="tXK-zk-EYE" id="1Fs-Ui-ej4"/>
                 <outlet property="_dinnerCheckbox" destination="eCR-98-bg9" id="bfs-ij-eqC"/>
                 <outlet property="_hintLabel" destination="10l-4O-NNF" id="aqK-0f-20v"/>
+                <outlet property="_hotelNumberPriceTextField" destination="CCU-6J-FbC" id="4vJ-Ls-CFA"/>
                 <outlet property="_numberDescriptionTextField" destination="isM-RS-1Mf" id="OGf-hu-2Sf"/>
                 <outlet property="_nutritionLabel" destination="dy7-iB-XlI" id="yft-gI-g0C"/>
                 <outlet property="_nutritionNeededSwitch" destination="iwC-A1-hzH" id="oUC-7s-NWB"/>
@@ -38,7 +39,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="699"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="JDp-nI-dzF">
-                            <rect key="frame" x="38" y="43" width="338" height="433.5"/>
+                            <rect key="frame" x="38" y="43" width="338" height="494.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="VG9-z2-icP" userLabel="room number" customClass="BorderedTextField">
                                     <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
@@ -187,6 +188,16 @@
                                         <constraint firstAttribute="trailing" secondItem="iwC-A1-hzH" secondAttribute="trailing" id="ttm-Kz-pcY"/>
                                     </constraints>
                                 </view>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="318" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="CCU-6J-FbC" userLabel="price" customClass="BorderedTextField">
+                                    <rect key="frame" x="0.0" y="454.5" width="338" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLenght">
+                                            <integer key="value" value="18"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="price_editroom"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -223,6 +234,7 @@
         <image name="key_editroom" width="10.5" height="10.5"/>
         <image name="num" width="10.5" height="10.5"/>
         <image name="people_editroom" width="10.5" height="10.5"/>
+        <image name="price_editroom" width="10.5" height="10.5"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

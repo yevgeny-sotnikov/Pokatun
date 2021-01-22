@@ -183,6 +183,11 @@ namespace Pokatun.iOS.Controls
 
         private bool OnShouldChangeText(UITextView textView, NSRange range, string text)
         {
+            if (MaxLenght == 0)
+            {
+                return true;
+            }
+
             nint newLength = textView.Text.Length + text.Length - range.Length;
 
             return newLength <= MaxLenght;
