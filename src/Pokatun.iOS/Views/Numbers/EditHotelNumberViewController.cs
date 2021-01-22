@@ -39,6 +39,11 @@ namespace Pokatun.iOS.Views.Numbers
             _hintLabel.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
             _cleaningLabel.ApplyExtraLargeLabelStyle();
             _cleaningNeededSwitch.ApplySwitchStyle();
+            _nutritionNeededSwitch.ApplySwitchStyle();
+            _breakfastCheckbox.ApplyCheckBoxStyle();
+            _dinnerCheckbox.ApplyCheckBoxStyle();
+            _supperCheckbox.ApplyCheckBoxStyle();
+            _nutritionLabel.ApplyExtraLargeLabelStyle();
 
             _numberDescriptionTextField.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
             _numberDescriptionTextField.TextColor = ColorPalette.PrimaryText;
@@ -46,15 +51,18 @@ namespace Pokatun.iOS.Views.Numbers
             _numberDescriptionTextField.Started += OnDescriptionEditingStarted;
             _numberDescriptionTextField.Ended += OnDescriptionEditingEnded;
             _numberDescriptionTextField.Changed += OnTextChanged;
+            _breakfastCheckbox.TouchUpInside += CheckBoxButtonTouchUpInside;
+            _dinnerCheckbox.TouchUpInside += CheckBoxButtonTouchUpInside;
+            _supperCheckbox.TouchUpInside += CheckBoxButtonTouchUpInside;
 
             _roomNumberTextField.KeyboardType = UIKeyboardType.NumberPad;
             _roomNumberTextField.Placeholder = Strings.RoomNumber;
             _hintLabel.Text = Strings.HotelNumberDescription;
             _cleaningLabel.Text = Strings.NumbersCleaning;
-            //_nutritionLabel.Text = Strings.Nutrition;
-            //_breakfastCheckbox.Text = Strings.Breakfast;
-            //_dinnerCheckbox.Text = Strings.Dinner;
-            //_supperCheckbox.Text = Strings.Supper;
+            _nutritionLabel.Text = Strings.Nutrition;
+            _breakfastCheckbox.SetTitle(Strings.Breakfast, UIControlState.Normal);
+            _dinnerCheckbox.SetTitle(Strings.Dinner, UIControlState.Normal);
+            _supperCheckbox.SetTitle(Strings.Supper, UIControlState.Normal);
             //_hotelNumberPriceTextField.Hint = Strings.HotelNumberPriceHint;
             _saveChangesButton.SetTitle(Strings.SaveChanges, UIControlState.Normal);
 
@@ -76,6 +84,21 @@ namespace Pokatun.iOS.Views.Numbers
                 .WithConversion<StringFormatValueConverter>(Strings.PeopleNumFormat).OneWay();
 
             set.Bind(_cleaningNeededSwitch).For(v => v.On).To(vm => vm.CleaningNeeded).TwoWay();
+            set.Bind(_nutritionNeededSwitch).For(v => v.On).To(vm => vm.NutritionNeeded).TwoWay();
+
+            set.Bind(_breakfastCheckbox).For(v => v.Selected).To(vm => vm.BreakfastIncluded).TwoWay();
+            set.Bind(_dinnerCheckbox).For(v => v.Selected).To(vm => vm.DinnerIncluded).TwoWay();
+            set.Bind(_supperCheckbox).For(v => v.Selected).To(vm => vm.SupperIncluded).TwoWay();
+
+            set.Bind(_breakfastCheckbox).For(v => v.UserInteractionEnabled).To(vm => vm.NutritionNeeded).OneWay();
+            set.Bind(_dinnerCheckbox).For(v => v.UserInteractionEnabled).To(vm => vm.NutritionNeeded).OneWay();
+            set.Bind(_supperCheckbox).For(v => v.UserInteractionEnabled).To(vm => vm.NutritionNeeded).OneWay();
+
+            IDictionary<bool, nfloat> alphaConversionDictionary = new Dictionary<bool, nfloat> { { true, 1f }, { false, 0.5f } };
+
+            set.Bind(_breakfastCheckbox).For(v => v.Alpha).To(vm => vm.NutritionNeeded).WithDictionaryConversion(alphaConversionDictionary).OneWay();
+            set.Bind(_dinnerCheckbox).For(v => v.Alpha).To(vm => vm.NutritionNeeded).WithDictionaryConversion(alphaConversionDictionary).OneWay();
+            set.Bind(_supperCheckbox).For(v => v.Alpha).To(vm => vm.NutritionNeeded).WithDictionaryConversion(alphaConversionDictionary).OneWay();
 
             set.Bind(_roomNumberTextField).For(v => v.Highlighted).To(vm => vm.IsNumberInvalid).OneWay();
 
@@ -95,6 +118,12 @@ namespace Pokatun.iOS.Views.Numbers
             set.Bind(_saveChangesButton).To(vm => vm.SaveChangesCommand).OneTime();
 
             set.Apply();
+        }
+
+        private void CheckBoxButtonTouchUpInside(object sender, EventArgs e)
+        {
+            UICheckBox checkbox = (UICheckBox)sender;
+            checkbox.Selected = !checkbox.Selected;
         }
 
         private void OnTextChanged(object sender, EventArgs e)
@@ -145,6 +174,9 @@ namespace Pokatun.iOS.Views.Numbers
                 _numberDescriptionTextField.Started -= OnDescriptionEditingStarted;
                 _numberDescriptionTextField.Ended -= OnDescriptionEditingEnded;
                 _numberDescriptionTextField.Changed -= OnTextChanged;
+                _breakfastCheckbox.TouchUpInside += CheckBoxButtonTouchUpInside;
+                _dinnerCheckbox.TouchUpInside += CheckBoxButtonTouchUpInside;
+                _supperCheckbox.TouchUpInside += CheckBoxButtonTouchUpInside;
             }
 
             base.Dispose(disposing);

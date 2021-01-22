@@ -22,16 +22,28 @@ namespace Pokatun.iOS.Views.Numbers
 		Pokatun.iOS.BorderView _borderView { get; set; }
 
 		[Outlet]
+		Pokatun.iOS.Controls.UICheckBox _breakfastCheckbox { get; set; }
+
+		[Outlet]
 		UIKit.UILabel _cleaningLabel { get; set; }
 
 		[Outlet]
 		UIKit.UISwitch _cleaningNeededSwitch { get; set; }
 
 		[Outlet]
+		Pokatun.iOS.Controls.UICheckBox _dinnerCheckbox { get; set; }
+
+		[Outlet]
 		UIKit.UILabel _hintLabel { get; set; }
 
 		[Outlet]
 		UIKit.UITextView _numberDescriptionTextField { get; set; }
+
+		[Outlet]
+		UIKit.UILabel _nutritionLabel { get; set; }
+
+		[Outlet]
+		UIKit.UISwitch _nutritionNeededSwitch { get; set; }
 
 		[Outlet]
 		Pokatun.iOS.Controls.BorderedTextField _roomNumberTextField { get; set; }
@@ -41,14 +53,12 @@ namespace Pokatun.iOS.Views.Numbers
 
 		[Outlet]
 		Pokatun.iOS.Controls.BorderedButton _selectRoomLevelButton { get; set; }
+
+		[Outlet]
+		Pokatun.iOS.Controls.UICheckBox _supperCheckbox { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (_cleaningNeededSwitch != null) {
-				_cleaningNeededSwitch.Dispose ();
-				_cleaningNeededSwitch = null;
-			}
-
 			if (_amountOfRoomsButton != null) {
 				_amountOfRoomsButton.Dispose ();
 				_amountOfRoomsButton = null;
@@ -64,9 +74,29 @@ namespace Pokatun.iOS.Views.Numbers
 				_borderView = null;
 			}
 
+			if (_breakfastCheckbox != null) {
+				_breakfastCheckbox.Dispose ();
+				_breakfastCheckbox = null;
+			}
+
 			if (_cleaningLabel != null) {
 				_cleaningLabel.Dispose ();
 				_cleaningLabel = null;
+			}
+
+			if (_cleaningNeededSwitch != null) {
+				_cleaningNeededSwitch.Dispose ();
+				_cleaningNeededSwitch = null;
+			}
+
+			if (_supperCheckbox != null) {
+				_supperCheckbox.Dispose ();
+				_supperCheckbox = null;
+			}
+
+			if (_dinnerCheckbox != null) {
+				_dinnerCheckbox.Dispose ();
+				_dinnerCheckbox = null;
 			}
 
 			if (_hintLabel != null) {
@@ -77,6 +107,16 @@ namespace Pokatun.iOS.Views.Numbers
 			if (_numberDescriptionTextField != null) {
 				_numberDescriptionTextField.Dispose ();
 				_numberDescriptionTextField = null;
+			}
+
+			if (_nutritionLabel != null) {
+				_nutritionLabel.Dispose ();
+				_nutritionLabel = null;
+			}
+
+			if (_nutritionNeededSwitch != null) {
+				_nutritionNeededSwitch.Dispose ();
+				_nutritionNeededSwitch = null;
 			}
 
 			if (_roomNumberTextField != null) {

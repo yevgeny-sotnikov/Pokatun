@@ -325,8 +325,6 @@
     <ImageAsset Include="Resources\Media.xcassets\ch_active.imageset\ch_active%403x.png" />
     <ImageAsset Include="Resources\Media.xcassets\ch_blank.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\ch_blank.imageset\ch_blank%403x.png" />
-    <ImageAsset Include="Resources\Media.xcassets\ch_dsbld.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Media.xcassets\ch_dsbld.imageset\ch_dsbld%403x.png" />
     <ImageAsset Include="Resources\Media.xcassets\del_list.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\del_list.imageset\del_list%403x.png" />
     <ImageAsset Include="Resources\Media.xcassets\drop.imageset\Contents.json" />
@@ -354,10 +352,10 @@
     <ImageAsset Include="Resources\Media.xcassets\key_editroom.imageset\key_editroom%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\drop.imageset\drop%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\del_list.imageset\del_list%402x.png" />
-    <ImageAsset Include="Resources\Media.xcassets\ch_dsbld.imageset\ch_dsbld%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\ch_blank.imageset\ch_blank%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\ch_active.imageset\ch_active%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\category_editroom.imageset\category_editroom%402x.png" />
+    <Compile Include="Controls\UICheckBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
