@@ -19,21 +19,33 @@ namespace Pokatun.iOS.Views.Numbers
 		Pokatun.iOS.Controls.BorderedButton _amountOfVisitorsButton { get; set; }
 
 		[Outlet]
+		Pokatun.iOS.BorderView _borderView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel _hintLabel { get; set; }
+
+		[Outlet]
+		UIKit.UITextView _numberDescriptionTextField { get; set; }
+
+		[Outlet]
 		Pokatun.iOS.Controls.BorderedTextField _roomNumberTextField { get; set; }
+
+		[Outlet]
+		UIKit.UIButton _saveChangesButton { get; set; }
 
 		[Outlet]
 		Pokatun.iOS.Controls.BorderedButton _selectRoomLevelButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (_roomNumberTextField != null) {
-				_roomNumberTextField.Dispose ();
-				_roomNumberTextField = null;
+			if (_borderView != null) {
+				_borderView.Dispose ();
+				_borderView = null;
 			}
 
-			if (_selectRoomLevelButton != null) {
-				_selectRoomLevelButton.Dispose ();
-				_selectRoomLevelButton = null;
+			if (_saveChangesButton != null) {
+				_saveChangesButton.Dispose ();
+				_saveChangesButton = null;
 			}
 
 			if (_amountOfRoomsButton != null) {
@@ -44,6 +56,26 @@ namespace Pokatun.iOS.Views.Numbers
 			if (_amountOfVisitorsButton != null) {
 				_amountOfVisitorsButton.Dispose ();
 				_amountOfVisitorsButton = null;
+			}
+
+			if (_hintLabel != null) {
+				_hintLabel.Dispose ();
+				_hintLabel = null;
+			}
+
+			if (_numberDescriptionTextField != null) {
+				_numberDescriptionTextField.Dispose ();
+				_numberDescriptionTextField = null;
+			}
+
+			if (_roomNumberTextField != null) {
+				_roomNumberTextField.Dispose ();
+				_roomNumberTextField = null;
+			}
+
+			if (_selectRoomLevelButton != null) {
+				_selectRoomLevelButton.Dispose ();
+				_selectRoomLevelButton = null;
 			}
 		}
 	}

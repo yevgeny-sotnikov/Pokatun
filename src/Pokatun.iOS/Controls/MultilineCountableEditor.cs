@@ -60,13 +60,17 @@ namespace Pokatun.iOS.Controls
             }
         }
 
-
+        [DisplayName(nameof(MaxLenght)), Export("maxLenght"), Browsable(true)]
         public int MaxLenght
         {
             get { return _maxLenght; }
             set
             {
                 _maxLenght = value;
+
+                if (_counterLabel == null)
+                    return;
+
                 SetupCounterText(value - Data.Length);
             }
         }
@@ -89,7 +93,6 @@ namespace Pokatun.iOS.Controls
                 _counterLabel.TextColor = _highlighted ? HighlightedColor : ColorPalette.PrimaryText;
             }
         }
-
 
         public event EventHandler DataChanged;
 
@@ -126,6 +129,7 @@ namespace Pokatun.iOS.Controls
 
             TextColor = _textColor;
             HighlightedColor = ColorPalette.FailValidationColor;
+            MaxLenght = _maxLenght;
 
             _dataTextField.Started += OnEditingStarted;
             _dataTextField.Ended += OnEditingEnded;
