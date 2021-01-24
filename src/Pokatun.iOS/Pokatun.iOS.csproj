@@ -356,6 +356,11 @@
     <ImageAsset Include="Resources\Media.xcassets\ch_active.imageset\ch_active%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\category_editroom.imageset\category_editroom%402x.png" />
     <Compile Include="Controls\UICheckBox.cs" />
+    <InterfaceDefinition Include="Cells\HotelNumberViewCell.xib" />
+    <Compile Include="Cells\HotelNumberViewCell.cs" />
+    <Compile Include="Cells\HotelNumberViewCell.designer.cs">
+      <DependentUpon>HotelNumberViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

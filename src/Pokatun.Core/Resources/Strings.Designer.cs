@@ -713,6 +713,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string PriceHint {
+            get {
+                return ResourceManager.GetString("PriceHint", resourceCulture);
+            }
+        }
+        
         public static string RoomNumberDidntSetted {
             get {
                 return ResourceManager.GetString("RoomNumberDidntSetted", resourceCulture);

@@ -76,6 +76,13 @@ namespace Pokatun.iOS.Styles
             label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
         }
 
+        public static void ApplyMediumLabelStyle(this UILabel label)
+        {
+            label.Font = Fonts.HelveticaNeueCyrLightMedium;
+            label.TextColor = ColorPalette.PrimaryText;
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+        }
+
         public static void ApplyTitleLabelStyle(this UILabel label)
         {
             label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
@@ -94,6 +101,20 @@ namespace Pokatun.iOS.Styles
         {
             label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
             label.Font = Fonts.HelveticaNeueCyrLightLarge;
+            label.TextColor = ColorPalette.PrimaryText;
+        }
+
+        public static void ApplyLargeBoldLabelStyle(this UILabel label)
+        {
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+            label.Font = Fonts.HelveticaNeueCyrBoldLarge;
+            label.TextColor = ColorPalette.PrimaryText;
+        }
+
+        public static void ApplyMediumBoldLabelStyle(this UILabel label)
+        {
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+            label.Font = Fonts.HelveticaNeueCyrBoldMedium;
             label.TextColor = ColorPalette.PrimaryText;
         }
 
