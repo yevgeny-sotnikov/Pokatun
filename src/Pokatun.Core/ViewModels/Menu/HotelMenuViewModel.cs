@@ -11,6 +11,7 @@ using Pokatun.Core.Executors;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
+using Pokatun.Core.ViewModels.Numbers;
 using Pokatun.Core.ViewModels.Profile;
 using Pokatun.Data;
 using Xamarin.Essentials.Interfaces;
@@ -20,12 +21,12 @@ namespace Pokatun.Core.ViewModels.Menu
     public sealed class HotelMenuViewModel : BaseViewModel<ShortInfoDto>
     {
         private readonly IPhotosService _photosService;
-        private readonly  IMvxNavigationService _navigationService;
+        private readonly IMvxNavigationService _navigationService;
         private readonly ISecureStorage _secureStorage;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly IMemoryCache _memoryCache;
         private readonly IHotelsService _hotelsService;
-
+        private readonly IHotelNumbersService _hotelNumbersService;
         private ShortInfoDto _parameter;
 
         public override string Title => _parameter?.HotelName;
@@ -52,6 +53,15 @@ namespace Pokatun.Core.ViewModels.Menu
             }
         }
 
+        private MvxAsyncCommand _hotelNumbersCommand;
+        public IMvxAsyncCommand HotelNumbersCommand
+        {
+            get
+            {
+                return _hotelNumbersCommand ?? (_hotelNumbersCommand = new MvxAsyncCommand(DoHotelNumbersCommandAsync));
+            }
+        }
+
         private MvxAsyncCommand _exitCommand;
         public IMvxAsyncCommand ExitCommand
         {
@@ -67,7 +77,8 @@ namespace Pokatun.Core.ViewModels.Menu
             ISecureStorage secureStorage,
             INetworkRequestExecutor networkRequestExecutor,
             IMemoryCache memoryCache,
-            IHotelsService hotelsService)
+            IHotelsService hotelsService,
+            IHotelNumbersService hotelNumbersService)
         {
             _photosService = photosService;
             _navigationService = navigationService;
@@ -75,6 +86,7 @@ namespace Pokatun.Core.ViewModels.Menu
             _networkRequestExecutor = networkRequestExecutor;
             _memoryCache = memoryCache;
             _hotelsService = hotelsService;
+            _hotelNumbersService = hotelNumbersService;
         }
 
         public override void Prepare(ShortInfoDto parameter)
@@ -152,6 +164,20 @@ namespace Pokatun.Core.ViewModels.Menu
                 await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Subtitle)));
             }
         }
+
+        private async Task DoHotelNumbersCommandAsync()
+        {
+            ServerResponce<List<HotelNumberDto>> responce = await _networkRequestExecutor.MakeRequestAsync(
+                () => _hotelNumbersService.GetAllAsync(),
+                new HashSet<string>()
+            );
+
+            if (responce == null)
+                return;
+
+            await _navigationService.Navigate<HotelNumbersListViewModel, List<HotelNumberDto>>(responce.Data);
+        }
+
 
         private Task DoExitCommandAsync()
         {

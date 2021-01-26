@@ -54,10 +54,32 @@ namespace Pokatun.iOS.Styles
             button.BackgroundColor = ColorPalette.PrimaryLight;
         }
 
+        public static void ApplyCheckBoxStyle(this UICheckBox checkbox)
+        {
+            checkbox.ContentEdgeInsets = new UIEdgeInsets(0, 8, 0, 0);
+            checkbox.ImageEdgeInsets = new UIEdgeInsets(0, -8, 0, 0);
+            checkbox.Font = Fonts.HelveticaNeueCyrLightMedium;
+            checkbox.SetTitleColor(ColorPalette.AdditionalText, UIControlState.Normal);
+            checkbox.SetImage(UIImage.FromBundle("ch_blank"), UIControlState.Normal);
+            checkbox.SetImage(UIImage.FromBundle("ch_active"), UIControlState.Selected);
+        }
+
+        public static void ApplySwitchStyle(this UISwitch uiswitch)
+        {
+            uiswitch.OnTintColor = ColorPalette.PrimaryText;
+        }
+
         public static void ApplyAdditionalInfoLabelStyle(this UILabel label)
         {
             label.Font = Fonts.HelveticaNeueCyrLightMedium;
             label.TextColor = ColorPalette.BorderColor;
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+        }
+
+        public static void ApplyMediumLabelStyle(this UILabel label)
+        {
+            label.Font = Fonts.HelveticaNeueCyrLightMedium;
+            label.TextColor = ColorPalette.PrimaryText;
             label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
         }
 
@@ -79,6 +101,27 @@ namespace Pokatun.iOS.Styles
         {
             label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
             label.Font = Fonts.HelveticaNeueCyrLightLarge;
+            label.TextColor = ColorPalette.PrimaryText;
+        }
+
+        public static void ApplyLargeBoldLabelStyle(this UILabel label)
+        {
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+            label.Font = Fonts.HelveticaNeueCyrBoldLarge;
+            label.TextColor = ColorPalette.PrimaryText;
+        }
+
+        public static void ApplyMediumBoldLabelStyle(this UILabel label)
+        {
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+            label.Font = Fonts.HelveticaNeueCyrBoldMedium;
+            label.TextColor = ColorPalette.PrimaryText;
+        }
+
+        public static void ApplyExtraLargeLabelStyle(this UILabel label)
+        {
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+            label.Font = Fonts.HelveticaNeueCyrLightExtraLarge;
             label.TextColor = ColorPalette.PrimaryText;
         }
 

@@ -56,6 +56,12 @@
         <item name="android:textColor">@color/selectedTabTextColor</item>
     </style>
 
+    <style name="ListLabel">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
+
     <style name="TitleLabel" parent="InfoLabel">
         <item name="android:textSize">@dimen/font_subgigantic</item>
     </style>
@@ -95,6 +101,12 @@
         <item name="android:paddingLeft">13dp</item>
         <item name="android:paddingRight">13dp</item>
         <item name="android:drawablePadding">10dp</item>
+    </style>
+
+    <style name="CheckBox" parent="AdditionalInfoLabel">
+        <item name="android:button">@drawable/check_box</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:textColor">@color/checkbox_text_color</item>
     </style>
 
 </resources>

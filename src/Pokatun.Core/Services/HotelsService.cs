@@ -2,88 +2,39 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AppCenter.Crashes;
 using Pokatun.Data;
-using RestSharp;
-using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.Services
 {
     public class HotelsService : IHotelsService
     {
-        private readonly IRestClient _restClient;
-        private readonly ISecureStorage _secureStorage;
+        private readonly IRestService _restService;
         private readonly IPhotosService _photosService;
 
-        public HotelsService(IRestClient restClient, ISecureStorage secureStorage, IPhotosService photosService)
+        public HotelsService(IRestService restService, IPhotosService photosService)
         {
-            _restClient = restClient;
-            _secureStorage = secureStorage;
+            _restService = restService;
             _photosService = photosService;
         }
 
-        public async Task<ServerResponce<HotelDto>> GetAsync(long id)
+        public Task<ServerResponce<HotelDto>> GetAsync(long id)
         {
             if (id <= 0)
             {
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(id));
             }
 
-            RestRequest request = new RestRequest("hotels/" + id, Method.GET);
-
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Authorization", string.Format("Bearer {0}", await _secureStorage.GetAsync(Constants.Keys.Token)));
-
-            IRestResponse<ServerResponce<HotelDto>> response = await _restClient.ExecuteAsync<ServerResponce<HotelDto>>(request);
-
-            if (response.ErrorException != null)
-            {
-                Crashes.TrackError(response.ErrorException);
-            }
-            else if (response.Content.Contains("Exception"))
-            {
-                Crashes.TrackError(new Exception(response.Content));
-            }
-
-            if (string.IsNullOrWhiteSpace(response.Content) || response.ErrorException != null || response.Content.Contains("Exception"))
-            {
-                return new ServerResponce<HotelDto> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
-            }
-
-            return response.Data;
+            return _restService.GetAsync<HotelDto>("hotels/" + id);
         }
 
-        public async Task<ServerResponce<ShortInfoDto>> GetShortInfoAsync(long id)
+        public Task<ServerResponce<ShortInfoDto>> GetShortInfoAsync(long id)
         {
             if (id <= 0)
             {
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(id));
             }
 
-            RestRequest request = new RestRequest("hotels/shortinfo/" + id, Method.GET);
-
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Authorization", string.Format("Bearer {0}", await _secureStorage.GetAsync(Constants.Keys.Token)));
-
-            IRestResponse<ServerResponce<ShortInfoDto>> response = await _restClient.ExecuteAsync<ServerResponce<ShortInfoDto>>(request);
-
-            if (response.ErrorException != null)
-            {
-                Crashes.TrackError(response.ErrorException);
-                Console.WriteLine(response.ErrorException);
-            }
-            else if (response.Content.Contains("Exception"))
-            {
-                Crashes.TrackError(new Exception(response.Content));
-                Console.WriteLine(response.Content);
-            }
-
-            if (string.IsNullOrWhiteSpace(response.Content) || response.ErrorException != null || response.Content.Contains("Exception"))
-            {
-                return new ServerResponce<ShortInfoDto> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
-            }
-
-            return response.Data;
+            return _restService.GetAsync<ShortInfoDto>("hotels/shortinfo/" + id);
         }
 
         public Task<ServerResponce<TokenInfoDto>> LoginAsync(string email, string password)
@@ -98,7 +49,7 @@ namespace Pokatun.Core.Services
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(password));
             }
 
-            return PostAsync<TokenInfoDto>("hotels/login", new LoginDto { Email = email, Password = password }, false);
+            return _restService.PostAsync<TokenInfoDto>("hotels/login", new LoginDto { Email = email, Password = password }, false);
         }
 
         public Task<ServerResponce<TokenInfoDto>> RegisterAsync(
@@ -113,7 +64,7 @@ namespace Pokatun.Core.Services
             int USREOU)
         {
 
-            return PostAsync<TokenInfoDto>("hotels/register",
+            return _restService.PostAsync<TokenInfoDto>("hotels/register",
                 new HotelRegistrationDto
                 {
                     HotelName = hotelName,
@@ -137,7 +88,7 @@ namespace Pokatun.Core.Services
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(email));
             }
 
-            return await PostAsync<object>("hotels/forgot-password", new ForgotPasswordRequest { Email = email }, false);
+            return await _restService.PostAsync<object>("hotels/forgot-password", new ForgotPasswordRequest { Email = email }, false);
         }
 
         public async Task<ServerResponce> ValidateResetToken(string token)
@@ -147,7 +98,7 @@ namespace Pokatun.Core.Services
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(token));
             }
 
-            return await PostAsync<object>("hotels/validate-reset-token", new ValidateResetTokenRequest { Token = token }, false);
+            return await _restService.PostAsync<object>("hotels/validate-reset-token", new ValidateResetTokenRequest { Token = token }, false);
         }
 
         public Task<ServerResponce<TokenInfoDto>> ResetPassword(string token, string password)
@@ -162,10 +113,10 @@ namespace Pokatun.Core.Services
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(password));
             }
 
-            return PostAsync<TokenInfoDto>("hotels/reset-password", new ResetPasswordRequest { Token = token, Password = password }, false);
+            return _restService.PostAsync<TokenInfoDto>("hotels/reset-password", new ResetPasswordRequest { Token = token, Password = password }, false);
         }
 
-        public async Task<ServerResponce> SaveChangesAsync(
+        public async Task<ServerResponce<string>> SaveChangesAsync(
             long currentHotelId,
             string hotelName,
             string fullCompanyName,
@@ -190,14 +141,14 @@ namespace Pokatun.Core.Services
 
                 if (!fileResponce.Success)
                 {
-                    return new ServerResponce { ErrorCodes = fileResponce.ErrorCodes };
+                    return new ServerResponce<string> { ErrorCodes = fileResponce.ErrorCodes };
                 }
 
                 nameForSave = fileResponce.Data;
-            }
+            } 
             else nameForSave = photoFileName;
 
-            return await PostAsync<object>("hotels", new HotelDto
+            ServerResponce<string> responce = await _restService.PostAsync<string>("hotels", new HotelDto
             {
                 Id = currentHotelId,
                 HotelName = hotelName,
@@ -215,37 +166,10 @@ namespace Pokatun.Core.Services
                 HotelDescription = hotelDescription,
                 PhotoUrl = nameForSave
             });
-        }
 
-        private async Task<ServerResponce<T>> PostAsync<T>(string path, object body, bool needAuth = true)
-        {
-            RestRequest request = new RestRequest(path, Method.POST);
+            responce.Data = nameForSave;
 
-            if (needAuth)
-            {
-                request.AddHeader("Authorization", string.Format("Bearer {0}", await _secureStorage.GetAsync(Constants.Keys.Token)));
-            }
-
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(body, "application/json");
-
-            IRestResponse<ServerResponce<T>> response = await _restClient.ExecuteAsync<ServerResponce<T>>(request);
-
-            if (response.ErrorException != null)
-            {
-                Crashes.TrackError(response.ErrorException);
-            }
-            else if (response.Content.Contains("Exception"))
-            {
-                Crashes.TrackError(new Exception(response.Content));
-            }
-
-            if (string.IsNullOrWhiteSpace(response.Content) || response.ErrorException != null || response.Content.Contains("Exception"))
-            {
-                return new ServerResponce<T> { ErrorCodes = new List<string> { ErrorCodes.UnknownError } };
-            }
-
-            return response.Data;
+            return responce;
         }
     }
 }

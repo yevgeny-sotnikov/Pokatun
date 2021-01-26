@@ -208,6 +208,7 @@ namespace Pokatun.Core.ViewModels.Profile
             _parameter.CheckOutTime = result.CheckOutTime;
             _parameter.Phones = result.Phones;
             _parameter.SocialResources = result.SocialResources;
+            _parameter.PhotoUrl = result.PhotoUrl;
 
             await RaisePropertyChanged(nameof(Title));
 

@@ -18,6 +18,7 @@ namespace Pokatun.iOS.Styles
         public static readonly UIColor PrimaryText = FromHexString("#56595e");
         public static readonly UIColor SecondaryText = FromHexString("#ffffff");
         public static readonly UIColor TabText = FromHexString("#7b7c7f");
+        public static readonly UIColor AdditionalText = TabText;
 
         public static readonly UIColor ButtonDefault = FromHexString("#edcf2b");
         public static readonly UIColor ButtonDisabled = FromHexString("#e5e8ef");
@@ -29,6 +30,7 @@ namespace Pokatun.iOS.Styles
 
         public static readonly UIColor BorderColor = FromHexString("#7b7c7f");
         public static readonly UIColor FailValidationColor = FromHexString("#e9848d");
+        public static readonly UIColor DeletionColor = FromHexString("#ce2d3c");
 
         public static readonly UIColor ShadowButtonColor = FromHexString("#a73d4974");
 

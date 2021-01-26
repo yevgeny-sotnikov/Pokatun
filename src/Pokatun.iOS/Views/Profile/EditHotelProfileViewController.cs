@@ -82,9 +82,6 @@ namespace Pokatun.iOS.Views.Profile
             _hotelInfoTab.Text = Strings.HotelInfo;
             _saveChangesButton.SetTitle(Strings.SaveChanges, UIControlState.Normal);
 
-            _withinTerritoryEditText.MaxLenght = 200;
-            _hotelDescriptionEditText.MaxLenght = 600;
-
             #pragma warning disable IDE0008 // Use explicit type
     
             var set = CreateBindingSet();

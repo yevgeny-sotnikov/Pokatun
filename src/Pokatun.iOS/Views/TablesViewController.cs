@@ -12,7 +12,7 @@ namespace Pokatun.iOS.Views
         {
         }
 
-        protected MvxSimpleTableViewSource CreateTableViewSource(UITableView tableView, string nibName)
+        protected virtual MvxSimpleTableViewSource CreateTableViewSource(UITableView tableView, string nibName)
         {
             return new MvxSimpleTableViewSource(tableView, nibName)
             {

@@ -20,6 +20,7 @@ namespace Pokatun.iOS.Controls
         private UIColor _textColor;
         private UIImage _leftImage;
         private bool _highlighted;
+        private UIImage _rightImage;
 
         public string Text
         {
@@ -69,6 +70,22 @@ namespace Pokatun.iOS.Controls
             }
         }
 
+        [DisplayName(nameof(RightImage)), Export("rightImage"), Browsable(true)]
+        public UIImage RightImage
+        {
+            get { return _rightImageView == null ? _rightImage : _rightImageView.Image; }
+            set
+            {
+                _rightImage = value;
+
+                if (_rightImageView == null)
+                    return;
+
+                _rightImageView.Image = value;
+                _rightImageView.Hidden = value == null;
+            }
+        }
+
         public bool Highlighted
         {
             get { return _highlighted; }
@@ -103,7 +120,10 @@ namespace Pokatun.iOS.Controls
 
             AddSubview(rootView);
 
+            this.Cornerize(_borderView.CornerRadius);
+
             LeftImage = _leftImage;
+            RightImage = _rightImage;
             Text = _text;
             TextColor = _textColor;
 

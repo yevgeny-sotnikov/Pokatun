@@ -20,11 +20,19 @@ namespace Pokatun.iOS.Controls
 		[Outlet]
 		UIKit.UIImageView _leftImageView { get; set; }
 
+		[Outlet]
+		UIKit.UIImageView _rightImageView { get; set; }
+
 		[Action ("OnButtonTapped:")]
 		partial void OnButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (_borderView != null) {
+				_borderView.Dispose ();
+				_borderView = null;
+			}
+
 			if (_label != null) {
 				_label.Dispose ();
 				_label = null;
@@ -35,9 +43,9 @@ namespace Pokatun.iOS.Controls
 				_leftImageView = null;
 			}
 
-			if (_borderView != null) {
-				_borderView.Dispose ();
-				_borderView = null;
+			if (_rightImageView != null) {
+				_rightImageView.Dispose ();
+				_rightImageView = null;
 			}
 		}
 	}

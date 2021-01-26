@@ -114,6 +114,61 @@ namespace Pokatun.API.Migrations
                     b.ToTable("Hotels");
                 });
 
+            modelBuilder.Entity("Pokatun.API.Entities.HotelNumber", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("BreakfastIncluded")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CleaningNeeded")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<bool>("DinnerIncluded")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("HotelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<short>("Number")
+                        .HasColumnType("smallint");
+
+                    b.Property<bool>("NutritionNeeded")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("Price")
+                        .HasColumnType("bigint");
+
+                    b.Property<byte>("RoomsAmount")
+                        .HasColumnType("tinyint");
+
+                    b.Property<bool>("SupperIncluded")
+                        .HasColumnType("bit");
+
+                    b.Property<byte>("VisitorsAmount")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
+
+                    b.HasIndex("Number")
+                        .IsUnique();
+
+                    b.ToTable("HotelNumbers");
+                });
+
             modelBuilder.Entity("Pokatun.API.Entities.Phone", b =>
                 {
                     b.Property<long>("Id")
@@ -159,6 +214,15 @@ namespace Pokatun.API.Migrations
                         .IsUnique();
 
                     b.ToTable("SocialResources");
+                });
+
+            modelBuilder.Entity("Pokatun.API.Entities.HotelNumber", b =>
+                {
+                    b.HasOne("Pokatun.API.Entities.Hotel", "Hotel")
+                        .WithMany("HotelNumbers")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Pokatun.API.Entities.Phone", b =>

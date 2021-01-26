@@ -130,6 +130,9 @@
     <data name="IncorrectPasswordError" xml:space="preserve">
         <value>Неверный пароль</value>
     </data>
+    <data name="HotelNumberAllreadyExistsError" xml:space="preserve">
+        <value>В вашем отеле уже существуют аппартаменты под таким номером</value>
+    </data>
     <data name="AccountAllreadyExistsError" xml:space="preserve">
         <value>Аккаунт с указанным почтовым адресом уже существует</value>
     </data>
@@ -288,5 +291,74 @@
     </data>
     <data name="ProfileChanging" xml:space="preserve">
         <value>Изменение профиля</value>
+    </data>
+    <data name="NewHotelNumber" xml:space="preserve">
+        <value>Новый номер</value>
+    </data>
+    <data name="RoomNumber" xml:space="preserve">
+        <value>Номер комнаты</value>
+    </data>
+    <data name="Econom" xml:space="preserve">
+        <value>Эконом</value>
+    </data>
+    <data name="Standart" xml:space="preserve">
+        <value>Стандарт</value>
+    </data>
+    <data name="Lux" xml:space="preserve">
+        <value>Люкс</value>
+    </data>
+    <data name="SelectRoomCategory" xml:space="preserve">
+        <value>Выберите категорию номера</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Отмена</value>
+    </data>
+    <data name="RoomsNumFormat" xml:space="preserve">
+        <value>{0} комн</value>
+    </data>
+    <data name="PeopleNumFormat" xml:space="preserve">
+        <value>{0} чел</value>
+    </data>
+    <data name="PromptAmoutOfRoms" xml:space="preserve">
+        <value>Введите количество комнат</value>
+    </data>
+    <data name="PromptAmoutOfVisitors" xml:space="preserve">
+        <value>Введите количество посетителей</value>
+    </data>
+    <data name="IncorrectInput" xml:space="preserve">
+        <value>Некорректный ввод</value>
+    </data>
+    <data name="HotelNumberDescription" xml:space="preserve">
+        <value>Описание номера</value>
+    </data>
+    <data name="NumbersCleaning" xml:space="preserve">
+        <value>Уборка номеров</value>
+    </data>
+    <data name="Nutrition" xml:space="preserve">
+        <value>Питание</value>
+    </data>
+    <data name="Breakfast" xml:space="preserve">
+        <value>Завтрак</value>
+    </data>
+    <data name="Dinner" xml:space="preserve">
+        <value>Обед</value>
+    </data>
+    <data name="Supper" xml:space="preserve">
+        <value>Ужин</value>
+    </data>
+    <data name="HotelNumberPriceHint" xml:space="preserve">
+        <value>Цена номера (грн/сутки)</value>
+    </data>
+    <data name="PriceHint" xml:space="preserve">
+        <value>грн/сут</value>
+    </data>
+    <data name="RoomNumberDidntSetted" xml:space="preserve">
+        <value>Номер комнаты не указан</value>
+    </data>
+    <data name="PriceDidntSetted" xml:space="preserve">
+        <value>Цена не задана</value>
+    </data>
+    <data name="NeedSetupNumberDescription" xml:space="preserve">
+        <value>необходимо доьавить описание номера</value>
     </data>
 </root>

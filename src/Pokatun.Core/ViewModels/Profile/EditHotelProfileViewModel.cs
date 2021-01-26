@@ -501,7 +501,7 @@ namespace Pokatun.Core.ViewModels.Profile
                 bankCard = long.Parse(BankCardOrIban);
             }
 
-            ServerResponce responce = await _networkRequestExecutor.MakeRequestAsync(() =>
+            ServerResponce<string> responce = await _networkRequestExecutor.MakeRequestAsync(() =>
                 _hotelsService.SaveChangesAsync(
                     _currentHotelId,
                     HotelName,
@@ -527,7 +527,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
             _memoryCache.Set(
                 Constants.Keys.ShortHotelInfo,
-                new ShortInfoDto { HotelName = HotelName, PhotoName = _photoFileName, ProfileNotCompleted = false }
+                new ShortInfoDto { HotelName = HotelName, PhotoName = responce.Data, ProfileNotCompleted = false }
             );
 
             await _navigationService.Close(this, new HotelDto
@@ -543,7 +543,7 @@ namespace Pokatun.Core.ViewModels.Profile
                 CheckOutTime = CheckOutTime,
                 WithinTerritoryDescription = WithinTerritoryDescription,
                 HotelDescription = HotelDescription,
-                PhotoUrl = _photoFileName,
+                PhotoUrl = responce.Data,
                 Phones = PhoneNumbers.Select(p => new PhoneDto { Id = p.Id, Number = p.Text }).ToList(),
                 SocialResources = SocialResources.Select(sr => new SocialResourceDto { Id = sr.Id, Link = sr.Text }).ToList()
             });

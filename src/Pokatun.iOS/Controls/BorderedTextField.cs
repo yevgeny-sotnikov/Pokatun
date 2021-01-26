@@ -228,6 +228,11 @@ namespace Pokatun.iOS.Controls
 
         private bool OnShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
         {
+            if (MaxLenght == 0)
+            {
+                return true;
+            }
+
             nint newLength = textField.Text.Length + replacementString.Length - range.Length;
 
             return newLength <= MaxLenght;
