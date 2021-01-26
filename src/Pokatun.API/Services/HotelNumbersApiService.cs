@@ -54,10 +54,17 @@ namespace Pokatun.API.Services
 
         }
 
+        public void Delete(long id)
+        {
+            _context.HotelNumbers.Remove(_context.HotelNumbers.Find(id));
+            _context.SaveChanges();
+        }
+
         public List<HotelNumberDto> GetAll(long hotelId)
         {
             return _context.HotelNumbers.Where(number => number.HotelId == hotelId).Select(value => new HotelNumberDto
             {
+                Id = value.Id,
                 Number = value.Number,
                 Level = value.Level,
                 RoomsAmount = value.RoomsAmount,

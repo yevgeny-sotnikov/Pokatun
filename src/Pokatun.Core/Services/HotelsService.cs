@@ -116,7 +116,7 @@ namespace Pokatun.Core.Services
             return _restService.PostAsync<TokenInfoDto>("hotels/reset-password", new ResetPasswordRequest { Token = token, Password = password }, false);
         }
 
-        public async Task<ServerResponce> SaveChangesAsync(
+        public async Task<ServerResponce<string>> SaveChangesAsync(
             long currentHotelId,
             string hotelName,
             string fullCompanyName,
@@ -141,14 +141,14 @@ namespace Pokatun.Core.Services
 
                 if (!fileResponce.Success)
                 {
-                    return new ServerResponce { ErrorCodes = fileResponce.ErrorCodes };
+                    return new ServerResponce<string> { ErrorCodes = fileResponce.ErrorCodes };
                 }
 
                 nameForSave = fileResponce.Data;
-            }
+            } 
             else nameForSave = photoFileName;
 
-            return await _restService.PostAsync<object>("hotels", new HotelDto
+            ServerResponce<string> responce = await _restService.PostAsync<string>("hotels", new HotelDto
             {
                 Id = currentHotelId,
                 HotelName = hotelName,
@@ -166,6 +166,10 @@ namespace Pokatun.Core.Services
                 HotelDescription = hotelDescription,
                 PhotoUrl = nameForSave
             });
+
+            responce.Data = nameForSave;
+
+            return responce;
         }
     }
 }

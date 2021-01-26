@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Pokatun.Core.Executors;
+using Pokatun.Core.Services;
 using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Numbers
@@ -11,7 +13,8 @@ namespace Pokatun.Core.ViewModels.Numbers
     public sealed class HotelNumbersListViewModel : BaseViewModel<List<HotelNumberDto>>
     {
         private readonly IMvxNavigationService _navigationService;
-
+        private readonly IHotelNumbersService _hotelNumbersService;
+        private readonly INetworkRequestExecutor _networkRequestExecutor;
         private MvxObservableCollection<HotelNumberDto> _hotelNumbers = new MvxObservableCollection<HotelNumberDto>();
         public MvxObservableCollection<HotelNumberDto> HotelNumbers
         {
@@ -28,18 +31,20 @@ namespace Pokatun.Core.ViewModels.Numbers
             }
         }
 
-        private MvxCommand<HotelNumberDto> _deleteCommand;
-        public IMvxCommand<HotelNumberDto> DeleteCommand
+        private MvxAsyncCommand<int> _deleteCommand;
+        public IMvxAsyncCommand<int> DeleteCommand
         {
             get
             {
-                return _deleteCommand ?? (_deleteCommand = new MvxCommand<HotelNumberDto>(DoDeleteHotelNumberCommand));
+                return _deleteCommand ?? (_deleteCommand = new MvxAsyncCommand<int>(DoDeleteHotelNumberCommandAsync));
             }
         }
 
-        public HotelNumbersListViewModel(IMvxNavigationService navigationService)
+        public HotelNumbersListViewModel(IMvxNavigationService navigationService, IHotelNumbersService hotelNumbersService, INetworkRequestExecutor networkRequestExecutor)
         {
             _navigationService = navigationService;
+            _hotelNumbersService = hotelNumbersService;
+            _networkRequestExecutor = networkRequestExecutor;
         }
 
         public override void Prepare(List<HotelNumberDto> parameter)
@@ -52,9 +57,20 @@ namespace Pokatun.Core.ViewModels.Numbers
             return _navigationService.Navigate<EditHotelNumberViewModel>();
         }
 
-        private void DoDeleteHotelNumberCommand(HotelNumberDto obj)
+        public async Task DoDeleteHotelNumberCommandAsync(int index)
         {
-            HotelNumbers.Remove(obj);
+            HotelNumberDto hotelNumber = HotelNumbers[index];
+
+            HotelNumbers.RemoveAt(index);
+
+            ServerResponce responce = await _networkRequestExecutor.MakeRequestAsync(
+                () => _hotelNumbersService.DeleteAsync(hotelNumber.Id), new HashSet<string>()
+            );
+
+            if (responce != null)
+                return;
+
+            HotelNumbers.Insert(index, hotelNumber);
         }
     }
 }

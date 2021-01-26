@@ -65,6 +65,22 @@ namespace Pokatun.API.Controllers
         //{
         //}
 
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(long id)
+        {
+            try
+            {
+                _hotelNumbersService.Delete(id);
+
+                return Ok(new ServerResponce<string> { Data = "OK" });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
         private long GetHotelId()
         {
             StringValues tokenStr = Request.Headers[HeaderNames.Authorization];

@@ -76,9 +76,9 @@ namespace Pokatun.Droid.Views.Numbers
             private ColorDrawable background;
             private Color backgroundColor;
             private Paint clearPaint;
-            private readonly IMvxCommand<HotelNumberDto> deleteCommand;
+            private readonly IMvxCommand<int> deleteCommand;
 
-            public SwipeToDeleteCallback(Context context, IMvxCommand<HotelNumberDto> deleteCommand) : base(0, ItemTouchHelper.Left)
+            public SwipeToDeleteCallback(Context context, IMvxCommand<int> deleteCommand) : base(0, ItemTouchHelper.Left)
             {
                 deleteIcon = ContextCompat.GetDrawable(context, Resource.Drawable.del_list);
                 intrinsicWidth = deleteIcon.IntrinsicWidth;
@@ -125,47 +125,16 @@ namespace Pokatun.Droid.Views.Numbers
                 deleteIcon.Draw(c);
 
                 base.OnChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-
-                //var itemView = viewHolder.ItemView;
-                //var itemHeight = itemView.Bottom - itemView.Top;
-                //var isCanceled = dX == 0f && !isCurrentlyActive;
-
-                //if (isCanceled)
-                //{
-                //    clearCanvas(c, itemView.Right + dX, (float)itemView.Top, (float)itemView.Right, (float)itemView.Bottom);
-                //    base.OnChildDraw(c, recyclerView
-                //        , viewHolder, dX, dY, actionState, isCurrentlyActive);
-                //    return;
-                //}
-                //background.Color = backgroundColor;
-                //background.SetBounds(itemView.Right + (int)dX, itemView.Top, itemView.Right, itemView.Bottom);
-                //background.Draw(c);
-
-                //var deleteIconTop = itemView.Top + (itemHeight - intrinsicHeight) / 2;
-                //var deleteIconMargin = (itemHeight - intrinsicHeight) / 2;
-                //var deleteIconLeft = itemView.Right - deleteIconMargin - intrinsicWidth;
-                //var deleteIconRight = itemView.Right - deleteIconMargin;
-                //var deleteIconBottom = deleteIconTop + intrinsicHeight;
-
-                //deleteIcon.SetBounds(deleteIconLeft, deleteIconTop, deleteIconRight, deleteIconBottom);
-                //deleteIcon.Draw(c);
-            }
-
-            private void clearCanvas(Canvas c, float v, float top, float right, float bottom)
-            {
-                c.DrawRect(v, top, right, bottom, clearPaint);
             }
 
             public override void OnSwiped(RecyclerView.ViewHolder viewHolder, int direction)
             {
                 MvxRecyclerViewHolder holder = viewHolder as MvxRecyclerViewHolder;
-
+                
                 HotelNumberDto data = (HotelNumberDto)holder.DataContext;
                 //Invoke Removing Item method from adapter
-                if (deleteCommand.CanExecute(data))
-                {
-                    deleteCommand.Execute(data);
-                }
+
+                deleteCommand.Execute(viewHolder.AdapterPosition);
             }
 
             public override void ClearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder)

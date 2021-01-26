@@ -8,5 +8,7 @@ namespace Pokatun.API.Services
         void AddNew(long hotelId, HotelNumberDto value);
 
         List<HotelNumberDto> GetAll(long hotelId);
+
+        void Delete(long id);
     }
 }

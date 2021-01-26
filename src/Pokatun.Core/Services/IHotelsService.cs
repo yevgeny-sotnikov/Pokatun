@@ -31,7 +31,7 @@ namespace Pokatun.Core.Services
 
         Task<ServerResponce<TokenInfoDto>> ResetPassword(string token, string password);
 
-        Task<ServerResponce> SaveChangesAsync(
+        Task<ServerResponce<string>> SaveChangesAsync(
             long currentHotelId,
             string hotelName,
             string fullCompanyName,

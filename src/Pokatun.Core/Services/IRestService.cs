@@ -9,5 +9,7 @@ namespace Pokatun.Core.Services
         Task<ServerResponce<T>> GetAsync<T>(string path, bool needAuth = true);
 
         Task<ServerResponce<T>> PostAsync<T>(string path, object body, bool needAuth = true);
+
+        Task<ServerResponce<T>> DeleteAsync<T>(string path, long id, bool needAuth = true);
     }
 }

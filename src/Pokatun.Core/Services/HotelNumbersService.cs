@@ -47,6 +47,11 @@ namespace Pokatun.Core.Services
             );
         }
 
+        public async Task<ServerResponce> DeleteAsync(long id)
+        {
+            return await _restService.DeleteAsync<object>("hotelnumbers", id);
+        }
+
         public Task<ServerResponce<List<HotelNumberDto>>> GetAllAsync()
         {
             return _restService.GetAsync<List<HotelNumberDto>>("hotelnumbers");

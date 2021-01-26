@@ -22,5 +22,7 @@ namespace Pokatun.Core.Services
         );
 
         Task<ServerResponce<List<HotelNumberDto>>> GetAllAsync();
+
+        Task<ServerResponce> DeleteAsync(long id);
     }
 }

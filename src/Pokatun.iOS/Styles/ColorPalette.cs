@@ -30,6 +30,7 @@ namespace Pokatun.iOS.Styles
 
         public static readonly UIColor BorderColor = FromHexString("#7b7c7f");
         public static readonly UIColor FailValidationColor = FromHexString("#e9848d");
+        public static readonly UIColor DeletionColor = FromHexString("#ce2d3c");
 
         public static readonly UIColor ShadowButtonColor = FromHexString("#a73d4974");
 
