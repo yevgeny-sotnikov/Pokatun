@@ -134,6 +134,7 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_checkInTimeButton).To(vm => vm.ChooseCheckInTimeCommand).OneTime();
             set.Bind(_checkOutTimeButton).To(vm => vm.ChooseCheckOutTimeCommand).OneTime();
             set.Bind(_saveChangesButton).To(vm => vm.SaveChangesCommand).OneTime();
+            set.Bind(_hotelLocationButton).To(vm => vm.SetHotelLocationCommand).OneTime();
 
             set.Apply();
 

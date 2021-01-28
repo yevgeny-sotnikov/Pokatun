@@ -120,6 +120,5 @@ namespace Pokatun.Droid.Views.Numbers
             ToolbarRightButton.SetImageResource(Resource.Drawable.close);
             ToolbarRightButton.Visibility = ViewStates.Visible;
         }
-
     }
 }

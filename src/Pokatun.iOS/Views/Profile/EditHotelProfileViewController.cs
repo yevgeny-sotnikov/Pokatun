@@ -122,6 +122,7 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_addLinkButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.AddSocialResourceCommand).OneTime();
             set.Bind(_checkInTimeButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.ChooseCheckInTimeCommand).OneTime();
             set.Bind(_checkOutTimeButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.ChooseCheckOutTimeCommand).OneTime();
+            set.Bind(_hotelLocationButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.SetHotelLocationCommand).OneTime();
             set.Bind(_saveChangesButton).To(vm => vm.SaveChangesCommand).OneTime();
 
             set.Apply();

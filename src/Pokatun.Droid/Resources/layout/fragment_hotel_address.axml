@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+	<EditText
+		android:id="@+id/roomNumberTextField"
+        style="@style/BorderedEditTextWithLeftImage"
+        android:drawableLeft="@drawable/num"
+		android:layout_marginTop="43dp"
+		android:maxLength="4"
+		android:inputType="number"
+		android:layout_width="match_parent"
+		/>
+    <MvvmCross.DroidX.RecyclerView.MvxRecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+</LinearLayout>

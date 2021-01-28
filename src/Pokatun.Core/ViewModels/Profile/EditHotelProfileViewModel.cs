@@ -291,6 +291,15 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private MvxAsyncCommand _setHotelLocationCommand;
+        public IMvxAsyncCommand SetHotelLocationCommand
+        {
+            get
+            {
+                return _setHotelLocationCommand ?? (_setHotelLocationCommand = new MvxAsyncCommand(DoSetHotelLocationCommandAsync));
+            }
+        }
+
         private MvxAsyncCommand _saveChangesCommand;
         public IMvxAsyncCommand SaveChangesCommand
         {
@@ -437,6 +446,11 @@ namespace Pokatun.Core.ViewModels.Profile
             if (!res.Ok) return;
 
             CheckOutTime = res.Value;
+        }
+
+        private async Task DoSetHotelLocationCommandAsync()
+        {
+            await _navigationService.Navigate<HotelAddressViewModel, AddressDto>();
         }
 
         private async Task DoAddPhotoCommandAsync()
