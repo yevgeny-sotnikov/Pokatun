@@ -19,7 +19,7 @@ namespace Pokatun.Core.Services
             _restClient = restClientFactory.GetRestClient(Api.Visicom);
         }
 
-        public async Task<AddressDto[]> GetAdressesAsync(string stringForSearch)
+        public async Task<LocationDto[]> GetLocationsAsync(string stringForSearch)
         {
             RestRequest request = new RestRequest(
                 "https://api.visicom.ua/data-api/5.0/ru/geocode.json?categories=adr_street,adr_address&text=" + stringForSearch + "&limit=10&country=ua&key=" + Constants.VisicomKey,
@@ -31,10 +31,10 @@ namespace Pokatun.Core.Services
 
             if (response.Data.Features == null || !response.Data.Features.Any())
             {
-                return Array.Empty<AddressDto>();
+                return Array.Empty<LocationDto>();
             }
 
-            List<AddressDto> addresses = new List<AddressDto>(response.Data.Features.Count);
+            List<LocationDto> locations = new List<LocationDto>(response.Data.Features.Count);
 
             foreach (FeatureDto featureDto in response.Data.Features)
             {
@@ -49,7 +49,7 @@ namespace Pokatun.Core.Services
                     address = featureDto.Properties.Settlement + ", " + featureDto.Properties.Type + " " + featureDto.Properties.Name;
                 }
 
-                addresses.Add(new AddressDto
+                locations.Add(new LocationDto
                 {
                     Addres = address,
                     Longtitude = featureDto.geo_centroid.Coordinates[0],
@@ -57,7 +57,7 @@ namespace Pokatun.Core.Services
                 });
             }
 
-            return addresses.ToArray();
+            return locations.ToArray();
 
         }
 

@@ -79,7 +79,6 @@ namespace Pokatun.Droid.Views.Profile
             _fullCompanyNameTextField.Hint = Strings.FullCompanyName;
             _addPhoneButton.Text = Strings.AddPhone;
             _emailTextField.Hint = Strings.Email;
-            _hotelLocationButton.Text = Strings.HotelLocationAddress;
             _bankCardOrIbanTextField.Hint = Strings.CardNumberOrIBAN;
             _bankNameTextField.Hint = Strings.BankName;
             _usreouTextField.Hint = Strings.USREOU;
@@ -114,6 +113,7 @@ namespace Pokatun.Droid.Views.Profile
 
             set.Bind(_checkInTimeButton).For(v => v.Text).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.CheckInTime).OneWay();
             set.Bind(_checkOutTimeButton).For(v => v.Text).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.CheckOutTime).OneWay();
+            set.Bind(_hotelLocationButton).For(v => v.Text).To(vm => vm.HotelLocation.Addres).WithFallback(Strings.HotelLocationAddress).OneWay();
 
             set.Bind(_phonesTable).For(v => v.ItemsSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTable).For(v => v.ItemsSource).To(vm => vm.SocialResources).OneTime();

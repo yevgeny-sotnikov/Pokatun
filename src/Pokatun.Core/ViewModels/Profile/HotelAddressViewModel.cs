@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -9,7 +8,7 @@ using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Profile
 {
-    public sealed class HotelAddressViewModel : BaseViewModelResult<AddressDto>
+    public sealed class HotelAddressViewModel : BaseViewModelResult<LocationDto>
     {
         private readonly IMvxNavigationService _navigationService;
         private readonly IGeocodingService _geocodingService;
@@ -25,18 +24,18 @@ namespace Pokatun.Core.ViewModels.Profile
                 if (!SetProperty(ref _searchText, value) || value.Length < 3)
                     return;
 
-                OnSearchAdresses(value);
+                OnSearchAdressesAsync(value);
             }
         }
 
-        public MvxObservableCollection<AddressDto> FoundAdresses { get; private set; }
+        public MvxObservableCollection<LocationDto> FoundAdresses { get; private set; }
 
-        private MvxAsyncCommand<AddressDto> _addressSelectedCommand;
-        public IMvxAsyncCommand<AddressDto> AddressSelectedCommand
+        private MvxAsyncCommand<LocationDto> _addressSelectedCommand;
+        public IMvxAsyncCommand<LocationDto> AddressSelectedCommand
         {
             get
             {
-                return _addressSelectedCommand ?? (_addressSelectedCommand = new MvxAsyncCommand<AddressDto>(DoAddressSelectedCommandAsync));
+                return _addressSelectedCommand ?? (_addressSelectedCommand = new MvxAsyncCommand<LocationDto>(DoAddressSelectedCommandAsync));
             }
         }
 
@@ -54,15 +53,15 @@ namespace Pokatun.Core.ViewModels.Profile
             _navigationService = navigationService;
             _geocodingService = geocodingService;
 
-            FoundAdresses = new MvxObservableCollection<AddressDto>();
+            FoundAdresses = new MvxObservableCollection<LocationDto>();
         }
 
-        private async void OnSearchAdresses(string text)
+        private async void OnSearchAdressesAsync(string text)
         {
-            FoundAdresses.ReplaceWith(await _geocodingService.GetAdressesAsync(text));
+            FoundAdresses.ReplaceWith(await _geocodingService.GetLocationsAsync(text));
         }
 
-        private Task DoAddressSelectedCommandAsync(AddressDto param)
+        private Task DoAddressSelectedCommandAsync(LocationDto param)
         {
             return _navigationService.Close(this, param);
         }

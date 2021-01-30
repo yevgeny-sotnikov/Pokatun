@@ -7,6 +7,6 @@ namespace Pokatun.Core.Services
 {
     public interface IGeocodingService
     {
-        Task<AddressDto[]> GetAdressesAsync(string stringForSearch);
+        Task<LocationDto[]> GetLocationsAsync(string stringForSearch);
     }
 }

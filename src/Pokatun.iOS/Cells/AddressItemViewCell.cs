@@ -34,7 +34,7 @@ namespace Pokatun.iOS.Cells
             {
                 #pragma warning disable IDE0008 // Use explicit type
 
-                var set = this.CreateBindingSet<AddressItemViewCell, AddressDto>();
+                var set = this.CreateBindingSet<AddressItemViewCell, LocationDto>();
 
                 #pragma warning restore IDE0008 // Use explicit type
 

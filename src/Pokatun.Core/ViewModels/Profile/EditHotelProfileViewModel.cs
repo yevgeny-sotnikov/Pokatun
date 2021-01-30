@@ -165,6 +165,13 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private LocationDto _hotelLocation;
+        public LocationDto HotelLocation
+        {
+            get { return _hotelLocation; }
+            set { SetProperty(ref _hotelLocation, value); }
+        }
+
         private string _withinTerritoryDescription;
         public string WithinTerritoryDescription
         {
@@ -450,7 +457,12 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private async Task DoSetHotelLocationCommandAsync()
         {
-            await _navigationService.Navigate<HotelAddressViewModel, AddressDto>();
+            LocationDto result = await _navigationService.Navigate<HotelAddressViewModel, LocationDto>();
+
+            if (result == null)
+                return;
+
+            HotelLocation = result;
         }
 
         private async Task DoAddPhotoCommandAsync()

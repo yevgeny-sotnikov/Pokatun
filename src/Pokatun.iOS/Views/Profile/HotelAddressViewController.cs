@@ -1,6 +1,6 @@
-using System;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Profile;
 using Pokatun.iOS.Cells;
 using Pokatun.iOS.Styles;
@@ -25,6 +25,8 @@ namespace Pokatun.iOS.Views.Profile
 
             UIBarButtonItem rightBarButtonItem = new UIBarButtonItem { Image = UIImage.FromBundle("close") };
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, true);
+
+            _searchTextField.Placeholder = Strings.HotelLocationAddress;
 
             _searchTextField.ApplyBorderedEditTextStyle();
 

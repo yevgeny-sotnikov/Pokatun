@@ -1,7 +1,7 @@
 using System;
 namespace Pokatun.Data
 {
-    public class AddressDto
+    public class LocationDto
     {
         public string Addres { get; set; }
 
