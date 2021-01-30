@@ -1,21 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 	<EditText
-		android:id="@+id/roomNumberTextField"
+		android:id="@+id/searchTextField"
         style="@style/BorderedEditTextWithLeftImage"
-        android:drawableLeft="@drawable/num"
+        android:drawableLeft="@drawable/pin"
 		android:layout_marginTop="43dp"
-		android:maxLength="4"
-		android:inputType="number"
+        android:layout_marginLeft="@dimen/common_left_right_distanse"
+        android:layout_marginRight="@dimen/common_left_right_distanse"
 		android:layout_width="match_parent"
+        android:inputType="text"
 		/>
     <MvvmCross.DroidX.RecyclerView.MvxRecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+		android:id="@+id/foundResultsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

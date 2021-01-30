@@ -11,6 +11,9 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using AndroidX.Core.Content;
+using AndroidX.RecyclerView.Widget;
+using MvvmCross.DroidX.RecyclerView;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Pokatun.Core.ViewModels.Main;
@@ -29,11 +32,20 @@ namespace Pokatun.Droid.Views.Profile
     )]
     public class HotelAddressFragment : BaseFragment<HotelAddressViewModel>
     {
+        private EditText _searchTextField;
+        private MvxRecyclerView _foundResultsRecyclerView;
+
         protected override int FragmentLayoutId => Resource.Layout.fragment_hotel_address;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = base.OnCreateView(inflater, container, savedInstanceState);
+
+            _searchTextField = view.FindViewById<EditText>(Resource.Id.searchTextField);
+            _foundResultsRecyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.foundResultsRecyclerView);
+
+            _foundResultsRecyclerView.ItemTemplateId = Resource.Layout.address_item_template;
+            _foundResultsRecyclerView.SetLayoutManager(new LinearLayoutManager(Context));
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -42,6 +54,9 @@ namespace Pokatun.Droid.Views.Profile
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand).OneTime();
+            set.Bind(_searchTextField).For(v => v.Text).To(vm => vm.SearchText).OneWayToSource();
+            set.Bind(_foundResultsRecyclerView).For(v => v.ItemsSource).To(vm => vm.FoundAdresses).OneTime();
+            set.Bind(_foundResultsRecyclerView).For(v => v.ItemClick).To(vm => vm.AddressSelectedCommand);
 
             set.Apply();
 
