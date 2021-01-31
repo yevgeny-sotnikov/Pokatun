@@ -62,6 +62,13 @@ namespace Pokatun.API.Entities
         [MaxLength(256)]
         public string PhotoUrl { get; set; }
 
+        [MaxLength(256)]
+        public string Address { get; set; }
+
+        public double? Longtitude { get; set; }
+
+        public double? Latitude { get; set; }
+
         [MaxLength(DataPatterns.VerificationCodeLenght)]
         public string ResetToken { get; set; }
 

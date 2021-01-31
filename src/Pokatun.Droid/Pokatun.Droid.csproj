@@ -87,6 +87,7 @@
     <Compile Include="Converters\EntityTypeToImageConverter.cs" />
     <Compile Include="Views\Numbers\HotelNumbersListFragment.cs" />
     <Compile Include="Views\Numbers\EditHotelNumberFragment.cs" />
+    <Compile Include="Views\Profile\HotelAddressFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -1064,6 +1065,14 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\hotel_number_info_bg.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_hotel_address.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\address_item_template.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

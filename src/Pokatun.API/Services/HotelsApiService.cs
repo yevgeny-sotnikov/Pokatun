@@ -63,6 +63,7 @@ namespace Pokatun.API.Services
             {
                 HotelName = hotel.HotelName,
                 PhotoName = hotel.PhotoUrl,
+                Address = hotel.Address,
                 ProfileNotCompleted = (hotel.BankCard == null && hotel.IBAN == null)
                     || hotel.BankName == null
                     || hotel.CheckInTime == null
@@ -75,6 +76,9 @@ namespace Pokatun.API.Services
                     || hotel.USREOU == 0
                     || hotel.WithinTerritoryDescription == null
                     || !anyPhones
+                    || string.IsNullOrWhiteSpace(hotel.Address)
+                    || hotel.Longtitude == null
+                    || hotel.Latitude == null
                     || !anySocialResources
             };
         }
@@ -103,6 +107,9 @@ namespace Pokatun.API.Services
             hotel.USREOU = hotelDto.USREOU;
             hotel.PhotoUrl = hotelDto.PhotoUrl;
             hotel.WithinTerritoryDescription = hotelDto.WithinTerritoryDescription;
+            hotel.Address = hotelDto.Address;
+            hotel.Longtitude = hotelDto.Longtitude;
+            hotel.Latitude = hotelDto.Latitude;
 
             IDictionary<long, Phone> dbPhones = hotel.Phones.ToDictionary(phone => phone.Id);
             IDictionary<long, PhoneDto> dtoPhones = hotelDto.Phones.Where(p => p.Id != 0).ToDictionary(phone => phone.Id);
@@ -118,7 +125,6 @@ namespace Pokatun.API.Services
                     hotel.Phones.Add(new Phone { Number = phoneDto.Number });
                 }
             }
-
 
             foreach (Phone phone in dbPhones.Values)
             {

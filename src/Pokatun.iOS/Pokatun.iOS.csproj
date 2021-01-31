@@ -361,6 +361,16 @@
     <Compile Include="Cells\HotelNumberViewCell.designer.cs">
       <DependentUpon>HotelNumberViewCell.cs</DependentUpon>
     </Compile>
+    <InterfaceDefinition Include="Views\Profile\HotelAddressViewController.xib" />
+    <Compile Include="Views\Profile\HotelAddressViewController.cs" />
+    <Compile Include="Views\Profile\HotelAddressViewController.designer.cs">
+      <DependentUpon>HotelAddressViewController.cs</DependentUpon>
+    </Compile>
+    <InterfaceDefinition Include="Cells\AddressItemViewCell.xib" />
+    <Compile Include="Cells\AddressItemViewCell.cs" />
+    <Compile Include="Cells\AddressItemViewCell.designer.cs">
+      <DependentUpon>AddressItemViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

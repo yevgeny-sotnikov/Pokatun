@@ -51,6 +51,13 @@ namespace Pokatun.Data
         [MaxLength(256)]
         public string PhotoUrl { get; set; }
 
+        [MaxLength(256)]
+        public string Address { get; set; }
+
+        public double? Longtitude { get; set; }
+
+        public double? Latitude { get; set; }
+
         public List<PhoneDto> Phones { get; set; }
 
         public List<SocialResourceDto> SocialResources { get; set; }

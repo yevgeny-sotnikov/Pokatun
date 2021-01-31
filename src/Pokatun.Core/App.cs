@@ -8,6 +8,7 @@ using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using Pokatun.Core.Executors;
+using Pokatun.Core.Factories;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
 using Xamarin.Essentials;
@@ -38,35 +39,7 @@ namespace Pokatun.Core
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<INetworkRequestExecutor, NetworkRequestExecutor>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAuthExecutor, AuthExecutor>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMemoryCache>(() => new MemoryCache(new MemoryCacheOptions()));
-
-            #if DEBUG
-
-            Mvx.IoCProvider.RegisterSingleton<IRestClient>(
-                () =>
-                {
-                    RestClient client = new RestClient(string.Format(Constants.BaseUrl,
-                        Mvx.IoCProvider.Resolve<IDeviceInfo>().Platform == DevicePlatform.iOS
-                        ? Constants.iOSDebugIP
-                        : Constants.AndroidDebugIP
-                    ));
-                    client.UseNewtonsoftJson();
-
-                    return client;
-                }
-            );
-
-            #else
-
-            Mvx.IoCProvider.RegisterSingleton<IRestClient>(() =>
-            {
-                RestClient client = new RestClient(Constants.BaseUrl);
-
-                client.UseNewtonsoftJson();
-
-                return client;
-            });
-
-            #endif
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IRestClientFactory, RestClientFactory>();
 
             ImageService.Instance.Initialize(new Configuration { HttpClient = new HttpClient() });
 

@@ -75,7 +75,6 @@ namespace Pokatun.iOS.Views.Profile
             _hotelDescriptionEditText.Hint = Strings.DescriptionFillingInstruction;
 
             _addPhoneButton.Text = Strings.AddPhone;
-            _hotelLocationButton.Text = Strings.HotelLocationAddress;
             _addLinkButton.Text = Strings.AddLink;
 
             _personalDataTab.Text = Strings.PersonalData;
@@ -103,6 +102,7 @@ namespace Pokatun.iOS.Views.Profile
 
             set.Bind(_checkInTimeButton).For(v => v.Text).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.CheckInTime).OneWay();
             set.Bind(_checkOutTimeButton).For(v => v.Text).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.CheckOutTime).OneWay();
+            set.Bind(_hotelLocationButton).For(v => v.Text).To(vm => vm.HotelLocation.Addres).WithFallback(Strings.HotelLocationAddress).OneWay();
 
             set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTableViewSource).To(vm => vm.SocialResources).OneTime();
@@ -122,6 +122,7 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_addLinkButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.AddSocialResourceCommand).OneTime();
             set.Bind(_checkInTimeButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.ChooseCheckInTimeCommand).OneTime();
             set.Bind(_checkOutTimeButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.ChooseCheckOutTimeCommand).OneTime();
+            set.Bind(_hotelLocationButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.SetHotelLocationCommand).OneTime();
             set.Bind(_saveChangesButton).To(vm => vm.SaveChangesCommand).OneTime();
 
             set.Apply();

@@ -1,4 +1,3 @@
-using System;
 using Foundation;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using Pokatun.Core.ViewModels;

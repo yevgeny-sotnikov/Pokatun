@@ -74,7 +74,7 @@ namespace Pokatun.iOS.Views.Profile
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ViewTitle).For(v => v.Title).To(vm => vm.Title).OneWay();
-            set.Bind(ViewTitle).For(v => v.Subtitle).To(vm => vm.Subtitle).OneWay();
+            set.Bind(ViewTitle).For(v => v.Subtitle).To(vm => vm.Address).OneWay();
             set.Bind(_titlePhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
             set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.EditCommand).OneTime();
 
@@ -88,6 +88,7 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_hotelDecsriptionLabel).To(vm => vm.HotelDescription).OneWay();
             set.Bind(_checkinTimeLabel).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
             set.Bind(_checkoutTimeLabel).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
+            set.Bind(_hotelLocationLabel).To(vm => vm.Address).OneWay();
 
             set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTableViewSource).To(vm => vm.SocialResources).OneTime();

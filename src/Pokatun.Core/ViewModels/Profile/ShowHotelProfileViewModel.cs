@@ -22,8 +22,6 @@ namespace Pokatun.Core.ViewModels.Profile
 
         public override string Title => _parameter?.HotelName;
 
-        public string Subtitle => "{location}";
-
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
         {
@@ -131,6 +129,12 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private string _address;
+        public string Address
+        {
+            get { return _address; }
+            set { SetProperty(ref _address, value); }
+        }
 
         public MvxObservableCollection<EntryItemViewModel> PhoneNumbers { get; private set; }
 
@@ -177,6 +181,7 @@ namespace Pokatun.Core.ViewModels.Profile
             WithinTerritoryDescription = parameter.WithinTerritoryDescription;
             CheckInTime = parameter.CheckInTime;
             CheckOutTime = parameter.CheckOutTime;
+            Address = parameter.Address;
 
             PhoneNumbers.AddRange(parameter.Phones.Select(p => new EntryItemViewModel { Type = EntryType.Phone, Text = p.Number }));
             SocialResources.AddRange(parameter.SocialResources.Select(sr => new EntryItemViewModel { Type = EntryType.Link, Text = sr.Link }));
@@ -222,6 +227,7 @@ namespace Pokatun.Core.ViewModels.Profile
             WithinTerritoryDescription = result.WithinTerritoryDescription;
             CheckInTime = result.CheckInTime;
             CheckOutTime = result.CheckOutTime;
+            Address = result.Address;
 
             PhoneNumbers.Clear();
             SocialResources.Clear();

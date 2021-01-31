@@ -90,6 +90,7 @@
         <item name="android:paddingRight">13dp</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:background">@drawable/bordered_button</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="BorderedEditText" parent="BorderedView">

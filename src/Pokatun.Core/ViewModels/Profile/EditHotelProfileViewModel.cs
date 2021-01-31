@@ -165,6 +165,13 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private LocationDto _hotelLocation;
+        public LocationDto HotelLocation
+        {
+            get { return _hotelLocation; }
+            set { SetProperty(ref _hotelLocation, value); }
+        }
+
         private string _withinTerritoryDescription;
         public string WithinTerritoryDescription
         {
@@ -291,6 +298,15 @@ namespace Pokatun.Core.ViewModels.Profile
             }
         }
 
+        private MvxAsyncCommand _setHotelLocationCommand;
+        public IMvxAsyncCommand SetHotelLocationCommand
+        {
+            get
+            {
+                return _setHotelLocationCommand ?? (_setHotelLocationCommand = new MvxAsyncCommand(DoSetHotelLocationCommandAsync));
+            }
+        }
+
         private MvxAsyncCommand _saveChangesCommand;
         public IMvxAsyncCommand SaveChangesCommand
         {
@@ -370,6 +386,12 @@ namespace Pokatun.Core.ViewModels.Profile
             CheckOutTime = parameter.CheckOutTime;
             HotelDescription = parameter.HotelDescription;
             WithinTerritoryDescription = parameter.WithinTerritoryDescription;
+            HotelLocation = new LocationDto
+            {
+                Addres = parameter.Address,
+                Longtitude = parameter.Longtitude.Value,
+                Latitude = parameter.Latitude.Value
+            };
             
             PhoneNumbers.AddRange(parameter.Phones.Select(p => new ValidatableEntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneInvalid)));
             SocialResources.AddRange(parameter.SocialResources.Select(sr => new ValidatableEntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand, IsLinkDuplicated)));
@@ -437,6 +459,16 @@ namespace Pokatun.Core.ViewModels.Profile
             if (!res.Ok) return;
 
             CheckOutTime = res.Value;
+        }
+
+        private async Task DoSetHotelLocationCommandAsync()
+        {
+            LocationDto result = await _navigationService.Navigate<HotelAddressViewModel, LocationDto>();
+
+            if (result == null)
+                return;
+
+            HotelLocation = result;
         }
 
         private async Task DoAddPhotoCommandAsync()
@@ -517,6 +549,7 @@ namespace Pokatun.Core.ViewModels.Profile
                     CheckOutTime.Value,
                     WithinTerritoryDescription,
                     HotelDescription,
+                    HotelLocation,
                     _photoFileName
                 ),
                 new HashSet<string>()
@@ -527,7 +560,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
             _memoryCache.Set(
                 Constants.Keys.ShortHotelInfo,
-                new ShortInfoDto { HotelName = HotelName, PhotoName = responce.Data, ProfileNotCompleted = false }
+                new ShortInfoDto { HotelName = HotelName, PhotoName = responce.Data, Address = HotelLocation.Addres, ProfileNotCompleted = false }
             );
 
             await _navigationService.Close(this, new HotelDto
@@ -544,6 +577,9 @@ namespace Pokatun.Core.ViewModels.Profile
                 WithinTerritoryDescription = WithinTerritoryDescription,
                 HotelDescription = HotelDescription,
                 PhotoUrl = responce.Data,
+                Address = HotelLocation.Addres,
+                Longtitude = HotelLocation.Longtitude,
+                Latitude = HotelLocation.Latitude,
                 Phones = PhoneNumbers.Select(p => new PhoneDto { Id = p.Id, Number = p.Text }).ToList(),
                 SocialResources = SocialResources.Select(sr => new SocialResourceDto { Id = sr.Id, Link = sr.Text }).ToList()
             });

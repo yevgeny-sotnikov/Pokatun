@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
+using Pokatun.Core.Enums;
+using Pokatun.Core.Factories;
 using Pokatun.Data;
 using RestSharp;
 using Xamarin.Essentials.Interfaces;
@@ -14,9 +16,9 @@ namespace Pokatun.Core.Services
         private readonly IRestClient _restClient;
         private readonly ISecureStorage _secureStorage;
 
-        public RestService(IRestClient restClient, ISecureStorage secureStorage)
+        public RestService(IRestClientFactory restClientFactory, ISecureStorage secureStorage)
         {
-            _restClient = restClient;
+            _restClient = restClientFactory.GetRestClient(Api.Pokatun);
             _secureStorage = secureStorage;
         }
 
