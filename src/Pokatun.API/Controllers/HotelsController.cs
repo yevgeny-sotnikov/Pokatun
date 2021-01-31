@@ -55,6 +55,9 @@ namespace Pokatun.API.Controllers
                         CheckOutTime = hotel.CheckOutTime,
                         HotelDescription = hotel.HotelDescription,
                         WithinTerritoryDescription = hotel.WithinTerritoryDescription,
+                        Address = hotel.Address,
+                        Longtitude = hotel.Longtitude,
+                        Latitude = hotel.Latitude,
                         PhotoUrl = hotel.PhotoUrl
                     }
                 });

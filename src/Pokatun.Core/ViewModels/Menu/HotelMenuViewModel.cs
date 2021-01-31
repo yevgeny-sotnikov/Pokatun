@@ -33,7 +33,7 @@ namespace Pokatun.Core.ViewModels.Menu
 
         public string Placeholder => Title == null ? null : Title[0].ToString();
 
-        public string Subtitle => _parameter == null || _parameter.ProfileNotCompleted ? Strings.CompleteYourProfile : "{location}";
+        public string Subtitle => _parameter == null || _parameter.ProfileNotCompleted ? Strings.CompleteYourProfile : _parameter.Address;
 
         public bool ProfileNotCompleted => _parameter == null || _parameter.ProfileNotCompleted;
 

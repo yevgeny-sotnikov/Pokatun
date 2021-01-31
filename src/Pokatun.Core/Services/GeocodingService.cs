@@ -22,7 +22,7 @@ namespace Pokatun.Core.Services
         public async Task<LocationDto[]> GetLocationsAsync(string stringForSearch)
         {
             RestRequest request = new RestRequest(
-                "https://api.visicom.ua/data-api/5.0/ru/geocode.json?categories=adr_street,adr_address&text=" + stringForSearch + "&limit=10&country=ua&key=" + Constants.VisicomKey,
+                "https://api.visicom.ua/data-api/5.0/ru/geocode.json?categories=adr_street,adr_address&text=" + stringForSearch.Trim() + "&limit=10&country=ua&key=" + Constants.VisicomKey,
             Method.GET);
 
             request.AddHeader("Content-Type", "application/json");

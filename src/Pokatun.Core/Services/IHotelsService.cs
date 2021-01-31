@@ -46,6 +46,7 @@ namespace Pokatun.Core.Services
             TimeSpan checkOutTime,
             string withinTerritoryDescription,
             string hotelDescription,
+            LocationDto hotelLocation,
             string photoFilePath
         );
     }

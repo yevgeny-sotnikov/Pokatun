@@ -38,6 +38,7 @@ namespace Pokatun.Droid.Views.Profile
         private TextView _checkoutTimeLabel;
         private MvxLinearLayout _phonesTable;
         private MvxLinearLayout _linksTable;
+        private TextView _hotelLocationLabel;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_show_hotel_profile;
 
@@ -61,6 +62,7 @@ namespace Pokatun.Droid.Views.Profile
             _checkinTimeLabel = view.FindViewById<TextView>(Resource.Id.checkinTimeLabel);
             _checkoutLabel = view.FindViewById<TextView>(Resource.Id.checkoutLabel);
             _checkoutTimeLabel = view.FindViewById<TextView>(Resource.Id.checkoutTimeLabel);
+            _hotelLocationLabel = view.FindViewById<TextView>(Resource.Id.hotelLocationLabel);
             _phonesTable = view.FindViewById<MvxLinearLayout>(Resource.Id.phonesTable);
             _linksTable = view.FindViewById<MvxLinearLayout>(Resource.Id.linksTable);
 
@@ -84,7 +86,7 @@ namespace Pokatun.Droid.Views.Profile
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarTitleLabel).For(v => v.Text).To(vm => vm.Title).OneWay();
-            set.Bind(ToolbarSubtitleLabel).For(v => v.Text).To(vm => vm.Subtitle).OneWay();
+            set.Bind(ToolbarSubtitleLabel).For(v => v.Text).To(vm => vm.Address).OneWay();
             set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.EditCommand).OneTime();
 
@@ -98,6 +100,7 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_hotelDecsriptionLabel).To(vm => vm.HotelDescription).OneWay();
             set.Bind(_checkinTimeLabel).To(vm => vm.CheckInTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
             set.Bind(_checkoutTimeLabel).To(vm => vm.CheckOutTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
+            set.Bind(_hotelLocationLabel).To(vm => vm.Address).OneWay();
 
             set.Bind(_phonesTable).For(v => v.ItemsSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTable).For(v => v.ItemsSource).To(vm => vm.SocialResources).OneTime();

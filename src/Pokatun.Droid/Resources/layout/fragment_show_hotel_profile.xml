@@ -195,7 +195,7 @@
 	                        <TextView
 		                        style="@style/InfoLabel"
                                 android:layout_marginLeft="12dp"
-		                        android:text="{location}"
+		                        android:text="ADDRESS"
                                 android:gravity="start"
 		                        android:layout_width="match_parent"
 		                        android:layout_height="wrap_content"

@@ -131,6 +131,7 @@ namespace Pokatun.Core.Services
             TimeSpan checkOutTime,
             string withinTerritoryDescription,
             string hotelDescription,
+            LocationDto hotelLocation,
             string photoFileName)
         {
             string nameForSave;
@@ -164,6 +165,9 @@ namespace Pokatun.Core.Services
                 CheckOutTime = checkOutTime,
                 WithinTerritoryDescription = withinTerritoryDescription,
                 HotelDescription = hotelDescription,
+                Address = hotelLocation.Addres,
+                Longtitude = hotelLocation.Longtitude,
+                Latitude = hotelLocation.Latitude,
                 PhotoUrl = nameForSave
             });
 

@@ -7,6 +7,8 @@ namespace Pokatun.Data
 
         public string PhotoName { get; set; }
 
+        public string Address { get; set; }
+
         public bool ProfileNotCompleted { get; set; }
     }
 }
