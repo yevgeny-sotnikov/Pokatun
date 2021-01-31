@@ -52,6 +52,7 @@ namespace Pokatun.Droid.Views.Numbers
 
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.AddCommand).OneTime();
             set.Bind(_recyclerView).For(v => v.ItemsSource).To(vm => vm.HotelNumbers).OneTime();
+            set.Bind(_recyclerView).For(v => v.ItemClick).To(vm => vm.OpenHotelNumberCommand).OneTime();
 
 
             set.Apply();

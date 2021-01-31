@@ -50,7 +50,7 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand).OneTime();
             set.Bind(_searchTextField).For(v => v.Text).To(vm => vm.SearchText).OneWayToSource();
             set.Bind(_foundResultsRecyclerView).For(v => v.ItemsSource).To(vm => vm.FoundAdresses).OneTime();
-            set.Bind(_foundResultsRecyclerView).For(v => v.ItemClick).To(vm => vm.AddressSelectedCommand);
+            set.Bind(_foundResultsRecyclerView).For(v => v.ItemClick).To(vm => vm.AddressSelectedCommand).OneTime();
 
             set.Apply();
 

@@ -88,6 +88,7 @@
     <Compile Include="Views\Numbers\HotelNumbersListFragment.cs" />
     <Compile Include="Views\Numbers\EditHotelNumberFragment.cs" />
     <Compile Include="Views\Profile\HotelAddressFragment.cs" />
+    <Compile Include="Views\Numbers\ShowHotelNumberFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -1081,6 +1082,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\bordered_button_default.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_show_hotel_number.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

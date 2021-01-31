@@ -29,7 +29,6 @@
     <Folder Include="ViewModels\Collections\" />
     <Folder Include="Enums\" />
     <Folder Include="ViewModels\Numbers\" />
-    <Folder Include="Factories\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">

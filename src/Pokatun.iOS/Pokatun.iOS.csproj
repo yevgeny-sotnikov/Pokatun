@@ -371,6 +371,11 @@
     <Compile Include="Cells\AddressItemViewCell.designer.cs">
       <DependentUpon>AddressItemViewCell.cs</DependentUpon>
     </Compile>
+    <InterfaceDefinition Include="Views\Numbers\ShowHotelNumberViewController.xib" />
+    <Compile Include="Views\Numbers\ShowHotelNumberViewController.cs" />
+    <Compile Include="Views\Numbers\ShowHotelNumberViewController.designer.cs">
+      <DependentUpon>ShowHotelNumberViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -22,6 +22,16 @@ namespace Pokatun.Core.ViewModels.Numbers
             set { SetProperty(ref _hotelNumbers, value); }
         }
 
+        private MvxAsyncCommand _openHotelNumberCommand;
+
+        public IMvxAsyncCommand OpenHotelNumberCommand
+        {
+            get
+            {
+                return _openHotelNumberCommand ?? (_openHotelNumberCommand = new MvxAsyncCommand(DoOpenHotelNumberCommandAsync));
+            }
+        }
+
         private MvxAsyncCommand _addCommand;
         public IMvxAsyncCommand AddCommand
         {
@@ -55,6 +65,11 @@ namespace Pokatun.Core.ViewModels.Numbers
         private Task DoAddCommandAsync()
         {
             return _navigationService.Navigate<EditHotelNumberViewModel>();
+        }
+
+        private Task DoOpenHotelNumberCommandAsync()
+        {
+            return _navigationService.Navigate<ShowHotelNumberViewModel>();
         }
 
         public async Task DoDeleteHotelNumberCommandAsync(int index)
