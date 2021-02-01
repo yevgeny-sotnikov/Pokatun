@@ -1,4 +1,6 @@
 using System;
+using Pokatun.Core.Converters;
+using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Numbers;
 using Pokatun.iOS.Controls;
 using UIKit;
@@ -25,6 +27,10 @@ namespace Pokatun.iOS.Views.Numbers
             #pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
+
+            set.Bind(_levelLabel).To(vm => vm.HotelNumber.Level).WithConversion<RoomLevelToStringConverter>().OneWay();
+            set.Bind(_roomsAmountLabel).To(vm => vm.HotelNumber.RoomsAmount).WithConversion<StringFormatValueConverter>(Strings.RoomsCounter).OneWay();
+            set.Bind(_visitorsAmountLabel).To(vm => vm.HotelNumber.VisitorsAmount).WithConversion<StringFormatValueConverter>(Strings.VisitorsCounter).OneWay();
 
             #pragma warning restore IDE0008 // Use explicit type
 

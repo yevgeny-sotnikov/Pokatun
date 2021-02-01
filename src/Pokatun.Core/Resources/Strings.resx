@@ -364,4 +364,16 @@
     <data name="NeedSetupNumberDescription" xml:space="preserve">
         <value>необходимо доьавить описание номера</value>
     </data>
+    <data name="HotelNumber" xml:space="preserve">
+        <value>№ {0}</value>
+    </data>
+    <data name="RoomsCounter" xml:space="preserve">
+        <value>{0} ком</value>
+    </data>
+    <data name="VisitorsCounter" xml:space="preserve">
+        <value>{0} чел</value>
+    </data>
+    <data name="AddedHotelNumbersCounter" xml:space="preserve">
+        <value>Кол-во добавленных номеров: {0}</value>
+    </data>
 </root>

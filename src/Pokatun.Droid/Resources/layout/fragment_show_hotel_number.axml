@@ -16,10 +16,71 @@
             android:animateLayoutChanges="true"
             android:paddingLeft="@dimen/common_left_right_distanse"
     	    android:paddingRight="@dimen/common_left_right_distanse"
+			android:paddingTop="43dp"
+			android:paddingBottom="43dp"
             android:showDividers="middle"
             android:divider="?android:listDivider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <LinearLayout
+				android:background="@drawable/hotel_number_info_bg"
+				android:layout_gravity="right"
+				android:orientation="horizontal"
+				android:paddingTop="8dp"
+				android:paddingBottom="8dp"
+				android:layout_marginBottom="16dp"
+				android:paddingLeft="17dp"
+				android:paddingRight="17dp"
+				android:layout_width="wrap_content"
+				android:layout_height="30dp">
+				<ImageView
+					android:src="@drawable/room_category"
+					android:layout_gravity="center_vertical"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					/>
+				<TextView
+		            android:id="@+id/levelLabel"
+					style="@style/ListLabel"
+					android:layout_marginLeft="8dp"
+					android:layout_gravity="center_vertical"
+					android:singleLine="true"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					/>
+				<ImageView
+					android:src="@drawable/key"
+					android:layout_gravity="center_vertical"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					/>
+				<TextView
+		            android:id="@+id/roomsAmountLabel"
+					style="@style/ListLabel"
+					android:layout_marginLeft="8dp"
+					android:layout_gravity="center_vertical"
+					android:singleLine="true"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					/>
+				<ImageView
+					android:src="@drawable/people_number"
+					android:layout_gravity="center_vertical"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					/>
+				<TextView
+		            android:id="@+id/visitorsAmountLabel"
+					style="@style/ListLabel"
+					android:layout_marginLeft="8dp"
+					android:layout_gravity="center_vertical"
+					android:singleLine="true"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					/>
+			</LinearLayout>
+
             <LinearLayout
                 android:orientation="horizontal"
             	android:layout_marginTop="16dp"
@@ -41,6 +102,7 @@
 		            android:id="@+id/fullCompanyNameLabel"
 		            />
             </LinearLayout>
+
             <LinearLayout
                 android:orientation="horizontal"
             	android:layout_marginTop="16dp"

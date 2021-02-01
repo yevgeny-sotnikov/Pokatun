@@ -88,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/subtitle_color"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:textSize="@dimen/font_medium"
                 />
         </LinearLayout>

@@ -51,9 +51,9 @@ namespace Pokatun.Droid.Views.Numbers
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.AddCommand).OneTime();
+            set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
             set.Bind(_recyclerView).For(v => v.ItemsSource).To(vm => vm.HotelNumbers).OneTime();
             set.Bind(_recyclerView).For(v => v.ItemClick).To(vm => vm.OpenHotelNumberCommand).OneTime();
-
 
             set.Apply();
 
@@ -66,6 +66,7 @@ namespace Pokatun.Droid.Views.Numbers
 
             ToolbarRightButton.SetImageResource(Resource.Drawable.plus);
 
+            ToolbarSubtitleLabel.Visibility = ViewStates.Visible;
             ToolbarRightButton.Visibility = ViewStates.Visible;
         }
 

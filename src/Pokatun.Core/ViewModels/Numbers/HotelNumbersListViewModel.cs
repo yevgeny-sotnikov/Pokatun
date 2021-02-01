@@ -5,6 +5,7 @@ using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Pokatun.Core.Executors;
+using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
 using Pokatun.Data;
 
@@ -15,6 +16,11 @@ namespace Pokatun.Core.ViewModels.Numbers
         private readonly IMvxNavigationService _navigationService;
         private readonly IHotelNumbersService _hotelNumbersService;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
+
+        public override string Title => Strings.MyHotelNumbers;
+
+        public string Subtitle => string.Format(Strings.AddedHotelNumbersCounter, HotelNumbers.Count);
+
         private MvxObservableCollection<HotelNumberDto> _hotelNumbers = new MvxObservableCollection<HotelNumberDto>();
         public MvxObservableCollection<HotelNumberDto> HotelNumbers
         {
@@ -22,13 +28,12 @@ namespace Pokatun.Core.ViewModels.Numbers
             set { SetProperty(ref _hotelNumbers, value); }
         }
 
-        private MvxAsyncCommand _openHotelNumberCommand;
-
-        public IMvxAsyncCommand OpenHotelNumberCommand
+        private MvxAsyncCommand<HotelNumberDto> _openHotelNumberCommand;
+        public IMvxAsyncCommand<HotelNumberDto> OpenHotelNumberCommand
         {
             get
             {
-                return _openHotelNumberCommand ?? (_openHotelNumberCommand = new MvxAsyncCommand(DoOpenHotelNumberCommandAsync));
+                return _openHotelNumberCommand ?? (_openHotelNumberCommand = new MvxAsyncCommand<HotelNumberDto>(DoOpenHotelNumberCommandAsync));
             }
         }
 
@@ -60,16 +65,30 @@ namespace Pokatun.Core.ViewModels.Numbers
         public override void Prepare(List<HotelNumberDto> parameter)
         {
             HotelNumbers.AddRange(parameter);
+            RaisePropertyChanged(nameof(Subtitle));
         }
 
-        private Task DoAddCommandAsync()
+        private async Task DoAddCommandAsync()
         {
-            return _navigationService.Navigate<EditHotelNumberViewModel>();
+            HotelNumberDto result = await _navigationService.Navigate<EditHotelNumberViewModel, HotelNumberDto, HotelNumberDto>(null);
+
+            if (result == null)
+                return;
+
+            HotelNumbers.Add(result);
+            await RaisePropertyChanged(nameof(Subtitle));
         }
 
-        private Task DoOpenHotelNumberCommandAsync()
+        private async Task DoOpenHotelNumberCommandAsync(HotelNumberDto hotelNumberDto)
         {
-            return _navigationService.Navigate<ShowHotelNumberViewModel>();
+            HotelNumberDto result = await _navigationService.Navigate<ShowHotelNumberViewModel, HotelNumberDto, HotelNumberDto>(hotelNumberDto);
+
+            if (result == null)
+                return;
+
+            int index = HotelNumbers.IndexOf(hotelNumberDto);
+            HotelNumbers.RemoveAt(index);
+            HotelNumbers.Insert(index, result);
         }
 
         public async Task DoDeleteHotelNumberCommandAsync(int index)
@@ -77,6 +96,8 @@ namespace Pokatun.Core.ViewModels.Numbers
             HotelNumberDto hotelNumber = HotelNumbers[index];
 
             HotelNumbers.RemoveAt(index);
+
+            await RaisePropertyChanged(nameof(Subtitle));
 
             ServerResponce responce = await _networkRequestExecutor.MakeRequestAsync(
                 () => _hotelNumbersService.DeleteAsync(hotelNumber.Id), new HashSet<string>()
@@ -86,6 +107,7 @@ namespace Pokatun.Core.ViewModels.Numbers
                 return;
 
             HotelNumbers.Insert(index, hotelNumber);
+            await RaisePropertyChanged(nameof(Subtitle));
         }
     }
 }

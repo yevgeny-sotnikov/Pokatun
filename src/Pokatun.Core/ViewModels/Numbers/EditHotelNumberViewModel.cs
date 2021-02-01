@@ -12,7 +12,7 @@ using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Numbers
 {
-    public sealed class EditHotelNumberViewModel : BaseViewModel
+    public sealed class EditHotelNumberViewModel : BaseViewModel<HotelNumberDto, HotelNumberDto>
     {
         private static readonly IDictionary<string, RoomLevel> RoomLevelsConversions = new Dictionary<string, RoomLevel>
         {
@@ -198,6 +198,24 @@ namespace Pokatun.Core.ViewModels.Numbers
             _validator.AddRule(nameof(Description), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(Description), Strings.NeedSetupNumberDescription));
         }
 
+        public override void Prepare(HotelNumberDto parameter)
+        {
+            if (parameter == null)
+                return;
+
+            Number = parameter.Number;
+            Level = parameter.Level;
+            RoomsAmount = parameter.RoomsAmount;
+            VisitorsAmount = parameter.VisitorsAmount;
+            Description = parameter.Description;
+            CleaningNeeded = parameter.CleaningNeeded;
+            NutritionNeeded = parameter.NutritionNeeded;
+            BreakfastIncluded = parameter.BreakfastIncluded;
+            DinnerIncluded = parameter.DinnerIncluded;
+            SupperIncluded = parameter.SupperIncluded;
+            Price = parameter.Price;
+        }
+
         private async Task DoSelectRoomLevelCommandAsync()
         {
             string result = await _userDialogs.ActionSheetAsync(
@@ -297,7 +315,20 @@ namespace Pokatun.Core.ViewModels.Numbers
             if (responce == null)
                 return;
 
-            await _navigationService.Close(this);
+            await _navigationService.Close(this, new HotelNumberDto
+            {
+                Number = Number.Value,
+                Level = Level,
+                RoomsAmount = RoomsAmount,
+                VisitorsAmount = VisitorsAmount,
+                Description = Description,
+                CleaningNeeded = CleaningNeeded,
+                NutritionNeeded = NutritionNeeded,
+                BreakfastIncluded = NutritionNeeded && BreakfastIncluded,
+                DinnerIncluded = NutritionNeeded && DinnerIncluded,
+                SupperIncluded = NutritionNeeded && SupperIncluded,
+                Price = Price.Value
+            });
         }
 
         private Task DoCloseCommandAsync()
