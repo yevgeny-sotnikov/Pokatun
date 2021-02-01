@@ -379,4 +379,7 @@
     <data name="InHotelNumber" xml:space="preserve">
         <value>В номере:</value>
     </data>
+    <data name="NotIncluded" xml:space="preserve">
+        <value>Не включено</value>
+    </data>
 </root>

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using Microsoft.Extensions.Caching.Memory;
 using Pokatun.Core.Resources;
 using Pokatun.Data;
@@ -28,6 +30,30 @@ namespace Pokatun.Core.ViewModels.Numbers
             set { SetProperty(ref _hotelNumber, value); }
         }
 
+        public string NutritionInfo
+        {
+            get
+            {
+                if (!HotelNumber.NutritionNeeded)
+                    return Strings.NotIncluded;
+
+                StringBuilder stringBuilder = new StringBuilder();
+
+                List<string> nutritionInfoList = new List<string>(3);
+
+                if (HotelNumber.BreakfastIncluded)
+                    nutritionInfoList.Add(Strings.Breakfast);
+
+                if (HotelNumber.DinnerIncluded)
+                    nutritionInfoList.Add(Strings.Dinner);
+
+                if (HotelNumber.SupperIncluded)
+                    nutritionInfoList.Add(Strings.Supper);
+
+                return string.Join(", ", nutritionInfoList);
+            }
+        }
+
         public ShowHotelNumberViewModel(IMemoryCache memoryCache)
         {
             _memoryCache = memoryCache;
@@ -35,6 +61,9 @@ namespace Pokatun.Core.ViewModels.Numbers
 
         public override void Prepare(HotelNumberDto parameter)
         {
+            if (parameter == null)
+                throw new ArgumentNullException(nameof(parameter));
+
             HotelNumber = parameter;
         }
     }

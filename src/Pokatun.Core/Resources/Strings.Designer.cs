@@ -772,5 +772,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("InHotelNumber", resourceCulture);
             }
         }
+        
+        public static string NotIncluded {
+            get {
+                return ResourceManager.GetString("NotIncluded", resourceCulture);
+            }
+        }
     }
 }
