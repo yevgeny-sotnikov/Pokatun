@@ -31,6 +31,8 @@ namespace Pokatun.Droid.Views.Numbers
         private TextView _cleaningNeededLabel;
         private TextView _nutritionLabel;
         private TextView _nutritionInfoLabel;
+        private TextView _bidSubmittionDescriptionLabel;
+        private Button _submitBidButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_show_hotel_number;
 
@@ -47,10 +49,14 @@ namespace Pokatun.Droid.Views.Numbers
             _cleaningNeededLabel = view.FindViewById<TextView>(Resource.Id.cleaningNeededLabel);
             _nutritionLabel = view.FindViewById<TextView>(Resource.Id.nutritionLabel);
             _nutritionInfoLabel = view.FindViewById<TextView>(Resource.Id.nutritionInfoLabel);
+            _bidSubmittionDescriptionLabel = view.FindViewById<TextView>(Resource.Id.bidSubmittionDescriptionLabel);
+            _submitBidButton = view.FindViewById<Button>(Resource.Id.submitBidButton);
 
             _inNumberLabel.Text = Strings.InHotelNumber;
             _cleaningLabel.Text = Strings.NumbersCleaning;
             _nutritionLabel.Text = Strings.Nutrition;
+            _bidSubmittionDescriptionLabel.Text = Strings.BidSubmittionInfo;
+            _submitBidButton.Text = Strings.SubmitBid;
 
             #pragma warning disable IDE0008 // Use explicit type
 

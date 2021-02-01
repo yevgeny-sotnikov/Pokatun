@@ -778,5 +778,17 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("NotIncluded", resourceCulture);
             }
         }
+        
+        public static string SubmitBid {
+            get {
+                return ResourceManager.GetString("SubmitBid", resourceCulture);
+            }
+        }
+        
+        public static string BidSubmittionInfo {
+            get {
+                return ResourceManager.GetString("BidSubmittionInfo", resourceCulture);
+            }
+        }
     }
 }

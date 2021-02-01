@@ -382,4 +382,10 @@
     <data name="NotIncluded" xml:space="preserve">
         <value>Не включено</value>
     </data>
+    <data name="SubmitBid" xml:space="preserve">
+        <value>Подать заявку</value>
+    </data>
+    <data name="BidSubmittionInfo" xml:space="preserve">
+        <value>Подав заявку на этот номер вы добавите его в нашу базу и он станет доступным для поиска нашим пользователям по указанным вами датам, цене, категории и другим критериям.</value>
+    </data>
 </root>

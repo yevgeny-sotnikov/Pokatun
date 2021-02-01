@@ -198,13 +198,25 @@
 	</ScrollView>
 
 	<Button
-		android:id="@+id/saveChangesButton"
+		android:id="@+id/submitBidButton"
 		style="@style/BigButton"
 		android:text="NEXT"
 		android:layout_marginLeft="@dimen/common_left_right_distanse"
 		android:layout_marginRight="@dimen/common_left_right_distanse"
-		android:layout_marginBottom="43dp"
 		android:layout_width="match_parent"
+		/>
+
+	<TextView
+		android:id="@+id/bidSubmittionDescriptionLabel"
+		style="@style/LargeLabel"
+		android:layout_marginLeft="@dimen/common_left_right_distanse"
+		android:layout_marginRight="@dimen/common_left_right_distanse"
+		android:layout_marginTop="12dp"
+		android:layout_marginBottom="43dp"
+		android:text="DESC"
+		android:gravity="center"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
 		/>
 
 </LinearLayout>

@@ -65,6 +65,7 @@ namespace Pokatun.Core.ViewModels.Numbers
                 throw new ArgumentNullException(nameof(parameter));
 
             HotelNumber = parameter;
+            RaisePropertyChanged(nameof(NutritionInfo));
         }
     }
 }
