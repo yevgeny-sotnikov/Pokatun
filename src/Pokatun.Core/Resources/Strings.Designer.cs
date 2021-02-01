@@ -766,5 +766,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("AddedHotelNumbersCounter", resourceCulture);
             }
         }
+        
+        public static string InHotelNumber {
+            get {
+                return ResourceManager.GetString("InHotelNumber", resourceCulture);
+            }
+        }
     }
 }

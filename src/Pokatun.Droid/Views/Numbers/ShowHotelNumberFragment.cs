@@ -33,6 +33,8 @@ namespace Pokatun.Droid.Views.Numbers
         private TextView _levelLabel;
         private TextView _roomsAmountLabel;
         private TextView _visitorsAmountLabel;
+        private TextView _inNumberLabel;
+        private TextView _descriptionLabel;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_show_hotel_number;
 
@@ -43,6 +45,10 @@ namespace Pokatun.Droid.Views.Numbers
             _levelLabel = view.FindViewById<TextView>(Resource.Id.levelLabel);
             _roomsAmountLabel = view.FindViewById<TextView>(Resource.Id.roomsAmountLabel);
             _visitorsAmountLabel = view.FindViewById<TextView>(Resource.Id.visitorsAmountLabel);
+            _inNumberLabel = view.FindViewById<TextView>(Resource.Id.inNumberLabel);
+            _descriptionLabel = view.FindViewById<TextView>(Resource.Id.descriptionLabel);
+
+            _inNumberLabel.Text = Strings.InHotelNumber;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -55,6 +61,7 @@ namespace Pokatun.Droid.Views.Numbers
             set.Bind(_levelLabel).To(vm => vm.HotelNumber.Level).WithConversion<RoomLevelToStringConverter>().OneWay();
             set.Bind(_roomsAmountLabel).To(vm => vm.HotelNumber.RoomsAmount).WithConversion<StringFormatValueConverter>(Strings.RoomsCounter).OneWay();
             set.Bind(_visitorsAmountLabel).To(vm => vm.HotelNumber.VisitorsAmount).WithConversion<StringFormatValueConverter>(Strings.VisitorsCounter).OneWay();
+            set.Bind(_descriptionLabel).To(vm => vm.HotelNumber.Description).OneWay();
 
             set.Apply();
 
