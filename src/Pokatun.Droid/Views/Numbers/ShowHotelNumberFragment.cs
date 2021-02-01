@@ -1,14 +1,5 @@
-
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -16,6 +7,7 @@ using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Numbers;
+using MvvmCross.Binding.BindingContext;
 
 namespace Pokatun.Droid.Views.Numbers
 {
@@ -35,6 +27,8 @@ namespace Pokatun.Droid.Views.Numbers
         private TextView _visitorsAmountLabel;
         private TextView _inNumberLabel;
         private TextView _descriptionLabel;
+        private TextView _cleaningLabel;
+        private TextView _cleaningNeededLabel;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_show_hotel_number;
 
@@ -47,10 +41,12 @@ namespace Pokatun.Droid.Views.Numbers
             _visitorsAmountLabel = view.FindViewById<TextView>(Resource.Id.visitorsAmountLabel);
             _inNumberLabel = view.FindViewById<TextView>(Resource.Id.inNumberLabel);
             _descriptionLabel = view.FindViewById<TextView>(Resource.Id.descriptionLabel);
+            _cleaningLabel = view.FindViewById<TextView>(Resource.Id.cleaningLabel);
+            _cleaningNeededLabel = view.FindViewById<TextView>(Resource.Id.cleaningNeededLabel);
 
             _inNumberLabel.Text = Strings.InHotelNumber;
-
-            #pragma warning disable IDE0008 // Use explicit type
+            _cleaningLabel.Text = Strings.NumbersCleaning;
+#pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
 
@@ -62,6 +58,11 @@ namespace Pokatun.Droid.Views.Numbers
             set.Bind(_roomsAmountLabel).To(vm => vm.HotelNumber.RoomsAmount).WithConversion<StringFormatValueConverter>(Strings.RoomsCounter).OneWay();
             set.Bind(_visitorsAmountLabel).To(vm => vm.HotelNumber.VisitorsAmount).WithConversion<StringFormatValueConverter>(Strings.VisitorsCounter).OneWay();
             set.Bind(_descriptionLabel).To(vm => vm.HotelNumber.Description).OneWay();
+            set.Bind(_cleaningNeededLabel).To(vm => vm.HotelNumber.CleaningNeeded).WithDictionaryConversion(new Dictionary<bool, string>
+            {
+                { true, "Да" },
+                { false, "Нет" }
+            }).OneWay();
 
             set.Apply();
 
