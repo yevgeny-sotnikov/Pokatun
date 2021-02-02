@@ -37,12 +37,6 @@ namespace Pokatun.API.Controllers
             }
         }
 
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
         // POST api/values
         [HttpPost]
         public ActionResult<ServerResponce> Post([FromBody] HotelNumberDto value)
@@ -59,11 +53,20 @@ namespace Pokatun.API.Controllers
             }
         }
 
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        [HttpPut("{id}")]
+        public ActionResult<ServerResponce> Put(long id, [FromBody] HotelNumberDto value)
+        {
+            try
+            {
+                _hotelNumbersService.UpdateExists(GetHotelId(), id, value);
+
+                return Ok(new ServerResponce<string> { Data = "OK" });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
 
 
         [HttpDelete("{id}")]

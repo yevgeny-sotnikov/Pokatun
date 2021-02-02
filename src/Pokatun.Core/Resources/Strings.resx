@@ -133,6 +133,9 @@
     <data name="HotelNumberAllreadyExistsError" xml:space="preserve">
         <value>В вашем отеле уже существуют аппартаменты под таким номером</value>
     </data>
+    <data name="HotelNumberDoesntExistError" xml:space="preserve">
+        <value>Аппартаментов под таким номером не существует</value>
+    </data>
     <data name="AccountAllreadyExistsError" xml:space="preserve">
         <value>Аккаунт с указанным почтовым адресом уже существует</value>
     </data>
@@ -297,6 +300,9 @@
     </data>
     <data name="NewHotelNumber" xml:space="preserve">
         <value>Новый номер</value>
+    </data>
+    <data name="HotelNumberEditing" xml:space="preserve">
+        <value>Редактирование номера</value>
     </data>
     <data name="RoomNumber" xml:space="preserve">
         <value>Номер комнаты</value>

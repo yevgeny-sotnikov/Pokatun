@@ -8,6 +8,7 @@ using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Main;
 using Pokatun.Core.ViewModels.Numbers;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Platforms.Android.Binding;
 
 namespace Pokatun.Droid.Views.Numbers
 {
@@ -65,6 +66,7 @@ namespace Pokatun.Droid.Views.Numbers
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
+            set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.EditCommand).OneTime();
 
             set.Bind(_levelLabel).To(vm => vm.HotelNumber.Level).WithConversion<RoomLevelToStringConverter>().OneWay();
             set.Bind(_roomsAmountLabel).To(vm => vm.HotelNumber.RoomsAmount).WithConversion<StringFormatValueConverter>(Strings.RoomsCounter).OneWay();

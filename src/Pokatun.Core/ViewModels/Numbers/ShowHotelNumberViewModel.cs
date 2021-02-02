@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using Pokatun.Core.Resources;
 using Pokatun.Data;
 
@@ -10,6 +13,7 @@ namespace Pokatun.Core.ViewModels.Numbers
     public sealed class ShowHotelNumberViewModel : BaseViewModel<HotelNumberDto, HotelNumberDto>
     {
         private readonly IMemoryCache _memoryCache;
+        private readonly IMvxNavigationService _navigationService;
 
         public override string Title => string.Format(Strings.HotelNumber, HotelNumber.Number);
 
@@ -54,9 +58,19 @@ namespace Pokatun.Core.ViewModels.Numbers
             }
         }
 
-        public ShowHotelNumberViewModel(IMemoryCache memoryCache)
+        private MvxAsyncCommand _editCommand;
+        public IMvxAsyncCommand EditCommand
+        {
+            get
+            {
+                return _editCommand ?? (_editCommand = new MvxAsyncCommand(DoEditCommandAsync));
+            }
+        }
+
+        public ShowHotelNumberViewModel(IMemoryCache memoryCache, IMvxNavigationService navigationService)
         {
             _memoryCache = memoryCache;
+            _navigationService = navigationService;
         }
 
         public override void Prepare(HotelNumberDto parameter)
@@ -67,5 +81,20 @@ namespace Pokatun.Core.ViewModels.Numbers
             HotelNumber = parameter;
             RaisePropertyChanged(nameof(NutritionInfo));
         }
+
+        private async Task DoEditCommandAsync()
+        {
+            HotelNumberDto result = await _navigationService.Navigate<EditHotelNumberViewModel, HotelNumberDto, HotelNumberDto>(HotelNumber);
+
+            if (result == null)
+            {
+                return;
+            }
+
+            HotelNumber = result;
+
+            await RaiseAllPropertiesChanged();
+        }
+
     }
 }

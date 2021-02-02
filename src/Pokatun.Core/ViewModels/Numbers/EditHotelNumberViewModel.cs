@@ -29,10 +29,12 @@ namespace Pokatun.Core.ViewModels.Numbers
         private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
+        private long? _hotelNumberIdWhichExists = null;
 
-        public override string Title => Strings.NewHotelNumber;
+        public override string Title => _hotelNumberIdWhichExists != null ? Strings.HotelNumberEditing : Strings.NewHotelNumber;
 
         private short? _number;
+
         public short? Number
         {
             get { return _number; }
@@ -203,6 +205,8 @@ namespace Pokatun.Core.ViewModels.Numbers
             if (parameter == null)
                 return;
 
+            _hotelNumberIdWhichExists = parameter.Id;
+
             Number = parameter.Number;
             Level = parameter.Level;
             RoomsAmount = parameter.RoomsAmount;
@@ -295,22 +299,46 @@ namespace Pokatun.Core.ViewModels.Numbers
                 return;
             }
 
-            ServerResponce responce = await _networkRequestExecutor.MakeRequestAsync(() =>
-                _hotelNumbersService.AddNewAsync(
-                    Number.Value,
-                    Level,
-                    RoomsAmount,
-                    VisitorsAmount,
-                    Description,
-                    CleaningNeeded,
-                    NutritionNeeded,
-                    BreakfastIncluded = NutritionNeeded && BreakfastIncluded,
-                    DinnerIncluded = NutritionNeeded && DinnerIncluded,
-                    SupperIncluded = NutritionNeeded && SupperIncluded,
-                    Price.Value
-                ),
-                new HashSet<string> { ErrorCodes.HotelNumberAllreadyExistsError }
-            );
+            ServerResponce responce;
+            if (_hotelNumberIdWhichExists == null)
+            {
+                responce = await _networkRequestExecutor.MakeRequestAsync(() =>
+                    _hotelNumbersService.AddNewAsync(
+                        Number.Value,
+                        Level,
+                        RoomsAmount,
+                        VisitorsAmount,
+                        Description,
+                        CleaningNeeded,
+                        NutritionNeeded,
+                        BreakfastIncluded = NutritionNeeded && BreakfastIncluded,
+                        DinnerIncluded = NutritionNeeded && DinnerIncluded,
+                        SupperIncluded = NutritionNeeded && SupperIncluded,
+                        Price.Value
+                    ),
+                    new HashSet<string> { ErrorCodes.HotelNumberAllreadyExistsError }
+                );
+            }
+            else
+            {
+                responce = await _networkRequestExecutor.MakeRequestAsync(() =>
+                    _hotelNumbersService.UpdateExistsAsync(
+                        _hotelNumberIdWhichExists.Value,
+                        Number.Value,
+                        Level,
+                        RoomsAmount,
+                        VisitorsAmount,
+                        Description,
+                        CleaningNeeded,
+                        NutritionNeeded,
+                        BreakfastIncluded = NutritionNeeded && BreakfastIncluded,
+                        DinnerIncluded = NutritionNeeded && DinnerIncluded,
+                        SupperIncluded = NutritionNeeded && SupperIncluded,
+                        Price.Value
+                    ),
+                    new HashSet<string> { ErrorCodes.HotelNumberDoesntExistError, ErrorCodes.HotelNumberAllreadyExistsError }
+                );
+            }
 
             if (responce == null)
                 return;

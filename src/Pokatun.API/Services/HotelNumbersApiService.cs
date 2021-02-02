@@ -51,7 +51,49 @@ namespace Pokatun.API.Services
 
             _context.HotelNumbers.Add(hotelNumber);
             _context.SaveChanges();
+        }
 
+        public void UpdateExists(long hotelId, long hotelNumberId, HotelNumberDto value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            IList<string> errors = new List<string>();
+
+            if (_context.HotelNumbers.Any(number => number.HotelId == hotelId && number.Number == value.Number && number.Id != hotelNumberId))
+            {
+                errors.Add(ErrorCodes.HotelNumberAllreadyExistsError);
+            }
+
+            HotelNumber hotelNumber = _context.HotelNumbers.SingleOrDefault(x => x.Id ==  hotelNumberId);
+
+            if (hotelNumber == null)
+            {
+                errors.Add(ErrorCodes.HotelNumberDoesntExistError);
+            }
+
+            if (errors.Any())
+            {
+                throw new ApiException(errors);
+            }
+
+            hotelNumber.Number = value.Number;
+            hotelNumber.Level = value.Level;
+            hotelNumber.RoomsAmount = value.RoomsAmount;
+            hotelNumber.VisitorsAmount = value.VisitorsAmount;
+            hotelNumber.Description = value.Description;
+            hotelNumber.CleaningNeeded = value.CleaningNeeded;
+            hotelNumber.NutritionNeeded = value.NutritionNeeded;
+            hotelNumber.BreakfastIncluded = value.BreakfastIncluded;
+            hotelNumber.DinnerIncluded = value.DinnerIncluded;
+            hotelNumber.SupperIncluded = value.SupperIncluded;
+            hotelNumber.Price = value.Price;
+            hotelNumber.HotelId = hotelId;
+
+            _context.HotelNumbers.Update(hotelNumber);
+            _context.SaveChanges();
         }
 
         public void Delete(long id)

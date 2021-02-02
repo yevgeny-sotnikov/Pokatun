@@ -287,6 +287,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string HotelNumberDoesntExistError {
+            get {
+                return ResourceManager.GetString("HotelNumberDoesntExistError", resourceCulture);
+            }
+        }
+        
         public static string AccountAllreadyExistsError {
             get {
                 return ResourceManager.GetString("AccountAllreadyExistsError", resourceCulture);
@@ -608,6 +614,12 @@ namespace Pokatun.Core.Resources {
         public static string NewHotelNumber {
             get {
                 return ResourceManager.GetString("NewHotelNumber", resourceCulture);
+            }
+        }
+        
+        public static string HotelNumberEditing {
+            get {
+                return ResourceManager.GetString("HotelNumberEditing", resourceCulture);
             }
         }
         
