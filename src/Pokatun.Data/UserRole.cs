@@ -1,4 +1,4 @@
-namespace Pokatun.Core.Models.Enums
+namespace Pokatun.Data
 {
     public enum UserRole
     {

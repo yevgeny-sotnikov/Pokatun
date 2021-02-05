@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pokatun.API.Services;
@@ -29,6 +25,78 @@ namespace Pokatun.API.Controllers
             try
             {
                 return Ok(new ServerResponce<TokenInfoDto> { Data = _accountsService.RegisterNewTourist(value) });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("hotelregistration")]
+        public ActionResult<ServerResponce<TokenInfoDto>> RegisterNewHotel([FromBody] HotelRegistrationDto value)
+        {
+            try
+            {
+                return Ok(new ServerResponce<TokenInfoDto> { Data = _accountsService.RegisterNewHotel(value) });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public ActionResult<ServerResponce<TokenInfoDto>> Login([FromBody] LoginDto value)
+        {
+            try
+            {
+                return Ok(new ServerResponce<TokenInfoDto> { Data = _accountsService.Login(value.Email, value.Password) });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("forgot-password")]
+        public ActionResult<ServerResponce<string>> ForgotPassword(ForgotPasswordRequest model)
+        {
+            try
+            {
+                _accountsService.ForgotPassword(model.Email);
+                return Ok(new ServerResponce<string> { Data = "OK" });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("validate-reset-token")]
+        public IActionResult ValidateResetToken(ValidateResetTokenRequest model)
+        {
+            try
+            {
+                _accountsService.ValidateResetToken(model.Token);
+                return Ok(new ServerResponce<string> { Data = "OK" });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("reset-password")]
+        public ActionResult<ServerResponce<TokenInfoDto>> ResetPassword(ResetPasswordRequest model)
+        {
+            try
+            {
+                return Ok(new ServerResponce<TokenInfoDto> { Data = _accountsService.ResetPassword(model.Token, model.Password) });
             }
             catch (ApiException ex)
             {

@@ -1,11 +1,10 @@
-using System;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using Pokatun.Core.Models.Enums;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Login;
 using Pokatun.Core.ViewModels.Registration;
+using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.PreEntrance
 {

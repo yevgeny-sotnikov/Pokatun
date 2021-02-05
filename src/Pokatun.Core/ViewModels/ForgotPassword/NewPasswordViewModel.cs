@@ -15,7 +15,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
     public sealed class NewPasswordViewModel : BaseViewModel<string>
     {
         private readonly IUserDialogs _userDialogs;
-        private readonly IHotelsService _hotelsService;
+        private readonly IAccountsService _accountService;
         private readonly IHotelFinalSetupExecutor _hotelFinalSetupExecutor;
         private readonly IAuthExecutor _authExecutor;
 
@@ -72,13 +72,13 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
         public NewPasswordViewModel(
             IAuthExecutor authExecutor,
             IUserDialogs userDialogs,
-            IHotelsService hotelsService,
+            IAccountsService accountService,
             IHotelFinalSetupExecutor hotelFinalSetupExecutor
         )
         {
             _authExecutor = authExecutor;
             _userDialogs = userDialogs;
-            _hotelsService = hotelsService;
+            _accountService = accountService;
             _hotelFinalSetupExecutor = hotelFinalSetupExecutor;
 
             _validator = new ValidationHelper();
@@ -124,7 +124,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
             using (_userDialogs.Loading(Strings.ProcessingRequest))
             {
                 TokenInfoDto dto = await _authExecutor.MakeAuthAsync(
-                    () => _hotelsService.ResetPassword(_token, Password),
+                    () => _accountService.ResetPassword(_token, Password),
                     new HashSet<string> { ErrorCodes.InvalidTokenError, ErrorCodes.ExpiredTokenError }
                 );
 

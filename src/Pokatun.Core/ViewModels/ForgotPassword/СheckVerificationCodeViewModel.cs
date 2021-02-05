@@ -16,7 +16,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
     {
         private readonly ValidationHelper _validator;
         private readonly IMvxNavigationService _navigationService;
-        private readonly IHotelsService _hotelsService;
+        private readonly IAccountsService _accountService;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
 
         public override string Title => Strings.PasswordRecovery;
@@ -42,10 +42,10 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
             get { return _matchCodeCommand ?? (_matchCodeCommand = new MvxAsyncCommand(DoMatchCodeCommandAsync)); }
         }
 
-        public СheckVerificationCodeViewModel(IMvxNavigationService navigationService, IHotelsService hotelsService, INetworkRequestExecutor networkRequestExecutor)
+        public СheckVerificationCodeViewModel(IMvxNavigationService navigationService, IAccountsService accountService, INetworkRequestExecutor networkRequestExecutor)
         {
             _navigationService = navigationService;
-            _hotelsService = hotelsService;
+            _accountService = accountService;
             _networkRequestExecutor = networkRequestExecutor;
 
             _validator = new ValidationHelper();
@@ -62,7 +62,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
         private async Task DoMatchCodeCommandAsync()
         {
             ServerResponce responce = await _networkRequestExecutor.MakeRequestAsync(
-                () => _hotelsService.ValidateResetToken(VerificationCode),
+                () => _accountService.ValidateResetToken(VerificationCode),
                 new HashSet<string>
                 {
                     ErrorCodes.InvalidTokenError,

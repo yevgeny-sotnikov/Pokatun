@@ -17,7 +17,7 @@ namespace Pokatun.Core.ViewModels.Registration
         private readonly IAuthExecutor _authExecutor;
         private readonly IUserDialogs _userDialogs;
         private readonly ValidationHelper _validator;
-        private readonly IHotelsService _hotelsService;
+        private readonly IAccountsService _accountsService;
         private readonly IHotelFinalSetupExecutor _hotelFinalSetupExecutor;
 
         private bool _viewInEditMode = true;
@@ -103,11 +103,11 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        public HotelRegistrationSecondStepViewModel(IAuthExecutor authExecutor, IUserDialogs userDialogs, IHotelsService hotelsService, IHotelFinalSetupExecutor hotelFinalSetupExecutor)
+        public HotelRegistrationSecondStepViewModel(IAuthExecutor authExecutor, IUserDialogs userDialogs, IAccountsService accountsService, IHotelFinalSetupExecutor hotelFinalSetupExecutor)
         {
             _authExecutor = authExecutor;
             _userDialogs = userDialogs;
-            _hotelsService = hotelsService;
+            _accountsService = accountsService;
             _hotelFinalSetupExecutor = hotelFinalSetupExecutor;
 
             _validator = new ValidationHelper();
@@ -168,7 +168,7 @@ namespace Pokatun.Core.ViewModels.Registration
             using (_userDialogs.Loading(Strings.ProcessingRequest))
             {
                 TokenInfoDto dto = await _authExecutor.MakeAuthAsync(
-                    () => _hotelsService.RegisterAsync(
+                    () => _accountsService.RegisterHotelAsync(
                         _firstData.HotelName,
                         FullCompanyName,
                         _firstData.Email,

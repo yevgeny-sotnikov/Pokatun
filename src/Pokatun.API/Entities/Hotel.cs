@@ -18,19 +18,6 @@ namespace Pokatun.API.Entities
         public string HotelName { get; set; }
 
         [Required]
-        [MaxLength(64)]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [Required]
-        [MaxLength(64)]
-        public byte[] PasswordHash { get; set; }
-
-        [Required]
-        [MaxLength(128)]
-        public byte[] PasswordSalt { get; set; }
-
-        [Required]
         [MaxLength(128)]
         [MinLength(1)]
         public string FullCompanyName { get; set; }
@@ -69,15 +56,14 @@ namespace Pokatun.API.Entities
 
         public double? Latitude { get; set; }
 
-        [MaxLength(DataPatterns.VerificationCodeLenght)]
-        public string ResetToken { get; set; }
-
-        public DateTime? ResetTokenExpires { get; set; }
-
         public ICollection<Phone> Phones { get; set; }
 
         public ICollection<SocialResource> SocialResources { get; set; }
 
         public ICollection<HotelNumber> HotelNumbers { get; set; }
+
+        public long AccountId { get; set; }
+
+        public Account Account { get; set; }
     }
 }

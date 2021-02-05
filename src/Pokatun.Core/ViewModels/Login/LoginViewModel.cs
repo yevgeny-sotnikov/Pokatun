@@ -6,7 +6,6 @@ using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmValidation;
 using Pokatun.Core.Executors;
-using Pokatun.Core.Models.Enums;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.ForgotPassword;
@@ -20,7 +19,7 @@ namespace Pokatun.Core.ViewModels.Login
         private readonly IAuthExecutor _authExecutor;
         private readonly IUserDialogs _userDialogs;
         private readonly IMvxNavigationService _navigationService;
-        private readonly IHotelsService _hotelsService;
+        private readonly IAccountsService _accountService;
         private readonly IHotelFinalSetupExecutor _hotelFinalSetupExecutor;
 
         private bool _viewInEditMode = true;
@@ -84,14 +83,14 @@ namespace Pokatun.Core.ViewModels.Login
             IAuthExecutor authExecutor,
             IUserDialogs userDialogs,
             IMvxNavigationService navigationService,
-            IHotelsService hotelsService,
+            IAccountsService accountService,
             IHotelFinalSetupExecutor hotelFinalSetupExecutor
         )
         {
             _authExecutor = authExecutor;
             _userDialogs = userDialogs;
             _navigationService = navigationService;
-            _hotelsService = hotelsService;
+            _accountService = accountService;
             _hotelFinalSetupExecutor = hotelFinalSetupExecutor;
 
             _validator = new ValidationHelper();
@@ -131,7 +130,7 @@ namespace Pokatun.Core.ViewModels.Login
             using (_userDialogs.Loading(Strings.ProcessingRequest))
             {
                 TokenInfoDto dto = await _authExecutor.MakeAuthAsync(
-                    () => _hotelsService.LoginAsync(Email, Password),
+                    () => _accountService.LoginAsync(Email, Password),
                     new HashSet<string> { ErrorCodes.AccountDoesNotExistError, ErrorCodes.IncorrectPasswordError }
                 );
 

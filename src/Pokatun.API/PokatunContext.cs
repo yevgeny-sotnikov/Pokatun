@@ -33,10 +33,11 @@ namespace Pokatun.API.Models
             builder.Entity<Account>().ToTable(nameof(Accounts));
             builder.Entity<Tourist>().ToTable(nameof(Tourists));
 
-            builder.Entity<Hotel>().HasIndex(h => h.Email).IsUnique();
+            builder.Entity<Account>().HasIndex(a => a.Email).IsUnique();
+            builder.Entity<Account>().HasIndex(a => a.ResetToken).IsUnique();
+
             builder.Entity<Hotel>().HasIndex(h => h.USREOU).IsUnique();
             builder.Entity<Hotel>().HasIndex(h => h.IBAN).IsUnique();
-            builder.Entity<Hotel>().HasIndex(h => h.ResetToken).IsUnique();
             builder.Entity<Hotel>().HasIndex(h => h.PhotoUrl).IsUnique();
 
             builder.Entity<Account>().HasIndex(h => h.Email).IsUnique();

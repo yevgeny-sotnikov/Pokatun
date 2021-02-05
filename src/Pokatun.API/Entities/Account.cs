@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Pokatun.Data;
 
 namespace Pokatun.API.Entities
 {
@@ -20,5 +21,13 @@ namespace Pokatun.API.Entities
         [Required]
         [MaxLength(128)]
         public byte[] PasswordSalt { get; set; }
+
+        [MaxLength(DataPatterns.VerificationCodeLenght)]
+        public string ResetToken { get; set; }
+
+        public DateTime? ResetTokenExpires { get; set; }
+
+        [Required]
+        public UserRole Role { get; set; }
     }
 }

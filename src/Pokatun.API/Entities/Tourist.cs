@@ -18,7 +18,6 @@ namespace Pokatun.API.Entities
         [EmailAddress]
         public string PhoneNumber { get; set; }
 
-
         public long AccountId { get; set; }
 
         public Account Account { get; set; }

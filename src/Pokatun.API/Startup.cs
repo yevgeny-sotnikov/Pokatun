@@ -64,10 +64,10 @@ namespace Pokatun.API
                 {
                     OnTokenValidated = context =>
                     {
-                        IHotelsApiService hotelsService = context.HttpContext.RequestServices.GetRequiredService<IHotelsApiService>();
+                        PokatunContext dbContext = context.HttpContext.RequestServices.GetRequiredService<PokatunContext>();
                         long id = long.Parse(context.Principal.Identity.Name);
-                        Hotel hotel = hotelsService.GetById(id);
-                        if (hotel == null)
+
+                        if (!dbContext.Hotels.Any(x => x.Id == id) && !dbContext.Tourists.Any(x => x.Id == id))
                         {
                             // return unauthorized if user no longer exists
                             context.Fail("Unauthorized");

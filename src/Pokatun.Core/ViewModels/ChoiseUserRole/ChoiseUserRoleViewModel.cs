@@ -2,8 +2,8 @@ using System;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using Pokatun.Core.Models.Enums;
 using Pokatun.Core.ViewModels.PreEntrance;
+using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.ChoiseUserRole
 {
