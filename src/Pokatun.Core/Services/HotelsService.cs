@@ -27,14 +27,14 @@ namespace Pokatun.Core.Services
             return _restService.GetAsync<HotelDto>("hotels/" + id);
         }
 
-        public Task<ServerResponce<ShortInfoDto>> GetShortInfoAsync(long id)
+        public Task<ServerResponce<HotelShortInfoDto>> GetShortInfoAsync(long id)
         {
             if (id <= 0)
             {
                 throw new ArgumentException(Constants.InvalidValueExceptionMessage, nameof(id));
             }
 
-            return _restService.GetAsync<ShortInfoDto>("hotels/shortinfo/" + id);
+            return _restService.GetAsync<HotelShortInfoDto>("hotels/shortinfo/" + id);
         }
 
         public Task<ServerResponce<TokenInfoDto>> LoginAsync(string email, string password)
@@ -63,7 +63,6 @@ namespace Pokatun.Core.Services
             long? bankCard,
             int USREOU)
         {
-
             return _restService.PostAsync<TokenInfoDto>("hotels/register",
                 new HotelRegistrationDto
                 {

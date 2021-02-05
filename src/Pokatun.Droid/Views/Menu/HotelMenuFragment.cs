@@ -7,7 +7,6 @@ using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Droid.Controls;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Plugin.Visibility;
-using MvvmCross.Platforms.Android.Binding.Target;
 
 namespace Pokatun.Droid.Views.Menu
 {

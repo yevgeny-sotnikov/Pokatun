@@ -7,6 +7,8 @@ using Pokatun.API.Entities;
 using Pokatun.API.Models;
 using Pokatun.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Pokatun.API.Helpers;
 
 namespace Pokatun.API.Services
 {
@@ -41,7 +43,7 @@ namespace Pokatun.API.Services
             return hotel;
         }
 
-        public ShortInfoDto GetShortInfo(long id)
+        public HotelShortInfoDto GetShortInfo(long id)
         {
             if (id <= 0)
             {
@@ -59,7 +61,7 @@ namespace Pokatun.API.Services
             bool anyPhones = _context.Phones.Any(phone => phone.HotelId == hotel.Id);
             bool anySocialResources = _context.SocialResources.Any(sr => sr.HotelId == hotel.Id);
 
-            return new ShortInfoDto
+            return new HotelShortInfoDto
             {
                 HotelName = hotel.HotelName,
                 PhotoName = hotel.PhotoUrl,

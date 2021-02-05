@@ -21,6 +21,7 @@ namespace Pokatun.Core.ViewModels.Login
         private readonly IUserDialogs _userDialogs;
         private readonly IMvxNavigationService _navigationService;
         private readonly IHotelsService _hotelsService;
+        private readonly IHotelFinalSetupExecutor _hotelFinalSetupExecutor;
 
         private bool _viewInEditMode = true;
         private UserRole _role;
@@ -83,12 +84,15 @@ namespace Pokatun.Core.ViewModels.Login
             IAuthExecutor authExecutor,
             IUserDialogs userDialogs,
             IMvxNavigationService navigationService,
-            IHotelsService hotelsService
-        ) {
+            IHotelsService hotelsService,
+            IHotelFinalSetupExecutor hotelFinalSetupExecutor
+        )
+        {
             _authExecutor = authExecutor;
             _userDialogs = userDialogs;
             _navigationService = navigationService;
             _hotelsService = hotelsService;
+            _hotelFinalSetupExecutor = hotelFinalSetupExecutor;
 
             _validator = new ValidationHelper();
 
@@ -124,11 +128,18 @@ namespace Pokatun.Core.ViewModels.Login
                 return;
             }
 
-            await _authExecutor.MakeAuthAsync(
-                () => _hotelsService.LoginAsync(Email, Password),
-                new HashSet<string> { ErrorCodes.AccountDoesNotExistError, ErrorCodes.IncorrectPasswordError },
-                this
-            );
+            using (_userDialogs.Loading(Strings.ProcessingRequest))
+            {
+                TokenInfoDto dto = await _authExecutor.MakeAuthAsync(
+                    () => _hotelsService.LoginAsync(Email, Password),
+                    new HashSet<string> { ErrorCodes.AccountDoesNotExistError, ErrorCodes.IncorrectPasswordError }
+                );
+
+                if (dto == null)
+                    return;
+
+                await _hotelFinalSetupExecutor.FinalizeSetupAsync(dto, this);
+            }
         }
 
         private Task DoForgotPasswordCommandAsync()

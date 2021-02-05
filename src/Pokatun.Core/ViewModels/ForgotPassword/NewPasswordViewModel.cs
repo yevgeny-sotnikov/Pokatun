@@ -16,6 +16,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
     {
         private readonly IUserDialogs _userDialogs;
         private readonly IHotelsService _hotelsService;
+        private readonly IHotelFinalSetupExecutor _hotelFinalSetupExecutor;
         private readonly IAuthExecutor _authExecutor;
 
         private readonly ValidationHelper _validator;
@@ -71,11 +72,14 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
         public NewPasswordViewModel(
             IAuthExecutor authExecutor,
             IUserDialogs userDialogs,
-            IHotelsService hotelsService
-        ) {
+            IHotelsService hotelsService,
+            IHotelFinalSetupExecutor hotelFinalSetupExecutor
+        )
+        {
             _authExecutor = authExecutor;
             _userDialogs = userDialogs;
             _hotelsService = hotelsService;
+            _hotelFinalSetupExecutor = hotelFinalSetupExecutor;
 
             _validator = new ValidationHelper();
 
@@ -117,11 +121,18 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
                 return;
             }
 
-            await _authExecutor.MakeAuthAsync(
-                () => _hotelsService.ResetPassword(_token, Password),
-                new HashSet<string> { ErrorCodes.InvalidTokenError, ErrorCodes.ExpiredTokenError },
-                this
-            );
+            using (_userDialogs.Loading(Strings.ProcessingRequest))
+            {
+                TokenInfoDto dto = await _authExecutor.MakeAuthAsync(
+                    () => _hotelsService.ResetPassword(_token, Password),
+                    new HashSet<string> { ErrorCodes.InvalidTokenError, ErrorCodes.ExpiredTokenError }
+                );
+
+                if (dto == null)
+                    return;
+
+                await _hotelFinalSetupExecutor.FinalizeSetupAsync(dto, this);
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Pokatun.Core.Services
     {
         Task<ServerResponce<HotelDto>> GetAsync(long id);
 
-        Task<ServerResponce<ShortInfoDto>> GetShortInfoAsync(long id);
+        Task<ServerResponce<HotelShortInfoDto>> GetShortInfoAsync(long id);
 
         Task<ServerResponce<TokenInfoDto>> RegisterAsync(
             string hotelName,

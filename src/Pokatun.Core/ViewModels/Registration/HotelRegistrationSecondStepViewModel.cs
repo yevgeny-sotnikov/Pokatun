@@ -18,6 +18,8 @@ namespace Pokatun.Core.ViewModels.Registration
         private readonly IUserDialogs _userDialogs;
         private readonly ValidationHelper _validator;
         private readonly IHotelsService _hotelsService;
+        private readonly IHotelFinalSetupExecutor _hotelFinalSetupExecutor;
+
         private bool _viewInEditMode = true;
 
         private HotelRegistrationFirstData _firstData;
@@ -93,7 +95,6 @@ namespace Pokatun.Core.ViewModels.Registration
         public bool IsFullCompanyNameInvalid => CheckInvalid(nameof(FullCompanyName));
 
         private MvxAsyncCommand _createAccountCommand;
-
         public IMvxAsyncCommand СreateAccountCommand
         {
             get
@@ -102,16 +103,12 @@ namespace Pokatun.Core.ViewModels.Registration
             }
         }
 
-        public override void Prepare(HotelRegistrationFirstData parameter)
-        {
-            _firstData = parameter;
-        }
-
-        public HotelRegistrationSecondStepViewModel(IAuthExecutor authExecutor, IUserDialogs userDialogs, IHotelsService hotelsService)
+        public HotelRegistrationSecondStepViewModel(IAuthExecutor authExecutor, IUserDialogs userDialogs, IHotelsService hotelsService, IHotelFinalSetupExecutor hotelFinalSetupExecutor)
         {
             _authExecutor = authExecutor;
             _userDialogs = userDialogs;
             _hotelsService = hotelsService;
+            _hotelFinalSetupExecutor = hotelFinalSetupExecutor;
 
             _validator = new ValidationHelper();
 
@@ -129,6 +126,11 @@ namespace Pokatun.Core.ViewModels.Registration
 
             _validator.AddRule(nameof(BankName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(BankName), Strings.BankNameRequiredMessage));
             _validator.AddRule(nameof(USREOU), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(USREOU.Trim(), DataPatterns.USREOU), Strings.InvalidUSREOU));
+        }
+
+        public override void Prepare(HotelRegistrationFirstData parameter)
+        {
+            _firstData = parameter;
         }
 
         private async Task DoСreateAccountCommandAsync()
@@ -163,25 +165,32 @@ namespace Pokatun.Core.ViewModels.Registration
                 bankCard = long.Parse(BankCardOrIban);
             }
 
-            await _authExecutor.MakeAuthAsync(
-                () => _hotelsService.RegisterAsync(
-                    _firstData.HotelName,
-                    FullCompanyName,
-                    _firstData.Email,
-                    _firstData.Password,
-                    _firstData.PhoneNumber,
-                    BankName, IBAN,
-                    bankCard,
-                    int.Parse(USREOU)
-                ),
-                new HashSet<string>
-                {
-                    ErrorCodes.AccountAllreadyExistsError,
-                    ErrorCodes.IbanAllreadyRegisteredError,
-                    ErrorCodes.UsreouAllreadyRegisteredError
-                },
-                this, false 
-            );
+            using (_userDialogs.Loading(Strings.ProcessingRequest))
+            {
+                TokenInfoDto dto = await _authExecutor.MakeAuthAsync(
+                    () => _hotelsService.RegisterAsync(
+                        _firstData.HotelName,
+                        FullCompanyName,
+                        _firstData.Email,
+                        _firstData.Password,
+                        _firstData.PhoneNumber,
+                        BankName, IBAN,
+                        bankCard,
+                        int.Parse(USREOU)
+                    ),
+                    new HashSet<string>
+                    {
+                        ErrorCodes.AccountAllreadyExistsError,
+                        ErrorCodes.IbanAllreadyRegisteredError,
+                        ErrorCodes.UsreouAllreadyRegisteredError
+                    }
+                );
+
+                if (dto == null)
+                    return;
+
+                await _hotelFinalSetupExecutor.FinalizeSetupAsync(dto, this, false);
+            }
         }
 
         private bool CheckInvalid(string name)

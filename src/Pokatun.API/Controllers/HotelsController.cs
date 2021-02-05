@@ -69,11 +69,11 @@ namespace Pokatun.API.Controllers
         }
 
         [HttpGet("[action]/{id}")]
-        public ActionResult<ServerResponce<ShortInfoDto>> ShortInfo(long id)
+        public ActionResult<ServerResponce<HotelShortInfoDto>> ShortInfo(long id)
         {
             try
             {
-                return Ok(new ServerResponce<ShortInfoDto>
+                return Ok(new ServerResponce<HotelShortInfoDto>
                 {
                     Data = _hotelsService.GetShortInfo(id)
                 });

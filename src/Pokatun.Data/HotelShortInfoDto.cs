@@ -1,7 +1,7 @@
 using System;
 namespace Pokatun.Data
 {
-    public sealed class ShortInfoDto
+    public sealed class HotelShortInfoDto
     {
         public string HotelName { get; set; }
 

@@ -592,7 +592,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
             _memoryCache.Set(
                 Constants.Keys.ShortHotelInfo,
-                new ShortInfoDto { HotelName = HotelName, PhotoName = responce.Data, Address = HotelLocation.Addres, ProfileNotCompleted = false }
+                new HotelShortInfoDto { HotelName = HotelName, PhotoName = responce.Data, Address = HotelLocation.Addres, ProfileNotCompleted = false }
             );
 
             await _navigationService.Close(this, new HotelDto

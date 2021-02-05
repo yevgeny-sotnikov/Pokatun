@@ -227,6 +227,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string FullnameRequiredMessage {
+            get {
+                return ResourceManager.GetString("FullnameRequiredMessage", resourceCulture);
+            }
+        }
+        
         public static string HotelNameRequiredMessage {
             get {
                 return ResourceManager.GetString("HotelNameRequiredMessage", resourceCulture);
@@ -800,6 +806,12 @@ namespace Pokatun.Core.Resources {
         public static string BidSubmittionInfo {
             get {
                 return ResourceManager.GetString("BidSubmittionInfo", resourceCulture);
+            }
+        }
+        
+        public static string FullName {
+            get {
+                return ResourceManager.GetString("FullName", resourceCulture);
             }
         }
     }

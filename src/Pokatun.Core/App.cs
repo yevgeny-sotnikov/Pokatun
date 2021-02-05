@@ -38,6 +38,8 @@ namespace Pokatun.Core
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPickerImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<INetworkRequestExecutor, NetworkRequestExecutor>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAuthExecutor, AuthExecutor>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IHotelFinalSetupExecutor, HotelFinalSetupExecutor>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ITouristFinalSetupExecutor, TouristFinalSetupExecutor>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMemoryCache>(() => new MemoryCache(new MemoryCacheOptions()));
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IRestClientFactory, RestClientFactory>();
 

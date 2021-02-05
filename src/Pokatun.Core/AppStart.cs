@@ -53,15 +53,15 @@ namespace Pokatun.Core
                 return;
             }
 
-            ShortInfoDto dto = _memoryCache.Get<ShortInfoDto>(Constants.Keys.ShortHotelInfo);
+            HotelShortInfoDto dto = _memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
 
             if (dto != null)
             {
-                await NavigationService.Navigate<HotelMenuViewModel, ShortInfoDto>(dto);
+                await NavigationService.Navigate<HotelMenuViewModel, HotelShortInfoDto>(dto);
                 return;
             }
 
-            TaskCompletionSource<ShortInfoDto> tcs = new TaskCompletionSource<ShortInfoDto>();
+            TaskCompletionSource<HotelShortInfoDto> tcs = new TaskCompletionSource<HotelShortInfoDto>();
 
             #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
@@ -74,7 +74,7 @@ namespace Pokatun.Core
                 #endif
 
                 //TODO: add fail case handling            
-                ServerResponce<ShortInfoDto> serverResponce = await _hotelsService.GetShortInfoAsync(
+                ServerResponce<HotelShortInfoDto> serverResponce = await _hotelsService.GetShortInfoAsync(
                     long.Parse(await _secureStorage.GetAsync(Constants.Keys.AccountId))
                 );
 
@@ -84,7 +84,7 @@ namespace Pokatun.Core
 
             #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
-            await NavigationService.Navigate<HotelMenuViewModel, ShortInfoDto>(tcs.Task.Result);
+            await NavigationService.Navigate<HotelMenuViewModel, HotelShortInfoDto>(tcs.Task.Result);
         }
     }
 }

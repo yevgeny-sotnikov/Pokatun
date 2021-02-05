@@ -89,6 +89,8 @@
     <Compile Include="Views\Numbers\EditHotelNumberFragment.cs" />
     <Compile Include="Views\Profile\HotelAddressFragment.cs" />
     <Compile Include="Views\Numbers\ShowHotelNumberFragment.cs" />
+    <Compile Include="Views\Registration\TouristRegistrationFragment.cs" />
+    <Compile Include="Views\Menu\TouristMenuFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -1126,6 +1128,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xxxhdpi\food.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_tourist_registration.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
