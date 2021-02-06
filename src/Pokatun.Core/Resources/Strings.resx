@@ -184,8 +184,17 @@
     <data name="WriteVerificationCodeMessage" xml:space="preserve">
         <value>Введите полученный код для верификации. Код действителен 15 минут</value>
     </data>
+    <data name="ActiveBid" xml:space="preserve">
+        <value>Активная заявка</value>
+    </data>
+    <data name="BidsArchive" xml:space="preserve">
+        <value>Архив заявок</value>
+    </data>
     <data name="MyBids" xml:space="preserve">
         <value>Мои заявки</value>
+    </data>
+    <data name="MyRates" xml:space="preserve">
+        <value>Мои оценки</value>
     </data>
     <data name="MyHotelNumbers" xml:space="preserve">
         <value>Мои номера</value>
@@ -399,5 +408,8 @@
     </data>
     <data name="FullName" xml:space="preserve">
         <value>ФИО</value>
+    </data>
+    <data name="Payment" xml:space="preserve">
+        <value>Оплата</value>
     </data>
 </root>

@@ -11,11 +11,13 @@ namespace Pokatun.Core.Executors
     public sealed class AuthExecutor : IAuthExecutor
     {
         private readonly ISecureStorage _secureStorage;
+        private readonly IPreferences _preferences;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
 
-        public AuthExecutor(ISecureStorage secureStorage, INetworkRequestExecutor networkRequestExecutor)
+        public AuthExecutor(ISecureStorage secureStorage, IPreferences preferences, INetworkRequestExecutor networkRequestExecutor)
         {
             _secureStorage = secureStorage;
+            _preferences = preferences;
             _networkRequestExecutor = networkRequestExecutor;
         }
 
@@ -34,6 +36,8 @@ namespace Pokatun.Core.Executors
                 Constants.Keys.TokenExpirationTime,
                 dto.ExpirationTime.ToUniversalTime().ToString(CultureInfo.InvariantCulture)
             );
+
+            _preferences.Set(Constants.Keys.UserRole, (int)dto.Role);
 
             return dto;
         }

@@ -389,9 +389,27 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string ActiveBid {
+            get {
+                return ResourceManager.GetString("ActiveBid", resourceCulture);
+            }
+        }
+        
+        public static string BidsArchive {
+            get {
+                return ResourceManager.GetString("BidsArchive", resourceCulture);
+            }
+        }
+        
         public static string MyBids {
             get {
                 return ResourceManager.GetString("MyBids", resourceCulture);
+            }
+        }
+        
+        public static string MyRates {
+            get {
+                return ResourceManager.GetString("MyRates", resourceCulture);
             }
         }
         
@@ -812,6 +830,12 @@ namespace Pokatun.Core.Resources {
         public static string FullName {
             get {
                 return ResourceManager.GetString("FullName", resourceCulture);
+            }
+        }
+        
+        public static string Payment {
+            get {
+                return ResourceManager.GetString("Payment", resourceCulture);
             }
         }
     }

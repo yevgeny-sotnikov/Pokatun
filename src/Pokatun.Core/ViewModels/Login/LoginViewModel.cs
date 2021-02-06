@@ -20,6 +20,7 @@ namespace Pokatun.Core.ViewModels.Login
         private readonly IUserDialogs _userDialogs;
         private readonly IMvxNavigationService _navigationService;
         private readonly IAccountsService _accountService;
+        private readonly ITouristFinalSetupExecutor _touristFinalSetupExecutor;
         private readonly IHotelFinalSetupExecutor _hotelFinalSetupExecutor;
 
         private bool _viewInEditMode = true;
@@ -84,6 +85,7 @@ namespace Pokatun.Core.ViewModels.Login
             IUserDialogs userDialogs,
             IMvxNavigationService navigationService,
             IAccountsService accountService,
+            ITouristFinalSetupExecutor touristFinalSetupExecutor,
             IHotelFinalSetupExecutor hotelFinalSetupExecutor
         )
         {
@@ -91,6 +93,7 @@ namespace Pokatun.Core.ViewModels.Login
             _userDialogs = userDialogs;
             _navigationService = navigationService;
             _accountService = accountService;
+            _touristFinalSetupExecutor = touristFinalSetupExecutor;
             _hotelFinalSetupExecutor = hotelFinalSetupExecutor;
 
             _validator = new ValidationHelper();
@@ -137,7 +140,14 @@ namespace Pokatun.Core.ViewModels.Login
                 if (dto == null)
                     return;
 
-                await _hotelFinalSetupExecutor.FinalizeSetupAsync(dto, this);
+                if (_role == UserRole.Tourist)
+                {
+                    await _touristFinalSetupExecutor.FinalizeSetupAsync(dto, this);
+                }
+                else
+                {
+                    await _hotelFinalSetupExecutor.FinalizeSetupAsync(dto, this);
+                }
             }
         }
 

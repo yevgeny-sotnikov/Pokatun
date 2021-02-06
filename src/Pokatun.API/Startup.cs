@@ -97,6 +97,7 @@ namespace Pokatun.API
 
             services.AddScoped<IAccountsApiService, AccountsApiService>();
             services.AddScoped<IHotelsApiService, HotelsApiService>();
+            services.AddScoped<ITouristsApiService, TouristsApiService>();
             services.AddScoped<IHotelNumbersApiService, HotelNumbersApiService>();
             services.AddScoped<IEmailApiService, EmailApiService>();
             services.AddScoped<IFileSystem, FileSystem>();

@@ -8,6 +8,7 @@ namespace Pokatun.Data
         public string Token { get; set; }
 
         public DateTime ExpirationTime { get; set; }
+
         public UserRole Role { get; set; }
     }
 }

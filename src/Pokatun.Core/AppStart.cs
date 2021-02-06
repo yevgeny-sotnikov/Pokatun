@@ -15,13 +15,25 @@ namespace Pokatun.Core
     public class AppStart : MvxAppStart
     {
         private readonly ISecureStorage _secureStorage;
+        private readonly IPreferences _preferences;
         private readonly IHotelsService _hotelsService;
+        private readonly ITouristService _touristService;
         private readonly IMemoryCache _memoryCache;
 
-        public AppStart(IMvxApplication app, IMvxNavigationService navigationService, ISecureStorage secureStorage, IHotelsService hotelsService, IMemoryCache memoryCache) : base(app, navigationService)
+        public AppStart(
+            IMvxApplication app,
+            IMvxNavigationService navigationService,
+            ISecureStorage secureStorage,
+            IPreferences preferences,
+            IHotelsService hotelsService,
+            ITouristService touristService,
+            IMemoryCache memoryCache
+        ) : base(app, navigationService)
         {
             _secureStorage = secureStorage;
+            _preferences = preferences;
             _hotelsService = hotelsService;
+            _touristService = touristService;
             _memoryCache = memoryCache;
         }
 
@@ -53,15 +65,41 @@ namespace Pokatun.Core
                 return;
             }
 
-            HotelShortInfoDto dto = _memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
+            UserRole role = (UserRole)_preferences.Get(Constants.Keys.UserRole, 0);
 
-            if (dto != null)
+            if (!Enum.IsDefined(typeof(UserRole), role))
             {
-                await NavigationService.Navigate<HotelMenuViewModel, HotelShortInfoDto>(dto);
+                await NavigationService.Navigate<ChoiseUserRoleViewModel>();
                 return;
             }
 
-            TaskCompletionSource<HotelShortInfoDto> tcs = new TaskCompletionSource<HotelShortInfoDto>();
+            if (role == UserRole.HotelAdministrator)
+            {
+                await NavigateToFirstPageAsync<HotelMenuViewModel, HotelShortInfoDto>(
+                    Constants.Keys.ShortHotelInfo,
+                    async () => await _hotelsService.GetShortInfoAsync(long.Parse(await _secureStorage.GetAsync(Constants.Keys.AccountId)))
+                );
+            }
+            else
+            {
+                await NavigateToFirstPageAsync<TouristMenuViewModel, TouristShortInfoDto>(
+                    Constants.Keys.ShortTouristInfo,
+                    async () => await _touristService.GetShortInfoAsync(long.Parse(await _secureStorage.GetAsync(Constants.Keys.AccountId)))
+                );
+            }
+        }
+
+        private async Task NavigateToFirstPageAsync<TViewModel, TShortInfo>(string key, Func<Task<ServerResponce<TShortInfo>>> func) where TViewModel : IMvxViewModel<TShortInfo>
+        {
+            TShortInfo dto = _memoryCache.Get<TShortInfo>(key);
+
+            if (dto != null)
+            {
+                await NavigationService.Navigate<TViewModel, TShortInfo>(dto);
+                return;
+            }
+
+            TaskCompletionSource<TShortInfo> tcs = new TaskCompletionSource<TShortInfo>();
 
             #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
@@ -74,17 +112,15 @@ namespace Pokatun.Core
                 #endif
 
                 //TODO: add fail case handling            
-                ServerResponce<HotelShortInfoDto> serverResponce = await _hotelsService.GetShortInfoAsync(
-                    long.Parse(await _secureStorage.GetAsync(Constants.Keys.AccountId))
-                );
+                ServerResponce<TShortInfo> serverResponce = await func();
 
-                _memoryCache.Set(Constants.Keys.ShortHotelInfo, serverResponce.Data);
+                _memoryCache.Set(key, serverResponce.Data);
                 tcs.SetResult(serverResponce.Data);
             });
 
             #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
-            await NavigationService.Navigate<HotelMenuViewModel, HotelShortInfoDto>(tcs.Task.Result);
+            await NavigationService.Navigate<TViewModel, TShortInfo>(tcs.Task.Result);
         }
     }
 }

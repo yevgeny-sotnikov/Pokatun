@@ -24,25 +24,25 @@ namespace Pokatun.Core.Services
 
         public  Task<ServerResponce<T>> GetAsync<T>(string path, bool needAuth = true)
         {
-            return MakeNoRequestAsync<T>(Method.GET, path, null, needAuth);
+            return MakeRequestAsync<T>(Method.GET, path, null, needAuth);
         }
 
         public Task<ServerResponce<T>> DeleteAsync<T>(string path, long id, bool needAuth = true)
         {
-            return MakeNoRequestAsync<T>(Method.DELETE, path + '/' + id, null, needAuth);
+            return MakeRequestAsync<T>(Method.DELETE, path + '/' + id, null, needAuth);
         }
 
         public Task<ServerResponce<T>> PostAsync<T>(string path, object body, bool needAuth = true)
         {
-            return MakeNoRequestAsync<T>(Method.POST, path, body, needAuth);
+            return MakeRequestAsync<T>(Method.POST, path, body, needAuth);
         }
 
         public Task<ServerResponce<T>> PutAsync<T>(string path, long id, object body, bool needAuth = true)
         {
-            return MakeNoRequestAsync<T>(Method.PUT, path + '/' + id, body, needAuth);
+            return MakeRequestAsync<T>(Method.PUT, path + '/' + id, body, needAuth);
         }
 
-        private async Task<ServerResponce<T>> MakeNoRequestAsync<T>(Method method, string path, object body = null, bool needAuth = true)
+        private async Task<ServerResponce<T>> MakeRequestAsync<T>(Method method, string path, object body = null, bool needAuth = true)
         {
             RestRequest request = new RestRequest(path, method);
 

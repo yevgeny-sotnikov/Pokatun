@@ -33,6 +33,7 @@ namespace Pokatun.Core
                 .RegisterAsLazySingleton();
             
             Mvx.IoCProvider.RegisterSingleton(() => UserDialogs.Instance);
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IPreferences, PreferencesImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISecureStorage, SecureStorageImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDeviceInfo, DeviceInfoImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMediaPicker, MediaPickerImplementation>();

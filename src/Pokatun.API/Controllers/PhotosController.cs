@@ -12,7 +12,7 @@ namespace Pokatun.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PhotosController : Controller
+    public class PhotosController : ControllerBase
     {
         private const string PhotosDirName = "photos";
         private const string HotelsDirName = "hotels";

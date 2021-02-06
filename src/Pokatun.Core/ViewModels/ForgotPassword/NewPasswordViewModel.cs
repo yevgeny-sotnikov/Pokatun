@@ -16,6 +16,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
     {
         private readonly IUserDialogs _userDialogs;
         private readonly IAccountsService _accountService;
+        private readonly ITouristFinalSetupExecutor _touristFinalSetupExecutor;
         private readonly IHotelFinalSetupExecutor _hotelFinalSetupExecutor;
         private readonly IAuthExecutor _authExecutor;
 
@@ -73,12 +74,14 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
             IAuthExecutor authExecutor,
             IUserDialogs userDialogs,
             IAccountsService accountService,
+            ITouristFinalSetupExecutor touristFinalSetupExecutor,
             IHotelFinalSetupExecutor hotelFinalSetupExecutor
         )
         {
             _authExecutor = authExecutor;
             _userDialogs = userDialogs;
             _accountService = accountService;
+            _touristFinalSetupExecutor = touristFinalSetupExecutor;
             _hotelFinalSetupExecutor = hotelFinalSetupExecutor;
 
             _validator = new ValidationHelper();
@@ -131,7 +134,14 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
                 if (dto == null)
                     return;
 
-                await _hotelFinalSetupExecutor.FinalizeSetupAsync(dto, this);
+                if (dto.Role == UserRole.Tourist)
+                {
+                    await _touristFinalSetupExecutor.FinalizeSetupAsync(dto, this);
+                }
+                else
+                {
+                    await _hotelFinalSetupExecutor.FinalizeSetupAsync(dto, this);
+                }
             }
         }
     }

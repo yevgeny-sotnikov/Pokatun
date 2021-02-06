@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Core.ViewModels.Registration;
@@ -19,7 +20,7 @@ namespace Pokatun.Core.Executors
             _navigationService = navigationService;
         }
 
-        public async Task FinalizeSetupAsync(TokenInfoDto dto, TouristRegistrationViewModel closeViewModel, bool needLoadShortInfo)
+        public async Task FinalizeSetupAsync(TokenInfoDto dto, IMvxViewModel closeViewModel, bool needLoadShortInfo = true)
         {
             if (closeViewModel == null)
             {

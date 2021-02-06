@@ -4,8 +4,9 @@ using Pokatun.Data;
 
 namespace Pokatun.API.Controllers
 {
-    [Route("api/[controller]")]
-    public class TouristsController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class TouristsController : ControllerBase
     {
         private readonly ITouristsApiService _touristsService;
 
