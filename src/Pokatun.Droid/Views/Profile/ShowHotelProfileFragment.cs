@@ -88,6 +88,7 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(ToolbarTitleLabel).For(v => v.Text).To(vm => vm.Title).OneWay();
             set.Bind(ToolbarSubtitleLabel).For(v => v.Text).To(vm => vm.Address).OneWay();
             set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
+            set.Bind(ToolbarPhotoPlaceholderLabel).To(vm => vm.Placeholder).OneWay();
             set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.EditCommand).OneTime();
 
             set.Bind(_hotelNameLabel).To(vm => vm.HotelName).OneWay();

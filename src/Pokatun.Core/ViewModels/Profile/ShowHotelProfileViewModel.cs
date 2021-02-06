@@ -22,6 +22,8 @@ namespace Pokatun.Core.ViewModels.Profile
 
         public override string Title => _parameter?.HotelName;
 
+        public string Placeholder => Title == null ? null : Title[0].ToString();
+
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
         {
@@ -36,6 +38,7 @@ namespace Pokatun.Core.ViewModels.Profile
             set
             {
                 SetProperty(ref _hotelName, value);
+                RaisePropertyChanged(nameof(Placeholder));
             }
         }
 
@@ -170,6 +173,8 @@ namespace Pokatun.Core.ViewModels.Profile
                 PhotoStream = ct => _photosService.GetAsync(parameter.PhotoUrl);
             }
             else PhotoStream = null;
+
+            RaisePropertyChanged(nameof(Placeholder));
 
             HotelName = parameter.HotelName;
             FullCompanyName = parameter.FullCompanyName;

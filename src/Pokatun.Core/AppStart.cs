@@ -17,7 +17,7 @@ namespace Pokatun.Core
         private readonly ISecureStorage _secureStorage;
         private readonly IPreferences _preferences;
         private readonly IHotelsService _hotelsService;
-        private readonly ITouristService _touristService;
+        private readonly ITouristsService _touristService;
         private readonly IMemoryCache _memoryCache;
 
         public AppStart(
@@ -26,7 +26,7 @@ namespace Pokatun.Core
             ISecureStorage secureStorage,
             IPreferences preferences,
             IHotelsService hotelsService,
-            ITouristService touristService,
+            ITouristsService touristService,
             IMemoryCache memoryCache
         ) : base(app, navigationService)
         {

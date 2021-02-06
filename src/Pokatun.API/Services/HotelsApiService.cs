@@ -53,7 +53,7 @@ namespace Pokatun.API.Services
                 Address = hotel.Address,
                 Longtitude = hotel.Longtitude,
                 Latitude = hotel.Latitude,
-                PhotoUrl = hotel.PhotoUrl
+                PhotoUrl = hotel.Account.PhotoName
             };
         }
 
@@ -64,7 +64,7 @@ namespace Pokatun.API.Services
                 throw new ApiException(ErrorCodes.IncorrectIdError);
             }
 
-            Hotel hotel = _context.Hotels
+            Hotel hotel = _context.Hotels.Include(h => h.Account)
                 .FirstOrDefault(h => h.Id == id);
 
             if (hotel == null)
@@ -78,7 +78,7 @@ namespace Pokatun.API.Services
             return new HotelShortInfoDto
             {
                 HotelName = hotel.HotelName,
-                PhotoName = hotel.PhotoUrl,
+                PhotoName = hotel.Account.PhotoName,
                 Address = hotel.Address,
                 ProfileNotCompleted = (hotel.BankCard == null && hotel.IBAN == null)
                     || hotel.BankName == null
@@ -87,7 +87,7 @@ namespace Pokatun.API.Services
                     || hotel.FullCompanyName == null
                     || hotel.HotelDescription == null
                     || hotel.HotelName == null
-                    || hotel.PhotoUrl == null
+                    || hotel.Account.PhotoName == null
                     || hotel.USREOU == 0
                     || hotel.WithinTerritoryDescription == null
                     || !anyPhones
@@ -121,7 +121,7 @@ namespace Pokatun.API.Services
             hotel.HotelName = hotelDto.HotelName;
             hotel.IBAN = hotelDto.IBAN;
             hotel.USREOU = hotelDto.USREOU;
-            hotel.PhotoUrl = hotelDto.PhotoUrl;
+            hotel.Account.PhotoName = hotelDto.PhotoUrl;
             hotel.WithinTerritoryDescription = hotelDto.WithinTerritoryDescription;
             hotel.Address = hotelDto.Address;
             hotel.Longtitude = hotelDto.Longtitude;

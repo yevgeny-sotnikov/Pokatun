@@ -14,6 +14,9 @@ namespace Pokatun.API.Entities
         [EmailAddress]
         public string Email { get; set; }
 
+        [MaxLength(256)]
+        public string PhotoName { get; set; }
+
         [Required]
         [MaxLength(64)]
         public byte[] PasswordHash { get; set; }

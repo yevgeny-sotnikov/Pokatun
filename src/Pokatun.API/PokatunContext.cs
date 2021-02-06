@@ -35,17 +35,16 @@ namespace Pokatun.API.Models
 
             builder.Entity<Account>().HasIndex(a => a.Email).IsUnique();
             builder.Entity<Account>().HasIndex(a => a.ResetToken).IsUnique();
+            builder.Entity<Account>().HasIndex(h => h.PhotoName).IsUnique();
 
             builder.Entity<Hotel>().HasIndex(h => h.USREOU).IsUnique();
             builder.Entity<Hotel>().HasIndex(h => h.IBAN).IsUnique();
-            builder.Entity<Hotel>().HasIndex(h => h.PhotoUrl).IsUnique();
 
             builder.Entity<Account>().HasIndex(h => h.Email).IsUnique();
 
             builder.Entity<SocialResource>().HasIndex(sr => sr.Link).IsUnique();
 
             builder.Entity<HotelNumber>().HasIndex(sr => sr.Number).IsUnique();
-
         }
     }
 }

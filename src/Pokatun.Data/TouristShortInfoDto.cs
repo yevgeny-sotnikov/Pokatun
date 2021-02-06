@@ -4,5 +4,7 @@ namespace Pokatun.Data
     public sealed class TouristShortInfoDto
     {
         public string Fullname { get; set; }
+
+        public string PhotoName { get; set; }
     }
 }

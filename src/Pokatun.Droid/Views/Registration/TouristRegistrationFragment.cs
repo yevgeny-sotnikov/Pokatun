@@ -1,14 +1,4 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -54,7 +44,7 @@ namespace Pokatun.Droid.Views.Registration
             _passwordEditText.Hint = Strings.Password;
             _emailEditText.Hint = Strings.Email;
             _confirmPasswordEditText.Hint = Strings.ConfirmPassword;
-            _createAcctountButton.Text = Strings.Further;
+            _createAcctountButton.Text = Strings.CreateAccount;
 
             #pragma warning disable IDE0008 // Use explicit type
 

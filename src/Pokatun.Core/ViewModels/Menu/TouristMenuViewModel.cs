@@ -1,10 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Pokatun.Core.Executors;
+using Pokatun.Core.Services;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
+using Pokatun.Core.ViewModels.Tourist;
 using Pokatun.Data;
 using Xamarin.Essentials.Interfaces;
 
@@ -12,6 +16,11 @@ namespace Pokatun.Core.ViewModels.Menu
 {
     public sealed class TouristMenuViewModel: BaseViewModel<TouristShortInfoDto>
     {
+        private readonly IPhotosService _photosService;
+        private readonly IMvxNavigationService _navigationService;
+        private readonly ISecureStorage _secureStorage;
+        private readonly INetworkRequestExecutor _networkRequestExecutor;
+        private readonly ITouristsService _touristsService;
 
         private string _title;
         public override string Title => _title;
@@ -34,11 +43,7 @@ namespace Pokatun.Core.ViewModels.Menu
             }
         }
 
-
         private MvxAsyncCommand _exitCommand;
-        private readonly IMvxNavigationService _navigationService;
-        private readonly ISecureStorage _secureStorage;
-
         public IMvxAsyncCommand ExitCommand
         {
             get
@@ -47,10 +52,18 @@ namespace Pokatun.Core.ViewModels.Menu
             }
         }
 
-        public TouristMenuViewModel(IMvxNavigationService navigationService, ISecureStorage secureStorage)
+        public TouristMenuViewModel(
+            IPhotosService photosService,
+            IMvxNavigationService navigationService,
+            ISecureStorage secureStorage,
+            INetworkRequestExecutor networkRequestExecutor,
+            ITouristsService touristsService)
         {
+            _photosService = photosService;
             _navigationService = navigationService;
             _secureStorage = secureStorage;
+            _networkRequestExecutor = networkRequestExecutor;
+            _touristsService = touristsService;
         }
 
         public override void Prepare(TouristShortInfoDto parameter)
@@ -58,11 +71,39 @@ namespace Pokatun.Core.ViewModels.Menu
             _title = parameter.Fullname;
 
             RaisePropertyChanged(nameof(Title));
+            RaisePropertyChanged(nameof(Placeholder));
+
+            if (parameter != null && parameter.PhotoName != null)
+            {
+                PhotoStream = ct => _photosService.GetAsync(parameter.PhotoName);
+            }
+            else PhotoStream = null;
+
         }
 
-        private Task DoProfileCommandAsync()
+        private async Task DoProfileCommandAsync()
         {
-            throw new NotImplementedException();
+            long touristId = long.Parse(await _secureStorage.GetAsync(Constants.Keys.AccountId));
+
+            ServerResponce<TouristDto> responce = await _networkRequestExecutor.MakeRequestAsync(
+                () => _touristsService.GetAsync(touristId),
+                new HashSet<string> { ErrorCodes.AccountDoesNotExistError }
+            );
+
+            if (responce == null)
+                return;
+
+            await _navigationService.Navigate<ShowTouristProfileViewModel, TouristDto, object>(responce.Data);
+
+            //_parameter = _memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
+            //if (_parameter.PhotoName != null)
+            //{
+            //    PhotoStream = ct => _photosService.GetAsync(_parameter.PhotoName);
+            //}
+            //else
+            //    PhotoStream = null;
+
+            //await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Subtitle)));
         }
 
         private Task DoExitCommandAsync()

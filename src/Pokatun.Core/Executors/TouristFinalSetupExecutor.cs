@@ -11,10 +11,10 @@ namespace Pokatun.Core.Executors
 {
     public sealed class TouristFinalSetupExecutor : ITouristFinalSetupExecutor
     {
-        private readonly ITouristService _touristService;
+        private readonly ITouristsService _touristService;
         private readonly IMvxNavigationService _navigationService;
 
-        public TouristFinalSetupExecutor(ITouristService touristService, IMvxNavigationService navigationService)
+        public TouristFinalSetupExecutor(ITouristsService touristService, IMvxNavigationService navigationService)
         {
             _touristService = touristService;
             _navigationService = navigationService;

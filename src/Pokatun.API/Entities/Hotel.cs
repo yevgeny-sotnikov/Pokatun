@@ -47,9 +47,6 @@ namespace Pokatun.API.Entities
         public string HotelDescription { get; set; }
 
         [MaxLength(256)]
-        public string PhotoUrl { get; set; }
-
-        [MaxLength(256)]
         public string Address { get; set; }
 
         public double? Longtitude { get; set; }

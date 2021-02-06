@@ -1,7 +1,5 @@
 using System.IO;
 using System.IO.Abstractions;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +13,6 @@ namespace Pokatun.API.Controllers
     public class PhotosController : ControllerBase
     {
         private const string PhotosDirName = "photos";
-        private const string HotelsDirName = "hotels";
 
         private static readonly FileExtensionContentTypeProvider ContentTypeProvider = new FileExtensionContentTypeProvider();
 
@@ -31,7 +28,7 @@ namespace Pokatun.API.Controllers
         [HttpGet]
         public ActionResult Get([FromQuery] string name)
         {
-            string fullName = _fileSystem.Path.Combine(_environment.WebRootPath, PhotosDirName, HotelsDirName, name);
+            string fullName = _fileSystem.Path.Combine(_environment.WebRootPath, PhotosDirName, name);
 
             string contentType;
 
@@ -46,7 +43,7 @@ namespace Pokatun.API.Controllers
         [HttpPost]
         public ActionResult<ServerResponce<string>> Post(IFormFile file)
         {
-            string photosDir = _fileSystem.Path.Combine(_environment.WebRootPath, PhotosDirName, HotelsDirName);
+            string photosDir = _fileSystem.Path.Combine(_environment.WebRootPath, PhotosDirName);
 
             _fileSystem.Directory.CreateDirectory(photosDir);
 

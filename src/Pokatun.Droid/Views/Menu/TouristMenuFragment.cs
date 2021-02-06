@@ -43,8 +43,6 @@ namespace Pokatun.Droid.Views.Menu
             _securityItem = view.FindViewById<MenuItem>(Resource.Id.securityItem);
             _exitItem = view.FindViewById<MenuItem>(Resource.Id.exitItem);
 
-            ToolbarPhotoPlaceholderLabel.Text = ViewModel.Placeholder;
-
             _activeBidItem.Text = Strings.MyBids;
             _bidsArchiveItem.Text = Strings.BidsArchive;
             _myRatesItem.Text = Strings.MyRates;
@@ -68,6 +66,7 @@ namespace Pokatun.Droid.Views.Menu
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
+            set.Bind(ToolbarPhotoPlaceholderLabel).To(vm => vm.Placeholder).OneWay();
 
             set.Bind(_profileItem).For(_profileItem.BindClick()).To(vm => vm.ProfileCommand);
             set.Bind(_exitItem).For(_exitItem.BindClick()).To(vm => vm.ExitCommand);

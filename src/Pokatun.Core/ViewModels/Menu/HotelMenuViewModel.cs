@@ -94,6 +94,7 @@ namespace Pokatun.Core.ViewModels.Menu
             _parameter = parameter;
 
             RaisePropertyChanged(nameof(Title));
+            RaisePropertyChanged(nameof(Placeholder));
             RaisePropertyChanged(nameof(Subtitle));
             RaisePropertyChanged(nameof(ProfileNotCompleted));
 
@@ -146,6 +147,7 @@ namespace Pokatun.Core.ViewModels.Menu
 
                 await Task.WhenAll(
                     RaisePropertyChanged(nameof(Title)),
+                    RaisePropertyChanged(nameof(Placeholder)),
                     RaisePropertyChanged(nameof(Subtitle)),
                     RaisePropertyChanged(nameof(ProfileNotCompleted))
                 );
@@ -161,7 +163,7 @@ namespace Pokatun.Core.ViewModels.Menu
                 }
                 else PhotoStream = null;
 
-                await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Subtitle)));
+                await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Placeholder)), RaisePropertyChanged(nameof(Subtitle)));
             }
         }
 
