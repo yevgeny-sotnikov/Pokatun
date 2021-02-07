@@ -1,4 +1,3 @@
-using Pokatun.API.Entities;
 using Pokatun.Data;
 
 namespace Pokatun.API.Services

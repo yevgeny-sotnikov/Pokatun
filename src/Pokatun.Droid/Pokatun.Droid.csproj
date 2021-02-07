@@ -92,6 +92,7 @@
     <Compile Include="Views\Registration\TouristRegistrationFragment.cs" />
     <Compile Include="Views\Menu\TouristMenuFragment.cs" />
     <Compile Include="Views\Tourist\ShowTouristProfileFragment.cs" />
+    <Compile Include="Views\Tourist\EditTouristProfileFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -1241,6 +1242,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_show_tourist_profile.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_edit_tourist_profile.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

@@ -7,5 +7,7 @@ namespace Pokatun.API.Services
         TouristDto GetById(long id);
 
         TouristShortInfoDto GetShortInfo(long id);
+
+        void Update(TouristDto tourist);
     }
 }

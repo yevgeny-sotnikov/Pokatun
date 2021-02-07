@@ -40,5 +40,20 @@ namespace Pokatun.API.Controllers
                 return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
             }
         }
+
+        [HttpPost]
+        public ActionResult<ServerResponce> Post([FromBody] TouristDto tourist)
+        {
+            try
+            {
+                _touristsService.Update(tourist);
+                return Ok(new ServerResponce<string> { Data = "OK" });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
     }
 }

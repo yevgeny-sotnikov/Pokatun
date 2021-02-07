@@ -68,6 +68,7 @@ namespace Pokatun.Droid.Views.Menu
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
+            set.Bind(ToolbarTitleLabel).To(vm => vm.Title).OneWay();
             set.Bind(ToolbarPhotoPlaceholderLabel).To(vm => vm.Placeholder).OneWay();
             set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
             set.Bind(ToolbarSubtitleLabel).For(v => v.Activated).To(vm => vm.ProfileNotCompleted).OneWay();

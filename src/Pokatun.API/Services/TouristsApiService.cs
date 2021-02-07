@@ -32,6 +32,7 @@ namespace Pokatun.API.Services
 
             return new TouristDto
             {
+                Id = tourist.Id,
                 FullName = tourist.FullName,
                 PhoneNumber = tourist.PhoneNumber,
                 Email = tourist.Account.Email,
@@ -58,6 +59,25 @@ namespace Pokatun.API.Services
                 Fullname = tourist.FullName,
                 PhotoName = tourist.Account.PhotoName
             };
+        }
+
+        public void Update(TouristDto touristDto)
+        {
+            Tourist tourist = _context.Tourists
+                .Include(x => x.Account)
+                .FirstOrDefault(x => x.Id == touristDto.Id);
+
+            if (tourist == null)
+            {
+                throw new ApiException(ErrorCodes.AccountDoesNotExistError);
+            }
+
+            tourist.Account.Email = touristDto.Email;
+            tourist.FullName = touristDto.FullName;
+            tourist.PhoneNumber = touristDto.PhoneNumber;
+            tourist.Account.PhotoName = touristDto.PhotoName;
+
+            _context.SaveChanges();
         }
     }
 }

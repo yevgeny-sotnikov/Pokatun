@@ -14,8 +14,8 @@ namespace Pokatun.API.Entities
         public string FullName { get; set; }
 
         [Required]
-        [MaxLength(64)]
-        [EmailAddress]
+        [MaxLength(16)]
+        [Phone]
         public string PhoneNumber { get; set; }
 
         public long AccountId { get; set; }

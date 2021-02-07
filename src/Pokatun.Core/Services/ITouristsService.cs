@@ -9,5 +9,7 @@ namespace Pokatun.Core.Services
         Task<ServerResponce<TouristShortInfoDto>> GetShortInfoAsync(long id);
 
         Task<ServerResponce<TouristDto>> GetAsync(long touristId);
+
+        Task<ServerResponce<string>> SaveChangesAsync(long currentTouristId, string fullName, string phone, string email, string photoFileName);
     }
 }

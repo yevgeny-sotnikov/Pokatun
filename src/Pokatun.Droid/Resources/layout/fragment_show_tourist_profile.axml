@@ -25,7 +25,6 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-            	android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -68,11 +67,10 @@
             <LinearLayout
                 android:orientation="horizontal"
             	android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:src="@drawable/name"
+                    android:src="@drawable/mail"
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

@@ -92,7 +92,7 @@ namespace Pokatun.Core.Services
                 PhotoUrl = nameForSave
             });
 
-            responce.Data = nameForSave;
+            responce.Data = nameForSave ?? string.Empty;
 
             return responce;
         }

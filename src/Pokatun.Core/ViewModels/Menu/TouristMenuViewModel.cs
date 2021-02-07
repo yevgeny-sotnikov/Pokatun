@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Pokatun.Core.Executors;
@@ -21,7 +22,7 @@ namespace Pokatun.Core.ViewModels.Menu
         private readonly ISecureStorage _secureStorage;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly ITouristsService _touristsService;
-
+        private readonly IMemoryCache _memoryCache;
         private string _title;
         public override string Title => _title;
 
@@ -57,6 +58,7 @@ namespace Pokatun.Core.ViewModels.Menu
             IMvxNavigationService navigationService,
             ISecureStorage secureStorage,
             INetworkRequestExecutor networkRequestExecutor,
+            IMemoryCache memoryCache,
             ITouristsService touristsService)
         {
             _photosService = photosService;
@@ -64,6 +66,7 @@ namespace Pokatun.Core.ViewModels.Menu
             _secureStorage = secureStorage;
             _networkRequestExecutor = networkRequestExecutor;
             _touristsService = touristsService;
+            _memoryCache = memoryCache;
         }
 
         public override void Prepare(TouristShortInfoDto parameter)
@@ -95,15 +98,17 @@ namespace Pokatun.Core.ViewModels.Menu
 
             await _navigationService.Navigate<ShowTouristProfileViewModel, TouristDto, object>(responce.Data);
 
-            //_parameter = _memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
-            //if (_parameter.PhotoName != null)
-            //{
-            //    PhotoStream = ct => _photosService.GetAsync(_parameter.PhotoName);
-            //}
-            //else
-            //    PhotoStream = null;
+            TouristShortInfoDto dto = _memoryCache.Get<TouristShortInfoDto>(Constants.Keys.ShortTouristInfo);
 
-            //await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Subtitle)));
+            if (dto.PhotoName != null)
+            {
+                PhotoStream = ct => _photosService.GetAsync(dto.PhotoName);
+            }
+            else PhotoStream = null;
+
+            _title = dto.Fullname;
+
+            await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Placeholder)));
         }
 
         private Task DoExitCommandAsync()

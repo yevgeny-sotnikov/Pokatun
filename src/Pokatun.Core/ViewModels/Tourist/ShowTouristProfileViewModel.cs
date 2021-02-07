@@ -3,7 +3,9 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using Pokatun.Core.Services;
+using Pokatun.Core.ViewModels.Profile;
 using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Tourist
@@ -11,6 +13,7 @@ namespace Pokatun.Core.ViewModels.Tourist
     public sealed class ShowTouristProfileViewModel : BaseViewModel<TouristDto, object>
     {
         private readonly IPhotosService _photosService;
+        private readonly IMvxNavigationService _navigationService;
 
         public override string Title => FullName;
 
@@ -60,9 +63,10 @@ namespace Pokatun.Core.ViewModels.Tourist
             }
         }
 
-        public ShowTouristProfileViewModel(IPhotosService photosService)
+        public ShowTouristProfileViewModel(IPhotosService photosService, IMvxNavigationService navigationService)
         {
             _photosService = photosService;
+            _navigationService = navigationService;
         }
 
         public override void Prepare(TouristDto parameter)
@@ -85,9 +89,24 @@ namespace Pokatun.Core.ViewModels.Tourist
             _parameter = parameter;
         }
 
-        private Task DoEditCommandAsync()
+        private async Task DoEditCommandAsync()
         {
-            throw new NotImplementedException();
+            TouristDto result = await _navigationService.Navigate<EditTouristProfileViewModel, TouristDto, TouristDto>(_parameter);
+
+            if (result == null)
+            {
+                return;
+            }
+
+            _parameter = result;
+
+            PhotoStream = ct => Task.FromResult<Stream>(File.OpenRead(_parameter.PhotoName));
+
+            FullName = result.FullName;
+            Email = result.Email;
+            Phone = result.PhoneNumber;
+
+            await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Placeholder)));
         }
     }
 }
