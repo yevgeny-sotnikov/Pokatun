@@ -414,6 +414,7 @@ namespace Pokatun.Core.ViewModels.Profile
                     Latitude = parameter.Latitude.Value
                 };
             }
+            else HotelLocation = null;
 
             PhoneNumbers.AddRange(parameter.Phones.Select(p => new ValidatableEntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneInvalid)));
             SocialResources.AddRange(parameter.SocialResources.Select(sr => new ValidatableEntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand, IsLinkDuplicated)));

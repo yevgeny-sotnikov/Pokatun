@@ -80,6 +80,9 @@ namespace Pokatun.API.Services
                 HotelName = hotel.HotelName,
                 PhotoName = hotel.Account.PhotoName,
                 Address = hotel.Address,
+                HotelNumbersAmount = _context.HotelNumbers.Count(x => x.HotelId == id),
+                CheckInTime = hotel.CheckInTime,
+                CheckOutTime = hotel.CheckOutTime,
                 ProfileNotCompleted = (hotel.BankCard == null && hotel.IBAN == null)
                     || hotel.BankName == null
                     || hotel.CheckInTime == null

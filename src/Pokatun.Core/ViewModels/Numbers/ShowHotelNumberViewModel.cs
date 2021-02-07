@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Microsoft.Extensions.Caching.Memory;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Pokatun.Core.Resources;
+using Pokatun.Core.ViewModels.Bids;
 using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Numbers
@@ -14,6 +16,7 @@ namespace Pokatun.Core.ViewModels.Numbers
     {
         private readonly IMemoryCache _memoryCache;
         private readonly IMvxNavigationService _navigationService;
+        private readonly IUserDialogs _userDialogs;
 
         public override string Title => string.Format(Strings.HotelNumber, HotelNumber.Number);
 
@@ -41,8 +44,6 @@ namespace Pokatun.Core.ViewModels.Numbers
                 if (!HotelNumber.NutritionNeeded)
                     return Strings.NotIncluded;
 
-                StringBuilder stringBuilder = new StringBuilder();
-
                 List<string> nutritionInfoList = new List<string>(3);
 
                 if (HotelNumber.BreakfastIncluded)
@@ -67,10 +68,20 @@ namespace Pokatun.Core.ViewModels.Numbers
             }
         }
 
-        public ShowHotelNumberViewModel(IMemoryCache memoryCache, IMvxNavigationService navigationService)
+        private MvxAsyncCommand _submitBidCommand;
+        public IMvxAsyncCommand SubmitBidCommand
+        {
+            get
+            {
+                return _submitBidCommand ?? (_submitBidCommand = new MvxAsyncCommand(DoSubmitBidCommandAsync));
+            }
+        }
+
+        public ShowHotelNumberViewModel(IMemoryCache memoryCache, IMvxNavigationService navigationService, IUserDialogs userDialogs)
         {
             _memoryCache = memoryCache;
             _navigationService = navigationService;
+            _userDialogs = userDialogs;
         }
 
         public override void Prepare(HotelNumberDto parameter)
@@ -80,6 +91,21 @@ namespace Pokatun.Core.ViewModels.Numbers
 
             HotelNumber = parameter;
             RaisePropertyChanged(nameof(NutritionInfo));
+        }
+
+        private async Task DoSubmitBidCommandAsync()
+        {
+            bool result = await _navigationService.Navigate<EditBidViewModel, EditBidParameter, bool>(new EditBidParameter
+            {
+                HotelNumber = HotelNumber,
+                Bid = null
+            });
+
+            if (!result)
+            {
+                return;
+            }
+            _userDialogs.Toast("Заявка/ки созданы. Вы можете просмотреть их выбрав меню заявок в вашем профиле");
         }
 
         private async Task DoEditCommandAsync()

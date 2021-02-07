@@ -30,6 +30,7 @@
     <Folder Include="Enums\" />
     <Folder Include="ViewModels\Numbers\" />
     <Folder Include="ViewModels\Tourist\" />
+    <Folder Include="ViewModels\Bids\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Strings.resx">

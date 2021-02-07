@@ -10,5 +10,12 @@ namespace Pokatun.Data
         public string Address { get; set; }
 
         public bool ProfileNotCompleted { get; set; }
+
+        public int HotelNumbersAmount { get; set; }
+
+        public TimeSpan? CheckInTime { get; set; }
+
+        public TimeSpan? CheckOutTime { get; set; }
+
     }
 }

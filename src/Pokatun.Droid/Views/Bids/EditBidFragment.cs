@@ -1,28 +1,30 @@
+
+using System;
 using System.Collections.Generic;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
+using Pokatun.Core.ViewModels.Bids;
 using Pokatun.Core.ViewModels.Main;
-using Pokatun.Core.ViewModels.Numbers;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding;
 
-namespace Pokatun.Droid.Views.Numbers
+namespace Pokatun.Droid.Views.Bids
 {
     [MvxFragmentPresentation(
         typeof(MainContainerViewModel),
         Resource.Id.content_frame,
         AddToBackStack = true,
-        EnterAnimation = Android.Resource.Animation.SlideInLeft,
-        PopEnterAnimation = Android.Resource.Animation.SlideInLeft,
-        ExitAnimation = Android.Resource.Animation.SlideOutRight,
-        PopExitAnimation = Android.Resource.Animation.SlideOutRight
+        EnterAnimation = Android.Resource.Animation.FadeIn,
+        PopEnterAnimation = Android.Resource.Animation.FadeIn,
+        ExitAnimation = Android.Resource.Animation.FadeOut,
+        PopExitAnimation = Android.Resource.Animation.FadeOut
     )]
-    public sealed class ShowHotelNumberFragment : BaseFragment<ShowHotelNumberViewModel>
+    public sealed class EditBidFragment : BaseFragment<EditBidViewModel>
     {
+        private TextView _hotelLocationLabel;
         private TextView _levelLabel;
         private TextView _roomsAmountLabel;
         private TextView _visitorsAmountLabel;
@@ -32,15 +34,18 @@ namespace Pokatun.Droid.Views.Numbers
         private TextView _cleaningNeededLabel;
         private TextView _nutritionLabel;
         private TextView _nutritionInfoLabel;
-        private TextView _bidSubmittionDescriptionLabel;
-        private Button _submitBidButton;
+        private TextView _checkinLabel;
+        private TextView _checkinTimeLabel;
+        private TextView _checkoutLabel;
+        private TextView _checkoutTimeLabel;
 
-        protected override int FragmentLayoutId => Resource.Layout.fragment_show_hotel_number;
+        protected override int FragmentLayoutId => Resource.Layout.fragment_edit_bid;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = base.OnCreateView(inflater, container, savedInstanceState);
 
+            _hotelLocationLabel = view.FindViewById<TextView>(Resource.Id.hotelLocationLabel);
             _levelLabel = view.FindViewById<TextView>(Resource.Id.levelLabel);
             _roomsAmountLabel = view.FindViewById<TextView>(Resource.Id.roomsAmountLabel);
             _visitorsAmountLabel = view.FindViewById<TextView>(Resource.Id.visitorsAmountLabel);
@@ -50,24 +55,25 @@ namespace Pokatun.Droid.Views.Numbers
             _cleaningNeededLabel = view.FindViewById<TextView>(Resource.Id.cleaningNeededLabel);
             _nutritionLabel = view.FindViewById<TextView>(Resource.Id.nutritionLabel);
             _nutritionInfoLabel = view.FindViewById<TextView>(Resource.Id.nutritionInfoLabel);
-            _bidSubmittionDescriptionLabel = view.FindViewById<TextView>(Resource.Id.bidSubmittionDescriptionLabel);
-            _submitBidButton = view.FindViewById<Button>(Resource.Id.submitBidButton);
+            _checkinLabel = view.FindViewById<TextView>(Resource.Id.checkinLabel);
+            _checkinTimeLabel = view.FindViewById<TextView>(Resource.Id.checkinTimeLabel);
+            _checkoutLabel = view.FindViewById<TextView>(Resource.Id.checkoutLabel);
+            _checkoutTimeLabel = view.FindViewById<TextView>(Resource.Id.checkoutTimeLabel);
 
             _inNumberLabel.Text = Strings.InHotelNumber;
             _cleaningLabel.Text = Strings.NumbersCleaning;
             _nutritionLabel.Text = Strings.Nutrition;
-            _bidSubmittionDescriptionLabel.Text = Strings.BidSubmittionInfo;
-            _submitBidButton.Text = Strings.SubmitBid;
+            _checkinLabel.Text = Strings.CheckIn;
+            _checkoutLabel.Text = Strings.CheckOut;
 
-            #pragma warning disable IDE0008 // Use explicit type
+
+#pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
 
             #pragma warning restore IDE0008 // Use explicit type
 
-            set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
-            set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.EditCommand).OneTime();
-
+            set.Bind(_hotelLocationLabel).To(vm => vm.HotelInfo.Address).OneWay();
             set.Bind(_levelLabel).To(vm => vm.HotelNumber.Level).WithConversion<RoomLevelToStringConverter>().OneWay();
             set.Bind(_roomsAmountLabel).To(vm => vm.HotelNumber.RoomsAmount).WithConversion<StringFormatValueConverter>(Strings.RoomsCounter).OneWay();
             set.Bind(_visitorsAmountLabel).To(vm => vm.HotelNumber.VisitorsAmount).WithConversion<StringFormatValueConverter>(Strings.VisitorsCounter).OneWay();
@@ -78,7 +84,8 @@ namespace Pokatun.Droid.Views.Numbers
                 { false, Strings.No }
             }).OneWay();
             set.Bind(_nutritionInfoLabel).To(vm => vm.NutritionInfo).OneWay();
-            set.Bind(_submitBidButton).To(vm => vm.SubmitBidCommand).OneTime();
+            set.Bind(_checkinTimeLabel).To(vm => vm.HotelInfo.CheckInTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
+            set.Bind(_checkoutTimeLabel).To(vm => vm.HotelInfo.CheckOutTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
 
             set.Apply();
 
@@ -89,12 +96,8 @@ namespace Pokatun.Droid.Views.Numbers
         {
             base.OnStart();
 
-            ToolbarLeftSpaceView.Visibility = ViewStates.Gone;
-            ToolbarRightButton.SetImageResource(Resource.Drawable.edit);
-
-            ToolbarSubtitleLabel.Visibility = ViewStates.Visible;
+            ToolbarRightButton.SetImageResource(Resource.Drawable.close);
             ToolbarRightButton.Visibility = ViewStates.Visible;
-            ToolbarPhotoPlaceholderLabel.Visibility = ViewStates.Visible;
         }
     }
 }

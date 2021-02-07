@@ -34,7 +34,6 @@ namespace Pokatun.Core.ViewModels.Numbers
         public override string Title => _hotelNumberIdWhichExists != null ? Strings.HotelNumberEditing : Strings.NewHotelNumber;
 
         private short? _number;
-
         public short? Number
         {
             get { return _number; }

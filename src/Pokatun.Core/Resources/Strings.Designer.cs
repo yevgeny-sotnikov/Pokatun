@@ -833,6 +833,18 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
         public static string Payment {
             get {
                 return ResourceManager.GetString("Payment", resourceCulture);

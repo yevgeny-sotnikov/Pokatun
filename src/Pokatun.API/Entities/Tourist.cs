@@ -1,8 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pokatun.API.Entities
 {
+    [Table(nameof(Tourist))]
     public class Tourist
     {
         [Key]

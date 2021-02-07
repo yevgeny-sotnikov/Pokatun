@@ -1,7 +1,6 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using AndroidX.AppCompat.Widget;
 using Google.Android.Material.SwitchMaterial;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
