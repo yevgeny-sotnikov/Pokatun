@@ -34,7 +34,6 @@ namespace Pokatun.Droid.Views.Numbers
         private CheckBox _breakfastCheckbox;
         private CheckBox _dinnerCheckbox;
         private CheckBox _supperCheckbox;
-        private EditText _hotelNumberPriceTextField;
         private Button _saveChangesButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_hotel_number;
@@ -57,7 +56,6 @@ namespace Pokatun.Droid.Views.Numbers
             _breakfastCheckbox = view.FindViewById<CheckBox>(Resource.Id.breakfastCheckbox);
             _dinnerCheckbox = view.FindViewById<CheckBox>(Resource.Id.dinnerCheckbox);
             _supperCheckbox = view.FindViewById<CheckBox>(Resource.Id.supperCheckbox);
-            _hotelNumberPriceTextField = view.FindViewById<EditText>(Resource.Id.hotelNumberPriceTextField);
             _saveChangesButton = view.FindViewById<Button>(Resource.Id.saveChangesButton);
 
             _roomNumberTextField.Hint = Strings.RoomNumber;
@@ -67,7 +65,6 @@ namespace Pokatun.Droid.Views.Numbers
             _breakfastCheckbox.Text = Strings.Breakfast;
             _dinnerCheckbox.Text = Strings.Dinner;
             _supperCheckbox.Text = Strings.Supper;
-            _hotelNumberPriceTextField.Hint = Strings.HotelNumberPriceHint;
             _saveChangesButton.Text = Strings.SaveChanges;
 
             #pragma warning disable IDE0008 // Use explicit type
@@ -80,7 +77,6 @@ namespace Pokatun.Droid.Views.Numbers
 
             set.Bind(_roomNumberTextField).To(vm => vm.Number).WithConversion<NullableValueConverter>().TwoWay();
             set.Bind(_numberDescriptionTextField).To(vm => vm.Description).TwoWay();
-            set.Bind(_hotelNumberPriceTextField).To(vm => vm.Price).WithConversion<NullableValueConverter>().TwoWay();
 
             set.Bind(_selectRoomLevelButton).For(v => v.Text).To(vm => vm.Level).WithConversion<RoomLevelToStringConverter>().OneWay();
             set.Bind(_amountOfRoomsButton).For(v => v.Text).To(vm => vm.RoomsAmount)
@@ -98,7 +94,6 @@ namespace Pokatun.Droid.Views.Numbers
             set.Bind(_dinnerCheckbox).For(v => v.Enabled).To(vm => vm.NutritionNeeded).OneWay();
             set.Bind(_supperCheckbox).For(v => v.Enabled).To(vm => vm.NutritionNeeded).OneWay();
 
-            set.Bind(_hotelNumberPriceTextField).For(v => v.Activated).To(vm => vm.IsPriceInvalid).OneWay();
             set.Bind(_roomNumberTextField).For(v => v.Activated).To(vm => vm.IsNumberInvalid).OneWay();
             set.Bind(_numberDescriptionTextField).For(v => v.Activated).To(vm => vm.IsDescriptionInvalid).OneWay();
 

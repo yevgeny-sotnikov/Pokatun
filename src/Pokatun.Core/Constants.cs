@@ -25,6 +25,8 @@ namespace Pokatun.Core
 
         public const string PhonePattern = @"^(\+)\d{12,}$";
 
+        public const byte MinimalDiscount = 20;
+
         public static class Keys
         {
             public const string Token = "Token";

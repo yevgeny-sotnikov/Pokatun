@@ -161,7 +161,15 @@ namespace Pokatun.Core.ViewModels.Menu
             {
                 await _navigationService.Navigate<ShowHotelProfileViewModel, HotelDto, object>(responce.Data);
 
-                _parameter = _memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
+                HotelShortInfoDto dto = _memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
+
+                if (dto == null)
+                {
+                    return;
+                }
+
+                _parameter = dto;
+
                 if (_parameter.PhotoName != null)
                 {
                     PhotoStream = ct => _photosService.GetAsync(_parameter.PhotoName);

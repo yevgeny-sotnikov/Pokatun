@@ -17,8 +17,7 @@ namespace Pokatun.Core.Services
             bool nutritionNeeded,
             bool breakfastIncluded,
             bool dinnerIncluded,
-            bool supperIncluded,
-            long price
+            bool supperIncluded
         );
 
         Task<ServerResponce> UpdateExistsAsync(
@@ -32,9 +31,7 @@ namespace Pokatun.Core.Services
             bool nutritionNeeded,
             bool breakfastIncluded,
             bool dinnerIncluded,
-            bool supperIncluded,
-            long price
-        );
+            bool supperIncluded);
 
         Task<ServerResponce<List<HotelNumberDto>>> GetAllAsync();
 

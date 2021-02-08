@@ -39,8 +39,5 @@ namespace Pokatun.Data
 
         [Required]
         public bool SupperIncluded { get; set; }
-
-        [Required]
-        public long Price { get; set; }
     }
 }

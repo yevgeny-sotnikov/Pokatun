@@ -370,6 +370,9 @@
     <data name="HotelNumberPriceHint" xml:space="preserve">
         <value>Цена номера (грн/сутки)</value>
     </data>
+    <data name="DiscountHint" xml:space="preserve">
+        <value>Скидка (не менее 20%)</value>
+    </data>
     <data name="PriceHint" xml:space="preserve">
         <value>грн/сут</value>
     </data>
@@ -378,6 +381,9 @@
     </data>
     <data name="PriceDidntSetted" xml:space="preserve">
         <value>Цена не задана</value>
+    </data>
+    <data name="DiscountDidntSetted" xml:space="preserve">
+        <value>Скидка задана неверно</value>
     </data>
     <data name="NeedSetupNumberDescription" xml:space="preserve">
         <value>необходимо доьавить описание номера</value>

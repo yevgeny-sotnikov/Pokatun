@@ -44,7 +44,6 @@ namespace Pokatun.API.Services
                 BreakfastIncluded = value.BreakfastIncluded,
                 DinnerIncluded = value.DinnerIncluded,
                 SupperIncluded = value.SupperIncluded,
-                Price = value.Price,
 
                 HotelId = hotelId
             };
@@ -89,7 +88,6 @@ namespace Pokatun.API.Services
             hotelNumber.BreakfastIncluded = value.BreakfastIncluded;
             hotelNumber.DinnerIncluded = value.DinnerIncluded;
             hotelNumber.SupperIncluded = value.SupperIncluded;
-            hotelNumber.Price = value.Price;
             hotelNumber.HotelId = hotelId;
 
             _context.HotelNumbers.Update(hotelNumber);
@@ -116,8 +114,7 @@ namespace Pokatun.API.Services
                 NutritionNeeded = value.NutritionNeeded,
                 BreakfastIncluded = value.BreakfastIncluded,
                 DinnerIncluded = value.DinnerIncluded,
-                SupperIncluded = value.SupperIncluded,
-                Price = value.Price,
+                SupperIncluded = value.SupperIncluded
             }).ToList();
         }
     }

@@ -38,6 +38,8 @@ namespace Pokatun.Droid.Views.Bids
         private TextView _checkinTimeLabel;
         private TextView _checkoutLabel;
         private TextView _checkoutTimeLabel;
+        private TextView _priceTextField;
+        private TextView _discountTextField;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_bid;
 
@@ -59,15 +61,18 @@ namespace Pokatun.Droid.Views.Bids
             _checkinTimeLabel = view.FindViewById<TextView>(Resource.Id.checkinTimeLabel);
             _checkoutLabel = view.FindViewById<TextView>(Resource.Id.checkoutLabel);
             _checkoutTimeLabel = view.FindViewById<TextView>(Resource.Id.checkoutTimeLabel);
+            _priceTextField = view.FindViewById<TextView>(Resource.Id.priceTextField);
+            _discountTextField = view.FindViewById<TextView>(Resource.Id.discountTextField);
 
             _inNumberLabel.Text = Strings.InHotelNumber;
             _cleaningLabel.Text = Strings.NumbersCleaning;
             _nutritionLabel.Text = Strings.Nutrition;
             _checkinLabel.Text = Strings.CheckIn;
             _checkoutLabel.Text = Strings.CheckOut;
+            _priceTextField.Hint = Strings.HotelNumberPriceHint;
+            _discountTextField.Hint = Strings.DiscountHint;
 
-
-#pragma warning disable IDE0008 // Use explicit type
+            #pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
 
@@ -86,6 +91,8 @@ namespace Pokatun.Droid.Views.Bids
             set.Bind(_nutritionInfoLabel).To(vm => vm.NutritionInfo).OneWay();
             set.Bind(_checkinTimeLabel).To(vm => vm.HotelInfo.CheckInTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
             set.Bind(_checkoutTimeLabel).To(vm => vm.HotelInfo.CheckOutTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
+            set.Bind(_priceTextField).To(vm => vm.Price).WithConversion<NullableValueConverter>().TwoWay();
+            set.Bind(_discountTextField).To(vm => vm.Discount).WithConversion<NullableValueConverter>().TwoWay();
 
             set.Apply();
 

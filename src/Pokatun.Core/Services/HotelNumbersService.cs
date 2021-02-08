@@ -24,9 +24,7 @@ namespace Pokatun.Core.Services
             bool nutritionNeeded,
             bool breakfastIncluded,
             bool dinnerIncluded,
-            bool supperIncluded,
-            long price
-        )
+            bool supperIncluded)
         {
             return await _restService.PostAsync<object>(
                 "hotelnumbers",
@@ -41,8 +39,7 @@ namespace Pokatun.Core.Services
                     NutritionNeeded = nutritionNeeded,
                     BreakfastIncluded = breakfastIncluded,
                     DinnerIncluded = dinnerIncluded,
-                    SupperIncluded = supperIncluded,
-                    Price = price
+                    SupperIncluded = supperIncluded
                 }
             );
         }
@@ -58,9 +55,7 @@ namespace Pokatun.Core.Services
             bool nutritionNeeded,
             bool breakfastIncluded,
             bool dinnerIncluded,
-            bool supperIncluded,
-            long price
-        )
+            bool supperIncluded)
         {
             return await _restService.PutAsync<object>(
                 "hotelnumbers", id,
@@ -75,8 +70,7 @@ namespace Pokatun.Core.Services
                     NutritionNeeded = nutritionNeeded,
                     BreakfastIncluded = breakfastIncluded,
                     DinnerIncluded = dinnerIncluded,
-                    SupperIncluded = supperIncluded,
-                    Price = price
+                    SupperIncluded = supperIncluded
                 }
             );
         }

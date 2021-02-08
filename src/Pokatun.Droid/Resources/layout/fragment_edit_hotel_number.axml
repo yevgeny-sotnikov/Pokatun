@@ -155,15 +155,6 @@
                     android:layout_gravity="center_vertical"
                     />
             </LinearLayout>
-			<EditText
-				android:id="@+id/hotelNumberPriceTextField"
-                style="@style/BorderedEditTextWithLeftImage"
-                android:drawableLeft="@drawable/price_editroom"
-				android:layout_marginBottom="24dp"
-				android:inputType="number"
-				android:layout_width="match_parent"
-                android:maxLength="18"
-				/>
 		</LinearLayout>
 	</ScrollView>
 

@@ -41,9 +41,6 @@ namespace Pokatun.API.Entities
         [Required]
         public bool SupperIncluded { get; set; }
 
-        [Required]
-        public long Price { get; set; }
-
         public long HotelId { get; set; }
 
         public Hotel Hotel { get; set; }

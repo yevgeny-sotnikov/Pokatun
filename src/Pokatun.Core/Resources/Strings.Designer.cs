@@ -755,6 +755,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string DiscountHint {
+            get {
+                return ResourceManager.GetString("DiscountHint", resourceCulture);
+            }
+        }
+        
         public static string PriceHint {
             get {
                 return ResourceManager.GetString("PriceHint", resourceCulture);
@@ -770,6 +776,12 @@ namespace Pokatun.Core.Resources {
         public static string PriceDidntSetted {
             get {
                 return ResourceManager.GetString("PriceDidntSetted", resourceCulture);
+            }
+        }
+        
+        public static string DiscountDidntSetted {
+            get {
+                return ResourceManager.GetString("DiscountDidntSetted", resourceCulture);
             }
         }
         

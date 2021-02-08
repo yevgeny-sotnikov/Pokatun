@@ -119,24 +119,7 @@ namespace Pokatun.Core.ViewModels.Numbers
             set { SetProperty(ref _supperIncluded, value); }
         }
 
-        private long? _price;
-        public long? Price
-        {
-            get { return _price; }
-            set
-            {
-                if (!SetProperty(ref _price, value))
-                    return;
-
-                _viewInEditMode = true;
-
-                RaisePropertyChanged(nameof(IsPriceInvalid));
-            }
-        }
-
         public bool IsNumberInvalid => CheckInvalid(nameof(Number));
-
-        public bool IsPriceInvalid => CheckInvalid(nameof(Price));
 
         public bool IsDescriptionInvalid => CheckInvalid(nameof(Description));
 
@@ -195,7 +178,6 @@ namespace Pokatun.Core.ViewModels.Numbers
             _validator = new ValidationHelper();
 
             _validator.AddRule(nameof(Number), () => RuleResult.Assert(_viewInEditMode || Number != null, Strings.RoomNumberDidntSetted));
-            _validator.AddRule(nameof(Price), () => RuleResult.Assert(_viewInEditMode || Price != null, Strings.PriceDidntSetted));
             _validator.AddRule(nameof(Description), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(Description), Strings.NeedSetupNumberDescription));
         }
 
@@ -216,7 +198,6 @@ namespace Pokatun.Core.ViewModels.Numbers
             BreakfastIncluded = parameter.BreakfastIncluded;
             DinnerIncluded = parameter.DinnerIncluded;
             SupperIncluded = parameter.SupperIncluded;
-            Price = parameter.Price;
         }
 
         private async Task DoSelectRoomLevelCommandAsync()
@@ -285,11 +266,7 @@ namespace Pokatun.Core.ViewModels.Numbers
 
             ValidationResult validationResult = _validator.ValidateAll();
 
-            await Task.WhenAll(
-                RaisePropertyChanged(nameof(IsDescriptionInvalid)),
-                RaisePropertyChanged(nameof(IsNumberInvalid)),
-                RaisePropertyChanged(nameof(IsPriceInvalid))
-            );
+            await Task.WhenAll(RaisePropertyChanged(nameof(IsDescriptionInvalid)), RaisePropertyChanged(nameof(IsNumberInvalid)));
 
             if (!validationResult.IsValid)
             {
@@ -312,9 +289,7 @@ namespace Pokatun.Core.ViewModels.Numbers
                         NutritionNeeded,
                         BreakfastIncluded = NutritionNeeded && BreakfastIncluded,
                         DinnerIncluded = NutritionNeeded && DinnerIncluded,
-                        SupperIncluded = NutritionNeeded && SupperIncluded,
-                        Price.Value
-                    ),
+                        SupperIncluded = NutritionNeeded && SupperIncluded),
                     new HashSet<string> { ErrorCodes.HotelNumberAllreadyExistsError }
                 );
             }
@@ -332,8 +307,7 @@ namespace Pokatun.Core.ViewModels.Numbers
                         NutritionNeeded,
                         BreakfastIncluded = NutritionNeeded && BreakfastIncluded,
                         DinnerIncluded = NutritionNeeded && DinnerIncluded,
-                        SupperIncluded = NutritionNeeded && SupperIncluded,
-                        Price.Value
+                        SupperIncluded = NutritionNeeded && SupperIncluded
                     ),
                     new HashSet<string> { ErrorCodes.HotelNumberDoesntExistError, ErrorCodes.HotelNumberAllreadyExistsError }
                 );
@@ -353,8 +327,7 @@ namespace Pokatun.Core.ViewModels.Numbers
                 NutritionNeeded = NutritionNeeded,
                 BreakfastIncluded = NutritionNeeded && BreakfastIncluded,
                 DinnerIncluded = NutritionNeeded && DinnerIncluded,
-                SupperIncluded = NutritionNeeded && SupperIncluded,
-                Price = Price.Value
+                SupperIncluded = NutritionNeeded && SupperIncluded
             });
         }
 
