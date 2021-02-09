@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Acr.UserDialogs;
 using Microsoft.Extensions.Caching.Memory;
+using MvvmCross.Commands;
+using MvvmCross.ViewModels;
 using MvvmValidation;
 using Pokatun.Core.Resources;
+using Pokatun.Core.ViewModels.Collections;
 using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Bids
@@ -10,7 +14,7 @@ namespace Pokatun.Core.ViewModels.Bids
     public class EditBidViewModel : BaseViewModel<EditBidParameter, bool>
     {
         private readonly IMemoryCache _memoryCache;
-
+        private readonly IUserDialogs _userDialogs;
         private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
@@ -82,13 +86,36 @@ namespace Pokatun.Core.ViewModels.Bids
             }
         }
 
+        public MvxObservableCollection<ButtonItemViewModel> TimeRanges { get; private set; }
+
         public bool IsPriceInvalid => CheckInvalid(nameof(Price));
 
         public bool IsDiscountInvalid => CheckInvalid(nameof(Discount));
 
-        public EditBidViewModel(IMemoryCache memoryCache)
+        private MvxCommand _addTimeRangeCommand;
+        public IMvxCommand AddTimeRangeCommand
+        {
+            get
+            {
+                return _addTimeRangeCommand ?? (_addTimeRangeCommand = new MvxCommand(DoAddTimeRangeCommand));
+            }
+        }
+
+        private MvxCommand<ButtonItemViewModel> _deleteTimeRangeCommand;
+        public IMvxCommand<ButtonItemViewModel> DeleteTimeRangeCommand
+        {
+            get
+            {
+                return _deleteTimeRangeCommand ?? (_deleteTimeRangeCommand = new MvxCommand<ButtonItemViewModel>(DoDeleteTimeRangeCommand));
+            }
+        }
+
+        public EditBidViewModel(IMemoryCache memoryCache, IUserDialogs userDialogs)
         {
             _memoryCache = memoryCache;
+            _userDialogs = userDialogs;
+
+            TimeRanges = new MvxObservableCollection<ButtonItemViewModel>();
 
             HotelInfo = _memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
 
@@ -113,6 +140,17 @@ namespace Pokatun.Core.ViewModels.Bids
             HotelNumber = parameter.HotelNumber;
             RaisePropertyChanged(nameof(NutritionInfo));
         }
+
+        private void DoAddTimeRangeCommand()
+        {
+            TimeRanges.Add(new ButtonItemViewModel(DeleteTimeRangeCommand, _userDialogs));
+        }
+
+        private void DoDeleteTimeRangeCommand(ButtonItemViewModel obj)
+        {
+            TimeRanges.Remove(obj);
+        }
+
 
         private bool CheckInvalid(string name)
         {

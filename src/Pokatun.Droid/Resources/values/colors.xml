@@ -21,4 +21,5 @@
     <color name="lightSeparatorColor">#f1c40f</color>
     <color name="separatorColor">#bdc3c7</color>
     <color name="faileValidationColor">#e9848d</color>
+    <color name="deleteItemColor">#ce2d3c</color>
 </resources>

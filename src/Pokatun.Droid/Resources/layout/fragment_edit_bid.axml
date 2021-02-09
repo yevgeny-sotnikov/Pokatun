@@ -320,12 +320,28 @@
 			<EditText
 				android:id="@+id/discountTextField"
                 style="@style/BorderedEditTextWithLeftImage"
-				android:layout_marginBottom="16dp"
+				android:layout_marginBottom="8dp"
                 android:drawableLeft="@drawable/discount_edit"
 				android:maxLength="2"
 				android:inputType="number"
 				android:layout_width="match_parent"
 				/>
+            <MvvmCross.Platforms.Android.Binding.Views.MvxLinearLayout
+                android:id="@+id/bidTimeRangesTable"
+                android:animateLayoutChanges="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                />
+            <Button
+                android:id="@+id/addTimeRangeButton"
+                style="@style/BorderedButton"
+                android:layout_width="match_parent"
+            	android:layout_marginTop="8dp"
+                android:drawableLeft="@drawable/calendar_edit"
+                />
+
 		</LinearLayout>
 
 	</ScrollView>

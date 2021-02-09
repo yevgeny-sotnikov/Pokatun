@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
@@ -40,6 +41,8 @@ namespace Pokatun.Droid.Views.Bids
         private TextView _checkoutTimeLabel;
         private TextView _priceTextField;
         private TextView _discountTextField;
+        private MvxLinearLayout _bidTimeRangesTable;
+        private Button _addTimeRangeButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_bid;
 
@@ -63,6 +66,10 @@ namespace Pokatun.Droid.Views.Bids
             _checkoutTimeLabel = view.FindViewById<TextView>(Resource.Id.checkoutTimeLabel);
             _priceTextField = view.FindViewById<TextView>(Resource.Id.priceTextField);
             _discountTextField = view.FindViewById<TextView>(Resource.Id.discountTextField);
+            _bidTimeRangesTable = view.FindViewById<MvxLinearLayout>(Resource.Id.bidTimeRangesTable);
+            _addTimeRangeButton = view.FindViewById<Button>(Resource.Id.addTimeRangeButton);
+
+            _bidTimeRangesTable.ItemTemplateId = Resource.Layout.bid_time_range_item_template;
 
             _inNumberLabel.Text = Strings.InHotelNumber;
             _cleaningLabel.Text = Strings.NumbersCleaning;
@@ -71,6 +78,7 @@ namespace Pokatun.Droid.Views.Bids
             _checkoutLabel.Text = Strings.CheckOut;
             _priceTextField.Hint = Strings.HotelNumberPriceHint;
             _discountTextField.Hint = Strings.DiscountHint;
+            _addTimeRangeButton.Text = Strings.AddDate;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -93,6 +101,13 @@ namespace Pokatun.Droid.Views.Bids
             set.Bind(_checkoutTimeLabel).To(vm => vm.HotelInfo.CheckOutTime).WithConversion<TimeConverter>(Strings.NA).OneWay();
             set.Bind(_priceTextField).To(vm => vm.Price).WithConversion<NullableValueConverter>().TwoWay();
             set.Bind(_discountTextField).To(vm => vm.Discount).WithConversion<NullableValueConverter>().TwoWay();
+            set.Bind(_bidTimeRangesTable).For(v => v.ItemsSource).To(vm => vm.TimeRanges).OneTime();
+
+            set.Bind(_priceTextField).For(v => v.Activated).To(vm => vm.IsPriceInvalid).OneWay();
+            set.Bind(_discountTextField).For(v => v.Activated).To(vm => vm.IsDiscountInvalid).OneWay();
+
+            set.Bind(_addTimeRangeButton).To(vm => vm.AddTimeRangeCommand).OneTime();
+
 
             set.Apply();
 

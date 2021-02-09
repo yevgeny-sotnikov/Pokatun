@@ -862,5 +862,11 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("Payment", resourceCulture);
             }
         }
+        
+        public static string AddDate {
+            get {
+                return ResourceManager.GetString("AddDate", resourceCulture);
+            }
+        }
     }
 }

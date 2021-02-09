@@ -424,4 +424,7 @@
     <data name="Payment" xml:space="preserve">
         <value>Оплата</value>
     </data>
+    <data name="AddDate" xml:space="preserve">
+        <value>Добавить дату</value>
+    </data>
 </root>
