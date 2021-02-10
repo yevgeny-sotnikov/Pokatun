@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Pokatun.Data;
 
@@ -44,5 +45,7 @@ namespace Pokatun.API.Entities
         public long HotelId { get; set; }
 
         public Hotel Hotel { get; set; }
+
+        public ICollection<Bid> Bids { get; set; }
     }
 }
