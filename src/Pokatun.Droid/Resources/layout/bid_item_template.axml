@@ -12,76 +12,168 @@
     android:layout_marginRight="12dp"
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
-
-    <TextView
-        android:textSize="@dimen/font_large"
-        android:textColor="@color/primaryTextColor"
-        android:textStyle="bold"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="center_vertical"
-        android:gravity="start"
-        android:singleLine="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        local:MvxBind="Text Number, Converter=StringFormat, ConverterParameter='№ {0}'"
-    />
     <LinearLayout
-        android:background="@drawable/hotel_number_info_bg"
-        android:layout_gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="17dp"
-        android:paddingRight="17dp"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="30dp">
-        <ImageView
-            android:src="@drawable/room_category"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:background="@color/separatorColor"
+            android:layout_width="8dp"
+            android:layout_height="match_parent"
             />
-        <TextView
-            style="@style/ListLabel"
-            android:layout_marginLeft="8dp"
-            android:layout_gravity="center_vertical"
-            android:singleLine="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            local:MvxBind="Text Level, Converter=RoomLevelToString"
-            />
-        <Space android:layout_width="0dp" android:layout_weight="1" android:layout_height="0dp" />
-        <ImageView
-            android:src="@drawable/key"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            style="@style/ListLabel"
-            android:layout_marginLeft="8dp"
-            android:layout_gravity="center_vertical"
-            android:singleLine="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            local:MvxBind="Text RoomsAmount, Converter=StringFormat, ConverterParameter='{0} ком'"
-            />
-        <Space android:layout_width="0dp" android:layout_weight="1" android:layout_height="0dp" />
-        <ImageView
-            android:src="@drawable/people_number"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            style="@style/ListLabel"
-            android:layout_marginLeft="8dp"
-            android:layout_gravity="center_vertical"
-            android:singleLine="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            local:MvxBind="Text VisitorsAmount, Converter=StringFormat, ConverterParameter='{0} чел'"
-            />
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="23dp"
+            android:paddingTop="17dp"
+            android:paddingBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/font_large"
+                    android:textColor="@color/primaryTextColor"
+                    android:textStyle="bold"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Text HotelNumber.Number, Converter=StringFormat, ConverterParameter='№ {0}'"
+                />
+                <LinearLayout
+                    android:background="@drawable/hotel_number_info_bg"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="17dp"
+                    android:paddingRight="17dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="30dp">
+                    <ImageView
+                        android:src="@drawable/room_category"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        style="@style/ListLabel"
+                        android:layout_marginLeft="4dp"
+                        android:layout_gravity="center_vertical"
+                        android:singleLine="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        local:MvxBind="Text HotelNumber.Level, Converter=RoomLevelToString"
+                        />
+                    <Space android:layout_width="0dp" android:layout_weight="1" android:layout_height="0dp" />
+                    <ImageView
+                        android:src="@drawable/key"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        style="@style/ListLabel"
+                        android:layout_marginLeft="4dp"
+                        android:layout_gravity="center_vertical"
+                        android:singleLine="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        local:MvxBind="Text HotelNumber.RoomsAmount, Converter=StringFormat, ConverterParameter='{0} ком'"
+                        />
+                    <Space android:layout_width="0dp" android:layout_weight="1" android:layout_height="0dp" />
+                    <ImageView
+                        android:src="@drawable/people_number"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        style="@style/ListLabel"
+                        android:layout_marginLeft="4dp"
+                        android:layout_gravity="center_vertical"
+                        android:singleLine="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        local:MvxBind="Text HotelNumber.VisitorsAmount, Converter=StringFormat, ConverterParameter='{0} чел'"
+                        />
+		            <Space android:layout_width="0dp" android:layout_weight="1" android:layout_height="0dp" />
+		            <ImageView
+			            android:src="@drawable/price"
+			            android:layout_gravity="center_vertical"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            />
+		            <TextView
+			            android:textSize="@dimen/font_medium"
+			            android:textColor="@color/primaryTextColor"
+			            android:textStyle="bold"
+			            android:layout_marginLeft="4dp"
+			            android:layout_gravity="center_vertical"
+			            android:singleLine="true"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            local:MvxBind="Text Price"
+			            />
+		            <TextView
+			            style="@style/ListLabel"
+			            android:text="грн/сут"
+			            android:layout_marginLeft="4dp"
+			            android:layout_gravity="center_vertical"
+			            android:singleLine="true"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            />
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="13dp"
+                android:background="@color/separatorColor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/ListLabel"
+                        android:textSize="@dimen/font_large"
+                        android:singleLine="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        local:MvxBind="Text Format('{0:ddd d MMMM} - {1:ddd d MMMM}', Bid.MinDate, Bid.MaxDate)"
+                        />
+                    <TextView
+                        style="@style/ListLabel"
+                        android:text="номер свободен и доступен для поиска"
+                        android:singleLine="true"
+                        android:layout_marginTop="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <ImageView
+                    android:layout_gravity="bottom"
+                    android:src="@drawable/clnd_applist_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
