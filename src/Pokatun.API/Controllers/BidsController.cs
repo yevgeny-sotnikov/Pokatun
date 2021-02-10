@@ -15,11 +15,27 @@ namespace Pokatun.API.Controllers
     public class BidsController : Controller
     {
         private readonly IBidsApiService _bidsService;
+        private readonly IRequestContext _requestContext;
 
-        public BidsController(IBidsApiService bidsService)
+        public BidsController(IBidsApiService bidsService, IRequestContext requestContext)
         {
             _bidsService = bidsService;
+            _requestContext = requestContext;
         }
+
+        [HttpGet]
+        public ActionResult<ServerResponce<List<BidDto>>> Get()
+        {
+            try
+            {
+                return Ok(new ServerResponce<List<BidDto>> { Data = _bidsService.GetAll(_requestContext.GetId(Request)) });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
+
 
         // POST api/values
         [HttpPost]

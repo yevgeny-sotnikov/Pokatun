@@ -95,6 +95,7 @@ namespace Pokatun.API
                 return new BadRequestObjectResult(errorResonce);
             });
 
+            services.AddScoped<IRequestContext, RequestContext>();
             services.AddScoped<IAccountsApiService, AccountsApiService>();
             services.AddScoped<IHotelsApiService, HotelsApiService>();
             services.AddScoped<IBidsApiService, BidsApiService>();

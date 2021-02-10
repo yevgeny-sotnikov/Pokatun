@@ -8,5 +8,7 @@ namespace Pokatun.Core.Services
     public interface IBidsService
     {
         Task<ServerResponce> AddNewAsync(long hotelNumberId, long price, byte discount, IEnumerable<TimeRangeDto> timeRanges);
+
+        Task<ServerResponce<List<BidDto>>> GetAllAsync();
     }
 }

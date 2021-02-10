@@ -28,5 +28,10 @@ namespace Pokatun.Core.Services
             );
 
         }
+
+        public Task<ServerResponce<List<BidDto>>> GetAllAsync()
+        {
+            return _restService.GetAsync<List<BidDto>>("bids");
+        }
     }
 }

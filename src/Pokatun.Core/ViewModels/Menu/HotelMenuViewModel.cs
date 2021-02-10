@@ -10,6 +10,7 @@ using MvvmCross.Navigation;
 using Pokatun.Core.Executors;
 using Pokatun.Core.Resources;
 using Pokatun.Core.Services;
+using Pokatun.Core.ViewModels.Bids;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
 using Pokatun.Core.ViewModels.Numbers;
 using Pokatun.Core.ViewModels.Profile;
@@ -26,6 +27,7 @@ namespace Pokatun.Core.ViewModels.Menu
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly IMemoryCache _memoryCache;
         private readonly IHotelsService _hotelsService;
+        private readonly IBidsService _bidsService;
         private readonly IHotelNumbersService _hotelNumbersService;
         private HotelShortInfoDto _parameter;
 
@@ -50,6 +52,15 @@ namespace Pokatun.Core.ViewModels.Menu
             get
             {
                 return _profileCommand ?? (_profileCommand = new MvxAsyncCommand(DoProfileCommandAsync));
+            }
+        }
+
+        private MvxAsyncCommand _bidsCommand;
+        public IMvxAsyncCommand BidsCommand
+        {
+            get
+            {
+                return _bidsCommand ?? (_bidsCommand = new MvxAsyncCommand(DoBidsCommandAsync));
             }
         }
 
@@ -78,6 +89,7 @@ namespace Pokatun.Core.ViewModels.Menu
             INetworkRequestExecutor networkRequestExecutor,
             IMemoryCache memoryCache,
             IHotelsService hotelsService,
+            IBidsService bidsService,
             IHotelNumbersService hotelNumbersService)
         {
             _photosService = photosService;
@@ -86,6 +98,7 @@ namespace Pokatun.Core.ViewModels.Menu
             _networkRequestExecutor = networkRequestExecutor;
             _memoryCache = memoryCache;
             _hotelsService = hotelsService;
+            _bidsService = bidsService;
             _hotelNumbersService = hotelNumbersService;
         }
 
@@ -178,6 +191,19 @@ namespace Pokatun.Core.ViewModels.Menu
 
                 await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Placeholder)), RaisePropertyChanged(nameof(Subtitle)));
             }
+        }
+
+        private async Task DoBidsCommandAsync()
+        {
+            ServerResponce<List<BidDto>> responce = await _networkRequestExecutor.MakeRequestAsync(
+                () => _bidsService.GetAllAsync(),
+                new HashSet<string>()
+            );
+
+            if (responce == null)
+                return;
+
+            await _navigationService.Navigate<BidsListViewModel, List<BidDto>>(responce.Data);
         }
 
         private async Task DoHotelNumbersCommandAsync()

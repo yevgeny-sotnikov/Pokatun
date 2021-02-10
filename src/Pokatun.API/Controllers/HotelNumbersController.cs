@@ -14,10 +14,12 @@ namespace Pokatun.API.Controllers
     public class HotelNumbersController : ControllerBase
     {
         private readonly IHotelNumbersApiService _hotelNumbersService;
+        private readonly IRequestContext _requestContext;
 
-        public HotelNumbersController(IHotelNumbersApiService hotelNumbersService)
+        public HotelNumbersController(IHotelNumbersApiService hotelNumbersService, IRequestContext requestContext)
         {
             _hotelNumbersService = hotelNumbersService;
+            _requestContext = requestContext;
         }
 
         [HttpGet]
@@ -25,7 +27,7 @@ namespace Pokatun.API.Controllers
         {
             try
             {
-                return Ok(new ServerResponce<List<HotelNumberDto>> { Data = _hotelNumbersService.GetAll(GetHotelId()) });
+                return Ok(new ServerResponce<List<HotelNumberDto>> { Data = _hotelNumbersService.GetAll(_requestContext.GetId(Request)) });
             }
             catch (ApiException ex)
             {
@@ -39,7 +41,7 @@ namespace Pokatun.API.Controllers
         {
             try
             {
-                _hotelNumbersService.AddNew(GetHotelId(), value);
+                _hotelNumbersService.AddNew(_requestContext.GetId(Request), value);
 
                 return Ok(new ServerResponce<string> { Data = "OK" });
             }
@@ -54,7 +56,7 @@ namespace Pokatun.API.Controllers
         {
             try
             {
-                _hotelNumbersService.UpdateExists(GetHotelId(), id, value);
+                _hotelNumbersService.UpdateExists(_requestContext.GetId(Request), id, value);
 
                 return Ok(new ServerResponce<string> { Data = "OK" });
             }
@@ -78,16 +80,6 @@ namespace Pokatun.API.Controllers
             {
                 return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
             }
-        }
-
-        private long GetHotelId()
-        {
-            StringValues tokenStr = Request.Headers[HeaderNames.Authorization];
-
-            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
-            JwtSecurityToken token = handler.ReadJwtToken(((string)tokenStr).Replace("Bearer ", string.Empty));
-
-            return long.Parse(token.Claims.First(c => c.Type == "unique_name").Value);
         }
     }
 }

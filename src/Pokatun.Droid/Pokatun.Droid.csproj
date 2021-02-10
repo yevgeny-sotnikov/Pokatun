@@ -94,6 +94,7 @@
     <Compile Include="Views\Tourist\ShowTouristProfileFragment.cs" />
     <Compile Include="Views\Tourist\EditTouristProfileFragment.cs" />
     <Compile Include="Views\Bids\EditBidFragment.cs" />
+    <Compile Include="Views\Bids\BidsListFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -1319,6 +1320,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\delete_button_background.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_bids_list.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

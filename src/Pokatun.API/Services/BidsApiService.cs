@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Pokatun.API.Entities;
 using Pokatun.API.Models;
 using Pokatun.Data;
@@ -42,6 +44,19 @@ namespace Pokatun.API.Services
             }
 
             _context.SaveChanges();
+        }
+
+        public List<BidDto> GetAll(long hotelId)
+        {
+            return _context.HotelNumbers.Where(x => x.HotelId == hotelId).SelectMany(x => x.Bids).Select(x => new BidDto
+            {
+                Id  = x.Id,
+                Price = x.Price,
+                Discount = x.Discount,
+                MinDate = x.MinDate,
+                MaxDate = x.MaxDate,
+                HotelNumberId = x.HotelNumberId
+            }).ToList();
         }
     }
 }

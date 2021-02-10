@@ -5,6 +5,9 @@ namespace Pokatun.Data
 {
     public sealed class BidDto
     {
+        [Key]
+        public long Id { get; set; }
+
         [Required]
         public long Price { get; set; }
 
