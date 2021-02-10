@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Pokatun.Data
@@ -39,5 +40,7 @@ namespace Pokatun.Data
 
         [Required]
         public bool SupperIncluded { get; set; }
+
+        public List<BidDto> Bids { get; set; }
     }
 }

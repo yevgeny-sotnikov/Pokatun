@@ -80,9 +80,9 @@ namespace Pokatun.Core.Services
             return await _restService.DeleteAsync<object>("hotelnumbers", id);
         }
 
-        public Task<ServerResponce<List<HotelNumberDto>>> GetAllAsync()
+        public Task<ServerResponce<List<HotelNumberDto>>> GetAllAsync(bool withBids = false)
         {
-            return _restService.GetAsync<List<HotelNumberDto>>("hotelnumbers");
+            return _restService.GetAsync<List<HotelNumberDto>>("hotelnumbers?withBids=" + withBids);
         }
     }
 }

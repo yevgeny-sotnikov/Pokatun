@@ -25,7 +25,7 @@ namespace Pokatun.Droid.Views.Bids
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             _recyclerView = (MvxRecyclerView)base.OnCreateView(inflater, container, savedInstanceState);
-            _recyclerView.ItemTemplateId = Resource.Layout.hotel_number_item_template;
+            _recyclerView.ItemTemplateId = Resource.Layout.bid_item_template;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -33,7 +33,7 @@ namespace Pokatun.Droid.Views.Bids
 
             #pragma warning restore IDE0008 // Use explicit type
 
-            //set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
+            set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
             set.Bind(_recyclerView).For(v => v.ItemsSource).To(vm => vm.Bids).OneTime();
             set.Bind(_recyclerView).For(v => v.ItemClick).To(vm => vm.OpenBidCommand).OneTime();
 
@@ -42,5 +42,13 @@ namespace Pokatun.Droid.Views.Bids
             return _recyclerView;
         }
 
+        public override void OnStart()
+        {
+            base.OnStart();
+
+            ToolbarRightButton.SetImageResource(Resource.Drawable.plus);
+
+            ToolbarSubtitleLabel.Visibility = ViewStates.Visible;
+        }
     }
 }

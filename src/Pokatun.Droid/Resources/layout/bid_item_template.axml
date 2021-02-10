@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp"
+    android:orientation="horizontal"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:textSize="@dimen/font_large"
+        android:textColor="@color/primaryTextColor"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="start"
+        android:singleLine="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text Number, Converter=StringFormat, ConverterParameter='№ {0}'"
+    />
+    <LinearLayout
+        android:background="@drawable/hotel_number_info_bg"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="30dp">
+        <ImageView
+            android:src="@drawable/room_category"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            style="@style/ListLabel"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center_vertical"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            local:MvxBind="Text Level, Converter=RoomLevelToString"
+            />
+        <Space android:layout_width="0dp" android:layout_weight="1" android:layout_height="0dp" />
+        <ImageView
+            android:src="@drawable/key"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            style="@style/ListLabel"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center_vertical"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            local:MvxBind="Text RoomsAmount, Converter=StringFormat, ConverterParameter='{0} ком'"
+            />
+        <Space android:layout_width="0dp" android:layout_weight="1" android:layout_height="0dp" />
+        <ImageView
+            android:src="@drawable/people_number"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            style="@style/ListLabel"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center_vertical"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            local:MvxBind="Text VisitorsAmount, Converter=StringFormat, ConverterParameter='{0} чел'"
+            />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

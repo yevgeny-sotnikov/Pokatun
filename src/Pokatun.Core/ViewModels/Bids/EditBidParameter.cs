@@ -8,5 +8,7 @@ namespace Pokatun.Core.ViewModels.Bids
         public HotelNumberDto HotelNumber { get; set; }
 
         public BidDto Bid { get; set; }
+
+        public int Price => (int)(Bid.Price / 100 * Bid.Discount);
     }
 }

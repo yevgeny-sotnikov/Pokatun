@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Pokatun.API.Entities;
 using Pokatun.API.Models;
 using Pokatun.Data;
@@ -100,22 +101,51 @@ namespace Pokatun.API.Services
             _context.SaveChanges();
         }
 
-        public List<HotelNumberDto> GetAll(long hotelId)
+        public List<HotelNumberDto> GetAll(long hotelId, bool withBids)
         {
-            return _context.HotelNumbers.Where(number => number.HotelId == hotelId).Select(value => new HotelNumberDto
+            if (!withBids)
             {
-                Id = value.Id,
-                Number = value.Number,
-                Level = value.Level,
-                RoomsAmount = value.RoomsAmount,
-                VisitorsAmount = value.VisitorsAmount,
-                Description = value.Description,
-                CleaningNeeded = value.CleaningNeeded,
-                NutritionNeeded = value.NutritionNeeded,
-                BreakfastIncluded = value.BreakfastIncluded,
-                DinnerIncluded = value.DinnerIncluded,
-                SupperIncluded = value.SupperIncluded
-            }).ToList();
+                return _context.HotelNumbers.Where(number => number.HotelId == hotelId).Select(value => new HotelNumberDto
+                {
+                    Id = value.Id,
+                    Number = value.Number,
+                    Level = value.Level,
+                    RoomsAmount = value.RoomsAmount,
+                    VisitorsAmount = value.VisitorsAmount,
+                    Description = value.Description,
+                    CleaningNeeded = value.CleaningNeeded,
+                    NutritionNeeded = value.NutritionNeeded,
+                    BreakfastIncluded = value.BreakfastIncluded,
+                    DinnerIncluded = value.DinnerIncluded,
+                    SupperIncluded = value.SupperIncluded
+                }).ToList();
+            }
+            else
+            {
+                return _context.HotelNumbers.Include(x => x.Bids).Where(number => number.HotelId == hotelId).Select(value => new HotelNumberDto
+                {
+                    Id = value.Id,
+                    Number = value.Number,
+                    Level = value.Level,
+                    RoomsAmount = value.RoomsAmount,
+                    VisitorsAmount = value.VisitorsAmount,
+                    Description = value.Description,
+                    CleaningNeeded = value.CleaningNeeded,
+                    NutritionNeeded = value.NutritionNeeded,
+                    BreakfastIncluded = value.BreakfastIncluded,
+                    DinnerIncluded = value.DinnerIncluded,
+                    SupperIncluded = value.SupperIncluded,
+                    Bids = new List<BidDto>(value.Bids.Select(x => new BidDto
+                    {
+                        Id = x.Id,
+                        Price = x.Price,
+                        Discount = x.Discount,
+                        MinDate = x.MinDate,
+                        MaxDate = x.MaxDate,
+                        HotelNumberId = x.HotelNumberId
+                    }))
+                }).ToList();
+            }
         }
     }
 }

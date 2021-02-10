@@ -33,7 +33,7 @@ namespace Pokatun.Core.Services
             bool dinnerIncluded,
             bool supperIncluded);
 
-        Task<ServerResponce<List<HotelNumberDto>>> GetAllAsync();
+        Task<ServerResponce<List<HotelNumberDto>>> GetAllAsync(bool withBids = false);
 
         Task<ServerResponce> DeleteAsync(long id);
     }

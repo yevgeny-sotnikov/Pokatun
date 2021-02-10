@@ -815,6 +815,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string BidsCounter {
+            get {
+                return ResourceManager.GetString("BidsCounter", resourceCulture);
+            }
+        }
+        
         public static string InHotelNumber {
             get {
                 return ResourceManager.GetString("InHotelNumber", resourceCulture);

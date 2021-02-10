@@ -1,9 +1,5 @@
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
-using Microsoft.Net.Http.Headers;
 using Pokatun.API.Services;
 using Pokatun.Data;
 
@@ -23,11 +19,11 @@ namespace Pokatun.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ServerResponce<List<HotelDto>>> Get()
+        public ActionResult<ServerResponce<List<HotelDto>>> Get([FromQuery] bool withBids)
         {
             try
             {
-                return Ok(new ServerResponce<List<HotelNumberDto>> { Data = _hotelNumbersService.GetAll(_requestContext.GetId(Request)) });
+                return Ok(new ServerResponce<List<HotelNumberDto>> { Data = _hotelNumbersService.GetAll(_requestContext.GetId(Request), withBids) });
             }
             catch (ApiException ex)
             {

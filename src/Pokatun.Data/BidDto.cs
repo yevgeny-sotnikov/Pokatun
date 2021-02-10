@@ -22,5 +22,7 @@ namespace Pokatun.Data
 
         [Required]
         public long HotelNumberId { get; set; }
+
+        public  HotelNumberDto HotelNumber { get; set; }
     }
 }

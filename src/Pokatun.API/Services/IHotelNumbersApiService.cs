@@ -7,7 +7,7 @@ namespace Pokatun.API.Services
     {
         void AddNew(long hotelId, HotelNumberDto value);
 
-        List<HotelNumberDto> GetAll(long hotelId);
+        List<HotelNumberDto> GetAll(long hotelId, bool withBids);
 
         void Delete(long id);
 

@@ -400,6 +400,9 @@
     <data name="AddedHotelNumbersCounter" xml:space="preserve">
         <value>Кол-во добавленных номеров: {0}</value>
     </data>
+    <data name="BidsCounter" xml:space="preserve">
+        <value>{0} заявок</value>
+    </data>
     <data name="InHotelNumber" xml:space="preserve">
         <value>В номере:</value>
     </data>

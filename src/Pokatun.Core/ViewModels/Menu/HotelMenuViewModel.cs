@@ -195,15 +195,15 @@ namespace Pokatun.Core.ViewModels.Menu
 
         private async Task DoBidsCommandAsync()
         {
-            ServerResponce<List<BidDto>> responce = await _networkRequestExecutor.MakeRequestAsync(
-                () => _bidsService.GetAllAsync(),
+            ServerResponce<List<HotelNumberDto>> responce = await _networkRequestExecutor.MakeRequestAsync(
+                () => _hotelNumbersService.GetAllAsync(true),
                 new HashSet<string>()
             );
 
             if (responce == null)
                 return;
 
-            await _navigationService.Navigate<BidsListViewModel, List<BidDto>>(responce.Data);
+            await _navigationService.Navigate<BidsListViewModel, List<HotelNumberDto>>(responce.Data);
         }
 
         private async Task DoHotelNumbersCommandAsync()
