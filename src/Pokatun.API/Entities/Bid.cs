@@ -14,5 +14,16 @@ namespace Pokatun.API.Entities
 
         public HotelNumber HotelNumber { get; set; }
 
+        [Required]
+        public long Price { get; set; }
+
+        [Required]
+        public byte Discount { get; set; }
+
+        [Required]
+        public DateTime MinDate { get; set; }
+
+        [Required]
+        public DateTime MaxDate { get; set; }
     }
 }

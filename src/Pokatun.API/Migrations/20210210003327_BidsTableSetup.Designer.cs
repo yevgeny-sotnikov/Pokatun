@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pokatun.API.Models;
 
 namespace Pokatun.API.Migrations
 {
     [DbContext(typeof(PokatunContext))]
-    partial class PokatunContextModelSnapshot : ModelSnapshot
+    [Migration("20210210003327_BidsTableSetup")]
+    partial class BidsTableSetup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

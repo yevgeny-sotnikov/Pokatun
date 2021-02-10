@@ -17,6 +17,7 @@ namespace Pokatun.API.Models
 
         public DbSet<Tourist> Tourists { get; set; }
 
+        public DbSet<Bid> Bids { get; set; }
 
         public PokatunContext(DbContextOptions<PokatunContext> options) : base(options)
         {
@@ -32,6 +33,7 @@ namespace Pokatun.API.Models
             builder.Entity<HotelNumber>().ToTable(nameof(HotelNumbers));
             builder.Entity<Account>().ToTable(nameof(Accounts));
             builder.Entity<Tourist>().ToTable(nameof(Tourists));
+            builder.Entity<Bid>().ToTable(nameof(Bids));
 
             builder.Entity<Account>().HasIndex(a => a.Email).IsUnique();
             builder.Entity<Account>().HasIndex(a => a.ResetToken).IsUnique();

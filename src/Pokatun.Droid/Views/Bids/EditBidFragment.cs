@@ -43,6 +43,7 @@ namespace Pokatun.Droid.Views.Bids
         private TextView _discountTextField;
         private MvxLinearLayout _bidTimeRangesTable;
         private Button _addTimeRangeButton;
+        private Button _saveChangesButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_bid;
 
@@ -68,6 +69,7 @@ namespace Pokatun.Droid.Views.Bids
             _discountTextField = view.FindViewById<TextView>(Resource.Id.discountTextField);
             _bidTimeRangesTable = view.FindViewById<MvxLinearLayout>(Resource.Id.bidTimeRangesTable);
             _addTimeRangeButton = view.FindViewById<Button>(Resource.Id.addTimeRangeButton);
+            _saveChangesButton = view.FindViewById<Button>(Resource.Id.saveChangesButton);
 
             _bidTimeRangesTable.ItemTemplateId = Resource.Layout.bid_time_range_item_template;
 
@@ -79,6 +81,7 @@ namespace Pokatun.Droid.Views.Bids
             _priceTextField.Hint = Strings.HotelNumberPriceHint;
             _discountTextField.Hint = Strings.DiscountHint;
             _addTimeRangeButton.Text = Strings.AddDate;
+            _saveChangesButton.Text = Strings.SaveChanges;
 
             #pragma warning disable IDE0008 // Use explicit type
 
@@ -107,7 +110,7 @@ namespace Pokatun.Droid.Views.Bids
             set.Bind(_discountTextField).For(v => v.Activated).To(vm => vm.IsDiscountInvalid).OneWay();
 
             set.Bind(_addTimeRangeButton).To(vm => vm.AddTimeRangeCommand).OneTime();
-
+            set.Bind(_saveChangesButton).To(vm => vm.SaveChangesCommand).OneTime();
 
             set.Apply();
 
