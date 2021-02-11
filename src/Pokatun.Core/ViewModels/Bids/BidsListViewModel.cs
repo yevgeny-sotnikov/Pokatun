@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Pokatun.Core.Resources;
 using Pokatun.Data;
@@ -24,17 +25,20 @@ namespace Pokatun.Core.ViewModels.Bids
             set { SetProperty(ref _bids, value); }
         }
 
-        private MvxAsyncCommand<BidDto> _openBidCommand;
-        public IMvxAsyncCommand<BidDto> OpenBidCommand
+        private MvxAsyncCommand<EditBidParameter> _openBidCommand;
+        private readonly IMvxNavigationService _navigationService;
+
+        public IMvxAsyncCommand<EditBidParameter> OpenBidCommand
         {
             get
             {
-                return _openBidCommand ?? (_openBidCommand = new MvxAsyncCommand<BidDto>(DoOpenBidCommandAsync));
+                return _openBidCommand ?? (_openBidCommand = new MvxAsyncCommand<EditBidParameter>(DoOpenBidCommandAsync));
             }
         }
 
-        public BidsListViewModel()
+        public BidsListViewModel(IMvxNavigationService navigationService)
         {
+            _navigationService = navigationService;
         }
 
         public override void Prepare(List<HotelNumberDto> parameter)
@@ -44,10 +48,9 @@ namespace Pokatun.Core.ViewModels.Bids
             RaisePropertyChanged(nameof(Subtitle));
         }
 
-        private Task DoOpenBidCommandAsync(BidDto arg)
+        private Task DoOpenBidCommandAsync(EditBidParameter arg)
         {
-            throw new NotImplementedException();
+            return _navigationService.Navigate<ShowBidViewModel, EditBidParameter>(arg);
         }
-
     }
 }

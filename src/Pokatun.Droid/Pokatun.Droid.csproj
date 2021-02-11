@@ -95,6 +95,7 @@
     <Compile Include="Views\Tourist\EditTouristProfileFragment.cs" />
     <Compile Include="Views\Bids\EditBidFragment.cs" />
     <Compile Include="Views\Bids\BidsListFragment.cs" />
+    <Compile Include="Views\Bids\ShowBidFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -1348,6 +1349,18 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xxxhdpi\clnd_applist_2.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_show_bid.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\discount_background.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\strikethrough_shape.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

@@ -19,7 +19,6 @@ namespace Pokatun.Core.ViewModels.Bids
     public class EditBidViewModel : BaseViewModel<EditBidParameter, bool>
     {
         private readonly IMvxNavigationService _navigationService;
-        private readonly IMemoryCache _memoryCache;
         private readonly IUserDialogs _userDialogs;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly IBidsService _bidsService;
@@ -135,14 +134,13 @@ namespace Pokatun.Core.ViewModels.Bids
             IBidsService bidsService)
         {
             _navigationService = navigationService;
-            _memoryCache = memoryCache;
             _userDialogs = userDialogs;
             _networkRequestExecutor = networkRequestExecutor;
             _bidsService = bidsService;
 
             TimeRanges = new MvxObservableCollection<ButtonItemViewModel>();
 
-            HotelInfo = _memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
+            HotelInfo = memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
 
             _validator = new ValidationHelper();
 
