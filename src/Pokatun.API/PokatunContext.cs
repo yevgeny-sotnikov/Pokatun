@@ -45,8 +45,6 @@ namespace Pokatun.API.Models
             builder.Entity<Account>().HasIndex(h => h.Email).IsUnique();
 
             builder.Entity<SocialResource>().HasIndex(sr => sr.Link).IsUnique();
-
-            builder.Entity<HotelNumber>().HasIndex(sr => sr.Number).IsUnique();
         }
     }
 }
