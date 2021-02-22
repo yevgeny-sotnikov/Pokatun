@@ -82,7 +82,7 @@ namespace Pokatun.iOS.Views.Profile
             _saveChangesButton.SetTitle(Strings.SaveChanges, UIControlState.Normal);
 
             #pragma warning disable IDE0008 // Use explicit type
-    
+
             var set = CreateBindingSet();
 
             #pragma warning restore IDE0008 // Use explicit type
@@ -106,7 +106,7 @@ namespace Pokatun.iOS.Views.Profile
 
             set.Bind(_phonesTableViewSource).To(vm => vm.PhoneNumbers).OneTime();
             set.Bind(_linksTableViewSource).To(vm => vm.SocialResources).OneTime();
-            
+
             set.Bind(_hotelNameEditText).For(v => v.Highlighted).To(vm => vm.IsHotelNameInvalid).OneWay();
             set.Bind(_fullCompanyNameTextField).For(v => v.Highlighted).To(vm => vm.IsFullCompanyNameInvalid).OneWay();
             set.Bind(_usreouTextField).For(v => v.Highlighted).To(vm => vm.IsUsreouInvalid).OneWay();
@@ -115,6 +115,7 @@ namespace Pokatun.iOS.Views.Profile
             set.Bind(_emailTextField).For(v => v.Highlighted).To(vm => vm.IsEmailInvalid).OneWay();
             set.Bind(_checkInTimeButton).For(v => v.Highlighted).To(vm => vm.IsCheckInTimeInvalid).OneWay();
             set.Bind(_checkOutTimeButton).For(v => v.Highlighted).To(vm => vm.IsCheckOutTimeInvalid).OneWay();
+            set.Bind(_hotelLocationButton).For(v => v.Highlighted).To(vm => vm.IsHotelLocationInvalid).OneWay();
             set.Bind(_withinTerritoryEditText).For(v => v.Highlighted).To(vm => vm.IsWithinTerritoryDescriptionInvalid).OneWay();
             set.Bind(_hotelDescriptionEditText).For(v => v.Highlighted).To(vm => vm.IsHotelDescriptionInvalid).OneWay();
 

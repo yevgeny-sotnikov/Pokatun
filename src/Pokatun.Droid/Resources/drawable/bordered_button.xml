@@ -1,20 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ripple
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="?android:colorControlHighlight">
-    <item>
-        <shape android:shape="rectangle">
-            <corners
-                android:bottomLeftRadius="19dp"
-                android:bottomRightRadius="19dp"
-                android:topLeftRadius="19dp"
-                android:topRightRadius="19dp"
-            />
-            <solid android:color="@android:color/white" />
-            <stroke
-                android:color="@color/borderColor"
-                android:width="1dp"
-            />
-        </shape>
-    </item>
-</ripple>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:state_activated="true"
+    android:drawable="@drawable/bordered_button_activated" />
+  <item
+    android:drawable="@drawable/bordered_button_default" />
+</selector>

@@ -126,6 +126,7 @@ namespace Pokatun.Droid.Views.Profile
             set.Bind(_emailTextField).For(v => v.Activated).To(vm => vm.IsEmailInvalid).OneWay();
             set.Bind(_checkInTimeButton).For(v => v.Activated).To(vm => vm.IsCheckInTimeInvalid).OneWay();
             set.Bind(_checkOutTimeButton).For(v => v.Activated).To(vm => vm.IsCheckOutTimeInvalid).OneWay();
+            set.Bind(_hotelLocationButton).For(v => v.Activated).To(vm => vm.IsHotelLocationInvalid).OneWay();
             set.Bind(_withinTerritoryEditText).For(v => v.Activated).To(vm => vm.IsWithinTerritoryDescriptionInvalid).OneWay();
             set.Bind(_hotelDescriptionEditText).For(v => v.Activated).To(vm => vm.IsHotelDescriptionInvalid).OneWay();
 

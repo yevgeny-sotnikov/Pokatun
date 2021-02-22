@@ -455,6 +455,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string HotelLocationAddressDidntSetted {
+            get {
+                return ResourceManager.GetString("HotelLocationAddressDidntSetted", resourceCulture);
+            }
+        }
+        
         public static string CheckInTime {
             get {
                 return ResourceManager.GetString("CheckInTime", resourceCulture);

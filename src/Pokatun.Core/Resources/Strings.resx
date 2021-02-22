@@ -220,6 +220,9 @@
     <data name="HotelLocationAddress" xml:space="preserve">
         <value>Адрес расположения отеля</value>
     </data>
+    <data name="HotelLocationAddressDidntSetted" xml:space="preserve">
+        <value>Не указан адрес расположения отеля</value>
+    </data>
     <data name="CheckInTime" xml:space="preserve">
         <value>Время заселения</value>
     </data>
