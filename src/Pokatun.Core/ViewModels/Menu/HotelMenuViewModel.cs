@@ -138,6 +138,9 @@ namespace Pokatun.Core.ViewModels.Menu
             {
                 HotelDto hotel = await _navigationService.Navigate<EditHotelProfileViewModel, HotelDto, HotelDto>(responce.Data);
 
+                if (hotel == null)
+                    return;
+
                 _parameter = new HotelShortInfoDto
                 {
                     HotelName = hotel.HotelName,
