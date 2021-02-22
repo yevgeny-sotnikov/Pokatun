@@ -9,6 +9,7 @@ using Android.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Commands;
 using MvvmCross.Core;
+using MvvmCross.DroidX.RecyclerView;
 using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -28,6 +29,7 @@ namespace Pokatun.Droid.Linker
         public void Include(View view)
         {
             view.Click += (s, e) => view.ContentDescription = $"{view.ContentDescription}";
+            view.LongClick += (s, e) => view.ContentDescription = $"{view.ContentDescription}";
         }
 
         public void Include(TextView text)
