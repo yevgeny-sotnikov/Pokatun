@@ -1,5 +1,6 @@
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Plugin.Visibility;
+using MvvmCross.UI;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Menu;
 using Pokatun.iOS.Controls;
@@ -43,6 +44,8 @@ namespace Pokatun.iOS.Views.Menu
             _securityItem.Text = Strings.Security;
             _exitItem.Text = Strings.Exit;
 
+            _myHotelNumbersItem.AdditionalInfoVisibility = MvxVisibility.Visible;
+
             #pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
@@ -55,6 +58,7 @@ namespace Pokatun.iOS.Views.Menu
             set.Bind(ViewTitle).For(v => v.SubtitleHightlighted).To(vm => vm.ProfileNotCompleted).OneWay();
             set.Bind(_profileItem).For(v => v.AdditionalInfoVisibility).To(vm => vm.ProfileNotCompleted)
                 .WithConversion<MvxVisibilityValueConverter>().OneWay();
+            set.Bind(_myHotelNumbersItem).For(v => v.AdditionalInfo).To(vm => vm.HotelNumbersAmount).OneWay();
 
             set.Bind(_myHotelNumbersItem).For(nameof(MenuItem.Clicked)).To(vm => vm.HotelNumbersCommand);
             set.Bind(_profileItem).For(nameof(MenuItem.Clicked)).To(vm => vm.ProfileCommand);

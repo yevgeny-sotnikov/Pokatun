@@ -874,5 +874,17 @@ namespace Pokatun.Core.Resources {
                 return ResourceManager.GetString("AddDate", resourceCulture);
             }
         }
+        
+        public static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
+        public static string FillProfileMessage {
+            get {
+                return ResourceManager.GetString("FillProfileMessage", resourceCulture);
+            }
+        }
     }
 }

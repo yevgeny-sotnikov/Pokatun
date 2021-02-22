@@ -430,4 +430,10 @@
     <data name="AddDate" xml:space="preserve">
         <value>Добавить дату</value>
     </data>
+    <data name="Message" xml:space="preserve">
+        <value>Сообщение</value>
+    </data>
+    <data name="FillProfileMessage" xml:space="preserve">
+        <value>Заполните полностью профиль чтобы получить доступ</value>
+    </data>
 </root>

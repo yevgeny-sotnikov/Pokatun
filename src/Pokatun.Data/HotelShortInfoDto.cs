@@ -16,6 +16,5 @@ namespace Pokatun.Data
         public TimeSpan? CheckInTime { get; set; }
 
         public TimeSpan? CheckOutTime { get; set; }
-
     }
 }

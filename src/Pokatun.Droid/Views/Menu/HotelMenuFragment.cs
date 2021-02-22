@@ -53,6 +53,8 @@ namespace Pokatun.Droid.Views.Menu
             _securityItem.Text = Strings.Security;
             _exitItem.Text = Strings.Exit;
 
+            _myHotelNumbersItem.AdditionalInfoVisibility = ViewStates.Visible;
+
             _myBidsItem.SetImageResource(Resource.Drawable.applic);
             _myHotelNumbersItem.SetImageResource(Resource.Drawable.room);
             _hotelRatingItem.SetImageResource(Resource.Drawable.rating);
@@ -74,6 +76,7 @@ namespace Pokatun.Droid.Views.Menu
             set.Bind(ToolbarSubtitleLabel).For(v => v.Activated).To(vm => vm.ProfileNotCompleted).OneWay();
             set.Bind(_profileItem).For(v => v.AdditionalInfoVisibility).To(vm => vm.ProfileNotCompleted)
                 .WithConversion<MvxVisibilityValueConverter>().OneWay();
+            set.Bind(_myHotelNumbersItem).For(v => v.AdditionalInfo).To(vm => vm.HotelNumbersAmount).OneWay();
 
             set.Bind(_myBidsItem).For(_myBidsItem.BindClick()).To(vm => vm.BidsCommand);
             set.Bind(_myHotelNumbersItem).For(_myHotelNumbersItem.BindClick()).To(vm => vm.HotelNumbersCommand);

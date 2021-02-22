@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Microsoft.Extensions.Caching.Memory;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -21,6 +22,7 @@ namespace Pokatun.Core.ViewModels.Menu
 {
     public sealed class HotelMenuViewModel : BaseViewModel<HotelShortInfoDto>
     {
+        private readonly IUserDialogs _userDialogs;
         private readonly IPhotosService _photosService;
         private readonly IMvxNavigationService _navigationService;
         private readonly ISecureStorage _secureStorage;
@@ -38,6 +40,8 @@ namespace Pokatun.Core.ViewModels.Menu
         public string Subtitle => _parameter.ProfileNotCompleted ? Strings.CompleteYourProfile : _parameter.Address;
 
         public bool ProfileNotCompleted => _parameter.ProfileNotCompleted;
+
+        public int HotelNumbersAmount => _parameter == null ? 0 : _parameter.HotelNumbersAmount;
 
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
@@ -83,6 +87,7 @@ namespace Pokatun.Core.ViewModels.Menu
         }
 
         public HotelMenuViewModel(
+            IUserDialogs userDialogs,
             IPhotosService photosService,
             IMvxNavigationService navigationService,
             ISecureStorage secureStorage,
@@ -92,6 +97,7 @@ namespace Pokatun.Core.ViewModels.Menu
             IBidsService bidsService,
             IHotelNumbersService hotelNumbersService)
         {
+            _userDialogs = userDialogs;
             _photosService = photosService;
             _navigationService = navigationService;
             _secureStorage = secureStorage;
@@ -115,6 +121,7 @@ namespace Pokatun.Core.ViewModels.Menu
             RaisePropertyChanged(nameof(Placeholder));
             RaisePropertyChanged(nameof(Subtitle));
             RaisePropertyChanged(nameof(ProfileNotCompleted));
+            RaisePropertyChanged(nameof(HotelNumbersAmount));
 
             if (parameter != null && _parameter.PhotoName != null)
             {
@@ -198,6 +205,12 @@ namespace Pokatun.Core.ViewModels.Menu
 
         private async Task DoBidsCommandAsync()
         {
+            if (ProfileNotCompleted)
+            {
+                await _userDialogs.AlertAsync(Strings.FillProfileMessage, Strings.Message);
+                return;
+            }
+
             ServerResponce<List<HotelNumberDto>> responce = await _networkRequestExecutor.MakeRequestAsync(
                 () => _hotelNumbersService.GetAllAsync(true),
                 new HashSet<string>()
@@ -211,6 +224,12 @@ namespace Pokatun.Core.ViewModels.Menu
 
         private async Task DoHotelNumbersCommandAsync()
         {
+            if (ProfileNotCompleted)
+            {
+                await _userDialogs.AlertAsync(Strings.FillProfileMessage, Strings.Message);
+                return;
+            }
+
             ServerResponce<List<HotelNumberDto>> responce = await _networkRequestExecutor.MakeRequestAsync(
                 () => _hotelNumbersService.GetAllAsync(),
                 new HashSet<string>()
