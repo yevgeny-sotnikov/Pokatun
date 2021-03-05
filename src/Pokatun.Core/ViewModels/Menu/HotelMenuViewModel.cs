@@ -29,13 +29,13 @@ namespace Pokatun.Core.ViewModels.Menu
         private readonly IHotelNumbersService _hotelNumbersService;
         private HotelShortInfoDto _parameter;
 
-        public override string Title => _parameter?.HotelName;
+        public override string Title => _parameter.HotelName;
 
         public string Placeholder => Title == null ? null : Title[0].ToString();
 
-        public string Subtitle => _parameter == null || _parameter.ProfileNotCompleted ? Strings.CompleteYourProfile : _parameter.Address;
+        public string Subtitle => _parameter.ProfileNotCompleted ? Strings.CompleteYourProfile : _parameter.Address;
 
-        public bool ProfileNotCompleted => _parameter == null || _parameter.ProfileNotCompleted;
+        public bool ProfileNotCompleted => _parameter.ProfileNotCompleted;
 
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
@@ -91,6 +91,11 @@ namespace Pokatun.Core.ViewModels.Menu
 
         public override void Prepare(HotelShortInfoDto parameter)
         {
+            if (parameter == null)
+            {
+                throw new ArgumentNullException(nameof(parameter));
+            }
+
             _parameter = parameter;
 
             RaisePropertyChanged(nameof(Title));

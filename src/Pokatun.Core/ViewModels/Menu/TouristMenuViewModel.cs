@@ -23,6 +23,7 @@ namespace Pokatun.Core.ViewModels.Menu
         private readonly INetworkRequestExecutor _networkRequestExecutor;
         private readonly ITouristsService _touristsService;
         private readonly IMemoryCache _memoryCache;
+
         private string _title;
         public override string Title => _title;
 
@@ -71,6 +72,11 @@ namespace Pokatun.Core.ViewModels.Menu
 
         public override void Prepare(TouristShortInfoDto parameter)
         {
+            if (parameter == null)
+            {
+                throw new ArgumentNullException(nameof(parameter));
+            }
+
             _title = parameter.Fullname;
 
             RaisePropertyChanged(nameof(Title));
@@ -81,7 +87,6 @@ namespace Pokatun.Core.ViewModels.Menu
                 PhotoStream = ct => _photosService.GetAsync(parameter.PhotoName);
             }
             else PhotoStream = null;
-
         }
 
         private async Task DoProfileCommandAsync()

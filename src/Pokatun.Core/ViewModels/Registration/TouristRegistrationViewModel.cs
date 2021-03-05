@@ -179,7 +179,7 @@ namespace Pokatun.Core.ViewModels.Registration
                 if (dto == null)
                     return;
 
-                await _touristFinalSetupExecutor.FinalizeSetupAsync(dto, this, false);
+                await _touristFinalSetupExecutor.FinalizeSetupAsync(dto, this);
             }
         }
     }

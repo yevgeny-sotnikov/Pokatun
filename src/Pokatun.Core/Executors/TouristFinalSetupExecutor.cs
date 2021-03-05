@@ -20,30 +20,23 @@ namespace Pokatun.Core.Executors
             _navigationService = navigationService;
         }
 
-        public async Task FinalizeSetupAsync(TokenInfoDto dto, IMvxViewModel closeViewModel, bool needLoadShortInfo = true)
+        public async Task FinalizeSetupAsync(TokenInfoDto dto, IMvxViewModel closeViewModel)
         {
             if (closeViewModel == null)
             {
                 throw new ArgumentNullException(nameof(closeViewModel));
             }
 
-            TouristShortInfoDto shortInfo = null;
+            ServerResponce<TouristShortInfoDto> serverResponce;
 
-            if (needLoadShortInfo)
+            do
             {
-                ServerResponce<TouristShortInfoDto> serverResponce;
-
-                do
-                {
-                    serverResponce = await _touristService.GetShortInfoAsync(dto.AccountId);
-                }
-                while (!serverResponce.Success);
-
-                shortInfo = serverResponce.Data;
+                serverResponce = await _touristService.GetShortInfoAsync(dto.AccountId);
             }
+            while (!serverResponce.Success);
 
             await _navigationService.Close(closeViewModel);
-            await _navigationService.Navigate<TouristMenuViewModel, TouristShortInfoDto>(shortInfo);
+            await _navigationService.Navigate<TouristMenuViewModel, TouristShortInfoDto>(serverResponce.Data);
         }
     }
 }
