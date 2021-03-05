@@ -32,7 +32,7 @@
 				android:layout_marginBottom="16dp"
 				android:paddingLeft="17dp"
 				android:paddingRight="17dp"
-				android:layout_width="wrap_content"
+				android:layout_width="match_parent"
 				android:layout_height="30dp">
 				<ImageView
 					android:src="@drawable/room_category"
@@ -49,6 +49,11 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					/>
+				<Space
+                    android:layout_width="0dp"
+					android:layout_weight="1"
+                    android:layout_height="1dp"
+					/>
 				<ImageView
 					android:src="@drawable/key"
 					android:layout_gravity="center_vertical"
@@ -63,6 +68,11 @@
 					android:singleLine="true"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
+					/>
+				<Space
+                    android:layout_width="0dp"
+					android:layout_weight="1"
+                    android:layout_height="1dp"
 					/>
 				<ImageView
 					android:src="@drawable/people_number"

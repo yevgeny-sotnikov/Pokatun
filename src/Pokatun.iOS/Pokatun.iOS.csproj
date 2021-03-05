@@ -376,6 +376,12 @@
     <Compile Include="Views\Numbers\ShowHotelNumberViewController.designer.cs">
       <DependentUpon>ShowHotelNumberViewController.cs</DependentUpon>
     </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\in_room.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\in_room.imageset\in_room%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\in_room.imageset\in_room%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\food.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\food.imageset\food%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\food.imageset\food%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -528,6 +534,8 @@
     <Folder Include="Resources\Media.xcassets\price_editroom.imageset\" />
     <Folder Include="Resources\Media.xcassets\price.imageset\" />
     <Folder Include="Resources\Media.xcassets\room_category.imageset\" />
+    <Folder Include="Resources\Media.xcassets\in_room.imageset\" />
+    <Folder Include="Resources\Media.xcassets\food.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

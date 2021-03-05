@@ -398,12 +398,16 @@ namespace Pokatun.Core.ViewModels.Profile
             CheckOutTime = parameter.CheckOutTime;
             HotelDescription = parameter.HotelDescription;
             WithinTerritoryDescription = parameter.WithinTerritoryDescription;
-            HotelLocation = new LocationDto
+
+            if (parameter.Address != null && parameter.Longtitude != null && parameter.Latitude != null)
             {
-                Addres = parameter.Address,
-                Longtitude = parameter.Longtitude.Value,
-                Latitude = parameter.Latitude.Value
-            };
+                HotelLocation = new LocationDto
+                {
+                    Addres = parameter.Address,
+                    Longtitude = parameter.Longtitude.Value,
+                    Latitude = parameter.Latitude.Value
+                };
+            }
 
             PhoneNumbers.AddRange(parameter.Phones.Select(p => new ValidatableEntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneInvalid)));
             SocialResources.AddRange(parameter.SocialResources.Select(sr => new ValidatableEntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand, IsLinkDuplicated)));

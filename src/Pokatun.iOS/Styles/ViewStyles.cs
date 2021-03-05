@@ -69,6 +69,13 @@ namespace Pokatun.iOS.Styles
             uiswitch.OnTintColor = ColorPalette.PrimaryText;
         }
 
+        public static void ApplyInfoLabelStyle(this UILabel label)
+        {
+            label.Font = Fonts.HelveticaNeueCyrLightLarge;
+            label.TextColor = ColorPalette.PrimaryText;
+            label.BaselineAdjustment = UIBaselineAdjustment.AlignCenters;
+        }
+
         public static void ApplyAdditionalInfoLabelStyle(this UILabel label)
         {
             label.Font = Fonts.HelveticaNeueCyrLightMedium;
