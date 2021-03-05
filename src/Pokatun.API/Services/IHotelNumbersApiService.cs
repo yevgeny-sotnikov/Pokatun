@@ -10,5 +10,7 @@ namespace Pokatun.API.Services
         List<HotelNumberDto> GetAll(long hotelId);
 
         void Delete(long id);
+
+        void UpdateExists(long hotelId, long hotelNumberId, HotelNumberDto value);
     }
 }

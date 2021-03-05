@@ -133,6 +133,9 @@
     <data name="HotelNumberAllreadyExistsError" xml:space="preserve">
         <value>В вашем отеле уже существуют аппартаменты под таким номером</value>
     </data>
+    <data name="HotelNumberDoesntExistError" xml:space="preserve">
+        <value>Аппартаментов под таким номером не существует</value>
+    </data>
     <data name="AccountAllreadyExistsError" xml:space="preserve">
         <value>Аккаунт с указанным почтовым адресом уже существует</value>
     </data>
@@ -220,6 +223,9 @@
     <data name="HotelLocationAddress" xml:space="preserve">
         <value>Адрес расположения отеля</value>
     </data>
+    <data name="HotelLocationAddressDidntSetted" xml:space="preserve">
+        <value>Не указан адрес расположения отеля</value>
+    </data>
     <data name="CheckInTime" xml:space="preserve">
         <value>Время заселения</value>
     </data>
@@ -295,6 +301,9 @@
     <data name="NewHotelNumber" xml:space="preserve">
         <value>Новый номер</value>
     </data>
+    <data name="HotelNumberEditing" xml:space="preserve">
+        <value>Редактирование номера</value>
+    </data>
     <data name="RoomNumber" xml:space="preserve">
         <value>Номер комнаты</value>
     </data>
@@ -360,5 +369,29 @@
     </data>
     <data name="NeedSetupNumberDescription" xml:space="preserve">
         <value>необходимо доьавить описание номера</value>
+    </data>
+    <data name="HotelNumber" xml:space="preserve">
+        <value>№ {0}</value>
+    </data>
+    <data name="RoomsCounter" xml:space="preserve">
+        <value>{0} ком</value>
+    </data>
+    <data name="VisitorsCounter" xml:space="preserve">
+        <value>{0} чел</value>
+    </data>
+    <data name="AddedHotelNumbersCounter" xml:space="preserve">
+        <value>Кол-во добавленных номеров: {0}</value>
+    </data>
+    <data name="InHotelNumber" xml:space="preserve">
+        <value>В номере:</value>
+    </data>
+    <data name="NotIncluded" xml:space="preserve">
+        <value>Не включено</value>
+    </data>
+    <data name="SubmitBid" xml:space="preserve">
+        <value>Подать заявку</value>
+    </data>
+    <data name="BidSubmittionInfo" xml:space="preserve">
+        <value>Подав заявку на этот номер вы добавите его в нашу базу и он станет доступным для поиска нашим пользователям по указанным вами датам, цене, категории и другим критериям.</value>
     </data>
 </root>

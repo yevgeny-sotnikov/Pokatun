@@ -287,6 +287,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string HotelNumberDoesntExistError {
+            get {
+                return ResourceManager.GetString("HotelNumberDoesntExistError", resourceCulture);
+            }
+        }
+        
         public static string AccountAllreadyExistsError {
             get {
                 return ResourceManager.GetString("AccountAllreadyExistsError", resourceCulture);
@@ -455,6 +461,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string HotelLocationAddressDidntSetted {
+            get {
+                return ResourceManager.GetString("HotelLocationAddressDidntSetted", resourceCulture);
+            }
+        }
+        
         public static string CheckInTime {
             get {
                 return ResourceManager.GetString("CheckInTime", resourceCulture);
@@ -605,6 +617,12 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string HotelNumberEditing {
+            get {
+                return ResourceManager.GetString("HotelNumberEditing", resourceCulture);
+            }
+        }
+        
         public static string RoomNumber {
             get {
                 return ResourceManager.GetString("RoomNumber", resourceCulture);
@@ -734,6 +752,54 @@ namespace Pokatun.Core.Resources {
         public static string NeedSetupNumberDescription {
             get {
                 return ResourceManager.GetString("NeedSetupNumberDescription", resourceCulture);
+            }
+        }
+        
+        public static string HotelNumber {
+            get {
+                return ResourceManager.GetString("HotelNumber", resourceCulture);
+            }
+        }
+        
+        public static string RoomsCounter {
+            get {
+                return ResourceManager.GetString("RoomsCounter", resourceCulture);
+            }
+        }
+        
+        public static string VisitorsCounter {
+            get {
+                return ResourceManager.GetString("VisitorsCounter", resourceCulture);
+            }
+        }
+        
+        public static string AddedHotelNumbersCounter {
+            get {
+                return ResourceManager.GetString("AddedHotelNumbersCounter", resourceCulture);
+            }
+        }
+        
+        public static string InHotelNumber {
+            get {
+                return ResourceManager.GetString("InHotelNumber", resourceCulture);
+            }
+        }
+        
+        public static string NotIncluded {
+            get {
+                return ResourceManager.GetString("NotIncluded", resourceCulture);
+            }
+        }
+        
+        public static string SubmitBid {
+            get {
+                return ResourceManager.GetString("SubmitBid", resourceCulture);
+            }
+        }
+        
+        public static string BidSubmittionInfo {
+            get {
+                return ResourceManager.GetString("BidSubmittionInfo", resourceCulture);
             }
         }
     }

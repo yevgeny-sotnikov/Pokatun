@@ -47,6 +47,40 @@ namespace Pokatun.Core.Services
             );
         }
 
+        public async Task<ServerResponce> UpdateExistsAsync(
+            long id,
+            short number,
+            RoomLevel level,
+            byte roomsAmount,
+            byte visitorsAmount,
+            string description,
+            bool cleaningNeeded,
+            bool nutritionNeeded,
+            bool breakfastIncluded,
+            bool dinnerIncluded,
+            bool supperIncluded,
+            long price
+        )
+        {
+            return await _restService.PutAsync<object>(
+                "hotelnumbers", id,
+                new HotelNumberDto
+                {
+                    Number = number,
+                    Level = level,
+                    RoomsAmount = roomsAmount,
+                    VisitorsAmount = visitorsAmount,
+                    Description = description,
+                    CleaningNeeded = cleaningNeeded,
+                    NutritionNeeded = nutritionNeeded,
+                    BreakfastIncluded = breakfastIncluded,
+                    DinnerIncluded = dinnerIncluded,
+                    SupperIncluded = supperIncluded,
+                    Price = price
+                }
+            );
+        }
+
         public async Task<ServerResponce> DeleteAsync(long id)
         {
             return await _restService.DeleteAsync<object>("hotelnumbers", id);

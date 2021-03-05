@@ -169,7 +169,15 @@ namespace Pokatun.Core.ViewModels.Profile
         public LocationDto HotelLocation
         {
             get { return _hotelLocation; }
-            set { SetProperty(ref _hotelLocation, value); }
+            set
+            {
+                if (!SetProperty(ref _hotelLocation, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsHotelLocationInvalid));
+            }
         }
 
         private string _withinTerritoryDescription;
@@ -225,6 +233,8 @@ namespace Pokatun.Core.ViewModels.Profile
         public bool IsWithinTerritoryDescriptionInvalid => CheckInvalid(nameof(WithinTerritoryDescription));
 
         public bool IsHotelDescriptionInvalid => CheckInvalid(nameof(HotelDescription));
+
+        public bool IsHotelLocationInvalid => CheckInvalid(nameof(HotelLocation));
 
         private MvxAsyncCommand _closeCommand;
         public IMvxAsyncCommand CloseCommand
@@ -354,6 +364,7 @@ namespace Pokatun.Core.ViewModels.Profile
             _validator.AddRule(nameof(PhotoStream), () => RuleResult.Assert(_viewInEditMode || PhotoStream != null, Strings.HotelPhotoDidntChoosen));
             _validator.AddRule(nameof(WithinTerritoryDescription), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(WithinTerritoryDescription), Strings.WithinTerritoryDescriptionDidntAdded));
             _validator.AddRule(nameof(HotelDescription), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(HotelDescription), Strings.HotelDescriptionDidntAdded));
+            _validator.AddRule(nameof(HotelLocation), () => RuleResult.Assert(_viewInEditMode || HotelLocation != null, Strings.HotelLocationAddressDidntSetted));
             _validator.AddRule(nameof(PhoneNumbers), () => RuleResult.Assert(_viewInEditMode || PhoneNumbers.Any(), Strings.PhoneNumbersArentSetted));
             _validator.AddRule(nameof(SocialResources), () => RuleResult.Assert(_viewInEditMode || SocialResources.Any(), Strings.LinksArentSetted));
             _validator.AddRule(nameof(InvalidPhones), () => RuleResult.Assert(_viewInEditMode || !InvalidPhones.Any(), Strings.InvalidPhones));
@@ -374,7 +385,8 @@ namespace Pokatun.Core.ViewModels.Profile
             {
                 PhotoStream = ct => _photosService.GetAsync(parameter.PhotoUrl);
             }
-            else PhotoStream = null;
+            else
+                PhotoStream = null;
 
             HotelName = parameter.HotelName;
             FullCompanyName = parameter.FullCompanyName;
@@ -386,13 +398,17 @@ namespace Pokatun.Core.ViewModels.Profile
             CheckOutTime = parameter.CheckOutTime;
             HotelDescription = parameter.HotelDescription;
             WithinTerritoryDescription = parameter.WithinTerritoryDescription;
-            HotelLocation = new LocationDto
+
+            if (parameter.Address != null && parameter.Longtitude != null && parameter.Latitude != null)
             {
-                Addres = parameter.Address,
-                Longtitude = parameter.Longtitude.Value,
-                Latitude = parameter.Latitude.Value
-            };
-            
+                HotelLocation = new LocationDto
+                {
+                    Addres = parameter.Address,
+                    Longtitude = parameter.Longtitude.Value,
+                    Latitude = parameter.Latitude.Value
+                };
+            }
+
             PhoneNumbers.AddRange(parameter.Phones.Select(p => new ValidatableEntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneInvalid)));
             SocialResources.AddRange(parameter.SocialResources.Select(sr => new ValidatableEntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand, IsLinkDuplicated)));
         }
@@ -447,7 +463,12 @@ namespace Pokatun.Core.ViewModels.Profile
         {
             TimePromptResult res = await ShowTimePromptAsync(Strings.CheckInTime, CheckInTime);
 
-            if (!res.Ok) return;
+            _viewInEditMode = true;
+
+            await RaisePropertyChanged(nameof(IsCheckInTimeInvalid));
+
+            if (!res.Ok)
+                return;
 
             CheckInTime = res.Value;
         }
@@ -456,7 +477,12 @@ namespace Pokatun.Core.ViewModels.Profile
         {
             TimePromptResult res = await ShowTimePromptAsync(Strings.CheckOutTime, CheckOutTime);
 
-            if (!res.Ok) return;
+            _viewInEditMode = true;
+
+            await RaisePropertyChanged(nameof(IsCheckOutTimeInvalid));
+
+            if (!res.Ok)
+                return;
 
             CheckOutTime = res.Value;
         }
@@ -464,6 +490,10 @@ namespace Pokatun.Core.ViewModels.Profile
         private async Task DoSetHotelLocationCommandAsync()
         {
             LocationDto result = await _navigationService.Navigate<HotelAddressViewModel, LocationDto>();
+
+            _viewInEditMode = true;
+
+            await RaisePropertyChanged(nameof(IsHotelLocationInvalid));
 
             if (result == null)
                 return;
@@ -475,7 +505,8 @@ namespace Pokatun.Core.ViewModels.Profile
         {
             FileResult result = await _mediaPicker.PickPhotoAsync();
 
-            if (result == null) return;
+            if (result == null)
+                return;
 
             _photoFileName = result.FullPath;
             PhotoStream = ct => result.OpenReadAsync();
@@ -501,6 +532,7 @@ namespace Pokatun.Core.ViewModels.Profile
                 RaisePropertyChanged(nameof(IsCheckInTimeInvalid)),
                 RaisePropertyChanged(nameof(IsCheckOutTimeInvalid)),
                 RaisePropertyChanged(nameof(IsHotelDescriptionInvalid)),
+                RaisePropertyChanged(nameof(IsHotelLocationInvalid)),
                 RaisePropertyChanged(nameof(IsWithinTerritoryDescriptionInvalid))
             );
 

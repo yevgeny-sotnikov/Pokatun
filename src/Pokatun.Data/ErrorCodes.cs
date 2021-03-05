@@ -20,5 +20,6 @@ namespace Pokatun.Data
         public const string IncorrectIdError = "IncorrectIdError";
         public const string InvalidFileError = "InvalidFileError";
         public const string HotelNumberAllreadyExistsError = "HotelNumberAllreadyExistsError";
+        public const string HotelNumberDoesntExistError = "HotelNumberDoesntExistError";
     }
 }

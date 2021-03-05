@@ -43,6 +43,8 @@ namespace Pokatun.iOS.Views.Numbers
             set.Bind(NavigationItem.RightBarButtonItem).To(vm => vm.AddCommand).OneTime();
             set.Bind(_hotelNumbersTableViewSource).For(s => s.DeleteRowCommand).To(vm => vm.DeleteCommand);
             set.Bind(_hotelNumbersTableViewSource).To(vm => vm.HotelNumbers).OneTime();
+            set.Bind(_hotelNumbersTableViewSource).For(v => v.SelectionChangedCommand).To(vm => vm.OpenHotelNumberCommand).OneTime();
+
 
             set.Apply();
         }

@@ -21,6 +21,21 @@ namespace Pokatun.Core.Services
             long price
         );
 
+        Task<ServerResponce> UpdateExistsAsync(
+            long id,
+            short number,
+            RoomLevel level,
+            byte roomsAmount,
+            byte visitorsAmount,
+            string description,
+            bool cleaningNeeded,
+            bool nutritionNeeded,
+            bool breakfastIncluded,
+            bool dinnerIncluded,
+            bool supperIncluded,
+            long price
+        );
+
         Task<ServerResponce<List<HotelNumberDto>>> GetAllAsync();
 
         Task<ServerResponce> DeleteAsync(long id);
