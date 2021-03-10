@@ -382,6 +382,26 @@
     <ImageAsset Include="Resources\Media.xcassets\food.imageset\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\food.imageset\food%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\food.imageset\food%403x.png" />
+    <InterfaceDefinition Include="Views\Menu\TouristMenuViewController.xib" />
+    <Compile Include="Views\Menu\TouristMenuViewController.cs" />
+    <Compile Include="Views\Menu\TouristMenuViewController.designer.cs">
+      <DependentUpon>TouristMenuViewController.cs</DependentUpon>
+    </Compile>
+    <ImageAsset Include="Resources\Media.xcassets\active.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\active.imageset\active%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\folder.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\folder.imageset\folder%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\like.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\like.imageset\like%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\pay.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\pay.imageset\pay%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\smile.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\smile.imageset\smile%403x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\smile.imageset\smile%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\pay.imageset\pay%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\like.imageset\like%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\folder.imageset\folder%402x.png" />
+    <ImageAsset Include="Resources\Media.xcassets\active.imageset\active%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -536,6 +556,11 @@
     <Folder Include="Resources\Media.xcassets\room_category.imageset\" />
     <Folder Include="Resources\Media.xcassets\in_room.imageset\" />
     <Folder Include="Resources\Media.xcassets\food.imageset\" />
+    <Folder Include="Resources\Media.xcassets\active.imageset\" />
+    <Folder Include="Resources\Media.xcassets\folder.imageset\" />
+    <Folder Include="Resources\Media.xcassets\like.imageset\" />
+    <Folder Include="Resources\Media.xcassets\pay.imageset\" />
+    <Folder Include="Resources\Media.xcassets\smile.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

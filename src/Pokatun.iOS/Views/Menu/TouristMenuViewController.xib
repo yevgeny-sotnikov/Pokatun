@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TouristMenuViewController">
+            <connections>
+                <outlet property="_activeBidItem" destination="OrJ-pF-HVz" id="wRO-8z-Hi6"/>
+                <outlet property="_bidsArchiveItem" destination="TlH-fs-PCC" id="ei8-dS-s6Y"/>
+                <outlet property="_cardView" destination="jmG-ir-esU" id="RHA-GH-ASC"/>
+                <outlet property="_exitItem" destination="J1o-cE-QLj" id="GCE-j7-BAa"/>
+                <outlet property="_menuContainer" destination="Klt-Hp-714" id="Plb-Mf-T2a"/>
+                <outlet property="_myRatesItem" destination="osM-LT-aVW" id="Aj7-hT-EfF"/>
+                <outlet property="_paymentItem" destination="dYf-t7-FHb" id="F8E-XS-7r4"/>
+                <outlet property="_profileItem" destination="etc-aA-nSa" id="n7X-sz-kFk"/>
+                <outlet property="_securityItem" destination="Aq0-6n-uky" id="Xrg-NA-ZMt"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qE-5h-wno">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmG-ir-esU" customClass="CardView">
+                            <rect key="frame" x="7" y="7" width="400" height="601"/>
+                            <subviews>
+                                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Klt-Hp-714">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="601"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="OrJ-pF-HVz" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="applic"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="400" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zbu-N7-qgC" customClass="WrappedSplitter">
+                                            <rect key="frame" x="0.0" y="85" width="400" height="1"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="TlH-fs-PCC" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="86" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="room"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="400" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="RQl-9Z-1IQ" customClass="WrappedSplitter">
+                                            <rect key="frame" x="0.0" y="171" width="400" height="1"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="osM-LT-aVW" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="172" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="rating"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="400" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ibj-ar-lc9" customClass="WrappedSplitter">
+                                            <rect key="frame" x="0.0" y="257" width="400" height="1"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="etc-aA-nSa" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="258" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="profile"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="400" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="UEf-Ix-TWB" customClass="WrappedSplitter">
+                                            <rect key="frame" x="0.0" y="343" width="400" height="1"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="dYf-t7-FHb" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="344" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="loyaty"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="400" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="2Yt-kl-PLh" customClass="WrappedSplitter">
+                                            <rect key="frame" x="0.0" y="429" width="400" height="1"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="Aq0-6n-uky" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="430" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="password"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="400" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wdy-gH-UkE" customClass="WrappedSplitter">
+                                            <rect key="frame" x="0.0" y="515" width="400" height="1"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="J1o-cE-QLj" customClass="MenuItem">
+                                            <rect key="frame" x="0.0" y="516" width="400" height="85"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="image" value="logout"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="Klt-Hp-714" firstAttribute="top" secondItem="jmG-ir-esU" secondAttribute="top" id="Zr7-J6-1D1"/>
+                                <constraint firstItem="Klt-Hp-714" firstAttribute="leading" secondItem="jmG-ir-esU" secondAttribute="leading" id="e53-eE-pdT"/>
+                                <constraint firstAttribute="bottom" secondItem="Klt-Hp-714" secondAttribute="bottom" id="i13-9U-Oek"/>
+                                <constraint firstAttribute="trailing" secondItem="Klt-Hp-714" secondAttribute="trailing" id="wmX-qH-Y7o"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="jmG-ir-esU" firstAttribute="trailing" secondItem="aPv-iz-VTt" secondAttribute="trailing" constant="7" id="6Sj-9e-lho"/>
+                        <constraint firstItem="jmG-ir-esU" firstAttribute="width" secondItem="Nd3-vy-4t8" secondAttribute="width" constant="-14" id="kM7-I7-gEh"/>
+                        <constraint firstItem="jmG-ir-esU" firstAttribute="leading" secondItem="aPv-iz-VTt" secondAttribute="leading" constant="7" id="rpU-13-gNN"/>
+                        <constraint firstItem="jmG-ir-esU" firstAttribute="top" secondItem="aPv-iz-VTt" secondAttribute="top" constant="7" id="uQH-hp-Gou"/>
+                        <constraint firstItem="jmG-ir-esU" firstAttribute="bottom" secondItem="aPv-iz-VTt" secondAttribute="bottom" constant="-7" id="uw3-W4-qh1"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="aPv-iz-VTt"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="Nd3-vy-4t8"/>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="gnK-Vb-Vtl"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="2qE-5h-wno" firstAttribute="leading" secondItem="gnK-Vb-Vtl" secondAttribute="leading" id="W43-GJ-4Hy"/>
+                <constraint firstItem="gnK-Vb-Vtl" firstAttribute="bottom" secondItem="2qE-5h-wno" secondAttribute="bottom" id="b9s-ea-X0I"/>
+                <constraint firstItem="gnK-Vb-Vtl" firstAttribute="trailing" secondItem="2qE-5h-wno" secondAttribute="trailing" id="cuE-R8-3zL"/>
+                <constraint firstItem="2qE-5h-wno" firstAttribute="top" secondItem="gnK-Vb-Vtl" secondAttribute="top" id="e0f-9b-fiQ"/>
+            </constraints>
+            <point key="canvasLocation" x="119" y="3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="applic" width="16.5" height="16.5"/>
+        <image name="logout" width="16.5" height="16.5"/>
+        <image name="loyaty" width="16.5" height="16.5"/>
+        <image name="password" width="16.5" height="16.5"/>
+        <image name="profile" width="16.5" height="16.5"/>
+        <image name="rating" width="16.5" height="16.5"/>
+        <image name="room" width="16.5" height="16.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
