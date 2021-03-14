@@ -402,6 +402,11 @@
     <ImageAsset Include="Resources\Media.xcassets\like.imageset\like%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\folder.imageset\folder%402x.png" />
     <ImageAsset Include="Resources\Media.xcassets\active.imageset\active%402x.png" />
+    <InterfaceDefinition Include="Views\Tourist\ShowTouristProfileViewController.xib" />
+    <Compile Include="Views\Tourist\ShowTouristProfileViewController.cs" />
+    <Compile Include="Views\Tourist\ShowTouristProfileViewController.designer.cs">
+      <DependentUpon>ShowTouristProfileViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -561,6 +566,7 @@
     <Folder Include="Resources\Media.xcassets\like.imageset\" />
     <Folder Include="Resources\Media.xcassets\pay.imageset\" />
     <Folder Include="Resources\Media.xcassets\smile.imageset\" />
+    <Folder Include="Views\Tourist\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\helveticaneuecyr-light.ttf">

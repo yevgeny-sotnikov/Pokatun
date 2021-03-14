@@ -9,6 +9,7 @@ using System.CodeDom.Compiler;
 
 namespace Pokatun.iOS.Controls
 {
+	[Register("BorderedTextField")]
 	partial class BorderedTextField
 	{
 		[Outlet]
