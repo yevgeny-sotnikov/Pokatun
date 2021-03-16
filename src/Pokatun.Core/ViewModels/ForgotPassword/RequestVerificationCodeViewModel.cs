@@ -18,7 +18,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
     {
         private readonly ValidationHelper _validator;
         private readonly IMvxNavigationService _navigationService;
-        private readonly IHotelsService _hotelsService;
+        private readonly IAccountsService _accountsService;
         private readonly INetworkRequestExecutor _networkRequestExecutor;
 
         public override string Title => Strings.PasswordRecovery;
@@ -44,10 +44,10 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
             get { return _requestCodeCommand ?? (_requestCodeCommand = new MvxAsyncCommand(DoRequestCodeCommandAsync)); }
         }
 
-        public RequestVerificationCodeViewModel(IMvxNavigationService navigationService, IHotelsService hotelsService, INetworkRequestExecutor networkRequestExecutor)
+        public RequestVerificationCodeViewModel(IMvxNavigationService navigationService, IAccountsService accountsService, INetworkRequestExecutor networkRequestExecutor)
         {
             _navigationService = navigationService;
-            _hotelsService = hotelsService;
+            _accountsService = accountsService;
             _networkRequestExecutor = networkRequestExecutor;
 
             _validator = new ValidationHelper();
@@ -58,7 +58,7 @@ namespace Pokatun.Core.ViewModels.ForgotPassword
         private async Task DoRequestCodeCommandAsync()
         {
             ServerResponce responce = await _networkRequestExecutor.MakeRequestAsync(
-                () => _hotelsService.ForgotPasswordAsync(Email),
+                () => _accountsService.ForgotPasswordAsync(Email),
                 new HashSet<string>
                 {
                     ErrorCodes.AccountDoesNotExistError

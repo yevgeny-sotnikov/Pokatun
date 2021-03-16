@@ -21,7 +21,7 @@ namespace Pokatun.Core.ViewModels.Numbers
         {
             get
             {
-                ShortInfoDto shortInfo = _memoryCache.Get<ShortInfoDto>(Constants.Keys.ShortHotelInfo);
+                HotelShortInfoDto shortInfo = _memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
 
                 return shortInfo.HotelName;
             }

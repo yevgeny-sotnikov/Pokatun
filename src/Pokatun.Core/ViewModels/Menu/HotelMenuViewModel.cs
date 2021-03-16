@@ -18,7 +18,7 @@ using Xamarin.Essentials.Interfaces;
 
 namespace Pokatun.Core.ViewModels.Menu
 {
-    public sealed class HotelMenuViewModel : BaseViewModel<ShortInfoDto>
+    public sealed class HotelMenuViewModel : BaseViewModel<HotelShortInfoDto>
     {
         private readonly IPhotosService _photosService;
         private readonly IMvxNavigationService _navigationService;
@@ -27,15 +27,15 @@ namespace Pokatun.Core.ViewModels.Menu
         private readonly IMemoryCache _memoryCache;
         private readonly IHotelsService _hotelsService;
         private readonly IHotelNumbersService _hotelNumbersService;
-        private ShortInfoDto _parameter;
+        private HotelShortInfoDto _parameter;
 
-        public override string Title => _parameter?.HotelName;
+        public override string Title => _parameter.HotelName;
 
         public string Placeholder => Title == null ? null : Title[0].ToString();
 
-        public string Subtitle => _parameter == null || _parameter.ProfileNotCompleted ? Strings.CompleteYourProfile : _parameter.Address;
+        public string Subtitle => _parameter.ProfileNotCompleted ? Strings.CompleteYourProfile : _parameter.Address;
 
-        public bool ProfileNotCompleted => _parameter == null || _parameter.ProfileNotCompleted;
+        public bool ProfileNotCompleted => _parameter.ProfileNotCompleted;
 
         private Func<CancellationToken, Task<Stream>> _photoStream;
         public Func<CancellationToken, Task<Stream>> PhotoStream
@@ -89,11 +89,17 @@ namespace Pokatun.Core.ViewModels.Menu
             _hotelNumbersService = hotelNumbersService;
         }
 
-        public override void Prepare(ShortInfoDto parameter)
+        public override void Prepare(HotelShortInfoDto parameter)
         {
+            if (parameter == null)
+            {
+                throw new ArgumentNullException(nameof(parameter));
+            }
+
             _parameter = parameter;
 
             RaisePropertyChanged(nameof(Title));
+            RaisePropertyChanged(nameof(Placeholder));
             RaisePropertyChanged(nameof(Subtitle));
             RaisePropertyChanged(nameof(ProfileNotCompleted));
 
@@ -119,7 +125,7 @@ namespace Pokatun.Core.ViewModels.Menu
             {
                 HotelDto hotel = await _navigationService.Navigate<EditHotelProfileViewModel, HotelDto, HotelDto>(responce.Data);
 
-                _parameter = new ShortInfoDto
+                _parameter = new HotelShortInfoDto
                 {
                     HotelName = hotel.HotelName,
                     PhotoName = hotel.PhotoUrl,
@@ -146,6 +152,7 @@ namespace Pokatun.Core.ViewModels.Menu
 
                 await Task.WhenAll(
                     RaisePropertyChanged(nameof(Title)),
+                    RaisePropertyChanged(nameof(Placeholder)),
                     RaisePropertyChanged(nameof(Subtitle)),
                     RaisePropertyChanged(nameof(ProfileNotCompleted))
                 );
@@ -154,14 +161,14 @@ namespace Pokatun.Core.ViewModels.Menu
             {
                 await _navigationService.Navigate<ShowHotelProfileViewModel, HotelDto, object>(responce.Data);
 
-                _parameter = _memoryCache.Get<ShortInfoDto>(Constants.Keys.ShortHotelInfo);
+                _parameter = _memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
                 if (_parameter.PhotoName != null)
                 {
                     PhotoStream = ct => _photosService.GetAsync(_parameter.PhotoName);
                 }
                 else PhotoStream = null;
 
-                await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Subtitle)));
+                await Task.WhenAll(RaisePropertyChanged(nameof(Title)), RaisePropertyChanged(nameof(Placeholder)), RaisePropertyChanged(nameof(Subtitle)));
             }
         }
 

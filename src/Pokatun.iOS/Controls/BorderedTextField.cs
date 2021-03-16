@@ -9,7 +9,6 @@ using UIKit;
 namespace Pokatun.iOS.Controls
 {
     [DesignTimeVisible(true)]
-    [Register(nameof(BorderedTextField))]
     public sealed partial class BorderedTextField : UIView
     {
         private static readonly CGSize ContentSize = new CGSize(NoIntrinsicMetric, 40);

@@ -7,7 +7,6 @@ using Pokatun.Core.ViewModels.Menu;
 using Pokatun.Droid.Controls;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Plugin.Visibility;
-using MvvmCross.Platforms.Android.Binding.Target;
 
 namespace Pokatun.Droid.Views.Menu
 {
@@ -45,7 +44,6 @@ namespace Pokatun.Droid.Views.Menu
             _securityItem = view.FindViewById<MenuItem>(Resource.Id.securityItem);
             _exitItem = view.FindViewById<MenuItem>(Resource.Id.exitItem);
 
-            ToolbarPhotoPlaceholderLabel.Text = ViewModel.Placeholder;
             _myBidsItem.Text = Strings.MyBids;
             _myHotelNumbersItem.Text = Strings.MyHotelNumbers;
             _hotelRatingItem.Text = Strings.HotelRating;
@@ -70,6 +68,8 @@ namespace Pokatun.Droid.Views.Menu
             #pragma warning restore IDE0008 // Use explicit type
 
             set.Bind(ToolbarPhotoView).For(v => v.ImageStream).To(vm => vm.PhotoStream).OneWay();
+            set.Bind(ToolbarTitleLabel).To(vm => vm.Title).OneWay();
+            set.Bind(ToolbarPhotoPlaceholderLabel).To(vm => vm.Placeholder).OneWay();
             set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
             set.Bind(ToolbarSubtitleLabel).For(v => v.Activated).To(vm => vm.ProfileNotCompleted).OneWay();
             set.Bind(_profileItem).For(v => v.AdditionalInfoVisibility).To(vm => vm.ProfileNotCompleted)

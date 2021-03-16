@@ -357,6 +357,7 @@ namespace Pokatun.Core.ViewModels.Profile
                 Strings.ValidBankCardOrIbanNotDefined)
             );
 
+            _validator.AddRule(nameof(Email), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(Email.Trim(), DataPatterns.Email), Strings.InvalidEmailMessage));
             _validator.AddRule(nameof(BankName), () => RuleResult.Assert(_viewInEditMode || !string.IsNullOrWhiteSpace(BankName), Strings.BankNameRequiredMessage));
             _validator.AddRule(nameof(USREOU), () => RuleResult.Assert(_viewInEditMode || Regex.IsMatch(USREOU.Trim(), DataPatterns.USREOU), Strings.InvalidUSREOU));
             _validator.AddRule(nameof(CheckInTime), () => RuleResult.Assert(_viewInEditMode || CheckInTime != null, Strings.CheckInTimeDidntSetted));
@@ -377,6 +378,11 @@ namespace Pokatun.Core.ViewModels.Profile
 
         public override void Prepare(HotelDto parameter)
         {
+            if (parameter == null)
+            {
+                throw new ArgumentNullException(nameof(parameter));
+            }
+
             _currentHotelId = parameter.Id;
 
             _photoFileName = parameter.PhotoUrl;
@@ -524,6 +530,7 @@ namespace Pokatun.Core.ViewModels.Profile
             ValidationResult validationResult = _validator.ValidateAll();
 
             await Task.WhenAll(
+                RaisePropertyChanged(nameof(IsEmailInvalid)),
                 RaisePropertyChanged(nameof(IsHotelNameInvalid)),
                 RaisePropertyChanged(nameof(IsFullCompanyNameInvalid)),
                 RaisePropertyChanged(nameof(IsUsreouInvalid)),
@@ -592,11 +599,12 @@ namespace Pokatun.Core.ViewModels.Profile
 
             _memoryCache.Set(
                 Constants.Keys.ShortHotelInfo,
-                new ShortInfoDto { HotelName = HotelName, PhotoName = responce.Data, Address = HotelLocation.Addres, ProfileNotCompleted = false }
+                new HotelShortInfoDto { HotelName = HotelName, PhotoName = responce.Data, Address = HotelLocation.Addres, ProfileNotCompleted = false }
             );
 
             await _navigationService.Close(this, new HotelDto
             {
+                Id = _currentHotelId,
                 HotelName = HotelName,
                 Email = Email,
                 FullCompanyName = FullCompanyName,

@@ -19,12 +19,67 @@ namespace Pokatun.API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Pokatun.API.Entities.Account", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(64)")
+                        .HasMaxLength(64);
+
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("varbinary(64)")
+                        .HasMaxLength(64);
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(128)")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("PhotoName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("ResetToken")
+                        .HasColumnType("nvarchar(8)")
+                        .HasMaxLength(8);
+
+                    b.Property<DateTime?>("ResetTokenExpires")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("PhotoName")
+                        .IsUnique()
+                        .HasFilter("[PhotoName] IS NOT NULL");
+
+                    b.HasIndex("ResetToken")
+                        .IsUnique()
+                        .HasFilter("[ResetToken] IS NOT NULL");
+
+                    b.ToTable("Accounts");
+                });
+
             modelBuilder.Entity("Pokatun.API.Entities.Hotel", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AccountId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(256)")
@@ -43,11 +98,6 @@ namespace Pokatun.API.Migrations
 
                     b.Property<TimeSpan?>("CheckOutTime")
                         .HasColumnType("time");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(64)")
-                        .HasMaxLength(64);
 
                     b.Property<string>("FullCompanyName")
                         .IsRequired()
@@ -73,27 +123,6 @@ namespace Pokatun.API.Migrations
                     b.Property<double?>("Longtitude")
                         .HasColumnType("float");
 
-                    b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("varbinary(64)")
-                        .HasMaxLength(64);
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("varbinary(128)")
-                        .HasMaxLength(128);
-
-                    b.Property<string>("PhotoUrl")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("ResetToken")
-                        .HasColumnType("nvarchar(8)")
-                        .HasMaxLength(8);
-
-                    b.Property<DateTime?>("ResetTokenExpires")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("USREOU")
                         .HasColumnType("int");
 
@@ -103,20 +132,11 @@ namespace Pokatun.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
+                    b.HasIndex("AccountId");
 
                     b.HasIndex("IBAN")
                         .IsUnique()
                         .HasFilter("[IBAN] IS NOT NULL");
-
-                    b.HasIndex("PhotoUrl")
-                        .IsUnique()
-                        .HasFilter("[PhotoUrl] IS NOT NULL");
-
-                    b.HasIndex("ResetToken")
-                        .IsUnique()
-                        .HasFilter("[ResetToken] IS NOT NULL");
 
                     b.HasIndex("USREOU")
                         .IsUnique();
@@ -226,6 +246,42 @@ namespace Pokatun.API.Migrations
                     b.ToTable("SocialResources");
                 });
 
+            modelBuilder.Entity("Pokatun.API.Entities.Tourist", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AccountId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(64)")
+                        .HasMaxLength(64);
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(16)")
+                        .HasMaxLength(16);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Tourists");
+                });
+
+            modelBuilder.Entity("Pokatun.API.Entities.Hotel", b =>
+                {
+                    b.HasOne("Pokatun.API.Entities.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Pokatun.API.Entities.HotelNumber", b =>
                 {
                     b.HasOne("Pokatun.API.Entities.Hotel", "Hotel")
@@ -249,6 +305,15 @@ namespace Pokatun.API.Migrations
                     b.HasOne("Pokatun.API.Entities.Hotel", "Hotel")
                         .WithMany("SocialResources")
                         .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Pokatun.API.Entities.Tourist", b =>
+                {
+                    b.HasOne("Pokatun.API.Entities.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

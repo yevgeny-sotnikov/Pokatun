@@ -1,11 +1,10 @@
-using System;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using Pokatun.Core.Models.Enums;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Login;
 using Pokatun.Core.ViewModels.Registration;
+using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.PreEntrance
 {
@@ -19,14 +18,14 @@ namespace Pokatun.Core.ViewModels.PreEntrance
             ? Strings.PreEntranceTouristDescriptionText
             : Strings.PreEntranceHotelDescriptionText;
 
-        private IMvxCommand _registrationCommand;
-        public IMvxCommand RegistrationCommand
+        private IMvxAsyncCommand _registrationCommand;
+        public IMvxAsyncCommand RegistrationCommand
         {
             get { return _registrationCommand ?? (_registrationCommand = new MvxAsyncCommand(OnRegistrationCommandAsync)); }
         }
 
-        private IMvxCommand _loginCommand;
-        public IMvxCommand LoginCommand
+        private IMvxAsyncCommand _loginCommand;
+        public IMvxAsyncCommand LoginCommand
         {
             get { return _loginCommand ?? (_loginCommand = new MvxAsyncCommand(OnLoginCommandAsync)); }
         }
@@ -48,7 +47,15 @@ namespace Pokatun.Core.ViewModels.PreEntrance
 
         private Task OnRegistrationCommandAsync()
         {
-            return _navigationService.Navigate<HotelRegistrationFirstStepViewModel>();
+            if (_role == UserRole.HotelAdministrator)
+            {
+                return _navigationService.Navigate<HotelRegistrationFirstStepViewModel>();
+            }
+            else
+            {
+                return _navigationService.Navigate<TouristRegistrationViewModel>();
+            }
+
         }
     }
 }

@@ -1,11 +1,9 @@
-using System;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Platforms.Ios.Views;
-using Pokatun.Core.Models.Enums;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.ChoiseUserRole;
-using Pokatun.iOS.Controls;
+using Pokatun.Data;
 using Pokatun.iOS.Styles;
 using UIKit;
 
