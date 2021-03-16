@@ -407,6 +407,11 @@
     <Compile Include="Views\Tourist\ShowTouristProfileViewController.designer.cs">
       <DependentUpon>ShowTouristProfileViewController.cs</DependentUpon>
     </Compile>
+    <InterfaceDefinition Include="Views\Tourist\EditTouristProfileViewController.xib" />
+    <Compile Include="Views\Tourist\EditTouristProfileViewController.cs" />
+    <Compile Include="Views\Tourist\EditTouristProfileViewController.designer.cs">
+      <DependentUpon>EditTouristProfileViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

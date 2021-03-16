@@ -26,6 +26,7 @@ namespace Pokatun.iOS.Views.Tourist
 
             _titlePhotoView = TitlePhotoView.Create();
 
+            NavigationItem.LeftItemsSupplementBackButton = true;
             NavigationItem.SetLeftBarButtonItem(new UIBarButtonItem(_titlePhotoView), true);
             NavigationItem.SetRightBarButtonItem(rightBarButtonItem, true);
 

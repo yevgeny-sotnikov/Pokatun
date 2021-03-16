@@ -37,6 +37,8 @@ namespace Pokatun.Droid.Views.Tourist
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_tourist_profile;
 
+        protected override bool IsHeaderBackButtonVisible => false;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -51,7 +53,7 @@ namespace Pokatun.Droid.Views.Tourist
             _fullnameTextField.Hint = Strings.FullName;
             _saveChangesButton.Text = Strings.SaveChanges;
 
-#pragma warning disable IDE0008 // Use explicit type
+            #pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
 
@@ -81,7 +83,7 @@ namespace Pokatun.Droid.Views.Tourist
             base.OnStart();
 
             ToolbarRightButton.SetImageResource(Resource.Drawable.close);
-            ToolbarLeftSpaceView.Visibility = ViewStates.Gone;
+            ToolbarLeftSpaceView.Visibility = ViewStates.Visible;
             ToolbarRightButton.Visibility = ViewStates.Visible;
             ToolbarAddPhotoButton.Visibility = ViewStates.Visible;
             ToolbarPhotoContainer.Visibility = ViewStates.Visible;

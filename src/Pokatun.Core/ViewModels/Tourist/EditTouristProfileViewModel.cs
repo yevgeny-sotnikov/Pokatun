@@ -215,7 +215,7 @@ namespace Pokatun.Core.ViewModels.Tourist
                 FullName = FullName,
                 PhoneNumber = Phone,
                 Email = Email,
-                PhotoName = responce.Data
+                PhotoName = _photoFileName
             });
         }
 
