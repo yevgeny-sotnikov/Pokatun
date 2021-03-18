@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Pokatun.Core.Services;
@@ -12,11 +13,13 @@ namespace Pokatun.Core.Executors
     {
         private readonly IHotelsService _hotelsService;
         private readonly IMvxNavigationService _navigationService;
+        private readonly IMemoryCache _memoryCache;
 
-        public HotelFinalSetupExecutor(IHotelsService hotelsService, IMvxNavigationService navigationService)
+        public HotelFinalSetupExecutor(IHotelsService hotelsService, IMvxNavigationService navigationService, IMemoryCache memoryCache)
         {
             _hotelsService = hotelsService;
             _navigationService = navigationService;
+            _memoryCache = memoryCache;
         }
 
         public async Task FinalizeSetupAsync(TokenInfoDto dto, IMvxViewModel closeViewModel)
@@ -33,6 +36,8 @@ namespace Pokatun.Core.Executors
                 serverResponce = await _hotelsService.GetShortInfoAsync(dto.AccountId);
             }
             while (!serverResponce.Success);
+
+            _memoryCache.Set(Constants.Keys.ShortHotelInfo, serverResponce.Data);
 
             await _navigationService.Close(closeViewModel);
             await _navigationService.Navigate<HotelMenuViewModel, HotelShortInfoDto>(serverResponce.Data);

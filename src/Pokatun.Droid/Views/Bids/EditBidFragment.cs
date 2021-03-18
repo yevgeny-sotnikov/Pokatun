@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Pokatun.Core.Converters;
@@ -47,6 +48,8 @@ namespace Pokatun.Droid.Views.Bids
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_bid;
 
+        protected override bool IsHeaderBackButtonVisible => false;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -86,8 +89,10 @@ namespace Pokatun.Droid.Views.Bids
             #pragma warning disable IDE0008 // Use explicit type
 
             var set = CreateBindingSet();
-
+    
             #pragma warning restore IDE0008 // Use explicit type
+
+            set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.CloseCommand).OneTime();
 
             set.Bind(_hotelLocationLabel).To(vm => vm.HotelInfo.Address).OneWay();
             set.Bind(_levelLabel).To(vm => vm.HotelNumber.Level).WithConversion<RoomLevelToStringConverter>().OneWay();

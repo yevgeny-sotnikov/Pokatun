@@ -126,6 +126,16 @@ namespace Pokatun.Core.ViewModels.Bids
             }
         }
 
+        private MvxAsyncCommand _closeCommand;
+        public IMvxAsyncCommand CloseCommand
+        {
+            get
+            {
+                return _closeCommand ?? (_closeCommand = new MvxAsyncCommand(DoCloseCommandAsync));
+            }
+        }
+
+
         public EditBidViewModel(
             IMvxNavigationService navigationService,
             IMemoryCache memoryCache,
@@ -236,5 +246,9 @@ namespace Pokatun.Core.ViewModels.Bids
             return !_validator.Validate(name).IsValid;
         }
 
+        private Task DoCloseCommandAsync()
+        {
+            return _navigationService.Close(this);
+        }
     }
 }
