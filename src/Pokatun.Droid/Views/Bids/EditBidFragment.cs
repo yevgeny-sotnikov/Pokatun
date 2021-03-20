@@ -8,6 +8,7 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using MvvmCross.Plugin.Visibility;
 using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
 using Pokatun.Core.ViewModels.Bids;
@@ -45,6 +46,7 @@ namespace Pokatun.Droid.Views.Bids
         private MvxLinearLayout _bidTimeRangesTable;
         private Button _addTimeRangeButton;
         private Button _saveChangesButton;
+        private Button _editTimeRangeButton;
 
         protected override int FragmentLayoutId => Resource.Layout.fragment_edit_bid;
 
@@ -73,6 +75,7 @@ namespace Pokatun.Droid.Views.Bids
             _bidTimeRangesTable = view.FindViewById<MvxLinearLayout>(Resource.Id.bidTimeRangesTable);
             _addTimeRangeButton = view.FindViewById<Button>(Resource.Id.addTimeRangeButton);
             _saveChangesButton = view.FindViewById<Button>(Resource.Id.saveChangesButton);
+            _editTimeRangeButton = view.FindViewById<Button>(Resource.Id.editTimeRangeButton);
 
             _bidTimeRangesTable.ItemTemplateId = Resource.Layout.bid_time_range_item_template;
 
@@ -114,7 +117,13 @@ namespace Pokatun.Droid.Views.Bids
             set.Bind(_priceTextField).For(v => v.Activated).To(vm => vm.IsPriceInvalid).OneWay();
             set.Bind(_discountTextField).For(v => v.Activated).To(vm => vm.IsDiscountInvalid).OneWay();
 
+            set.Bind(_editTimeRangeButton).For(v => v.Text).ByCombining("Format", "'{0:ddd d MMMM} - {1:ddd d MMMM}'", nameof(ViewModel.MinDate), nameof(ViewModel.MaxDate));
+            set.Bind(_editTimeRangeButton).For(v => v.BindVisible()).To(vm => vm.IsAddDateRangeVisible);
+            set.Bind(_addTimeRangeButton).For("Visibility").To(vm => vm.IsAddDateRangeVisible).WithConversion<MvxInvertedVisibilityValueConverter>();
+            set.Bind(_bidTimeRangesTable).For("Visibility").To(vm => vm.IsAddDateRangeVisible).WithConversion<MvxInvertedVisibilityValueConverter>();
+
             set.Bind(_addTimeRangeButton).To(vm => vm.AddTimeRangeCommand).OneTime();
+            set.Bind(_editTimeRangeButton).To(vm => vm.EditTimeRangeCommand).OneTime();
             set.Bind(_saveChangesButton).To(vm => vm.SaveChangesCommand).OneTime();
 
             set.Apply();

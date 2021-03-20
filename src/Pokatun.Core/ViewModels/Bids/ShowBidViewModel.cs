@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using Pokatun.Core.Resources;
 using Pokatun.Data;
 
@@ -8,6 +11,8 @@ namespace Pokatun.Core.ViewModels.Bids
 {
     public class ShowBidViewModel : BaseViewModel<EditBidParameter>
     {
+        private readonly IMvxNavigationService _navigationService;
+
         public override string Title => string.Format("№ {0}", HotelNumber.Number);
 
         public string Subtitle => HotelInfo.HotelName;
@@ -41,7 +46,7 @@ namespace Pokatun.Core.ViewModels.Bids
             }
         }
 
-        public int PriceWithDiscount => (int)(Bid.Price / 100 * (100 - Bid.Discount));
+        public int PriceWithDiscount => (int)(Bid.Price / 100.0 * (100 - Bid.Discount));
 
         public string TimeRange => string.Format("{0:dd.MM}-{1:dd.MM}", Bid.MinDate, Bid.MaxDate);
 
@@ -59,8 +64,19 @@ namespace Pokatun.Core.ViewModels.Bids
             set { SetProperty(ref _bid, value); }
         }
 
-        public ShowBidViewModel(IMemoryCache memoryCache)
+        private MvxAsyncCommand _editCommand;
+        public IMvxAsyncCommand EditCommand
         {
+            get
+            {
+                return _editCommand ?? (_editCommand = new MvxAsyncCommand(DoEditCommandAsync));
+            }
+        }
+
+        public ShowBidViewModel(IMvxNavigationService navigationService, IMemoryCache memoryCache)
+        {
+            _navigationService = navigationService;
+
             HotelInfo = memoryCache.Get<HotelShortInfoDto>(Constants.Keys.ShortHotelInfo);
         }
 
@@ -82,6 +98,15 @@ namespace Pokatun.Core.ViewModels.Bids
             RaisePropertyChanged(nameof(NutritionInfo));
             RaisePropertyChanged(nameof(PriceWithDiscount));
             RaisePropertyChanged(nameof(TimeRange));
+        }
+
+        private Task DoEditCommandAsync()
+        {
+            return _navigationService.Navigate<EditBidViewModel, EditBidParameter, bool>(new EditBidParameter
+            {
+                HotelNumber = HotelNumber,
+                Bid = Bid
+            });
         }
     }
 }

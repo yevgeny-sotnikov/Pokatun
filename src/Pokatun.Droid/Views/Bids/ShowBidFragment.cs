@@ -1,18 +1,9 @@
-
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.Combiners;
+using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Pokatun.Core.Converters;
 using Pokatun.Core.Resources;
@@ -97,6 +88,9 @@ namespace Pokatun.Droid.Views.Bids
             var set = CreateBindingSet();
 
             #pragma warning restore IDE0008 // Use explicit type
+
+            set.Bind(ToolbarRightButton).For(ToolbarRightButton.BindClick()).To(vm => vm.EditCommand).OneTime();
+
 
             set.Bind(ToolbarSubtitleLabel).To(vm => vm.Subtitle).OneWay();
             set.Bind(_timeRangesLabel).To(vm => vm.TimeRange).OneWay();

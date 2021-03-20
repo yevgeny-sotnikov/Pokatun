@@ -352,6 +352,14 @@
                 android:drawableLeft="@drawable/calendar_edit"
                 />
 
+			<Button
+				android:id="@+id/editTimeRangeButton"
+				style="@style/BorderedButton"
+				android:layout_marginTop="8dp"
+				android:layout_width="match_parent"
+				android:drawableLeft="@drawable/calendar_edit"
+				/>
+
 		</LinearLayout>
 
 	</ScrollView>

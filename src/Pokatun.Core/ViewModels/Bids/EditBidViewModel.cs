@@ -93,6 +93,27 @@ namespace Pokatun.Core.ViewModels.Bids
             }
         }
 
+        private DateTime? _minDate;
+        public DateTime? MinDate
+        {
+            get { return _minDate; }
+            set { SetProperty(ref _minDate, value); }
+        }
+
+        private DateTime? _maxDate;
+        public DateTime? MaxDate
+        {
+            get { return _maxDate; }
+            set { SetProperty(ref _maxDate, value); }
+        }
+
+        private bool? _isAddDateRangeVisible;
+        public bool? IsAddDateRangeVisible
+        {
+            get { return _isAddDateRangeVisible; }
+            set { SetProperty(ref _isAddDateRangeVisible, value); }
+        }
+
         public MvxObservableCollection<ButtonItemViewModel> TimeRanges { get; private set; }
 
         public bool IsPriceInvalid => CheckInvalid(nameof(Price));
@@ -105,6 +126,15 @@ namespace Pokatun.Core.ViewModels.Bids
             get
             {
                 return _addTimeRangeCommand ?? (_addTimeRangeCommand = new MvxCommand(DoAddTimeRangeCommand));
+            }
+        }
+
+        private MvxAsyncCommand _editTimeRangeCommand;
+        public IMvxAsyncCommand EditTimeRangeCommand
+        {
+            get
+            {
+                return _editTimeRangeCommand ?? (_editTimeRangeCommand = new MvxAsyncCommand(DoEditTimeRangeCommandAsync));
             }
         }
 
@@ -171,12 +201,54 @@ namespace Pokatun.Core.ViewModels.Bids
             }
 
             HotelNumber = parameter.HotelNumber;
+
+            if (parameter.Bid != null)
+            {
+                Price = parameter.Bid.Price;
+                Discount = parameter.Bid.Discount;
+
+                MinDate = parameter.Bid.MinDate;
+                MaxDate = parameter.Bid.MaxDate;
+
+                IsAddDateRangeVisible = true;
+            }
+            else
+            {
+                IsAddDateRangeVisible = false;
+            }
+
             RaisePropertyChanged(nameof(NutritionInfo));
         }
 
         private void DoAddTimeRangeCommand()
         {
             TimeRanges.Add(new ButtonItemViewModel(DeleteTimeRangeCommand, _userDialogs));
+        }
+
+        private async Task DoEditTimeRangeCommandAsync()
+        {
+            DatePromptResult minResult = await _userDialogs.DatePromptAsync(new DatePromptConfig
+            {
+                MaximumDate = MaxDate == null ? null : MaxDate
+            });
+
+            if (!minResult.Ok)
+            {
+                return;
+            }
+
+            DatePromptResult maxResult = await _userDialogs.DatePromptAsync(new DatePromptConfig
+            {
+                MinimumDate = MinDate == null ? null : MinDate
+            });
+
+            if (!maxResult.Ok)
+            {
+                return;
+            }
+
+            MinDate = minResult.Value;
+            MaxDate = maxResult.Value;
         }
 
         private void DoDeleteTimeRangeCommand(ButtonItemViewModel obj)
