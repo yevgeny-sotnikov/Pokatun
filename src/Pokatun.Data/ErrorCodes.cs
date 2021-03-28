@@ -22,5 +22,7 @@ namespace Pokatun.Data
         public const string HotelNumberAllreadyExistsError = "HotelNumberAllreadyExistsError";
         public const string HotelNumberDoesntExistError = "HotelNumberDoesntExistError";
         public const string IncorrectTimeRangesError = "IncorrectTimeRangesError";
+        public const string NewTimeRangesOverlappingError = "NewTimeRangesOverlappingError";
+        public const string OccupiedTimeRangesError = "OccupiedTimeRangesError";
     }
 }

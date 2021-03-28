@@ -67,7 +67,7 @@ namespace Pokatun.API.Services
                 errors.Add(ErrorCodes.HotelNumberAllreadyExistsError);
             }
 
-            HotelNumber hotelNumber = _context.HotelNumbers.SingleOrDefault(x => x.Id ==  hotelNumberId);
+            HotelNumber hotelNumber = _context.HotelNumbers.FirstOrDefault(x => x.Id ==  hotelNumberId);
 
             if (hotelNumber == null)
             {

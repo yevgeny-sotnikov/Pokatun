@@ -22,11 +22,10 @@
 	<ImageButton
         android:id="@+id/deleteButton"
 		android:layout_gravity="center_vertical|right"
-		android:src="@drawable/close"
+		android:src="@drawable/del"
         android:layout_height="30dp"
         android:layout_width="30dp"
 		android:layout_marginRight="13dp"
-		android:background="@android:color/holo_red_dark"
 		local:MvxBind="Click DeleteCommand"
 		/>
 </FrameLayout>

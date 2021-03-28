@@ -33,5 +33,20 @@ namespace Pokatun.Core.Services
         {
             return _restService.GetAsync<List<BidDto>>("bids");
         }
+
+        public async Task<ServerResponce> UpdateExistsAsync(long bidId, long price, byte discount, DateTime minDate, DateTime maxDate)
+        {
+            return await _restService.PutAsync<object>(
+                "bids",
+                bidId,
+                new UpdateBidDto
+                {
+                    Price = price,
+                    Discount = discount,
+                    MinDate = minDate,
+                    MaxDate = maxDate
+                }
+            );
+        }
     }
 }

@@ -335,6 +335,24 @@ namespace Pokatun.Core.Resources {
             }
         }
         
+        public static string InvalidTimeRangesMessage {
+            get {
+                return ResourceManager.GetString("InvalidTimeRangesMessage", resourceCulture);
+            }
+        }
+        
+        public static string NewTimeRangesOverlappingError {
+            get {
+                return ResourceManager.GetString("NewTimeRangesOverlappingError", resourceCulture);
+            }
+        }
+        
+        public static string OccupiedTimeRangesError {
+            get {
+                return ResourceManager.GetString("OccupiedTimeRangesError", resourceCulture);
+            }
+        }
+        
         public static string ExpiredTokenError {
             get {
                 return ResourceManager.GetString("ExpiredTokenError", resourceCulture);

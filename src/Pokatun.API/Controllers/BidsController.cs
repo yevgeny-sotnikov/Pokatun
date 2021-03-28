@@ -52,5 +52,20 @@ namespace Pokatun.API.Controllers
                 return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
             }
         }
+
+        [HttpPut("{id}")]
+        public ActionResult<ServerResponce> Put(long id, [FromBody] UpdateBidDto value)
+        {
+            try
+            {
+                _bidsService.UpdateExists(id, value);
+
+                return Ok(new ServerResponce<string> { Data = "OK" });
+            }
+            catch (ApiException ex)
+            {
+                return BadRequest(ServerResponce.ForErrors(ex.ErrorCodes));
+            }
+        }
     }
 }

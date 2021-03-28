@@ -416,7 +416,7 @@ namespace Pokatun.Core.ViewModels.Profile
             }
             else HotelLocation = null;
 
-            PhoneNumbers.AddRange(parameter.Phones.Select(p => new ValidatableEntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneInvalid)));
+            PhoneNumbers.AddRange(parameter.Phones.Select(p => new ValidatableEntryItemViewModel(p.Id, p.Number, DeletePhoneCommand, IsPhoneDisplayedAsInvalid)));
             SocialResources.AddRange(parameter.SocialResources.Select(sr => new ValidatableEntryItemViewModel(sr.Id, sr.Link, RemoveSocialResourceCommand, IsLinkDuplicated)));
         }
 
@@ -425,9 +425,9 @@ namespace Pokatun.Core.ViewModels.Profile
             return DuplicatedSocialResources.Contains(str);
         }
 
-        private bool IsPhoneInvalid(string phone)
+        private bool IsPhoneDisplayedAsInvalid(string phone)
         {
-            return DuplicatedPhones.Contains(phone) || IsPhoneDoesntMatchPattern(phone);
+            return IsPhoneDoesntMatchPattern(phone) || DuplicatedPhones.Contains(phone);
         }
 
         private bool IsPhoneDoesntMatchPattern(string phone)
@@ -448,7 +448,7 @@ namespace Pokatun.Core.ViewModels.Profile
 
         private void DoAddPhoneCommand()
         {
-            PhoneNumbers.Add(new ValidatableEntryItemViewModel(0, null, DeletePhoneCommand, IsPhoneInvalid));
+            PhoneNumbers.Add(new ValidatableEntryItemViewModel(0, null, DeletePhoneCommand, IsPhoneDisplayedAsInvalid));
         }
 
         private void DoDeletePhoneCommand(ValidatableEntryItemViewModel phoneVM)

@@ -157,6 +157,15 @@
     <data name="InvalidTokenError" xml:space="preserve">
         <value>Неверный код верификации</value>
     </data>
+    <data name="InvalidTimeRangesMessage" xml:space="preserve">
+        <value>Обнаружены некорректные временные промежутки</value>
+    </data>
+    <data name="NewTimeRangesOverlappingError" xml:space="preserve">
+        <value>Обнаружено пересечение временных диапазонов</value>
+    </data>
+    <data name="OccupiedTimeRangesError" xml:space="preserve">
+        <value>Один или несколько временных диапазонов уже заняты. Проверьте существующщие заявки</value>
+    </data>
     <data name="ExpiredTokenError" xml:space="preserve">
         <value>Истекло время действия кода верификации</value>
     </data>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 using MvvmCross.Commands;
@@ -100,13 +101,22 @@ namespace Pokatun.Core.ViewModels.Bids
             RaisePropertyChanged(nameof(TimeRange));
         }
 
-        private Task DoEditCommandAsync()
+        private async Task DoEditCommandAsync()
         {
-            return _navigationService.Navigate<EditBidViewModel, EditBidParameter, bool>(new EditBidParameter
+            BidDto[] result = await _navigationService.Navigate<EditBidViewModel, EditBidParameter, BidDto[]>(new EditBidParameter
             {
                 HotelNumber = HotelNumber,
                 Bid = Bid
             });
+
+            if (result == null)
+                return;
+
+            BidDto editedBId = result.First();
+
+            Bid = editedBId;
+
+            await Task.WhenAll(RaisePropertyChanged(nameof(TimeRange)), RaisePropertyChanged(nameof(PriceWithDiscount)));
         }
     }
 }

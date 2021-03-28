@@ -8,6 +8,8 @@ namespace Pokatun.API.Services
     {
         void AddNew(CreateBidsDto value);
 
-        List<BidDto> GetAll(long v);
+        List<BidDto> GetAll(long hotelId);
+
+        void UpdateExists(long bidId, UpdateBidDto value);
     }
 }

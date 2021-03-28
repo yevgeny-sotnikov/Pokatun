@@ -4,17 +4,15 @@
 	xmlns:local="http://schemas.android.com/apk/res-auto"
 	android:orientation="vertical"
 	android:paddingTop="8dp"
-	android:paddingBottom="8dp"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
 
 	<Button
-		android:id="@+id/addTimeRangeButton"
 		style="@style/BorderedButton"
 		android:layout_marginBottom="8dp"
 		android:layout_width="match_parent"
 		android:drawableLeft="@drawable/calendar_edit"
-		local:MvxBind="Click ActionCommand;Text If(BothTimesSetted, Format('{0:ddd d MMMM} - {1:ddd d MMMM}', MinDate, MaxDate), 'Дата(ы), когда номер свободен')"
+		local:MvxBind="Click ActionCommand;Activated IsInvalid;Text If(BothTimesSetted, Format('{0:ddd d MMMM} - {1:ddd d MMMM}', MinDate, MaxDate), 'Дата(ы), когда номер свободен')"
 		/>
 
 	<Button
@@ -25,6 +23,7 @@
 		android:text="удалить"
 		android:textColor="@android:color/white"
 		android:layout_marginRight="13dp"
+		android:layout_marginBottom="8dp"
 		android:background="@drawable/delete_button_background"
 		local:MvxBind="Click DeleteCommand"
 		/>

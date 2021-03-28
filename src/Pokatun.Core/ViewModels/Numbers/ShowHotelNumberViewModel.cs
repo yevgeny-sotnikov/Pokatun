@@ -95,13 +95,13 @@ namespace Pokatun.Core.ViewModels.Numbers
 
         private async Task DoSubmitBidCommandAsync()
         {
-            bool result = await _navigationService.Navigate<EditBidViewModel, EditBidParameter, bool>(new EditBidParameter
+            BidDto[] result = await _navigationService.Navigate<EditBidViewModel, EditBidParameter, BidDto[]>(new EditBidParameter
             {
                 HotelNumber = HotelNumber,
                 Bid = null
             });
 
-            if (!result)
+            if (result == null)
             {
                 return;
             }

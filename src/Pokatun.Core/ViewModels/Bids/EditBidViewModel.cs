@@ -16,7 +16,7 @@ using Pokatun.Data;
 
 namespace Pokatun.Core.ViewModels.Bids
 {
-    public class EditBidViewModel : BaseViewModel<EditBidParameter, bool>
+    public class EditBidViewModel : BaseViewModel<EditBidParameter, BidDto[]>
     {
         private readonly IMvxNavigationService _navigationService;
         private readonly IUserDialogs _userDialogs;
@@ -25,7 +25,7 @@ namespace Pokatun.Core.ViewModels.Bids
         private readonly ValidationHelper _validator;
 
         private bool _viewInEditMode = true;
-
+        private long? _bidIdWhichExists;
 
         private HotelNumberDto _hotelNumber;
         public HotelNumberDto HotelNumber
@@ -107,11 +107,11 @@ namespace Pokatun.Core.ViewModels.Bids
             set { SetProperty(ref _maxDate, value); }
         }
 
-        private bool? _isAddDateRangeVisible;
-        public bool? IsAddDateRangeVisible
+        private bool? _isEditMode;
+        public bool? IsEditMode
         {
-            get { return _isAddDateRangeVisible; }
-            set { SetProperty(ref _isAddDateRangeVisible, value); }
+            get { return _isEditMode; }
+            set { SetProperty(ref _isEditMode, value); }
         }
 
         public MvxObservableCollection<ButtonItemViewModel> TimeRanges { get; private set; }
@@ -165,6 +165,30 @@ namespace Pokatun.Core.ViewModels.Bids
             }
         }
 
+        private ButtonItemViewModel[] InvalidTimeRanges => TimeRanges.Where(p => p.MaxDate == null || p.MinDate == null || p.MaxDate <= p.MinDate).ToArray();
+
+        private ButtonItemViewModel[] OverlappedTimeRanges
+        {
+            get
+            {
+                List<ButtonItemViewModel> overlappedItems = new List<ButtonItemViewModel>();
+
+                foreach (ButtonItemViewModel timeRange in TimeRanges)
+                {
+                    if (TimeRanges.Any(x => x != timeRange && x.MinDate < timeRange.MaxDate && timeRange.MinDate < x.MaxDate))
+                    {
+                        overlappedItems.Add(timeRange);
+                    }
+                }
+
+                return overlappedItems.ToArray();
+            }
+        }
+
+        private bool IsTimeRangeInvalid(ButtonItemViewModel vm)
+        {
+            return vm.MaxDate == null || vm.MinDate == null || vm.MaxDate <= vm.MinDate || OverlappedTimeRanges.Contains(vm);
+        }
 
         public EditBidViewModel(
             IMvxNavigationService navigationService,
@@ -186,6 +210,8 @@ namespace Pokatun.Core.ViewModels.Bids
 
             _validator.AddRule(nameof(Price), () => RuleResult.Assert(_viewInEditMode || Price != null, Strings.PriceDidntSetted));
             _validator.AddRule(nameof(Discount), () => RuleResult.Assert(_viewInEditMode || Discount != null && Discount >= Constants.MinimalDiscount, Strings.DiscountDidntSetted));
+            _validator.AddRule(nameof(InvalidTimeRanges), () => RuleResult.Assert(_viewInEditMode || !InvalidTimeRanges.Any(), Strings.InvalidTimeRangesMessage));
+            _validator.AddRule(nameof(OverlappedTimeRanges), () => RuleResult.Assert(_viewInEditMode || !OverlappedTimeRanges.Any(), Strings.NewTimeRangesOverlappingError));
         }
 
         public override void Prepare(EditBidParameter parameter)
@@ -204,17 +230,19 @@ namespace Pokatun.Core.ViewModels.Bids
 
             if (parameter.Bid != null)
             {
+                _bidIdWhichExists = parameter.Bid.Id;
+
                 Price = parameter.Bid.Price;
                 Discount = parameter.Bid.Discount;
 
                 MinDate = parameter.Bid.MinDate;
                 MaxDate = parameter.Bid.MaxDate;
 
-                IsAddDateRangeVisible = true;
+                IsEditMode = true;
             }
             else
             {
-                IsAddDateRangeVisible = false;
+                IsEditMode = false;
             }
 
             RaisePropertyChanged(nameof(NutritionInfo));
@@ -222,15 +250,12 @@ namespace Pokatun.Core.ViewModels.Bids
 
         private void DoAddTimeRangeCommand()
         {
-            TimeRanges.Add(new ButtonItemViewModel(DeleteTimeRangeCommand, _userDialogs));
+            TimeRanges.Add(new ButtonItemViewModel(DeleteTimeRangeCommand, _userDialogs, IsTimeRangeInvalid));
         }
 
         private async Task DoEditTimeRangeCommandAsync()
         {
-            DatePromptResult minResult = await _userDialogs.DatePromptAsync(new DatePromptConfig
-            {
-                MaximumDate = MaxDate == null ? null : MaxDate
-            });
+            DatePromptResult minResult = await _userDialogs.DatePromptAsync(selectedDate: MinDate);
 
             if (!minResult.Ok)
             {
@@ -239,6 +264,7 @@ namespace Pokatun.Core.ViewModels.Bids
 
             DatePromptResult maxResult = await _userDialogs.DatePromptAsync(new DatePromptConfig
             {
+                SelectedDate = minResult.Value,
                 MinimumDate = MinDate == null ? null : MinDate
             });
 
@@ -264,6 +290,11 @@ namespace Pokatun.Core.ViewModels.Bids
 
             await Task.WhenAll(RaisePropertyChanged(nameof(IsDiscountInvalid)), RaisePropertyChanged(nameof(IsPriceInvalid)));
 
+            foreach (ButtonItemViewModel vm in TimeRanges)
+            {
+                vm.Validate();
+            }
+
             if (!validationResult.IsValid)
             {
                 _userDialogs.Toast(validationResult.ErrorList[0].ErrorText);
@@ -273,44 +304,61 @@ namespace Pokatun.Core.ViewModels.Bids
 
             ServerResponce responce;
 
-            //if (_hotelNumberIdWhichExists == null)
-            //{
+            if (_bidIdWhichExists == null)
+            {
                 responce = await _networkRequestExecutor.MakeRequestAsync(() =>
                     _bidsService.AddNewAsync(
                         HotelNumber.Id,
                         Price.Value,
                         Discount.Value,
-                        TimeRanges
-                            .Where(x => x.MinDate != null && x.MaxDate != null)
-                            .Select(x => new TimeRangeDto { MinDate = x.MinDate.Value, MaxDate = x.MaxDate.Value })
+                        TimeRanges.Select(x => new TimeRangeDto { MinDate = x.MinDate.Value, MaxDate = x.MaxDate.Value })
                     ),
-                    new HashSet<string> { ErrorCodes.HotelNumberAllreadyExistsError }
+                    new HashSet<string> { ErrorCodes.OccupiedTimeRangesError }
                 );
-            //}
-            //else
-            //{
-            //    responce = await _networkRequestExecutor.MakeRequestAsync(() =>
-            //        _hotelNumbersService.UpdateExistsAsync(
-            //            _hotelNumberIdWhichExists.Value,
-            //            Number.Value,
-            //            Level,
-            //            RoomsAmount,
-            //            VisitorsAmount,
-            //            Description,
-            //            CleaningNeeded,
-            //            NutritionNeeded,
-            //            BreakfastIncluded = NutritionNeeded && BreakfastIncluded,
-            //            DinnerIncluded = NutritionNeeded && DinnerIncluded,
-            //            SupperIncluded = NutritionNeeded && SupperIncluded
-            //        ),
-            //        new HashSet<string> { ErrorCodes.HotelNumberDoesntExistError, ErrorCodes.HotelNumberAllreadyExistsError }
-            //    );
-            //}
+            }
+            else
+            {
+                responce = await _networkRequestExecutor.MakeRequestAsync(() =>
+                    _bidsService.UpdateExistsAsync(
+                        _bidIdWhichExists.Value,
+                        Price.Value,
+                        Discount.Value,
+                        MinDate.Value,
+                        MaxDate.Value
+                    ),
+                    new HashSet<string> { ErrorCodes.OccupiedTimeRangesError }
+                );
+            }
 
             if (responce == null)
                 return;
 
-            await _navigationService.Close(this, true);
+            if (_bidIdWhichExists == null)
+            {
+                await _navigationService.Close(this, TimeRanges.Select(x => new BidDto
+                {
+                    HotelNumberId = HotelNumber.Id,
+                    Price = Price.Value,
+                    Discount = Discount.Value,
+                    MinDate = x.MinDate.Value,
+                    MaxDate = x.MaxDate.Value
+                }).ToArray());
+            }
+            else
+            {
+                await _navigationService.Close(this, new BidDto[]
+                {
+                    new BidDto
+                    {
+                        Id = _bidIdWhichExists.Value,
+                        HotelNumberId = HotelNumber.Id,
+                        Price = Price.Value,
+                        Discount = Discount.Value,
+                        MinDate = MinDate.Value,
+                        MaxDate = MaxDate.Value
+                    }
+                });
+            }
         }
 
         private bool CheckInvalid(string name)

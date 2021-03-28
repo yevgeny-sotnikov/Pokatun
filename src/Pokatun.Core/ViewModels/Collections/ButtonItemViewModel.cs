@@ -11,11 +11,23 @@ namespace Pokatun.Core.ViewModels.Collections
         private readonly IMvxCommand<ButtonItemViewModel> _deleteItemCommand;
         private readonly IUserDialogs _userDialogs;
 
+        private readonly Func<ButtonItemViewModel, bool> _validator;
+        private bool _viewInEditMode = true;
+
+
         private DateTime? _minDate;
         public DateTime? MinDate
         {
             get { return _minDate; }
-            set { SetProperty(ref _minDate, value); }
+            set
+            {
+                if (!SetProperty(ref _minDate, value))
+                    return;
+
+                _viewInEditMode = true;
+
+                RaisePropertyChanged(nameof(IsInvalid));
+            }
         }
 
         private DateTime? _maxDate;
@@ -26,6 +38,8 @@ namespace Pokatun.Core.ViewModels.Collections
         }
 
         public bool BothTimesSetted => MinDate != null && MaxDate != null;
+
+        public bool IsInvalid => !_viewInEditMode && _validator(this);
 
         private MvxAsyncCommand _actionCommand;
         public IMvxAsyncCommand ActionCommand
@@ -48,8 +62,7 @@ namespace Pokatun.Core.ViewModels.Collections
             }
         }
 
-
-        public ButtonItemViewModel(IMvxCommand<ButtonItemViewModel> deleteItemCommand, IUserDialogs userDialogs)
+        public ButtonItemViewModel(IMvxCommand<ButtonItemViewModel> deleteItemCommand, IUserDialogs userDialogs, Func<ButtonItemViewModel, bool> validator)
         {
             if (deleteItemCommand == null)
             {
@@ -61,25 +74,28 @@ namespace Pokatun.Core.ViewModels.Collections
                 throw new ArgumentNullException(nameof(userDialogs));
             }
 
+            if (validator == null)
+            {
+                throw new ArgumentNullException(nameof(validator));
+            }
+
             _deleteItemCommand = deleteItemCommand;
             _userDialogs = userDialogs;
+            _validator = validator;
         }
 
         private async Task DoActionCommandAsync()
         {
-            DatePromptResult minResult = await _userDialogs.DatePromptAsync(new DatePromptConfig
-            {
-                MaximumDate = MaxDate == null ? null : MaxDate
-            });
+            DatePromptResult minResult = await _userDialogs.DatePromptAsync(selectedDate: MinDate);
 
             if (!minResult.Ok)
             {
                 return;
             }
 
-
             DatePromptResult maxResult = await _userDialogs.DatePromptAsync(new DatePromptConfig
             {
+                SelectedDate = minResult.Value,
                 MinimumDate = MinDate == null ? null : MinDate
             });
 
@@ -92,6 +108,13 @@ namespace Pokatun.Core.ViewModels.Collections
             MaxDate = maxResult.Value;
 
             await RaisePropertyChanged(nameof(BothTimesSetted));
+        }
+
+        public void Validate()
+        {
+            _viewInEditMode = false;
+
+            RaisePropertyChanged(nameof(IsInvalid));
         }
     }
 }

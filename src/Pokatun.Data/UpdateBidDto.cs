@@ -1,10 +1,9 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Pokatun.Data
 {
-    public class CreateBidsDto
+    public class UpdateBidDto
     {
         [Required]
         public long Price { get; set; }
@@ -13,9 +12,9 @@ namespace Pokatun.Data
         public byte Discount { get; set; }
 
         [Required]
-        public List<TimeRangeDto> TimeRanges { get; set; }
+        public DateTime MinDate { get; set; }
 
         [Required]
-        public long HotelNumberId { get; set; }
+        public DateTime MaxDate { get; set; }
     }
 }

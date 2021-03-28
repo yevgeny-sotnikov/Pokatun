@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Pokatun.API.Entities;
 using Pokatun.API.Models;
 using Pokatun.Data;
@@ -28,6 +29,16 @@ namespace Pokatun.API.Services
                 if (timeRange.MaxDate.Date <= timeRange.MinDate.Date)
                 {
                     throw new ApiException(ErrorCodes.IncorrectTimeRangesError);
+                }
+
+                if (value.TimeRanges.Any(x => x != timeRange && x.MinDate < timeRange.MaxDate && timeRange.MinDate < x.MaxDate))
+                {
+                    throw new ApiException(ErrorCodes.NewTimeRangesOverlappingError);
+                }
+
+                if (_context.Bids.Any(x => x.HotelNumberId == value.HotelNumberId && x.MinDate < timeRange.MaxDate && timeRange.MinDate < x.MaxDate))
+                {
+                    throw new ApiException(ErrorCodes.OccupiedTimeRangesError);
                 }
             }
 
@@ -57,6 +68,34 @@ namespace Pokatun.API.Services
                 MaxDate = x.MaxDate,
                 HotelNumberId = x.HotelNumberId
             }).ToList();
+        }
+
+        public void UpdateExists(long bidId, UpdateBidDto value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (value.MaxDate <= value.MinDate)
+            {
+                throw new ApiException(ErrorCodes.IncorrectTimeRangesError);
+            }
+
+            Bid bid = _context.Bids.First(b => b.Id == bidId);
+
+            if (_context.Bids.Any(x => x.HotelNumberId == bid.HotelNumberId && bid.Id != x.Id && x.MinDate < value.MaxDate && value.MinDate < x.MaxDate))
+            {
+                throw new ApiException(ErrorCodes.OccupiedTimeRangesError);
+            }
+
+            bid.Price = value.Price;
+            bid.Discount = value.Discount;
+            bid.MinDate = value.MinDate;
+            bid.MaxDate = value.MaxDate;
+
+            _context.Update(bid);
+            _context.SaveChanges();
         }
     }
 }

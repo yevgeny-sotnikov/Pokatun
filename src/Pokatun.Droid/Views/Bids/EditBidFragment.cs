@@ -118,9 +118,9 @@ namespace Pokatun.Droid.Views.Bids
             set.Bind(_discountTextField).For(v => v.Activated).To(vm => vm.IsDiscountInvalid).OneWay();
 
             set.Bind(_editTimeRangeButton).For(v => v.Text).ByCombining("Format", "'{0:ddd d MMMM} - {1:ddd d MMMM}'", nameof(ViewModel.MinDate), nameof(ViewModel.MaxDate));
-            set.Bind(_editTimeRangeButton).For(v => v.BindVisible()).To(vm => vm.IsAddDateRangeVisible);
-            set.Bind(_addTimeRangeButton).For("Visibility").To(vm => vm.IsAddDateRangeVisible).WithConversion<MvxInvertedVisibilityValueConverter>();
-            set.Bind(_bidTimeRangesTable).For("Visibility").To(vm => vm.IsAddDateRangeVisible).WithConversion<MvxInvertedVisibilityValueConverter>();
+            set.Bind(_editTimeRangeButton).For(v => v.BindVisible()).To(vm => vm.IsEditMode);
+            set.Bind(_addTimeRangeButton).For("Visibility").To(vm => vm.IsEditMode).WithConversion<MvxInvertedVisibilityValueConverter>();
+            set.Bind(_bidTimeRangesTable).For("Visibility").To(vm => vm.IsEditMode).WithConversion<MvxInvertedVisibilityValueConverter>();
 
             set.Bind(_addTimeRangeButton).To(vm => vm.AddTimeRangeCommand).OneTime();
             set.Bind(_editTimeRangeButton).To(vm => vm.EditTimeRangeCommand).OneTime();
