@@ -19,12 +19,6 @@ namespace Pokatun.iOS.Cells
 		UIKit.UILabel _numberLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel _priceDescLabel { get; set; }
-
-		[Outlet]
-		UIKit.UILabel _priceLabel { get; set; }
-
-		[Outlet]
 		UIKit.UILabel _roomsAmountLabel { get; set; }
 
 		[Outlet]
@@ -40,16 +34,6 @@ namespace Pokatun.iOS.Cells
 			if (_numberLabel != null) {
 				_numberLabel.Dispose ();
 				_numberLabel = null;
-			}
-
-			if (_priceDescLabel != null) {
-				_priceDescLabel.Dispose ();
-				_priceDescLabel = null;
-			}
-
-			if (_priceLabel != null) {
-				_priceLabel.Dispose ();
-				_priceLabel = null;
 			}
 
 			if (_roomsAmountLabel != null) {

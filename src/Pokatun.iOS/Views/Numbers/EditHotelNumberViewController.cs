@@ -76,7 +76,7 @@ namespace Pokatun.iOS.Views.Numbers
 
             set.Bind(_roomNumberTextField).For(v => v.Text).To(vm => vm.Number).WithConversion<NullableValueConverter>().TwoWay();
             set.Bind(_numberDescriptionTextField).To(vm => vm.Description).TwoWay();
-            set.Bind(_hotelNumberPriceTextField).For(v => v.Text).To(vm => vm.Price).WithConversion<NullableValueConverter>().TwoWay();
+            //set.Bind(_hotelNumberPriceTextField).For(v => v.Text).To(vm => vm.Price).WithConversion<NullableValueConverter>().TwoWay();
 
             set.Bind(_selectRoomLevelButton).For(v => v.Text).To(vm => vm.Level).WithConversion<RoomLevelToStringConverter>().OneWay();
             set.Bind(_amountOfRoomsButton).For(v => v.Text).To(vm => vm.RoomsAmount)
@@ -112,7 +112,7 @@ namespace Pokatun.iOS.Views.Numbers
                 }
             ).OneWay();
 
-            set.Bind(_hotelNumberPriceTextField).For(v => v.Highlighted).To(vm => vm.IsPriceInvalid).OneWay();
+            //set.Bind(_hotelNumberPriceTextField).For(v => v.Highlighted).To(vm => vm.IsPriceInvalid).OneWay();
 
             set.Bind(_selectRoomLevelButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.SelectRoomLevelCommand).OneTime();
             set.Bind(_amountOfRoomsButton).For(nameof(BorderedButton.Clicked)).To(vm => vm.PromptRoomsAmountCommand).OneTime();

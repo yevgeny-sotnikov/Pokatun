@@ -34,11 +34,6 @@ namespace Pokatun.iOS.Cells
             _levelLabel.ApplyMediumLabelStyle();
             _roomsAmountLabel.ApplyMediumLabelStyle();
             _visitorsAmountLabel.ApplyMediumLabelStyle();
-            _priceDescLabel.ApplyMediumLabelStyle();
-
-            _priceLabel.ApplyMediumBoldLabelStyle();
-
-            _priceDescLabel.Text = Strings.PriceHint;
 
             this.DelayBind(() =>
             {
@@ -52,11 +47,9 @@ namespace Pokatun.iOS.Cells
                 set.Bind(_levelLabel).To(vm => vm.Level).WithConversion<RoomLevelToStringConverter>().OneWay();
                 set.Bind(_roomsAmountLabel).To(vm => vm.RoomsAmount).WithConversion<StringFormatValueConverter>(Strings.RoomsCounter).OneWay();
                 set.Bind(_visitorsAmountLabel).To(vm => vm.VisitorsAmount).WithConversion<StringFormatValueConverter>(Strings.VisitorsCounter).OneWay();
-                set.Bind(_priceLabel).To(vm => vm.Price).OneWay();
 
                 set.Apply();
             });
-
         }
     }
 }
