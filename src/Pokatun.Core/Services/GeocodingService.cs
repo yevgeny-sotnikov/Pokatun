@@ -29,7 +29,7 @@ namespace Pokatun.Core.Services
 
             IRestResponse<GeocodingResponce> response = await _restClient.ExecuteAsync<GeocodingResponce>(request);
 
-            if (response.Data.Features == null || !response.Data.Features.Any())
+            if (response.Data == null || response.Data.Features == null || !response.Data.Features.Any())
             {
                 return Array.Empty<LocationDto>();
             }
